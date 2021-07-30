@@ -15,7 +15,6 @@ module.exports = async function onMessage(message, client) {
         if(message.guild.members.cache.get(member.id)?.roles?.cache?.has(vipRole.id)){
         Users.rep += 2
         Users.save()
-        return
     } else {
         Users.rep += 1
         Users.save()
