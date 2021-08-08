@@ -5,7 +5,7 @@ module.exports = class editstaff extends Command {
         super(name, client)
 
         this.aliases = ['tes', 'whitelist']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = true
     }
 

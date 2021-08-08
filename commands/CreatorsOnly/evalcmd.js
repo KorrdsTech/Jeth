@@ -6,7 +6,7 @@ module.exports = class evalcmd extends Command {
         super(name, client)
 
         this.aliases = ['evaluate', 'ev', 'eval']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = true
     }
 

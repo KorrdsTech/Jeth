@@ -6,7 +6,7 @@ module.exports = class relatorio extends Command {
         super(name, client)
 
         this.aliases = ['rel']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = false
     }
 

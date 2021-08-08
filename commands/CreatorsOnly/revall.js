@@ -6,7 +6,7 @@ module.exports = class Ban extends Command {
         super(name, client)
 
         this.aliases = ['removeall']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
     }
 
     async run(message, args) {

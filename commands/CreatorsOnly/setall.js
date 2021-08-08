@@ -6,7 +6,7 @@ module.exports = class setall extends Command {
         super(name, client)
 
         this.aliases = ['setcargoall', 'cargoall']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
     }
 
     async run(message, args) {
@@ -27,7 +27,7 @@ module.exports = class setall extends Command {
 
         await message.channel.send(`Começando | 0/${message.guild.memberCount}`)
             .then(m => {
-                message.guild.members.fetch()
+                message.guild.members.cache.fetch()
                     .then(async guilda => {
                         let membros = guilda.members.array();
                         await f(membros, 0, role, m);

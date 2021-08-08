@@ -5,7 +5,7 @@ module.exports = class createInvite extends Command {
         super(name, client)
 
         this.aliases = ['invite']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = true
     }
 

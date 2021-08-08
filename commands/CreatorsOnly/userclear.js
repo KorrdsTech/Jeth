@@ -6,7 +6,7 @@ module.exports = class userclear extends Command {
         super(name, client)
 
         this.aliases = ['limparuser', 'userlimpar']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = true
     }
 

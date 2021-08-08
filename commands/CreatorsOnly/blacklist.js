@@ -6,7 +6,7 @@ module.exports = class blacklist extends Command {
         super(name, client)
 
         this.aliases = ['blacklist', 'blist']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = false
     }
 

@@ -6,7 +6,7 @@ module.exports = class strike extends Command {
         super(name, client)
 
         this.aliases = []
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = false
     }
 
@@ -42,7 +42,7 @@ module.exports = class strike extends Command {
             case "remove": {
                 let user = await this.client.users.fetch(args[1])
                 let userDB = await this.client.database.Users.findById(user.id)
-                message.channel.send(`${user.tag} Teve seu strike removido! <:9605discordslashcommand:832746522865172530>`)
+                message.channel.send(`${user.tag} Teve seu strike removido! <:a_blurplecertifiedmoderator:856174396225355776>`)
                 userDB.strike -= 1
                 userDB.save()
                 if (userDB.strike < 3) {

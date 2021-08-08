@@ -6,7 +6,7 @@ module.exports = class family extends Command {
         super(name, client)
 
         this.aliases = ['family', 'amigo', 'setfamily', 'familyadd']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = true
     }
 

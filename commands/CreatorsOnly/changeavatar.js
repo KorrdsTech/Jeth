@@ -6,7 +6,7 @@ module.exports = class changeAvatar extends Command {
         super(name, client)
 
         this.aliases = ['botavatar']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = true
     }
 

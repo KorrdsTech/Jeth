@@ -6,7 +6,7 @@ module.exports = class Partner extends Command {
         super(name, client)
 
         this.aliases = ['prm', 'parceiro']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = true
     }
 

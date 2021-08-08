@@ -6,7 +6,7 @@ module.exports = class staff extends Command {
         super(name, client)
 
         this.aliases = ['s', 'ac']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = true
     }
 

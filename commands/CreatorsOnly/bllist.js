@@ -7,7 +7,7 @@ module.exports = class blList extends Command {
         super(name, client)
 
         this.aliases = ['blacklist-list']
-        this.category = 'Only Devs'
+        this.category = 'CreatorsOnly'
         this.adminOnly = true
     }
 
@@ -16,8 +16,8 @@ module.exports = class blList extends Command {
       let msg = [];
       usuarioB.forEach(async (users) => {
         let guildDocument = await this.client.database.Users.findById(users.id)
-        if(!guildDocument.blacklist) msg.push(users)
+        if (guildDocument.blacklist) msg.push(users) 
       })
-      message.channel.send(`${msg.map((user) => `<:a_blurplecertifiedmoderator:856174396225355776> Lista de membros na blacklist:\n${user?.tag}`).join('\n')}`, { split: true });
+      message.channel.send(`${msg.map((user => `<:a_blurplecertifiedmoderator:856174396225355776> Lista de membros na blacklist:\n${user?.tag}`)).join('\n')}`, { split: true });
     }
   }
