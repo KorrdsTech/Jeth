@@ -39,6 +39,26 @@ module.exports = class TranslateFunctions {
 
         return texto
     }
+    static bouncepurple(_números) {
+        _números = _números.toString();
+        var texto = ``,
+            números = {
+                1: '<a:1_:875577992481484800>',
+                2: '<a:2_:875577994230517760>',
+                3: '<a:3_:875577994419257394>',
+                4: '<a:4_:875577994570268692>',
+                5: '<a:5_:875577994419273798>',
+                6: '<a:6_:875577994482155540>',
+                7: '<a:7_:875577994310193162>',
+                8: '<a:8_:875577994561880136>',
+                9: '<a:9_:875577994532515861>',
+                0: '<a:0_:875581760262504468>'
+            };
+        for (let i = 0; i < _números.length; i++)
+            texto += números[parseInt(_números[i])];
+
+        return texto
+    }
     static ruby(_números) {
         _números = _números.toString();
         var texto = ``,

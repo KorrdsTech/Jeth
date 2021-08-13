@@ -18,6 +18,6 @@ module.exports = class blList extends Command {
         let guildDocument = await this.client.database.Users.findById(users.id)
         if (guildDocument.blacklist) msg.push(users) 
       })
-      message.channel.send(`${msg.map((user => `<:a_blurplecertifiedmoderator:856174396225355776> Lista de membros na blacklist:\n${user?.tag}`)).join('\n')}`, { split: true });
+      message.channel.send(`${msg.map((user => `<:a_blurplecertifiedmoderator:856174396225355776> Lista de membros na blacklist:\n${user.tag}`)).join('\n')}`, { split: true });
     }
   }

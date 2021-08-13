@@ -13,7 +13,7 @@ module.exports = class Ajuda extends Command {
 
     async run(message, args) {
         let embed = new Discord.MessageEmbed()
-            .setThumbnail(this.client.user.avatarURL())
+            .setThumbnail('https://cdn.discordapp.com/attachments/804599688728412171/873270109416857670/frame.png')
             .setTitle("<:a_blurplepartner:856174395869626399> **Jeth Analytic:**")
             .setColor(colors.default)
             .setImage('https://i.imgur.com/qUzuwG8.png')

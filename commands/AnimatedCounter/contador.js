@@ -64,6 +64,9 @@ module.exports = class Contador extends Command {
             if (mensagem.includes('{rainbow}') && !guildDocument.partner) {
                 return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de contador é apenas para servidores premium!')
             }
+            if (mensagem.includes('{bouncepurple}') && !guildDocument.partner) {
+                return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de contador é apenas para servidores premium!')
+            }
 
             guildDocument.countMessage = mensagem
             guildDocument.count = true
@@ -91,6 +94,7 @@ module.exports = class Contador extends Command {
                         .replace('{roxo}', TranslateFunctions.roxo(message.guild.memberCount))
                         .replace('{rainbow}', TranslateFunctions.rainbow(message.guild.memberCount))
                         .replace('{blk}', TranslateFunctions.blk(message.guild.memberCount))
+                        .replace('{bouncepurple}', TranslateFunctions.bouncepurple(message.guild.memberCount))
                         .replace('{bouncepink}', TranslateFunctions.bouncepink(message.guild.memberCount)))
             }, 5000)
         } else if (args[0] === 'remover') {
@@ -135,11 +139,12 @@ module.exports = class Contador extends Command {
                 .addField('**{roxo}**', '<a:JT2:739977300921024522>', true)
                 .addField('**{amarelo}**', '<a:j3:683858525641900103>', true)
                 .addField('**{pinky}**', '<a:purple4:669217839030468608>', true)
-                .addField('**{bouncepink}**', '<a:el5:735367916320587925>', true)
-                .addField('**{redblue}**', '<a:dr6:684473203191578664>', true)
-                .addField('**{green}**', '<a:g7:683859048638185487>', true)
-                .addField('**{gold}**', '<a:gold8:669218300655435776>', true)
-                .addField('**{natal}**', '<a:v9:684833174983147520>', true)
+                .addField('**{bouncepurple}**', '<a:5_:875577992481484800>', true)
+                .addField('**{bouncepink}**', '<a:el6:735367916320587925>', true)
+                .addField('**{redblue}**', '<a:dr7:684473203191578664>', true)
+                .addField('**{green}**', '<a:g8:683859048638185487>', true)
+                .addField('**{gold}**', '<a:gold9:669218300655435776>', true)
+                .addField('**{natal}**', '<a:v1:684833174983147520><a:v0:684833174983147520>', true)
                 .setColor(colors.default)
             let canalContador = `<a:warnRoxo:664240941175144489> Desativado`;
             if (guildDocument.countChannel.length) {
