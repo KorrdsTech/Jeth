@@ -25,6 +25,7 @@ module.exports = async function onGuildMemberRemove(member) {
                     .replace('{rainbow}', TranslateFunctions.rainbow(member.guild.memberCount))
                     .replace('{blk}', TranslateFunctions.blk(member.guild.memberCount))
                     .replace('{natal}', TranslateFunctions.natal(member.guild.memberCount))
+                    .replace('{bouncepurple}', TranslateFunctions.bouncepurple(member.guild.memberCount))
                     .replace('{redblue}', TranslateFunctions.redblue(member.guild.memberCount)))
         }
     if (guildDocument.saidaModule) { 

@@ -12,11 +12,11 @@ module.exports = async function onMessage(message, client) {
         let Users = await this.database.Users.findById(member?.id)
         if(!Users) return
         let vipRole = message.guild.roles.cache.find((role) => role.id === '839754099573522452');
-        if(message.guild.members.cache.get(member.id)?.roles?.cache?.has(vipRole.id)){
+        if(!message.guild.members.cache.get(member.id)?.roles?.cache?.has(vipRole.id)){
         Users.rep += 1
         Users.save()
         return
-    } else if(!message.guild.members.cache.get(member.id)?.roles?.cache?.has(vipRole.id)) {
+    } else if(message.guild.members.cache.get(member.id)?.roles?.cache?.has(vipRole.id)) {
         Users.rep += 2
         Users.save()
         return
