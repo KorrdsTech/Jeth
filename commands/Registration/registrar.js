@@ -116,7 +116,7 @@ module.exports = class Registrar extends Command {
                             .setDescription(`<:registroeyey:739837234097684582> **Você foi registrado(a) por ${message.author}, no Servidor: __${member.guild.name}__.\n` + `Caso não tenha se registrado por essa pessoa, entre em contato com <@${message.guild.owner.id}>.**`)
                             .addField(`Cargos Recebidos`, `\`\`\`\n${cargos.replace('@everyone, ', '' && '@here, ', '')}\`\`\``, false)
                             .addField("Data do registro:", `\`\`\`\n${moment(timestamp).format("LL")}\`\`\``, false)
-                            .setThumbnail(message.author.displayAvatarURL())
+                            .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                             .setFooter('Depois desse registro cairia bem um bolo né? 🍰')
                             .setColor(colors.default)
                         let embedDM2 = new MessageEmbed()

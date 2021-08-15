@@ -17,7 +17,7 @@ module.exports = class Contador extends Command {
             .setTitle('**Err:**', `${message.author}`, true)
             .setDescription('Missing Permissions') // inline false
             .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
-            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL())
+            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
         if (!message.member.hasPermission('MANAGE_GUILD'))
             return message.channel.send(embedA)
         let guildDocument = await this.client.database.Guilds.findById(message.guild.id)
@@ -110,7 +110,7 @@ module.exports = class Contador extends Command {
             })
         } else {
             let embed = new MessageEmbed()
-                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL())
+                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 .setDescription(`**Seja bem vindo(a) ao painel de configuração !**`)
                 .setColor(colors.default)
                 .setThumbnail('https://cdn.discordapp.com/emojis/742240408658247791.png')
@@ -121,7 +121,7 @@ module.exports = class Contador extends Command {
                     `\n**Clique na reação abaixo para ver os \`Placeholders\` digite-os corretamente!**\n`], false)
 
             let embed2 = new MessageEmbed()
-                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL())
+                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 .setThumbnail('https://cdn.discordapp.com/emojis/742240408658247791.png')
                 .setDescription(`**Seja bem vindo(a) ao painel de configuração !**\n**Estilos de contador:**`)
                 .addField('**CONTADORES**', '**GERAIS** <:supporter:667149933480247297>', false)

@@ -33,7 +33,7 @@ module.exports = class dancar extends Command {
         .setColor(colors.default)
         .setDescription(`💃🏻 🕺🏻 ${message.author} Convidou ${defineduser} para dançar e a resposta foi **SIM**`)
         .setImage(gifs1[Math.floor(Math.random() * gifs1.length)])
-        .setFooter(`Pedido por ${message.author.tag}`, message.author.avatarURL()).setTimestamp()
+        .setFooter(`Pedido por ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 })).setTimestamp()
       message.channel.send(embed1)
     }
   }

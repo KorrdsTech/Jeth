@@ -31,7 +31,7 @@ module.exports = class Partner extends Command {
                     .setColor(colors.default)
                     .addField('Partner | Informações:', `Servidor adicionado: \n\`\`${servidor.name}\`\``, true)
                     .addField(`Servidor | Informações:`, `Dono do servidor: \n${servidor.owner}`, true)
-                    .setFooter(`${servidor.name}`, `${this.client.user.displayAvatarURL()}`)
+                    .setFooter(`${servidor.name}`, `${this.client.user.displayAvatarURL({ dynamic: true, size: 1024 })}`)
                 this.client.guilds.get('658049459636273155').channels.get('671415691051794473').send(embedpartner)
             })
         }

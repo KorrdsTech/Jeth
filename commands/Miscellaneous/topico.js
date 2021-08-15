@@ -18,7 +18,7 @@ module.exports = class topico extends Command {
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_CHANNELS`', true)
-      .setFooter('Jeth | Developers', message.author.displayAvatarURL())
+      .setFooter('Jeth | Developers', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
     if (!message.member.hasPermission('MANAGE_CHANNELS'))
       return message.channel.send(embedA)
     let topico = args.join(" ")

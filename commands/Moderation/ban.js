@@ -26,6 +26,27 @@ module.exports = class Ban extends Command {
     let quinto = "Ações que comprometem o servidor ou os usuários"
     let sexto = "Divulgação inapropriada"
 
+    const membro17 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ""))
+    if (!membro17) {
+        message.channel.send('Mencione um membro valido.')
+    }
+    const guildDocument = await this.client.database.Users.findById(membro17.id)
+    if (!guildDocument) {
+        new this.client.database.Users({
+            _id: membro17.id
+        }).save()
+    }
+
+    const membro14 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ""))
+    if (!membro14) {
+        message.channel.send('Mencione um membro valido.')
+    }
+    const guildDocument1 = await this.client.database.Users.findById(membro14.id)
+    if (!guildDocument1) {
+        new this.client.database.Users({
+            _id: membro14.id
+        }).save()
+    }
 
     const embedA = new Discord.MessageEmbed()
 
@@ -39,12 +60,15 @@ module.exports = class Ban extends Command {
     let userDocuent = await this.client.database.Users.findById(message.author.id)
     if (!args[0]) return message.reply("mencione ou informe o ID do usuário")
     // ban padrão 17
-    let membro17 = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
-    if (!membro17) return message.reply("eu procurei, procurei, e não achei este usuário")
+    let bannable = message.guild.member(membro17, membro14)
+    if (bannable) {
+      if (!bannable.bannable) return message.reply("eu não posso banir este usuário, o cargo dele é maior que o meu.")
+      if (bannable.roles.highest.position > message.member.roles.highest.position) return message.reply(`você não pode banir esse usuário, pois o cargo dele é maior ou igual ao seu.`)
+    }
 
     const warnembed17 = new Discord.MessageEmbed()
 
-      .setThumbnail(membro17.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+      .setThumbnail(membro17.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Ban')
       .setColor("#ff112b")
       .setImage(`${userDocuent.gifban || ""}`)
@@ -52,20 +76,12 @@ module.exports = class Ban extends Command {
       .setTimestamp(new Date());
 
     // banimento private
-    let bans = await message.guild.fetchBans('716845015678320661');
-    let membro14 = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
-    if (!membro14) return message.reply("eu procurei, procurei, e não achei este usuário")
-    let bannable = message.guild.member(membro17, membro14)
-    if (bannable) {
-      if (!bannable.bannable) return message.reply("eu não posso banir este usuário, o cargo dele é maior que o meu.")
-      if (bannable.roles.highest.position > message.member.roles.highest.position) return message.reply(`você não pode banir esse usuário, pois o cargo dele é maior ou igual ao seu.`)
-    }
-
+    let bans = await message.guild.fetchBans('753778869013577739');
     let reason = args.slice(1).join(" ") || "Nenhum motivo especificado";
 
     const warnembed14 = new Discord.MessageEmbed()
 
-      .setThumbnail(membro14.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+      .setThumbnail(membro14.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setAuthor(`${message.author.username} Já baniu ${bans.size} usuários`, message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setColor("#ff112b")
       .setImage(`${userDocuent.gifban || ""}`)
@@ -86,18 +102,14 @@ module.exports = class Ban extends Command {
 
     let argumentos = args.slice(1).join(" ");
     if (argumentos) {
-      if (!membro14.bannable) {
-        message.channel.send(`Erro ${Error}`)
-      } else {
-      message.guild.members.ban(membro14)
+      message.guild.members.ban(membro17)
       warnembed18.fields[1].value = argumentos
-      warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
-      warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
+      warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
+      warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
       message.channel.send(warnembed14)
         try {
           membro14.send(warnembed18)
         } catch { }
-    }
        } else {
     message.channel.send(escolha).then(m => {
 
@@ -124,90 +136,90 @@ module.exports = class Ban extends Command {
           case 'JT1':
             reason = primeiro
             warnembed18.fields[1].value = reason
-            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
             collector.stop()
-            message.guild.members.ban(membro14.id, {
+            message.guild.members.ban(guildDocument1.id, {
               reason: reason
             }).then(() => {
               message.channel.send(warnembed14)
               try {
-                membro14.send(warnembed18)
+                guildDocument1.send(warnembed18)
               } catch { }
             }).catch(erro => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
             break
           case 'JT2':
             reason = segundo
             warnembed18.fields[1].value = reason
-            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
             collector.stop()
-            message.guild.members.ban(membro14.id, {
+            message.guild.members.ban(membro14, {
               reason: reason
             }).then(() => {
               message.channel.send(warnembed14)
               try {
-                membro14.send(warnembed18)
+                guildDocument1.send(warnembed18)
               } catch { }
             }).catch(erro => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
             break
           case 'JT3':
             reason = terceiro
             warnembed18.fields[1].value = reason
-            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
             collector.stop()
-            message.guild.members.ban(membro14.id, {
+            message.guild.members.ban(membro14, {
               reason: reason
             }).then(() => {
               message.channel.send(warnembed14)
               try {
-                membro14.send(warnembed18)
+                guildDocument1.send(warnembed18)
               } catch { }
             }).catch(erro => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
             break
           case 'JT4':
             reason = quarto
             warnembed18.fields[1].value = reason
-            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
             collector.stop()
-            message.guild.members.ban(membro14.id, {
+            message.guild.members.ban(membro14, {
               reason: reason
             }).then(() => {
               message.channel.send(warnembed14)
               try {
-                membro14.send(warnembed18)
+                guildDocument1.send(warnembed18)
               } catch { }
             }).catch(erro => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
             break
           case 'JT5':
             reason = quinto
             warnembed18.fields[1].value = reason
-            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
             collector.stop()
-            message.guild.members.ban(membro14.id, {
+            message.guild.members.ban(membro14, {
               reason: reason
             }).then(() => {
               message.channel.send(warnembed14)
               try {
-                membro14.send(warnembed18)
+                guildDocument1.send(warnembed18)
               } catch { }
             }).catch(erro => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
             break
           case 'JT6':
             reason = sexto
             warnembed18.fields[1].value = reason
-            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
             collector.stop()
-            message.guild.members.ban(membro14.id, {
+            message.guild.members.ban(membro14, {
               reason: reason
             }).then(() => {
               message.channel.send(warnembed14)
               try {
-                membro14.send(warnembed18)
+                guildDocument1.send(warnembed18)
               } catch { }
             }).catch(erro => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
             break

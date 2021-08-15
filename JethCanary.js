@@ -55,7 +55,7 @@ module.exports = class JethCanary extends Client {
         let embed = new MessageEmbed()
             .setColor('RED')
             .setTitle(error.name)
-            .setAuthor(this.user.username, this.user.displayAvatarURL())
+            .setAuthor(this.user.username, this.user.displayAvatarURL({ dynamic: true, size: 1024 }))
             .addDescription(error.message)
             .addField('Arquivo', `${error.fileName} ${error.lineNumber}`)
         return this.channels.get('658890776935137290').send(embed)

@@ -32,7 +32,7 @@ module.exports = class CountCall extends Command {
 
             embed.addField(`Call: ${name}`, `Usuario's:\n \`\`${users}\`\``)
             embed.setColor(colors.default)
-            embed.setAuthor(this.client.user.username + ' | Contagem de Membros', this.client.user.displayAvatarURL())
+            embed.setAuthor(this.client.user.username + ' | Contagem de Membros', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
 
 
         for (const embed of embeds) {

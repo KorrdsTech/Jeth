@@ -70,7 +70,7 @@ module.exports = class cadastrar extends Command {
 //             .setTitle('**Err:**', `${usuario}`, true)
 //             .setDescription('Missing Permissions') // inline false
 //             .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-//             .setFooter('Jeth | Developers', message.author.displayAvatarURL())
+//             .setFooter('Jeth | Developers', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
 //         if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(embedA)
 //         if (!usuario) return message.reply("Você não mencionou o usuário!");

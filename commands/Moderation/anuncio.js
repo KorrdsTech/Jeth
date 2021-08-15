@@ -36,7 +36,7 @@ module.exports = class anuncio extends Command {
         }
         if (message.content.startsWith(server.prefix + 'anuncio ver')) {
             let embedver = new MessageEmbed()
-                .setAuthor('Anúncio | Imagem', message.guild.iconURL({ dynamic: true, size: 1024 }) && this.client.user.displayAvatarURL())
+                .setAuthor('Anúncio | Imagem', message.guild.iconURL({ dynamic: true, size: 1024 }) && this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
                 .setColor(colors.default)
                 .setDescription('**Esta será a imagem que irá aparecer quando seu anuncio estiver finalizado:**')

@@ -38,7 +38,7 @@ module.exports = class Registrou extends Command {
                             moment.locale("pt-BR");
                             const { MessageEmbed } = require("discord.js");
                             let embed = new MessageEmbed()
-                                .setAuthor(usuario.username, usuario.displayAvatarURL())
+                                .setAuthor(usuario.username, usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
                                 .setTitle("**Informações:**")
                                 .addField("**Usuário:**", `${usuario}`, true)
                                 .addField("**Registrado por:**", `<@${registradorID}>`, true)

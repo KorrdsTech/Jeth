@@ -135,7 +135,7 @@ module.exports = class vip extends Command {
               })
             } else if (args[0] === 'help') {
               let embed = new MessageEmbed()
-                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL())
+                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 .setDescription(`<a:dshype:683501891493167163> Olá querido(a) usuário(a) VIP !\nPrecisando de uma ajudinha? Aqui vai seus comandos desbloqueados:`)
                 .setColor(colors.default)
                 .setThumbnail('https://cdn.discordapp.com/emojis/742242899156271205.gif?v=1')
@@ -150,7 +150,7 @@ module.exports = class vip extends Command {
                 ].join('\n'), false)
                 .setImage('https://cl.buscafs.com/www.qore.com/public/uploads/images/78325_880x390.jpg')
               let embed2 = new MessageEmbed()
-                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL())
+                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 .setDescription(`Olá !\n\nNós da equipe Jeth, temos o orgulho de ter você como nosso usuário(a) vip, esta pequena compra que você fez para receber suas recompensas nos ajuda e muito a melhorar nossa qualidade, contratar pessoas que consigam melhorar nossos sistemas e ficarmos cada vez mais perto do topo.\n\nMuito obrigado!\n<a:dshype:683501891493167163> Equipe Jeth. <a:dshype:683501891493167163>`)
                 .setThumbnail('https://cdn.discordapp.com/emojis/742242899156271205.gif?v=1')
                 .setColor(colors.vip)

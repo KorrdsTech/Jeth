@@ -13,7 +13,7 @@ module.exports = class flip extends Command {
         let moeda = msg[Math.floor(Math.random() * 2)];
 
         const moedaembed1 = new Discord.MessageEmbed()
-            .setAuthor(message.author.tag, message.author.avatarURL())
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setColor(colors.default)
             .setDescription(moeda)
             .setTitle("A face da moeda está virada para...")

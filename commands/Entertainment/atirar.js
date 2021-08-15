@@ -22,7 +22,7 @@ module.exports = class atirar extends Command {
       .setColor(colors.default)
       .setTitle(`:scream: ${message.author.username} **atirou no(a)** ${user.user.username}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setFooter(message.author.tag, message.author.displayAvatarURL())
+      .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
     try {
       message.delete({ timeout: 100 }).catch(() => { })
       message.channel.send(aEmbed);

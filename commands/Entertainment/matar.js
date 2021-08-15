@@ -19,7 +19,7 @@ module.exports = class matar extends Command {
       .setColor(colors.default)
       .setDescription(`:skull: ${message.author.username} **matou o usuário** ${message.mentions.users.first().username}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setFooter(`Killstreak por ${message.author.username}`, message.author.displayAvatarURL())
+      .setFooter(`Killstreak por ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
     message.channel.send(killEmbed)
     try {

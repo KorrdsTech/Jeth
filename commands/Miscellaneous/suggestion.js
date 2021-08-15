@@ -18,7 +18,7 @@ module.exports = class serverinfo extends Command {
             .setTitle('**Err:**', `${message.author}`, true)
             .setDescription('Missing Permissions') // inline false
             .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
-            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL())
+            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
         if (!message.member.hasPermission('MANAGE_GUILD'))
             return message.channel.send(embedA)
         let guildDocument = await this.client.database.Guilds.findById(message.guild.id)
@@ -29,9 +29,9 @@ module.exports = class serverinfo extends Command {
             .setTimestamp()
             .setColor(colors.default)
             .setTitle('**PAINEL DE AJUDA**')
-            .setThumbnail(message.author.displayAvatarURL())
+            .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setDescription(`Para definir o canal de sugestão basta utilizar o comando\n **${prefix}suggestion canal <#canal>** \n\nAssim que o canal for definido, qualquer mensagem enviada nele, receberá a reação dos emojis Sim, não ou não especificado.\nCaso queira desativar o canal de sugestões basta utilizar \n**${prefix}suggestion remover**`) // inline false
-            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL())
+            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
         if (!args[0]) message.channel.send(mododeuso)
         if (args[0] === 'canal') {
             let channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()

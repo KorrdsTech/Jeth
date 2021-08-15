@@ -48,7 +48,7 @@ module.exports = class welcome extends Command {
             guildDocument.novato = role.id;
             guildDocument.save().then(() => {
                 let embed = new MessageEmbed()
-                    .setAuthor(message.author.username, message.author.displayAvatarURL())
+                    .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                     .setDescription(`Você definiu o cargo ${role} como auto-role Com sucesso.`)
                     .setColor(colors.default)
                     .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
@@ -92,7 +92,7 @@ module.exports = class welcome extends Command {
                 ].join('\n'), false)
 
             let embed2 = new MessageEmbed()
-                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL())
+                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 .setDescription(`Dúvidas de como esta o welcome?\nAqui vai o seu painel...`)
                 .setColor(colors.default)
             let canalBemVindo = `<:rejected:739831089543118890> Desativado`;

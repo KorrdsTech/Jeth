@@ -21,7 +21,7 @@ module.exports = class reply extends Command {
             .setTitle('**Err:**', `${usuario}`, true)
             .setDescription('Missing Permissions') // inline false
             .addField('*Verifique se você possui a permissão:*', '`Jeth_OWNER`', true)
-            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL())
+            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
         if (!ids.includes(message.author.id))
 
@@ -36,7 +36,7 @@ module.exports = class reply extends Command {
             .setTitle('**Ticket Reply:**', `${usuario}`, true)
             .setDescription('Você recebeu resposta à algum ticket aberto dentro de nosso suporte, pode ser por ter pedido ajuda, por ter dado alguma sugestão e outros.') // inline false
             .addField("<:b_information:742270909259317278> Resposta:", razao13, true)
-            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL())
+            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
         usuario.send(embedB)
         if (!Error) {

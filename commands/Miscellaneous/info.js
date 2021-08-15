@@ -19,7 +19,7 @@ module.exports = class info extends Command {
     var embed = new Discord.MessageEmbed()
 
       .setDescription("<:info:695503582342152273> **Informações:**")
-      .setThumbnail(client.user.avatarURL())
+      .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTimestamp()
       .setColor(colors.default)
       .setImage('https://media.giphy.com/media/3NnnS6Q8hVPZC/giphy.gif')

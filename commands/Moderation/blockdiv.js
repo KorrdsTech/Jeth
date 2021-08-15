@@ -32,7 +32,7 @@ module.exports = class blockdiv extends Command {
             message.channel.send('Okay o módulo de Anti-Convite foi Ativado.')
         } else {
             let embed = new MessageEmbed()
-            embed.setAuthor(message.author.tag, message.author.displayAvatarURL())
+            embed.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
             embed.setColor(colors.default)
             embed.setDescription(`Dúvidas de como usar o contador?\nAqui vai algumas dicas...`)
             embed.addField('Modos de usar', [
@@ -42,7 +42,7 @@ module.exports = class blockdiv extends Command {
             ].join('\n'), false)
 
             let embed2 = new MessageEmbed()
-                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL())
+                .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 .setDescription(`Dúvidas de como esta o Anti-Invite?\nAqui vai o seu painel...`)
                 .setColor(colors.default)
             let canalBemVindo = `<:rejected:739831089543118890> Desativado`;

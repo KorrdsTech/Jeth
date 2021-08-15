@@ -47,7 +47,7 @@ module.exports = class blacklist extends Command {
         let warnembed14 = new MessageEmbed()
 
             .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
-            .setAuthor(`${message.author.username} Aplicou uma network blacklist`, message.author.avatarURL())
+            .setAuthor(`${message.author.username} Aplicou uma network blacklist`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setColor("BLACK")
             .setDescription(`**Blacklisted!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Infrator:** ${usuario.username} \n**ID:** ${usuario.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
             .setFooter("☕️・https://discordapp.com/guidelines", message.guild.iconURL({ dynamic: true, size: 1024 }))

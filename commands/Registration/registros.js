@@ -68,7 +68,7 @@ module.exports = class Ping extends Command {
                 let embed = new MessageEmbed()
                     .setTitle(`Rank dos registradores do: ${message.guild.name}`)
                     .setColor(colors.default)
-                    .setFooter(`Comando requisitado por: ${message.author.username}`, message.author.displayAvatarURL());
+                    .setFooter(`Comando requisitado por: ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }));
                 var positionToEmoji = position => {
                     var arr = [
                         ":first_place:",

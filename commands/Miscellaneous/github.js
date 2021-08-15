@@ -32,7 +32,7 @@ module.exports = class github extends Command {
           .addField(`Tipo De Usuario`, `${tipo}`, true)
           .addField(`Bio`, `${bio}`, true)
           .addField(`Link Para O Perfil`, `${link}`, true)
-          .setFooter(message.author.tag, message.author.displayAvatarURL())
+          .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setTimestamp()
         )
       })

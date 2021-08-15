@@ -15,7 +15,7 @@ module.exports = class fake extends Command {
             .setTitle('**Err:**', `${message.author}`, true)
             .setDescription('Missing Permissions') // inline false
             .addField('*Verifique se você possui a permissão:*', '`MANAGE_MESSAGES`', true)
-            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL())
+            .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
         if (!message.member.hasPermission('MANAGE_MESSAGES'))
 
             return message.channel.send(embedA)
