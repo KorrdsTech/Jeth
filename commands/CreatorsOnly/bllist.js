@@ -12,12 +12,14 @@ module.exports = class blList extends Command {
     }
 
     async run(message, args) {
-      let usuarioB = this.client.users.cache
+      let userDoc = await this.client.database.Users.find({ 'blacklist': true })
       let msg = [];
-      usuarioB.forEach(async (users) => {
-        let guildDocument = await this.client.database.Users.findById(users.id)
-        if (guildDocument.blacklist) msg.push(users) 
-      })
-      message.channel.send(`${msg.map((user => `<:a_blurplecertifiedmoderator:856174396225355776> Lista de membros na blacklist:\n${user.tag}`)).join('\n')}`, { split: true });
+      
+      for (let i = 0; i < userDoc.length; i++) {
+        let user = await this.client.users.fetch(userDoc[i]._id)
+        msg.push(user.tag)
+      }
+      
+      await message.channel.send(`<:a_blurplecertifiedmoderator:856174396225355776> Lista de membros na blacklist:\n${msg.join("\n")}`)
     }
   }
