@@ -17,7 +17,7 @@ module.exports = class blList extends Command {
       
       for (let i = 0; i < userDoc.length; i++) {
         let user = await this.client.users.fetch(userDoc[i]._id)
-        msg.push(user.tag)
+        msg.push(`${user.tag} - ${user.id}`)
       }
       
       await message.channel.send(`<:a_blurplecertifiedmoderator:856174396225355776> Lista de membros na blacklist:\n${msg.join("\n")}`)
