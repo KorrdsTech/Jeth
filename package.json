@@ -40,10 +40,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RootGC/Jeth.JS.git"
+    "url": "git+https://github.com/RootGC/JethJS.git"
   },
   "bugs": {
-    "url": "https://github.com/RootGC/Jeth.JS/issues"
+    "url": "https://github.com/RootGC/JethJS/issues"
   },
-  "homepage": "https://github.com/RootGC/Jeth.JS#readme"
+  "homepage": "https://github.com/RootGC/JethJS#readme"
 }
