@@ -43,6 +43,21 @@ module.exports = class kick extends Command {
       }
       if (razao13.length < 1) return message.reply("`Adicione um motivo válido!`")
 
+      const embedC = new Discord.MessageEmbed()
+      .setTimestamp()
+      .setColor(colors.mod)
+      .setTitle('**Err:**', true)
+      .setDescription('Missing Permissions') // inline false
+      .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
+      .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+  
+      let target18 = membro18.roles.highest;
+      let clientRole = message.guild.me.roles.highest;
+      if (clientRole.comparePositionTo(target18) <= 0) {
+          message.reply(embedC);
+          return 0;
+      }
+
       const warnembed13 = new Discord.MessageEmbed()
 
          .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))

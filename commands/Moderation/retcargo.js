@@ -36,11 +36,21 @@ module.exports = class revcargo extends Command {
             message.reply("Você não tem permissão para remover role deste usuário");
             return 0;
         }
+
+        const embedC = new Discord.MessageEmbed()
+        .setTimestamp()
+        .setColor(colors.mod)
+        .setTitle('**Err:**', true)
+        .setDescription('Missing Permissions') // inline false
+        .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
+        .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+    
         let clientRole = message.guild.me.roles.highest;
         if (clientRole.comparePositionTo(targetRole) <= 0) {
-            message.reply("Você não tem permissão para remover role deste usuário");
+            message.reply(embedC);
             return 0;
         }
+
         if (!cargo_nome) return message.reply('`Você não colocou um cargo valido!`');
         let cargo = message.guild.roles.cache.find(role => role.name === `${cargo_nome}`)
 

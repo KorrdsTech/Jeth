@@ -18,10 +18,24 @@ module.exports = class softban extends Command {
         if (!message.guild.member(usuario).bannable) return message.reply(`:x: **|** Eu não posso punir essa pessoa, talvez o cargo dela seja maior que o meu`)
         var razao = args.slice(1).join(' ')
         if (!razao) razao = "Sem motivo declarado"
+        const embedC = new Discord.MessageEmbed()
+        .setTimestamp()
+        .setColor(colors.mod)
+        .setTitle('**Err:**', true)
+        .setDescription('Missing Permissions') // inline false
+        .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
+        .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+    
+        let targetMember = usuario.roles.highest;
+        let clientRole = message.guild.me.roles.highest;
+        if (clientRole.comparePositionTo(targetMember) <= 0) {
+            message.reply(embedC);
+            return 0;
+        }
         message.guild.member(usuario).ban()
         message.guild.unban(usuario)
         var embed = new Discord.MessageEmbed()
-            .setDescription(`${usuario.username} foi **SOFT BANIDO** do servidor por ${message.author}\nMotivo: ${razao} `)
+            .setDescription(`${usuario.username} foi **Silenciosamente Banido** do servidor por ${message.author}\nMotivo: ${razao} `)
             .setColor(cor)
         message.channel.send(embed)
     }
