@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-mongoose.connect('', {
+mongoose.connect('mongodb+srv://Gym:JRCjtjsGes1IuhgO@cluster0-j5eik.mongodb.net/test?retryWrites=true&w=majority', {
 		useNewUrlParser: true,
 		useUnifiedTopology: true
 	}, (err) => {
@@ -29,6 +29,7 @@ let Guild = new mongoose.Schema({
 	linkanuncio: { type: String, default: ' ' },
 	prefix: { type: String, default: '-' },
 	partner: { type: Boolean, default: false },
+	delete: { type: Boolean, default: false },
 	//módulos welcome,contador etc
 	welcomeModule: { type: Boolean, default: false },
 	saidaModule: { type: Boolean, default: false },
