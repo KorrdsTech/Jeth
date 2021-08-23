@@ -10,7 +10,8 @@ module.exports = class highfive extends Command {
     }
     async run(message, args) {
         var user = message.mentions.users.first();
-        if(!user) message.channel.send('Ninguém foi mencionado!')
+        if(!user) return message.channel.send('Ninguém foi mencionado!')
+        else
         var gifs = ["https://lh6.googleusercontent.com/hIRp_xCGjt6x5H5GSu9odKA9WPagzrMYPtT-Ow-Nte0AeHoMY4MUTlnxrZkJK248JAqNiBVi_9iaU3eYS2bWXtcdJFjsnrAV8i2H_iN5pjWWHDN6djKm2E-h3MQMUvM2DkoO3M7e.gif", "https://c.tenor.com/JBBZ9mQntx8AAAAC/anime-high-five.gif", "https://thumbs.gfycat.com/BreakableMessyHarrierhawk-size_restricted.gif"];
         var falas = [`**Deu um HIGH-FIVE com** ${user}`];
         let embed = new Discord.MessageEmbed()
