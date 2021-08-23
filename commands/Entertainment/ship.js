@@ -47,9 +47,9 @@ module.exports = class ship extends Command {
 
             var valor_img = 0;
 
-            var username_shippado_1 = username_ship_1.user.username.substring(4, 0);
+            var username_shippado_1 = username_ship_1.message.author.substring(4, 0);
 
-            var username_shippado_2 = username_ship_2.user.username.substring(4, 8);
+            var username_shippado_2 = username_ship_2.message.author.substring(4, 8);
 
             var shipps = username_shippado_1 + username_shippado_2;
 
@@ -61,53 +61,53 @@ module.exports = class ship extends Command {
 
             if (random_ship > 1 && random_ship <= 15) {
                 mensagem += `***${random_ship}%*** \`[█..........]\`\n` +
-                    `\`${username_ship_1.user.username} + ${username_ship_2.user.username} = ${shipps}\`\n` +
+                    `\`${username_ship_1.message.author} + ${username_ship_2.message.author} = ${shipps}\`\n` +
                     `Relaxa, existem outros peixes no cosmo! Não, pera.`;
             }
             if (random_ship > 15 && random_ship <= 20) {
                 mensagem += `***${random_ship}%*** \`[██.........]\`\n` +
-                    `\`${username_ship_1.user.username} + ${username_ship_2.user.username} = ${shipps}\`\n` +
+                    `\`${username_ship_1.message.author} + ${username_ship_2.message.author} = ${shipps}\`\n` +
                     `É, pelo visto vocês não seriam um bom casal. :/`;
             }
             if (random_ship > 20 && random_ship <= 30) {
                 mensagem += `***${random_ship}%*** \`[███........]\`\n` +
-                    `\`${username_ship_1.user.username} + ${username_ship_2.user.username} = ${shipps}\`\n` +
+                    `\`${username_ship_1.message.author} + ${username_ship_2.message.author} = ${shipps}\`\n` +
                     `Famosa friend zone`;
             }
             if (random_ship > 30 && random_ship <= 40) {
                 mensagem += `***${random_ship}%*** \`[████.......]\`\n` +
-                    `\`${username_ship_1.user.username} + ${username_ship_2.user.username} = ${shipps}\`\n` +
+                    `\`${username_ship_1.message.author} + ${username_ship_2.message.author} = ${shipps}\`\n` +
                     `Olha olha colega, vou até mandar uma cantada ` +
                     `"Garota, é mais fácil o Vasco não ser rebaixado do que eu te abandonar.":heart:`;
             }
             if (random_ship > 40 && random_ship <= 50) {
                 mensagem += `***${random_ship}%*** \`[█████......]\`\n` +
-                    `\`${username_ship_1.user.username} + ${username_ship_2.user.username} = ${shipps}\`\n` +
+                    `\`${username_ship_1.message.author} + ${username_ship_2.message.author} = ${shipps}\`\n` +
                     `Bom, pode correr atrás que um dia vocês estarão juntos... :heart: :smile:`;
             }
             if (random_ship > 50 && random_ship <= 60) {
                 mensagem += `***${random_ship}%*** \`[██████.....]\`\n` +
-                    `\`${username_ship_1.user.username} + ${username_ship_2.user.username} = ${shipps}\`\n` +
+                    `\`${username_ship_1.message.author} + ${username_ship_2.message.author} = ${shipps}\`\n` +
                     `50/50 em.... :smiling_imp:`;
             }
             if (random_ship > 60 && random_ship <= 70) {
                 mensagem += `***${random_ship}%*** \`[███████....]\`\n` +
-                    `\`${username_ship_1.user.username} + ${username_ship_2.user.username} = ${shipps}\`\n` +
+                    `\`${username_ship_1.message.author} + ${username_ship_2.message.author} = ${shipps}\`\n` +
                     `Vocês podem ter uma bela relação juntos em uma amizade saudável`;
             }
             if (random_ship > 70 && random_ship <= 80) {
                 mensagem += `***${random_ship}%*** \`[████████...]\`\n` +
-                    `\`${username_ship_1.user.username} + ${username_ship_2.user.username} = ${shipps}\`\n` +
+                    `\`${username_ship_1.message.author} + ${username_ship_2.message.author} = ${shipps}\`\n` +
                     `Santa Atena! Vocês dois já deveriam estar juntos há tempo! :smile:`;
             }
             if (random_ship > 80 && random_ship <= 90) {
                 mensagem += `***${random_ship}%*** \`[█████████..]\`\n` +
-                    `\`${username_ship_1.user.username} + ${username_ship_2.user.username} = ${shipps}\`\n` +
+                    `\`${username_ship_1.message.author} + ${username_ship_2.message.author} = ${shipps}\`\n` +
                     `Só vai, nem precisa mais usar o comando. Só vai.`;
             }
             if (random_ship > 90 && random_ship <= 100) {
                 mensagem += `***${random_ship}%*** \`[███████████]\`\n` +
-                    `\`${username_ship_1.user.username} + ${username_ship_2.user.username} = ${shipps}\`\n` +
+                    `\`${username_ship_1.message.author} + ${username_ship_2.message.author} = ${shipps}\`\n` +
                     `Vocês foram unidos pelo cosmos! `;
             }
 

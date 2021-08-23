@@ -48,7 +48,7 @@ module.exports = class welcome extends Command {
             guildDocument.novato = role.id;
             guildDocument.save().then(() => {
                 let embed = new MessageEmbed()
-                    .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setAuthor(message.author, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                     .setDescription(`Você definiu o cargo ${role} como auto-role Com sucesso.`)
                     .setColor(colors.default)
                     .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))

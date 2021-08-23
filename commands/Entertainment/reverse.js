@@ -13,7 +13,7 @@ module.exports = class reverse extends Command {
 
     if (reason.length < 1) return message.channel.send('**' + message.author.tag + "** :xShiininha: Diga uma **mensagem**!");
 
-    message.channel.sendMessage(`:pencil: Reverse by: **${message.author.username}** \n \n **` + args.join(' ').split('').reverse().join('') + '**');
+    message.channel.sendMessage(`:pencil: Reverse by: **${message.author}** \n \n **` + args.join(' ').split('').reverse().join('') + '**');
 
   }
 }

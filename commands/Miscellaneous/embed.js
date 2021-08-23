@@ -30,7 +30,7 @@ module.exports = class Ping extends Command {
     if (!args.join(' ')) return message.channel.send({ embed: ajuda })
 
     try {
-      let a = JSON.parse(args.join(' ').replaceAll('{guild-name}', message.guild.name).replaceAll('{user-icon}', message.author.displayAvatarURL({ dynamic: true, size: 1024 })).replaceAll('{guild-icon}', message.guild.iconURL({ dynamic: true, size: 1024 })).replaceAll('{mention}', `${message.author}`).replace('{user}', message.member.nickname ? message.member.nickname : message.author.username))
+      let a = JSON.parse(args.join(' ').replaceAll('{guild-name}', message.guild.name).replaceAll('{user-icon}', message.author.displayAvatarURL({ dynamic: true, size: 1024 })).replaceAll('{guild-icon}', message.guild.iconURL({ dynamic: true, size: 1024 })).replaceAll('{mention}', `${message.author}`).replace('{user}', message.member.nickname ? message.member.nickname : message.author))
       if (a.embed.color) a.embed.color = parseInt(a.embed.color)
       if (a.content) a.content = a.content.slice(0, 2000)
       if (a.embed.title) a.embed.title = a.embed.title.slice(0, 1024)

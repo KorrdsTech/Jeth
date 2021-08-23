@@ -35,7 +35,7 @@ module.exports = class unwarn extends Command {
             .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
             .setTitle('Aviso | Removido')
             .setColor("#ff004c")
-            .addField('**Staff:**', `${message.author.username}`, true)
+            .addField('**Staff:**', `${message.author}`, true)
             .addField('**ID:**', `${message.author.id}`, true) //inline
             .addField('**Usuário**:', `${unwarn}`, true)
             .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))

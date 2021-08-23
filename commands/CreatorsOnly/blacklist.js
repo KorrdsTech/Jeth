@@ -36,10 +36,10 @@ module.exports = class blacklist extends Command {
         let warnembed18 = new MessageEmbed()
 
             .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-            .setTitle(`${message.author.username}`)
+            .setTitle(`${message.author}`)
             .setDescription(`:do_not_litter: **Você foi blacklisted ${message.guild.name} :no_entry_sign:** \nO que isto significa ? você não poderá mais fazer parte dos servidores que apoiam a network da Jeth, por quebrar um dos termos de serviço do discord, este tipo de punição não oferece appeal e se você se encontra nesta situação provavelmente terá sua conta encerrada.`)
             .setColor("BLACK")
-            .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author.username}`)
+            .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
             .addField('📝 Motivo:', `${reason}`)
             .setFooter('https://discordapp.com/guidelines・Discord da Jeth 🛠')
             .setTimestamp(new Date());
@@ -47,9 +47,9 @@ module.exports = class blacklist extends Command {
         let warnembed14 = new MessageEmbed()
 
             .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
-            .setAuthor(`${message.author.username} Aplicou uma network blacklist`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+            .setAuthor(`${message.author} Aplicou uma network blacklist`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setColor("BLACK")
-            .setDescription(`**Blacklisted!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Infrator:** ${usuario.username} \n**ID:** ${usuario.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+            .setDescription(`**Blacklisted!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Infrator:** ${usuario.username} \n**ID:** ${usuario.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
             .setFooter("☕️・https://discordapp.com/guidelines", message.guild.iconURL({ dynamic: true, size: 1024 }))
             .setTimestamp(new Date());
 

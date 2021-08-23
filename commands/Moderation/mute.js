@@ -52,27 +52,27 @@ module.exports = class mute extends Command {
 
         if (message.member.roles.highest.position < message.guild.member(member).roles.highest.position) return message.reply(`Você não pode mutar esse usuario.`)
 
-        const embedC = new Discord.MessageEmbed()
-        .setTimestamp()
-        .setColor(colors.mod)
-        .setTitle('**Err:**', true)
-        .setDescription('Missing Permissions') // inline false
-        .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
-        .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+        // const embedC = new Discord.MessageEmbed()
+        // .setTimestamp()
+        // .setColor(colors.mod)
+        // .setTitle('**Err:**', true)
+        // .setDescription('Missing Permissions') // inline false
+        // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
+        // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
     
-        let targetMember = member.roles.highest;
-        let clientRole = message.guild.me.roles.highest;
-        if (clientRole.comparePositionTo(targetMember) <= 0) {
-            message.reply(embedC);
-            return 0;
-        }
+        // let targetMember = member.roles.highest;
+        // let clientRole = message.guild.me.roles.highest;
+        // if (clientRole.comparePositionTo(targetMember) <= 0) {
+        //     message.reply(embedC);
+        //     return 0;
+        // }
 
         const embed = new Discord.MessageEmbed()
 
             .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
             .setTitle('Ação | Mute')
             .setColor("#ff112b")
-            .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author.username} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Mutado:** ${member.user.username} \n**ID:** ${member.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}` + `\n<:KaelMutado:673592196972412949> **Tempo:** ${time}`)
+            .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Mutado:** ${member.user.username} \n**ID:** ${member.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}` + `\n<:KaelMutado:673592196972412949> **Tempo:** ${time}`)
             .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
             .setTimestamp(new Date());
 

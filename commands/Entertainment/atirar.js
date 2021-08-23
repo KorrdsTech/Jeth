@@ -20,7 +20,7 @@ module.exports = class atirar extends Command {
 
       .setTimestamp()
       .setColor(colors.default)
-      .setTitle(`:scream: ${message.author.username} **atirou no(a)** ${user.user.username}`)
+      .setTitle(`:scream: ${message.author} **atirou no(a)** ${user.message.author}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
       .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
     try {
