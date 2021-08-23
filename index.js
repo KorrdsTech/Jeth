@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const JethCanary = require('./JethCanary')
-const client = new JethCanary({ fetchAllMembers: false })
+const client = new JethCanary({ fetchAllMembers: true })
 const TopGG = require("dblapi.js")
 const top = new TopGG(process.env.TOPGG, client)
 top.on("error", (err) => console.log(err))
