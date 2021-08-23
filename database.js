@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
+const log = require('./.env')
 
-mongoose.connect('mongodb+srv://Gym:JRCjtjsGes1IuhgO@cluster0-j5eik.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect(log.MONGOOSE, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true
 	}, (err) => {
