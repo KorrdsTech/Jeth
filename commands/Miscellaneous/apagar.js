@@ -37,7 +37,7 @@ module.exports = class apagar extends Command {
     const embedB = new Discord.MessageEmbed()
       .setTimestamp()
       .setColor(colors.default)
-      .setTitle(`<:ayaya:683491996790554629> ${message.author.username}`, true)
+      .setTitle(`<:ayaya:683491996790554629> ${message.author}`, true)
       .setDescription(`As mensagens requisitadas no servidor ${message.guild} foram **deletadas** com sucesso!`)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
     return message.author.send(embedB)

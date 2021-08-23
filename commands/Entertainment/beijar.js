@@ -17,7 +17,7 @@ module.exports = class beijar extends Command {
             .setTitle('Será que temos um novo casal no servidor ?')
             .setTimestamp()
             .setThumbnail('https://cdn.discordapp.com/emojis/742240824569626674.png')
-            .setDescription(`:heart_eyes: **${message.author.username}** acabou de beijar o(a) **${user.username}**`)
+            .setDescription(`:heart_eyes: **${message.author}** acabou de beijar o(a) **${message.author}**`)
             .setImage(gifs[Math.floor(Math.random() * gifs.length)])
             .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }));
 

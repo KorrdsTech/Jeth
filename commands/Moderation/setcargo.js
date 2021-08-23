@@ -38,19 +38,19 @@ module.exports = class setcargo extends Command {
             return 0;
         }
 
-        const embedC = new Discord.MessageEmbed()
-        .setTimestamp()
-        .setColor(colors.mod)
-        .setTitle('**Err:**', true)
-        .setDescription('Missing Permissions') // inline false
-        .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
-        .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+        // const embedC = new Discord.MessageEmbed()
+        // .setTimestamp()
+        // .setColor(colors.mod)
+        // .setTitle('**Err:**', true)
+        // .setDescription('Missing Permissions') // inline false
+        // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
+        // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-        let clientRole = message.guild.me.roles.highest;
-        if (clientRole.comparePositionTo(targetMember) <= 0) {
-            message.reply(embedC);
-            return 0;
-        }
+        // let clientRole = message.guild.me.roles.highest;
+        // if (clientRole.comparePositionTo(targetMember) <= 0) {
+        //     message.reply(embedC);
+        //     return 0;
+        // }
 
         let cargo = message.guild.roles.cache.find(role => role.name === `${cargo_nome}`)
 
@@ -59,7 +59,7 @@ module.exports = class setcargo extends Command {
             .setColor(colors.default)
             .setDescription(`**CARGO ADICIONADO PARA O USUÁRIO:** ${usuario.user.username}`)
             .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-            .addField('**Staffer:**', `${message.author.username}`, true) // inline true
+            .addField('**Staffer:**', `${message.author}`, true) // inline true
             .addField('**Cargo Adicionado:**', `${cargo_nome}`, true)
             .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
 

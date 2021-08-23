@@ -25,7 +25,7 @@ module.exports = class Registro extends Command {
             guildDocument.masculino = role.id;
             guildDocument.save().then(() => {
                 let embed = new MessageEmbed()
-                    .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setAuthor(message.author, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                     .setDescription(`Você definiu o cargo ${role} como masculino Com sucesso.`)
                     .setColor(colors.default)
                     .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
@@ -38,7 +38,7 @@ module.exports = class Registro extends Command {
             guildDocument.feminino = role.id;
             guildDocument.save().then(() => {
                 let embed = new MessageEmbed()
-                    .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setAuthor(message.author, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                     .setDescription(`Você definiu o cargo ${role} como feminino Com sucesso.`)
                     .setColor(colors.default)
                     .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
@@ -51,7 +51,7 @@ module.exports = class Registro extends Command {
             guildDocument.nbinario = role.id;
             guildDocument.save().then(() => {
                 let embed = new MessageEmbed()
-                    .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setAuthor(message.author, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                     .setDescription(`Você definiu o cargo ${role} como nbinario Com sucesso.`)
                     .setColor(colors.default)
                     .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
@@ -64,7 +64,7 @@ module.exports = class Registro extends Command {
             guildDocument.registrado = role.id;
             guildDocument.save().then(() => {
                 let embed = new MessageEmbed()
-                    .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setAuthor(message.author, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                     .setDescription(`Você definiu o cargo ${role} como registrado Com sucesso.`)
                     .setColor(colors.default)
                     .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
@@ -77,7 +77,7 @@ module.exports = class Registro extends Command {
             guildDocument.novato = role.id;
             guildDocument.save().then(() => {
                 let embed = new MessageEmbed()
-                    .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setAuthor(message.author, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                     .setDescription(`Você definiu o cargo ${role} como novato Com sucesso.`)
                     .setColor(colors.default)
                     .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))

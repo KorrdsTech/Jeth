@@ -49,7 +49,7 @@ module.exports = class family extends Command {
             .setColor(colors.vip)
             .setDescription(`**👑💎 SEJA BEM VINDO A FAMÍLIA:** ${usuario.user.username}`)
             .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-            .addField('**Executor:**', `${message.author.username}`, true) // inline true
+            .addField('**Executor:**', `${message.author}`, true) // inline true
             .addField('**Cargo Recebido:**', `${role}`, true)
             .setImage('https://data.whicdn.com/images/273383424/original.gif')
             .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))

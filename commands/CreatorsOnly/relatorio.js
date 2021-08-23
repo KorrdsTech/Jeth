@@ -17,7 +17,7 @@ module.exports = class relatorio extends Command {
         if(!rel) message.reply('<:1658partnerwaitapproval:832746524416802888> Esqueceu de colocar o conteúdo do seu relatório!')
         const embed = new MessageEmbed()
         .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
-        .setAuthor(`${message.author.username} Enviou seu relatório`, message.author.avatarURL({ dynamic: true, size: 1024 }))
+        .setAuthor(`${message.author} Enviou seu relatório`, message.author.avatarURL({ dynamic: true, size: 1024 }))
         .setColor(colors.mod)
         .setDescription(`${rel}`)
         .setFooter("☕️・https://discordapp.com/guidelines", message.guild.iconURL({ dynamic: true, size: 1024 }))

@@ -48,7 +48,7 @@ module.exports = class setcargo extends Command {
         const embed = new MessageEmbed()
             .setTimestamp()
             .setColor("#ffbc00")
-            .setDescription(`${usuario.user.username} **RECEBEU UM CARGO VIP DE:** ${message.author.username}`)
+            .setDescription(`${usuario.user.username} **RECEBEU UM CARGO VIP DE:** ${message.author}`)
             .setThumbnail("https://cdn.discordapp.com/attachments/754917648701325313/762902181253742622/canary.png")
             .setImage('https://cdn.discordapp.com/attachments/737900492876808192/762531977567404092/Seja_vip_booster.png')
             .addField('**Cargo Adicionado:**', `${cargo_nome}`, true)

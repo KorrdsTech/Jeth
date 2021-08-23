@@ -105,7 +105,7 @@ module.exports = class Registrar extends Command {
                         let canal = message.guild.channels.cache.get(guildTable.channelRegister)
                         if (!canal) canal = message.channel;
                         let embedSv = new MessageEmbed()
-                            .setAuthor(`Registrador(a): ${message.author.username}`, message.author.displayAvatarURL)
+                            .setAuthor(`Registrador(a): ${message.author}`, message.author.displayAvatarURL)
                             .setDescription(`${message.author} você registrou o usuário(a) ${member} com sucesso.`)
                             .setFooter('Depois desse registro cairia bem um bolo né? 🍰')
                             .setColor(colors.default);

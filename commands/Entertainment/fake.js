@@ -27,7 +27,7 @@ module.exports = class fake extends Command {
         if (botmessage == null) {
             message.channel.send("`Ops parace que você esqueceu de colocar a mensagem`")
         }
-        message.channel.createWebhook(user.username, { avatar: user.displayAvatarURL({ format: "png" }) }).then(async w => {
+        message.channel.createWebhook(message.author, { avatar: user.displayAvatarURL({ format: "png" }) }).then(async w => {
             w.send(botmessage);
         })
 
