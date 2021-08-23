@@ -75,8 +75,14 @@ module.exports = async function onMessage(message, client) {
                 })
 
                 if (command) {
+                    if(guildDocument.delete) {
+                    guildDocument.delete = true
                     message.delete({ timeout: 100 }).catch(() => { })
                     command.process(message, args)
+                } else {
+                    guildDocument.delete = false
+                    command.process(message, args)
+                    }
                 }
             }
             if (guildDocument.antInvite && !message.member.hasPermission("ADMINISTRATOR", false, true, true)) {
