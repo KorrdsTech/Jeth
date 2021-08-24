@@ -39,7 +39,7 @@ module.exports = async function onGuildMemberAdd(member) {
                 if (!message.length) return 0;
                 message = message.replace(/\$\{USER\}/g, member);
                 message = message.replace(/\$\{SERVER\}/g, member.guild.name);
-                message = message.replace(/\$\{AVATAR\}/g, member.user.displayAvatarURL())
+                message = message.replace(/\$\{AVATAR\}/g, member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 message = message.replace(/\$\{USER-ID\}/g, member.id)
                 message = message.replace(/\$\{CONTA-CRIADA\}/g, moment(member.user.createdTimestamp).format("LL"))
                 message = message.replace(/\$\{USER-NAME\}/g, member.user.username)

@@ -1,17 +1,13 @@
 const { WebhookClient } = require("discord.js")
 const { Command, colors } = require('../utils')
-const Discord = require("discord.js");
 module.exports = async function onReady() {
     console.log(`Logado.`);
     let s = [
-        { name: `🥂 v5.9.4 disponível!.`, type: 'WATCHING', url: 'https://www.youtube.com/watch?v=zWM4qq3MzFE' },
-        { name: `🏆 Anda perdido ? me mencione!`, type: 'WATCHING', url: 'https://www.youtube.com/watch?v=qlbAaWq1-fs' },
-        { name: `🔑 Entre em contato para reportar qualquer bug encontrado.`, type: 'WATCHING', url: 'http://www.clickjogos.com.br/' },
-        { name: `⚜️ Lançamento do novo Sistema VIP!`, type: 'WATCHING', url: 'https://www.twitch.tv/cellbit' },
-        { name: `♨️ Os melhores programadores da geração!`, type: 'WATCHING', url: 'https://www.twitch.tv/cellbit' },
-        { name: `📣 Uma changelog vasta de atualizações!`, type: 'WATCHING', url: 'https://www.twitch.tv/cellbit' },
-        { name: `🎍 Desfrute de uma moderação a nível superior!`, type: 'WATCHING', url: 'https://www.twitch.tv/cellbit' },
-        { name: `👩‍🚀 Mais Comandos legais para Você!`, type: 'WATCHING', url: 'https://www.twitch.tv/cellbit' },
+        { name: `🪧 v5.9a disponível!.`, type: 'WATCHING' },
+        { name: `🏆 Anda perdido ? me mencione!`, type: 'WATCHING' },
+        { name: `🔑 Entre em contato para reportar qualquer bug.`, type: 'WATCHING' },
+        { name: `🎍 Desfrute de uma moderação a nível superior!`, type: 'WATCHING' },
+        { name: `👩‍🚀 Mais Comandos legais para Você!`, type: 'WATCHING' }
 
         // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
         // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
