@@ -82,7 +82,7 @@ module.exports = class Ban extends Command {
     const warnembed14 = new Discord.MessageEmbed()
 
       .setThumbnail(membro14.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setAuthor(`${message.author} Já baniu ${bans.size} usuários`, message.author.avatarURL({ dynamic: true, size: 1024 }))
+      .setAuthor(`${message.author.username} Já baniu ${bans.size} usuários`, message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setColor("#ff112b")
       .setImage(`${userDocuent.gifban || ""}`)
       .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
