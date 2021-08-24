@@ -47,9 +47,9 @@ module.exports = class ship extends Command {
 
             var valor_img = 0;
 
-            var username_shippado_1 = username_ship_1.message.author.substring(4, 0);
+            var username_shippado_1 = username_ship_1.cache.substring(4, 0);
 
-            var username_shippado_2 = username_ship_2.message.author.substring(4, 8);
+            var username_shippado_2 = username_ship_2.cache.substring(4, 8);
 
             var shipps = username_shippado_1 + username_shippado_2;
 
