@@ -2,24 +2,18 @@ const { WebhookClient } = require("discord.js")
 const { Command, colors } = require('../utils')
 module.exports = async function onReady() {
     console.log(`Logado.`);
-    let s = [
-        { name: `🪧 v5.9a disponível!.`, type: 'WATCHING' },
-        { name: `🏆 Anda perdido ? me mencione!`, type: 'WATCHING' },
-        { name: `🔑 Entre em contato para reportar qualquer bug.`, type: 'WATCHING' },
-        { name: `🎍 Desfrute de uma moderação a nível superior!`, type: 'WATCHING' },
-        { name: `👩‍🚀 Mais Comandos legais para Você!`, type: 'WATCHING' }
-
-        // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
-        // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
-        // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
-        // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' }
-
-    ];
-
-    setInterval(() => {
-        let game = s[Math.floor(Math.random() * s.length)]
-        this.user.setPresence({ activity: game })
-    }, 15000)
+    const game = [
+        { name: '🪧 v5.9a disponível!.', type: 2 },
+        { name: '🏆 Anda perdido ? me mencione!', type: 2 },
+        { name: '🔑 Entre em contato para reportar qualquer bug.', type: 1 },
+        { name: '🎍 Desfrute de uma moderação a nível superior!', type: 2 },
+        { name: '👩‍🚀 Mais Comandos legais para Você!', type: 3 }
+      ]
+  
+      setInterval(() => {
+        const status = Math.floor(Math.random() * game.length)
+        this.user.setPresence('dnd', game[status])
+      }, 5000)
 
     // Essa funcao busca na Db usuarios mutados e tenta remover o cargo deles
     // se ja passou tempo de mute
