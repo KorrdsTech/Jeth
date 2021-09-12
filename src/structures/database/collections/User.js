@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Users = new mongoose.Schema({
+const { Schema, model } = require('mongoose')
+const Users = new Schema({
   _id: { type: String },
   blacklist: { type: Boolean, default: false },
   blacklistReason: { type: String, default: '' },
@@ -12,4 +12,4 @@ const Users = new mongoose.Schema({
   staff: { type: Boolean, default: false }
 })
 
-module.exports = mongoose.model('Users', Users)
+module.exports = model('Users', Users)

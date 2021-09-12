@@ -1,4 +1,5 @@
 const { Client, Collection } = require('discord.js')
+const Database = require('./structures/database/Database')
 const { readdir } = require('fs')
 module.exports = class JethClient extends Client {
   constructor(options) {
@@ -6,6 +7,7 @@ module.exports = class JethClient extends Client {
 
     this.aliases = new Collection()
     this.commands = new Collection()
+    this.database = new Database()
   }
 
   registerCommand() {
@@ -33,9 +35,11 @@ module.exports = class JethClient extends Client {
           super.on(events.name, (...args) => events.exec(this, ...args))
         } else {
           readdir(`${__dirname}/listeners/${category_or_folder}`, (error, file) => {
-            const Events = require(`${__dirname}/listeners/${category_or_folder}/${file}`)
-            const events = new Events()
-            super.on(events.name, (...args) => events.exec(this, ...args))
+            file.forEach(f => {
+              const Events = require(`${__dirname}/listeners/${category_or_folder}/${f}`)
+              const events = new Events()
+              super.on(events.name, (...args) => events.exec(this, ...args))
+            })
           })
         }
       })
