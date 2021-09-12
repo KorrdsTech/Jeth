@@ -30,14 +30,12 @@ module.exports = class JethClient extends Client {
       if (err) return new Error(err.name)
       files.forEach((category_or_folder) => {
         if (category_or_folder.endsWith('.js')) {
-          const Events = require(`${__dirname}/listeners/${category_or_folder}`)
-          const events = new Events()
+          const events = require(`${__dirname}/listeners/${category_or_folder}`)
           super.on(events.name, (...args) => events.exec(this, ...args))
         } else {
           readdir(`${__dirname}/listeners/${category_or_folder}`, (error, file) => {
             file.forEach(f => {
-              const Events = require(`${__dirname}/listeners/${category_or_folder}/${f}`)
-              const events = new Events()
+              const events = require(`${__dirname}/listeners/${category_or_folder}/${f}`)
               super.on(events.name, (...args) => events.exec(this, ...args))
             })
           })

@@ -1,10 +1,7 @@
-module.exports = class ReadyListener {
-  constructor() {
-    this.name = 'ready'
-  }
-
-  exec(client) {
-    console.log(`Logado.`);
+module.exports = {
+  name: 'ready',
+  exec: (client) => {
+    console.log(`Logado.`)
     const status = [
       { name: `🥂 ${require('../../../package.json').version} está disponível!`, type: 'PLAYING' },
       { name: `🏆 Anda perdido? Me mencione!`, type: 'PLAYING' },
