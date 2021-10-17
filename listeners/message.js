@@ -6,7 +6,7 @@ module.exports = async function onMessage(message, client) {
 
     if (message.author.bot) {
         if (message.author.discriminator !== '0000') return
-        if (message.author !== 'Haku') return
+        if (message.author.username !== 'Haku') return
         if (message.channel.id !== '879568042433085490') return
         const member = message.mentions.users.first()
         let Users = await this.database.Users.findById(member?.id)
@@ -86,7 +86,7 @@ module.exports = async function onMessage(message, client) {
                 }
             }
             if (guildDocument.antInvite && !message.member.hasPermission("ADMINISTRATOR", false, true, true)) {
-                if (message.channel.id === "718178715657568361") {
+                if (message.channel.id === "831041533469655070") {
                     return;
                 } else {
                     if (message.content.includes("https://discord.gg/") || message.content.includes("discord.gg/")) {
@@ -124,7 +124,7 @@ module.exports = async function onMessage(message, client) {
                 } else {
                     let embed = new Discord.MessageEmbed()
                         .setThumbnail(this.users.cache.get('753778869013577739').displayAvatarURL({ dynamic: true, size: 1024 }))
-                        .setTitle(`<:a_blurpleemployee:856174396423274516> ${message.author}` + "#" + `${message.author.discriminator}`)
+                        .setTitle(`<:a_blurpleemployee:856174396423274516> ${message.author.username}` + "#" + `${message.author.discriminator}`)
                         .setDescription(`**Você mencionou o <@753778869013577739> espere por uma resposta e não mencione novamente !**\n **esperamos que seja por um motivo útil desta vez.**`)
                         .setColor("BLACK")
                         .setFooter('Encontrou algum bug? por favor utilize /bug "explique o bug aqui com print se possível" 🤖')

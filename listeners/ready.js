@@ -1,19 +1,38 @@
-const { WebhookClient } = require("discord.js")
-const { Command, colors } = require('../utils')
 module.exports = async function onReady() {
     console.log(`Logado.`);
-    const game = [
-        { name: '🪧 v5.9a disponível!.', type: 2 },
-        { name: '🏆 Anda perdido ? me mencione!', type: 2 },
-        { name: '🔑 Entre em contato para reportar qualquer bug.', type: 1 },
-        { name: '🎍 Desfrute de uma moderação a nível superior!', type: 2 },
-        { name: '👩‍🚀 Mais Comandos legais para Você!', type: 3 }
-      ]
+    const s = [
+        { name: '🪧 v5.9b Ativa!', type: 'STREAMING', url: 'https://twitch.tv/gymjs' },
+        { name: '🏆 Anda perdido ? me mencione!', type: 'PLAYING' },
+        { name: '🔑 Entre em contato para reportar qualquer bug.', type: 'PLAYING' },
+        { name: '🎍 Desfrute de uma moderação a nível superior!', type: 'PLAYING' },
+        { name: '👩‍🚀 Mais Comandos legais para Você!', type: 'PLAYING' },
+      
   
-      setInterval(() => {
-        const status = Math.floor(Math.random() * game.length)
-        this.user.setPresence('dnd', game[status])
-      }, 5000)
+        // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
+        // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
+        // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
+        // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' }
+
+    ];
+
+    if (!this.send) {
+        /**
+         * @description This will serve to enable first hit features
+         */
+        this.send = true
+
+        const stats = ['online', 'dnd', 'idle']
+
+        setInterval(() => {
+          const status = stats[Math.floor(Math.random() * stats.length)]
+          this.user.setStatus(status)
+        }, 20 * 1000)
+}
+
+    setInterval(() => {
+        let game = s[Math.floor(Math.random() * s.length)]
+        this.user.setPresence({ activity: game })
+    }, 20 * 1000) // Add 20 seconds to avoid over-updating.
 
     // Essa funcao busca na Db usuarios mutados e tenta remover o cargo deles
     // se ja passou tempo de mute
@@ -30,9 +49,9 @@ module.exports = async function onReady() {
                             server.roles.cache.find(r => r.name == "Muted Jeth")
                         )
                             .then(() => {
-                                channel.send(`Usuario ${this.users.cache.get(userId)} desmutado. <:sing_Jeth:677598304371998819>`)
+                                channel.send(`Usuário ${this.users.cache.get(userId)} desmutado. <:sing_Jeth:677598304371998819>`)
                                 this.database.Mutados.findByIdAndDelete(userId)
-                                console.log(`Usuario ${this.users.cache.get(userId).tag} foi desmutado e removido da Db`)
+                                console.log(`Usuário ${this.users.cache.get(userId).tag} foi desmutado e removido da Db`)
                             })
                 }
 
