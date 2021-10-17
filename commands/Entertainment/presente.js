@@ -17,7 +17,8 @@ module.exports = class presente extends Command {
             .setColor(colors.default)
             .setDescription(`:gift: ${message.author} **presenteou** ${user}`)
             .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-            .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }));
+            .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+            .setTimestamp();
 
         message.channel.send(embed)
     }

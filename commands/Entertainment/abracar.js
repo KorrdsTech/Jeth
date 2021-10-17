@@ -16,7 +16,7 @@ module.exports = class abracar extends Command {
 
         let embed = new Discord.MessageEmbed()
             .setColor(colors.default)
-            .setTitle(`:blush: ${message.author} **se deu um abraço**`)
+            .setDescription(`:blush: ${message.author} **se deu um abraço**`)
             .setImage(self[Math.floor(Math.random() * self.length)])
             .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
             .setTimestamp()
@@ -25,9 +25,9 @@ module.exports = class abracar extends Command {
         if (user.id == message.author.id) message.channel.send(embed)// return message.reply("Você não pode abraçar a si mesmo.")
         var HugEmbed = new Discord.MessageEmbed()
             .setColor(colors.default)
-            .setTitle(`:blush: ${message.author.username} **deu um abraço no(a)** ${message.author}`)
+            .setTitle(`:blush: ${message.author.username} **deu um abraço no(a)** ${user.username}`)
             .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-            .setFooter("👒・Ayane Society", message.guild.iconURL({ dynamic: true, size: 1024 }))
+            .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
             .setTimestamp()
 
         message.channel.send(HugEmbed)

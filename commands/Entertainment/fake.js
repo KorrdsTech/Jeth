@@ -12,7 +12,7 @@ module.exports = class fake extends Command {
         const embedA = new Discord.MessageEmbed()
             .setTimestamp()
             .setColor(colors.mod)
-            .setTitle('**Err:**', `${message.author}`, true)
+            .setTitle('**Err:**', `${message.author.username}`, true)
             .setDescription('Missing Permissions') // inline false
             .addField('*Verifique se você possui a permissão:*', '`MANAGE_MESSAGES`', true)
             .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
@@ -27,7 +27,7 @@ module.exports = class fake extends Command {
         if (botmessage == null) {
             message.channel.send("`Ops parace que você esqueceu de colocar a mensagem`")
         }
-        message.channel.createWebhook(message.author, { avatar: user.displayAvatarURL({ format: "png" }) }).then(async w => {
+        message.channel.createWebhook(user.username, { avatar: user.displayAvatarURL({ format: "png" }) }).then(async w => {
             w.send(botmessage);
         })
 

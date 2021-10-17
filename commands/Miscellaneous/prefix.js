@@ -4,7 +4,7 @@ module.exports = class Ping extends Command {
     constructor(name, client) {
         super(name, client)
 
-        this.aliases = ['prefixo', 'setprefix', 'set.prefix']
+        this.aliases = ['prefixo', 'setprefix', 'set.prefix', 'prefix.set']
         this.category = 'Miscellaneous'
         this.subcommandsOnly = false
     }
