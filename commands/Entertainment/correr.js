@@ -8,6 +8,7 @@ module.exports = class correr extends Command {
     this.aliases = ['run']
     this.category = 'Entertainment'
   }
+
   async run(message, args) {
     let user = message.mentions.users.first();
     if (!user) return message.reply('`Você não mencionou o usuario que você quer correr!`').catch(console.error);
@@ -28,11 +29,7 @@ module.exports = class correr extends Command {
         ]
       }
     })
-    try {
-      message.delete({ timeout: 100 }).catch(() => { })
-    } catch (error) {
-      console.log(error);
-      message.channel.send(error);
+      console.log(err);
+      message.channel.send(err);
     }
-  }
 }

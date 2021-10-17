@@ -22,7 +22,7 @@ module.exports = class vip extends Command {
         .setDescription('Aqui em nosso sistema consta que você não é um usuário vip! \n<:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627>') // inline false
         .addField('<:a_blurpleticket:856174396095332381> *Garanta já seu VIP para ter acesso a estes magnificos comandos!*', `**[[ADQUIRA AQUI]](https://pag.ae/7Wfg61Q9n)**`, true)
         .setImage('https://i.imgur.com/hoyGJTN.png')
-        .setFooter('Jeth | Developers', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+        .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
 
       let guildDocument = await this.client.database.Guilds.findById(message.guild.id)
       this.client.database.Users.findOne({ _id: message.author.id }, (e, doc) => {
@@ -50,6 +50,7 @@ module.exports = class vip extends Command {
                 .addField('ID:', `0000000000000000`, true)
                 .addField('Motivo:', `Banido por ${message.author.tag} — Não relatou um motivo.`, false)
                 .setColor(colors.default)
+                .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
               message.channel.send({ embed: teste })
             } else if (args[0] === 'canal') {
               this.client.database.Canal.findOne({ _id: message.author.id }, (e, doc) => {
@@ -154,7 +155,7 @@ module.exports = class vip extends Command {
                 .setDescription(`Olá !\n\nNós da equipe Jeth, temos o orgulho de ter você como nosso usuário(a) vip, esta pequena compra que você fez para receber suas recompensas nos ajuda e muito a melhorar nossa qualidade, contratar pessoas que consigam melhorar nossos sistemas e ficarmos cada vez mais perto do topo.\n\nMuito obrigado!\n<a:dshype:683501891493167163> Equipe Jeth. <a:dshype:683501891493167163>`)
                 .setThumbnail('https://cdn.discordapp.com/emojis/742242899156271205.gif?v=1')
                 .setColor(colors.vip)
-
+                .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
 
               let embedCount = 1
 
