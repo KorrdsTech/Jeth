@@ -1,7 +1,7 @@
 const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 const parse = require("parse-duration")
-const client = new Discord.Client()
+const client = new Discord.Client({ ws: { intents: 13935 } })
 
 module.exports = class mute extends Command {
     constructor(name, client) {
@@ -59,7 +59,7 @@ module.exports = class mute extends Command {
         // .setDescription('Missing Permissions') // inline false
         // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
         // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
-    
+
         // let targetMember = member.roles.highest;
         // let clientRole = message.guild.me.roles.highest;
         // if (clientRole.comparePositionTo(targetMember) <= 0) {
@@ -79,17 +79,17 @@ module.exports = class mute extends Command {
         let isMutado = await this.client.database.Mutados.findById(member.user.id);
 
         if (!isMutado) {
-        const Mutado = new this.client.database.Mutados({
-            _id: member.id,
-            server: message.guild.id,
-            time: parse(time),
-            channel: message.channel.id
-        })
-        
-        Mutado.save()
-            .then(() => message.channel.send(embed))
-        member.roles.add(role.id)
-        }else{
+            const Mutado = new this.client.database.Mutados({
+                _id: member.id,
+                server: message.guild.id,
+                time: parse(time),
+                channel: message.channel.id
+            })
+
+            Mutado.save()
+                .then(() => message.channel.send(embed))
+            member.roles.add(role.id)
+        } else {
             message.channel.send(embed)
             member.roles.add(role.id)
         }
