@@ -5,7 +5,7 @@ module.exports = class unmute extends Command {
   constructor(name, client) {
     super(name, client)
 
-    this.aliases = ['unmute', 'retirarmute']
+    this.aliases = ['desmute', 'retirarmute', 'desmutar']
     this.category = 'Moderation'
     this.subcommandsOnly = false
   }
@@ -24,14 +24,29 @@ module.exports = class unmute extends Command {
       return message.channel.send(embedA)
       
     if (!member) return message.reply(`Mencione alguém por favor.`)
-    let role = message.guild.roles.cache.find(r => r.name === "Muted Jeth")
-    if (!message.guild.member(member).roles.cache.find(r => r.name === "Muted Jeth")) return message.channel.send(`Esse membro não esta mutado.`)
+    let muteRole = message.guild.roles.cache.find(r => r.name === "Muted");
+    if (!muteRole) muteRole = await message.guild.roles.create({
+        data: {
+            name: 'Muted',
+            color: '#080808',
+            permissions: [Permissions.READ_MESSAGES]
+        },
+        reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
+      }).catch(console.error)
+
+        await message.member.roles.add(muteRole).catch(() => { })
+        await message.guild.channels.cache.forEach(channel => {
+          channel.updateOverwrite(muteRole, {
+              SEND_MESSAGES: false
+          })
+        });
+
     let reason = args.slice(1).join(" ")
     if (!reason) {
       reason = `Motivo: Sem-Motivo`
     }
 
-    message.guild.member(member).roles.remove(role.id).then(() => {
+    message.guild.member(member).roles.remove(muteRole.id).then(() => {
       message.channel.send(`${member} foi **desmutado** por ${message.author}`)
       this.client.database.Mutados.findByIdAndDelete(member.id)
     })

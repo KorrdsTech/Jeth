@@ -1,7 +1,7 @@
 const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 const parse = require("parse-duration")
-const client = new Discord.Client({ ws: { intents: 13935 } })
+const client = new Discord.Client()
 
 module.exports = class mute extends Command {
     constructor(name, client) {
@@ -31,24 +31,22 @@ module.exports = class mute extends Command {
         if (!reason) {
             reason = `Motivo: Não especificado.`
         }
-        let role = message.guild.roles.cache.find(r => r.name === "Muted Jeth");
+        let muteRole = message.guild.roles.cache.find(r => r.name === "Muted");
+        if (!muteRole) muteRole = await message.guild.roles.create({
+            data: {
+                name: 'Muted',
+                color: '#080808',
+                permissions: [Permissions.READ_MESSAGES]
+            },
+            reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
+          }).catch(console.error)
 
-        if (!role) {
-            role = await message.guild.roles.create({
-                data: {
-                    name: "Muted Jeth",
-                    color: "#ff0000"
-                }, reason: 'we needed a role for Super Cool People'
-            })
-            message.guild.channels.cache.forEach(async (channel, id) => {
-                await channel.overwritePermissions(role, {
-                    SEND_MESSAGES: false,
-                    ADD_REACTIONS: false,
-                    SPEAK: false,
-                    CONNECT: false
-                });
+            await message.member.roles.add(muteRole).catch(() => { })
+            await message.guild.channels.cache.forEach(channel => {
+                channel.updateOverwrite(muteRole, {
+                    SEND_MESSAGES: false
+                })
             });
-        }
 
         if (message.member.roles.highest.position < message.guild.member(member).roles.highest.position) return message.reply(`Você não pode mutar esse usuario.`)
 
@@ -59,7 +57,7 @@ module.exports = class mute extends Command {
         // .setDescription('Missing Permissions') // inline false
         // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
         // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
-
+    
         // let targetMember = member.roles.highest;
         // let clientRole = message.guild.me.roles.highest;
         // if (clientRole.comparePositionTo(targetMember) <= 0) {
@@ -79,19 +77,19 @@ module.exports = class mute extends Command {
         let isMutado = await this.client.database.Mutados.findById(member.user.id);
 
         if (!isMutado) {
-            const Mutado = new this.client.database.Mutados({
-                _id: member.id,
-                server: message.guild.id,
-                time: parse(time),
-                channel: message.channel.id
-            })
-
-            Mutado.save()
-                .then(() => message.channel.send(embed))
-            member.roles.add(role.id)
-        } else {
+        const Mutado = new this.client.database.Mutados({
+            _id: member.id,
+            server: message.guild.id,
+            time: parse(time),
+            channel: message.channel.id
+        })
+        
+        Mutado.save()
+            .then(() => message.channel.send(embed))
+        member.roles.add(muteRole.id)
+        }else{
             message.channel.send(embed)
-            member.roles.add(role.id)
+            member.roles.add(muteRole.id)
         }
     }
 }
