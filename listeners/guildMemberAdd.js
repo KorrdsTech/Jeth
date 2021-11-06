@@ -46,9 +46,9 @@ module.exports = async function onGuildMemberAdd(member) {
                 try {
                     let messageEmbed = JSON.parse(message)
                     channel.send(`${member}`)
-                    channel.send(messageEmbed).catch(er => { console.log(er) })
+                    channel.send(messageEmbed, m => m.delete({ timeout: 5000}))
                 } catch (err) {
-                    channel.send(message).catch(err => { console.log(err) })
+                    channel.send(message, m => m.delete({ timeout: 5000}))
                 }
         
                 if (guildDocument.novato.length) {

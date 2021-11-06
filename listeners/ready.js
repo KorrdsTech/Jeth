@@ -46,10 +46,10 @@ module.exports = async function onReady() {
                 try {
                     server.member(userId).roles
                         .remove(
-                            server.roles.cache.find(r => r.name == "Muted Jeth")
+                            server.roles.cache.find(r => r.name == "Muted")
                         )
                             .then(() => {
-                                channel.send(`Usuário ${this.users.cache.get(userId)} desmutado. <:sing_Jeth:677598304371998819>`)
+                                channel.send(`Usuário ${this.users.cache.get(userId)} desmutado. <:a_blurplesettings:856174395801075773>`)
                                 this.database.Mutados.findByIdAndDelete(userId)
                                 console.log(`Usuário ${this.users.cache.get(userId).tag} foi desmutado e removido da Db`)
                             })

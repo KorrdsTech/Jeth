@@ -1,7 +1,8 @@
 const { MessageEmbed } = require('discord.js')
-const Discord = require('discord.js')
+const { colors } = require('../utils')
+const { Permissions, Discord } = require('discord.js');
 
-module.exports = async function onMessage(message, client) {
+module.exports = async function onMessage(message, client, messageDelete, msg) {
     let guildDocument = await this.database.Guilds.findById(message.guild.id)
 
     if (message.author.bot) {
@@ -22,7 +23,7 @@ module.exports = async function onMessage(message, client) {
         return
     }
 }
-
+    
     if (message.channel.type === "dm") return
     if (!guildDocument) {
         new this.database.Guilds({ _id: message.guild.id }).save()
@@ -40,6 +41,18 @@ module.exports = async function onMessage(message, client) {
         message.react(thumbsup);
         await message.react(thumbsdown);
     }
+
+        // message Delete Module
+        // this.client.on('messageDelete', message => {
+        // let delEmbed = new MessageEmbed()
+        // .setThumbnail('https://cdn.discordapp.com/emojis/903453782388670524.png?size=96')
+        // .setColor(colors.mod)
+        // .setDescription(`**Conteúdo da Mensagem:** ${message.cleanContent}\n**Horário:** ${new Date()}\n**Canal da Mensagem:** ${message.channel.name}`)
+        // .setTimestamp();
+    
+        // message.guild.channels.cache.get('831041533469655070').send(delEmbed)
+   // })    // end of it finnaly :3
+
 
     if (guildDocument?.sugesModule) {
         const suggestionChannel = message.guild.channels.cache.get(guildDocument?.sugesChannel)
@@ -86,34 +99,39 @@ module.exports = async function onMessage(message, client) {
                 }
             }
             if (guildDocument.antInvite && !message.member.hasPermission("ADMINISTRATOR", false, true, true)) {
-                if (message.channel.id === "831041533469655070") {
+                if (message.channel.id === "842588427170086974") {
                     return;
                 } else {
                     if (message.content.includes("https://discord.gg/") || message.content.includes("discord.gg/")) {
                         message.delete({ timeout: 100 })
-                        message.reply('<:w_DiscordPartnerDisapproved:775239950664335401> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!')
+                        await message.reply('<:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!')
                         let muteRole = message.guild.roles.cache.find(r => r.name === "Muted");
-                        if (!muteRole) muteRole = await message.guild.createRole({ name: "Muted" }).catch(() => { });
-                        if (muteRole) {
-                            message.member.roles.add(muteRole).catch(() => { });
-                            message.guild.channels.cache.forEach(channel => {
-                                channel.overwritePermissions(muteRole, {
-                                    color: "#080808",
-                                    SEND_MESSAGES: false,
-                                    ADD_REACTIONS: false,
-                                    SPEAK: false
-                                }).catch(() => { });
+                        if (!muteRole) muteRole = await message.guild.roles.create({
+                            data: {
+                                name: 'Muted',
+                                color: '#080808',
+                                permissions: [Permissions.READ_MESSAGES]
+                            },
+                            reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
+                          }).catch(console.error)
+
+                            await message.member.roles.add(muteRole).catch(() => { })
+                            await message.guild.channels.cache.forEach(channel => {
+                                channel.updateOverwrite(muteRole, {
+                                    SEND_MESSAGES: false
+                                })
                             });
-                        }
+                        
                         let canal = message.guild.channels.cache.get(guildDocument.infoantinv)
                         if (!canal) return;
-                        message.channel.send(`Anti-invite ativado,membro: ${message.member} foi mutado automaticamente!`)
+                        await message.channel.send(`Anti-invite ativado,membro: ${message.author} foi mutado automaticamente!`)
                         let embedmute = new MessageEmbed()
-                        embedmute.setAuthor(message.member.user.username, message.member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-                        embedmute.setColor('BLACK')
-                        embedmute.setDescription(`O usuário: ${message.member},enviou convite no ${message.channel} e foi mutado automaticamente com a role: ${muteRole}`)
-                        canal.send(embedmute).catch(() => { })
-                        message.member.roles.add(muteRole).catch(() => { })
+                        .setAuthor(message.member.user.username, message.member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+                        .setColor('BLACK')
+                        .setDescription(`O usuário: ${message.member},enviou convite no ${message.channel} e foi mutado automaticamente com a role: ${muteRole}`)
+                        await message.member.roles.add(muteRole).catch(() => { })
+                        await canal.send(embedmute).catch(() => { })
+                        
                     }
                 }
             }
@@ -122,7 +140,7 @@ module.exports = async function onMessage(message, client) {
                 if (message.guild.id !== '804575416098488380') {
                     return;
                 } else {
-                    let embed = new Discord.MessageEmbed()
+                    let embed = new MessageEmbed()
                         .setThumbnail(this.users.cache.get('753778869013577739').displayAvatarURL({ dynamic: true, size: 1024 }))
                         .setTitle(`<:a_blurpleemployee:856174396423274516> ${message.author.username}` + "#" + `${message.author.discriminator}`)
                         .setDescription(`**Você mencionou o <@753778869013577739> espere por uma resposta e não mencione novamente !**\n **esperamos que seja por um motivo útil desta vez.**`)
@@ -149,12 +167,12 @@ module.exports = async function onMessage(message, client) {
             const newGuildDB = new this.database.Guilds({ _id: message.guild.id })
             newGuildDB.save()
             console.log(`${message.guild.name}[${message.guild.id}] adicionado ao banco de dados`)
-            this.channels.cache.get('801265005894697017')?.send(`**\`\`${message.guild.name}[${message.guild.id}] adicionado ao banco de dados\`\`**`)
+            this.channels.cache.get('831041533469655070')?.send(`**\`\`${message.guild.name}[${message.guild.id}] adicionado ao banco de dados\`\`**`)
         }
     } else {
         const newGuildDB = new this.database.Users({ _id: message.author.id })
         newGuildDB.save()
         console.log(`${message.author.tag}[${message.author.id}] adicionado ao banco de dados`)
-        this.channels.cache.get('801265005894697017')?.send(`**\`\`${message.author.tag}[${message.author.id}] adicionado ao banco de dados\`\`**`)
+        this.channels.cache.get('831041533469655070')?.send(`**\`\`${message.author.tag}[${message.author.id}] adicionado ao banco de dados\`\`**`)
+        }
     }
-}
