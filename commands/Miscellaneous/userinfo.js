@@ -13,31 +13,31 @@ module.exports = class memberinfo extends Command {
 	}
 
 	async run(message, args, user) {
-		const status = {
-			online: {
-				msg: `Online`,
-				color: "00C903"
-			},
-			idle: {
-				msg: `Ausente`,
-				color: "FF9A00"
-			},
-			dnd: {
-				msg: `Não incomodar`,
-				color: "FF0000"
-			},
-			offline: {
-				msg: `Desconectado/invisivel`,
-				color: "D8D8D8"
-			},
-		};
+		// const status = {
+		// 	online: {
+		// 		msg: `Online`,
+		// 		color: "00C903"
+		// 	},
+		// 	idle: {
+		// 		msg: `Ausente`,
+		// 		color: "FF9A00"
+		// 	},
+		// 	dnd: {
+		// 		msg: `Não incomodar`,
+		// 		color: "FF0000"
+		// 	},
+		// 	offline: {
+		// 		msg: `Desconectado/invisivel`,
+		// 		color: "D8D8D8"
+		// 	},
+		// };
 
 		let pUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]) || message.author)
 
 		let normalUser = new Discord.MessageEmbed()
 			.setAuthor(pUser.user.tag, pUser.user.displayAvatarURL({ dynamic: true, size: 1024 }))
 			.addField(`Discord Tag`, `**${pUser.user.tag}**`, true)
-			.addField("Status", `**${status[pUser.presence.status].msg}**`, true)
+			.addField("Status", `\`\`\`md\n# ${pUser.presence.status} \`\`\``, true)
 			.addField("Jogando", `\`\`\`md\n# ${pUser.user.presence.game ? `${pUser.presence.game.name}` : "Nada"}\`\`\``, false)
 			.addField(`Discord Name`, `\`\`\`diff\n- ${pUser.user.username} -\`\`\``, true)
 			.addField('ID', `\`\`\`\n${pUser.id}\`\`\``, true)
@@ -54,7 +54,7 @@ module.exports = class memberinfo extends Command {
 			let deviants = new Discord.MessageEmbed()
 			.setAuthor(pUser.user.tag, pUser.user.displayAvatarURL({ dynamic: true, size: 1024 }))
 			.addField(`Discord Tag`, `**${pUser.user.tag}**`, true)
-			.addField("Status", `**${status[pUser.presence.status].msg}**`, true)
+			.addField("Status", `\`\`\`md\n# ${pUser.presence.status} \`\`\``, true)
 			.addField("Jogando", `\`\`\`md\n# ${pUser.user.presence.game ? `${pUser.presence.game.name}` : "Nada"}\`\`\``, false)
 			.addField(`Discord Name`, `\`\`\`diff\n- ${pUser.user.username} -\`\`\``, true)
 			.addField('ID', `\`\`\`\n${pUser.id}\`\`\``, true)
@@ -79,41 +79,40 @@ module.exports = class memberinfo extends Command {
 
 		await message.channel.send(normalUser).then(msg => {
 			setTimeout(() => {
-				msg.react('754934349069287505')
+				msg.react('856174396036743230')
 			}, 500)
-			const collector = msg.createReactionCollector((r, u) => (r.emoji.id === '667590654200774656', '667590655744147521', '667590655698141197') && (u.id !== this.client.user.id && u.id === message.author.id))
+			const collector = msg.createReactionCollector((r, u) => (r.emoji.id === '856174395801468989', '856174396129148968') && (u.id !== this.client.user.id && u.id === message.author.id))
 			collector.on('collect', async r => {
 				switch (r.emoji.id) {
-					case '754934349069287505':
-						if (pUser.roles.cache.has('718178715426619491')) {
-							embed.addField('<a:b_developer:754934350276984912>', '**This member is the bot Owner.**')
+					case '856174396036743230':
+						if (pUser.roles.cache.has('838581046881681419')) {
+							embed.addField('<:e_king:879546953787138068>', '**This member is the bot Owner.**')
 						}
-						if (pUser.roles.cache.has('718178715418230792')) {
-							embed.addField('<a:astaff:671435205302681603>', '**This user is a staff member.**')
+						if (pUser.roles.cache.has('831041495326261278')) {
+							embed.addField('<:a_blurpleemployee:856174396423274516>', '**This user is a staff member.**')
 						}
-						if (pUser.roles.cache.has('750461952614203393')) {
-							embed.addField('<a:r_server_boosting:751195793108500601>', '**This user is a server booster.**')
+						if (pUser.roles.cache.has('804590005577842689')) {
+							embed.addField('<a:0_:875581760262504468>', '**This user is a server booster.**')
 						}
-						if (pUser.roles.cache.has('718178715409973347')) {
-							embed.addField('<:b_early_supporter:742242543143616572>', '**This user is a vip member.**')
+						if (pUser.roles.cache.has('839754099573522452')) {
+							embed.addField('<:a_blurplegift:856174396384215040>', '**This user is a vip member.**')
 						}
-						if (pUser.roles.cache.has('718178715418230791')) {
-							embed.addField('<:a_BugHunterLvl2:754934348884738139>', '**This user reported bot bugs for the devs.**')
+						if (pUser.roles.cache.has('838921340085731338')) {
+							embed.addField('<:e_bug_hunter_lvl2:879567683182538783>', '**This user reported bot bugs for the devs.**')
 						}
-						if (pUser.roles.cache.has('718178715414167582')) {
-							embed.addField('<:b_DiscordPartner:754934349215826060>', '**This user is a Jeth partner.**')
+						if (pUser.roles.cache.has('838994687985451039')) {
+							embed.addField('<:a_blurplepartner:856174395869626399>', '**This user is a Jeth partner.**')
 						}
 						await msg.edit(embed)
-						msg.reactions.cache.get("754934349069287505").users.remove();
-						msg.reactions.cache.get("754934349069287505").users.remove(pUser);
-						msg.react('665721366514892839')
-						msg.delete({timeout: 6400})
+						msg.reactions.cache.get("856174396036743230").users.remove();
+						msg.reactions.cache.get("856174396036743230").users.remove(pUser);
+						msg.react('856174395801468989')
 						break;
-					case '665721366514892839':
+					case '856174395801468989':
 						await msg.edit(normalUser)
-						msg.reactions.cache.get('665721366514892839').users.remove();
-						msg.reactions.cache.get('665721366514892839').users.remove(pUser);
-						msg.react('754934349069287505')
+						msg.reactions.cache.get('856174395801468989').users.remove();
+						msg.reactions.cache.get('856174395801468989').users.remove(pUser);
+						msg.react('856174396036743230')
 						break;
 
 				}
