@@ -1,6 +1,6 @@
 const { Command, colors } = require('../../utils');
 const Discord = require('discord.js');
-const client = new Discord.Client({ ws: { intents: 13935 } })
+const client = new Discord.Client()
 
 module.exports = class info extends Command {
   constructor(name, client) {
