@@ -12,8 +12,17 @@ module.exports = class anuncio extends Command {
     }
 
     async run(message) {
+         const embed = new MessageEmbed()
+         .setColor(colors.default)
+         .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não pode desbanir este usuário!** tenha certeza de que você possui a permissão `BAN_MEMBERS` então você poderá desbanir usuários.')
+
+
+         const embed2 = new MessageEmbed()
+         .setColor(colors.default)
+         .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Todos os usuários desbanidos!** você com sucesso desbaniu todos os usuários do servidor.')
+
         if (!message.member.hasPermission("BAN_MEMBERS")) {
-            return message.reply("Desculpe, você não tem permissão de desbanir usuários neste servidor! <:moderador:662850826737418250>").catch(() => { });
+            return message.reply(embed).catch(() => { });
         }
         if (message.member.hasPermission("BAN_MEMBERS")) {
                 message.guild.fetchBans().then(bans => {
@@ -21,7 +30,7 @@ module.exports = class anuncio extends Command {
                     bans.forEach(ban => {
                         message.guild.members.unban(ban.user.id);
                     });
-                }).then(() => message.reply("Unbanned all users.")).catch(e => console.log(e))
-            } else {message.reply("You do not have enough permissions for this command.")}
+                }).then(() => message.reply(embed2)).catch(e => console.log(e))
+            } else {message.reply(embed)}
     }
 };

@@ -10,16 +10,28 @@ module.exports = class anuncio extends Command {
     }
 
     async run(message, args) {
+        const perm = new MessageEmbed()
+        .setColor(colors.default)
+        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não pode ser executado!** tenha certeza de que você possui a permissão `MANAGE_MESSAGES` então você poderá utilizar este comando.')
+
+        const link = new MessageEmbed()
+        .setColor(colors.default)
+        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **URL inválida!** o link que você inseriu está incorreto ou apresenta erros, tente utilizar um diferente')
+
         let server = await this.client.database.Guilds.findById(message.guild.id)
+
         if (!message.member.hasPermission('MANAGE_MESSAGES'))
-            return message.channel.send(`> ${message.author},Você não tem a permissão **\`MANAGE_MESSAGES\`** para executar este comando.`)
+            return message.channel.send(perm)
+
         let embedajuda = new MessageEmbed()
             .setTitle('Anuncio | Ajuda', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
             .setDescription(`<a:Jethhype:665057207196319744> Segue abaixo os comandos que podem ser utilizados na configuração do seu anúncio: <a:Jethhype:665057207196319744>\n \n<:nitro1:667835744903102494> **${server.prefix}anuncio enviar <#chat> <mensagem>** >> Utilizado para mandar o anuncio no canal definido. \n \n<:nitro2:667835748900405249> **${server.prefix}anuncio set <imagem>** >> Para setar um gif ou imagem no anuncio. \n \n<:nitro3:667835748828971018> **${server.prefix}anuncio resetar** >> Para resetar o link do gif ou imagem setado. \n \n<:premium:667149934025375764> **${server.prefix}anuncio ver** >> Para visualizar a sua imagem de anuncio.`)
             .setColor(colors.default)
-            .setFooter("🧪・JScience", message.guild.iconURL({ dynamic: true, size: 1024 }))
+            .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+
         if (!args[0]) return message.channel.send(embedajuda)
+
         if (message.content.startsWith(server.prefix + 'anuncio resetar')) {
             server.linkanuncio = ''
             server.save()
@@ -28,7 +40,7 @@ module.exports = class anuncio extends Command {
         if (message.content.startsWith(server.prefix + 'anuncio set')) {
             let imagem = args[1]
             if (!imagem) {
-                return message.channel.send(`> ${message.author}, você deve especificar um link válido.`)
+                return message.channel.send(link)
             }
             server.linkanuncio = args[1]
             server.save()

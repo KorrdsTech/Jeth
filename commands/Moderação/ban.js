@@ -18,6 +18,10 @@ module.exports = class Ban extends Command {
       .setDescription('**Por favor, escolha um motivo válido abaixo para aplicar o banimento!** \n<a:JT1:739977300564639835> - Conteúdo pornográfico/Gore \n<a:JT2:739977300921024522> - Promover ou participar de Raids a outros servidores \n<a:JT3:739977300895858708> - Discurso de ódio ou Racismo e derivados \n<a:JT4:739977300472234078> - Apologia ao Nazismo e/ou pornografia infântil \n<a:JT5:739977300719697941> - Ações que comprometem o servidor ou os usuários \n<a:JT6:739977300795457687> - Divulgação inapropriada')
       .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
 
+      const link = new Discord.MessageEmbed()
+      .setColor(colors.default)
+      .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Usuário inválido!** o usuário que você inseriu não existe ou não foi reconhecido, por favor tente novamente utilizando o ID')
+
       // motivo dos banimentos
     let primeiro = "Conteúdo pornográfico/Gore"
     let segundo = "Promover ou participar de Raids a outros servidores"
@@ -26,9 +30,11 @@ module.exports = class Ban extends Command {
     let quinto = "Ações que comprometem o servidor ou os usuários"
     let sexto = "Divulgação inapropriada"
 
+    if (!args[0]) return message.reply(link)
+
     const membro17 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ""))
     if (!membro17) {
-        message.channel.send('Mencione um membro valido.')
+        message.channel.send(link)
     }
     const guildDocument = await this.client.database.Users.findById(membro17.id)
     if (!guildDocument) {
@@ -39,7 +45,7 @@ module.exports = class Ban extends Command {
 
     const membro14 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ""))
     if (!membro14) {
-        message.channel.send('Mencione um membro valido.')
+        message.channel.send(link)
     }
     const guildDocument1 = await this.client.database.Users.findById(membro14.id)
     if (!guildDocument1) {
@@ -56,9 +62,9 @@ module.exports = class Ban extends Command {
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
       .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+
     if (!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send(embedA)
     let userDocuent = await this.client.database.Users.findById(message.author.id)
-    if (!args[0]) return message.reply("mencione ou informe o ID do usuário")
     // ban padrão 17
     let bannable = message.guild.member(membro17, membro14)
     if (bannable) {
