@@ -37,7 +37,7 @@ module.exports = async function onReady() {
     // Essa funcao busca na Db usuarios mutados e tenta remover o cargo deles
     // se ja passou tempo de mute
     const muteCheck = async () => {
-        const usuariosMutados = await this.database.Mutados.find({}).lean(false)
+        const usuariosMutados = await this.database.Mutados.find({}).lean()
         for (let user = 0; user < usuariosMutados.length; user++) {
             console.log(usuariosMutados.length > 0 ? usuariosMutados : [])
             this.database.Mutados.deleteOne({ _id: usuariosMutados[user]._id })
@@ -55,7 +55,6 @@ module.exports = async function onReady() {
                             channel.send(`Usuário ${this.users.cache.get(userId)} desmutado. <:a_blurplesettings:856174395801075773>`)
                             this.database.Mutados.deleteOne({ _id: userId })
                             console.log(`Usuário ${this.users.cache.get(userId).tag} foi desmutado e removido da Db`)
-                            return
                         })
                 }
 
