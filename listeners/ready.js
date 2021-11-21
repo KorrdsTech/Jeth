@@ -6,8 +6,8 @@ module.exports = async function onReady() {
         { name: '🔑 Entre em contato para reportar qualquer bug.', type: 'PLAYING' },
         { name: '🎍 Desfrute de uma moderação a nível superior!', type: 'PLAYING' },
         { name: '👩‍🚀 Mais Comandos legais para Você!', type: 'PLAYING' },
-      
-  
+
+
         // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
         // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
         // { name: `Manutenção`, type: 'STREAMING', url: 'https://www.twitch.tv/cellbit' },
@@ -24,10 +24,10 @@ module.exports = async function onReady() {
         const stats = ['online', 'dnd', 'idle']
 
         setInterval(() => {
-          const status = stats[Math.floor(Math.random() * stats.length)]
-          this.user.setStatus(status)
+            const status = stats[Math.floor(Math.random() * stats.length)]
+            this.user.setStatus(status)
         }, 20 * 1000)
-}
+    }
 
     setInterval(() => {
         let game = s[Math.floor(Math.random() * s.length)]
@@ -36,34 +36,38 @@ module.exports = async function onReady() {
 
     // Essa funcao busca na Db usuarios mutados e tenta remover o cargo deles
     // se ja passou tempo de mute
-    const muteCheck = () => {
-        const usuariosMutados = this.database.Mutados.find({})
+    const muteCheck = async () => {
+        const usuariosMutados = await this.database.Mutados.find({}).lean(false)
         for (let user = 0; user < usuariosMutados.length; user++) {
-            if (usuariosMutados[user].time >= Date.now()) {
+            console.log(usuariosMutados.length > 0 ? usuariosMutados : [])
+            this.database.Mutados.deleteOne({ _id: usuariosMutados[user]._id })
+            if (Date.now() >= usuariosMutados[user].time) {
                 const server = this.guilds.cache.get(usuariosMutados[user].server)
                 const userId = usuariosMutados[user]._id
                 const channel = this.channels.cache.get(usuariosMutados[user].channel)
                 try {
-                    server.member(userId).roles
-                        .remove(
-                            server.roles.cache.find(r => r.name == "Muted")
-                        )
-                            .then(() => {
-                                channel.send(`Usuário ${this.users.cache.get(userId)} desmutado. <:a_blurplesettings:856174395801075773>`)
-                                this.database.Mutados.findByIdAndDelete(userId)
-                                console.log(`Usuário ${this.users.cache.get(userId).tag} foi desmutado e removido da Db`)
-                            })
+                    const role = server.roles.cache.find(r => r.name == "Muted")
+                    server.members.fetch()
+                    if (!server.members.cache.get(userId)?.roles?.cache?.get(role.id)) return
+                    server.members.cache.get(userId).roles
+                        .remove(role)
+                        .then(() => {
+                            channel.send(`Usuário ${this.users.cache.get(userId)} desmutado. <:a_blurplesettings:856174395801075773>`)
+                            this.database.Mutados.deleteOne({ _id: userId })
+                            console.log(`Usuário ${this.users.cache.get(userId).tag} foi desmutado e removido da Db`)
+                            return
+                        })
                 }
 
-                catch(err) {
+                catch (err) {
                     console.log(`Algo errado em tentar remover cargo de ${this.users.cache.get(userId)}, ${err}`)
-                    this.database.Mutados.findByIdAndDelete(userId)
+                    this.database.Mutados.deleteOne({ _id: userId })
                 }
 
             }
         }
     }
-    setInterval(muteCheck, 30 * 1000)
+    setInterval(() => muteCheck(), 30 * 1000)
 
     // =============================================================================
 
@@ -84,7 +88,7 @@ module.exports = async function onReady() {
     // this.ws.on("INTERACTION_CREATE", async (interaction) => {
     //     // Faço os comandos aqui
     //     const command = interaction.data.name.toLowerCase()
-        
+
     //     const args = interaction.data.options
 
     //     if (command === 'ping') {
@@ -106,7 +110,7 @@ module.exports = async function onReady() {
     // this.ws.on("INTERACTION_CREATE", async (interaction, message) => {
     //     // Faço os comandos aqui
     //     const command = interaction.data.name.toLowerCase()
-        
+
     //     const args = interaction.data.options
 
     //     if (command === 'ajuda') {

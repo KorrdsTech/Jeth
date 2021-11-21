@@ -36,17 +36,16 @@ module.exports = class mute extends Command {
             data: {
                 name: 'Muted',
                 color: '#080808',
-                permissions: [Permissions.READ_MESSAGES]
+                permissions: [1 << 16]
             },
             reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
-          }).catch(console.error)
+        }).catch(console.error)
 
-            await message.member.roles.add(muteRole).catch(() => { })
-            await message.guild.channels.cache.forEach(channel => {
-                channel.updateOverwrite(muteRole, {
-                    SEND_MESSAGES: false
-                })
-            });
+        await message.guild.channels.cache.forEach(channel => {
+            channel.updateOverwrite(muteRole, {
+                SEND_MESSAGES: false
+            })
+        });
 
         if (message.member.roles.highest.position < message.guild.member(member).roles.highest.position) return message.reply(`Você não pode mutar esse usuario.`)
 
@@ -57,7 +56,7 @@ module.exports = class mute extends Command {
         // .setDescription('Missing Permissions') // inline false
         // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
         // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
-    
+
         // let targetMember = member.roles.highest;
         // let clientRole = message.guild.me.roles.highest;
         // if (clientRole.comparePositionTo(targetMember) <= 0) {
@@ -77,17 +76,17 @@ module.exports = class mute extends Command {
         let isMutado = await this.client.database.Mutados.findById(member.user.id);
 
         if (!isMutado) {
-        const Mutado = new this.client.database.Mutados({
-            _id: member.id,
-            server: message.guild.id,
-            time: parse(time),
-            channel: message.channel.id
-        })
-        
-        Mutado.save()
-            .then(() => message.channel.send(embed))
-        member.roles.add(muteRole.id)
-        }else{
+            const Mutado = new this.client.database.Mutados({
+                _id: member.id,
+                server: message.guild.id,
+                time: Date.now() + parse(time),
+                channel: message.channel.id
+            })
+
+            Mutado.save()
+                .then(() => message.channel.send(embed))
+            member.roles.add(muteRole.id)
+        } else {
             message.channel.send(embed)
             member.roles.add(muteRole.id)
         }
