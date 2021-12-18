@@ -21,7 +21,8 @@ module.exports = class hvh extends Command {
                                '**venceu** a batalha!',
                                '**venceu** a batalha sofridamente']
         const falasPerdedor = ['**foi assassinado** em combate!', 
-                               '**perdeu** a batalha!']
+                               '**perdeu** a batalha!',
+                               '**se rendeu** durante a batalha!']
         var situacaoBatalha = [false, false] // Desafiante 1 e Desafiante 2 
 
         function randomFalas(){   

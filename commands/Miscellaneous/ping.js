@@ -14,7 +14,7 @@ module.exports = class Ping extends Command {
         let documento = await this.client.database.Guilds.findById(message.guild.id)
         let prefix = documento.prefix
         let embed = new Discord.MessageEmbed() // Aqui vai ser a primeira embed que o bot irá mostrar
-        .setTitle(message.author)
+        .setTitle(message.author.username)
         .setColor(colors.default)
         .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Calculando...`)
@@ -23,7 +23,7 @@ module.exports = class Ping extends Command {
         ])
     
         let embed2 = new Discord.MessageEmbed() // Aqui vai ser a segunda embed que o bot irá mostrar
-        .setTitle(message.author)
+        .setTitle(message.author.username)
         .setColor(colors.default)
         .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription("Espero que não esteja alto 😬!")
@@ -32,7 +32,7 @@ module.exports = class Ping extends Command {
         ])
     
         let embed_ping = new Discord.MessageEmbed() // Aqui vai ser a terceira embed que o bot irá mostrar
-        .setTitle(message.author)
+        .setTitle(message.author.username)
         .setColor(colors.default)
         .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
         .addField(`<:a_blurplesettings:856174395801075773> ⇝ Ping`,[
