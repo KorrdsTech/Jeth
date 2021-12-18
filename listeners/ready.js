@@ -1,7 +1,9 @@
+const { Message } = require("discord.js");
+
 module.exports = async function onReady() {
     console.log(`Logado.`);
     const s = [
-        { name: '🪧 v5.9b Ativa!', type: 'STREAMING', url: 'https://twitch.tv/gymjs' },
+        { name: '🪧 Build 2k20b!', type: 'STREAMING', url: 'https://twitch.tv/gymjs' },
         { name: '🏆 Anda perdido ? me mencione!', type: 'PLAYING' },
         { name: '🔑 Entre em contato para reportar qualquer bug.', type: 'PLAYING' },
         { name: '🎍 Desfrute de uma moderação a nível superior!', type: 'PLAYING' },
@@ -47,13 +49,14 @@ module.exports = async function onReady() {
                 const channel = this.channels.cache.get(usuariosMutados[user].channel)
                 try {
                     const role = server.roles.cache.find(r => r.name == "Muted")
+                    if(!role) {
+                        Message.channel.send('erro no cargo')
+                    }
                     server.members.fetch()
                     if (!server.members.cache.get(userId)?.roles?.cache?.get(role.id)) return
-                    server.members.cache.get(userId).roles
-                        .remove(role)
-                        .then(() => {
+                    server.members.cache.get(userId).roles.remove(role).then(() => {
                             channel.send(`Usuário ${this.users.cache.get(userId)} desmutado. <:a_blurplesettings:856174395801075773>`)
-                            this.database.Mutados.deleteOne({ _id: userId })
+                            this.database.Mutados.deleteOne({ _id: userId }, (err) => console.log(err))
                             console.log(`Usuário ${this.users.cache.get(userId).tag} foi desmutado e removido da Db`)
                         })
                 }
