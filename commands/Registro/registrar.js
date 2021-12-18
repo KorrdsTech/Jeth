@@ -105,7 +105,7 @@ module.exports = class Registrar extends Command {
                         let canal = message.guild.channels.cache.get(guildTable.channelRegister)
                         if (!canal) canal = message.channel;
                         let embedSv = new MessageEmbed()
-                            .setAuthor(`Registrador(a): ${message.author}`, message.author.displayAvatarURL)
+                            .setAuthor(`Registrador(a): ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                             .setDescription(`${message.author} você registrou o usuário(a) ${member} com sucesso.`)
                             .setFooter('Depois desse registro cairia bem um bolo né? 🍰')
                             .setColor(colors.default);
@@ -120,7 +120,7 @@ module.exports = class Registrar extends Command {
                             .setFooter('Depois desse registro cairia bem um bolo né? 🍰')
                             .setColor(colors.default)
                         let embedDM2 = new MessageEmbed()
-                            .setDescription(`<a:j_geminha:739837960924430408> **Olá! Gostou da Jeth? quer saber de novidades diárias , sempre está atualizado sobre novos comandos! entre no [suporte](https://discord.gg/h9JHf73)**`)
+                            .setDescription(`<:a_blurplepartner:856174395869626399> **Olá! Gostou da Jeth? quer saber de novidades diárias , sempre está atualizado sobre novos comandos! entre no [suporte](https://discord.gg/VnYbWUz3ZZ)**`)
                             .setColor(colors.default)
                         member.send(embedDM1).catch(() => { });
                         member.send(embedDM2).catch(() => { });
