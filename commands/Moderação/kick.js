@@ -38,9 +38,6 @@ module.exports = class kick extends Command {
       if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send(embedA)
       let membro18 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ""))
       if (!membro18) return message.reply("eu procurei, procurei, e não achei este usuário")
-      if (!message.member.hasPermission("KICK_MEMBERS")) {
-         return message.reply(embedA)
-      }
       if (razao13.length < 1) return message.reply("`Adicione um motivo válido!`")
 
       // const embedC = new Discord.MessageEmbed()
