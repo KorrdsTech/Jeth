@@ -2,7 +2,7 @@ const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 const { MessageEmbed } = require("discord.js");
 
-module.exports = class Ajuda extends Command {
+module.exports = class vote extends Command {
     constructor(name, client) {
         super(name, client)
 

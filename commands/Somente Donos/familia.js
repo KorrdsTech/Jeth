@@ -1,7 +1,7 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class family extends Command {
+module.exports = class Familia extends Command {
     constructor(name, client) {
         super(name, client)
 

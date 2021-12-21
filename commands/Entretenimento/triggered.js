@@ -2,7 +2,7 @@ const { Command, colors } = require('../../utils')
 const snekfetch = require('snekfetch');
 const Discord = require("discord.js");
 
-module.exports = class tapa extends Command {
+module.exports = class triggered extends Command {
     constructor(name, client) {
         super(name, client)
 

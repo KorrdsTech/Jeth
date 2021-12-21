@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js')
 const { DiscordAPIError } = require('discord.js')
 moment.locale('pt-br')
 
-module.exports = class Registrou extends Command {
+module.exports = class Reps extends Command {
     constructor(name, client) {
         super(name, client)
 

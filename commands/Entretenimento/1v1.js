@@ -1,7 +1,7 @@
 const { Command, colors } = require('../../utils')
 const Discord = require("discord.js");
 
-module.exports = class hvh extends Command {
+module.exports = class battle extends Command {
     constructor(name, client) {
         super(name, client)
 

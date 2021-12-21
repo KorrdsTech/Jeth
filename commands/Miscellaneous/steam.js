@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 var steam = require('steam-provider') //npm i steam-provider
 var provider = new steam.SteamProvider();
 
-module.exports = class serverinfo extends Command {
+module.exports = class steam extends Command {
   constructor(name, client) {
     super(name, client)
 

@@ -1,7 +1,7 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class Ping extends Command {
+module.exports = class Registros extends Command {
     constructor(name, client) {
         super(name, client)
 

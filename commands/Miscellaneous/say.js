@@ -1,6 +1,7 @@
 const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
-module.exports = class Ping extends Command {
+
+module.exports = class Say extends Command {
     constructor(name, client) {
         super(name, client)
 

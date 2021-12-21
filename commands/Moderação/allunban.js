@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 const client = new Discord.Client();
 
-module.exports = class anuncio extends Command {
+module.exports = class allunban extends Command {
     constructor(name, client) {
         super(name, client)
 
