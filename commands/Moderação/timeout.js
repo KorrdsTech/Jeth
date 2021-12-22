@@ -44,9 +44,9 @@ module.exports = class Timeout extends Command {
             .setTimestamp(new Date());
 
             // executa o corte de comunicação ou timeout.
-            client.api.guilds('804575416098488380').members('').patch({
+            this.client.api.guilds(message.guild.id).members(user.id).patch({
               data: {
-                communication_disabled_until: new Date(Date.now()) + timer
+                communication_disabled_until: new Date(new Date(Date.now() + timer).toUTCString()).toISOString()
               },
               reason: reason
             })
