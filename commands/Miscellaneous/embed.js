@@ -9,7 +9,7 @@ String.prototype.replaceAll = function (de, para) {
   }
   return (str)
 }
-module.exports = class Ping extends Command {
+module.exports = class Embed extends Command {
   constructor(name, client) {
     super(name, client)
 

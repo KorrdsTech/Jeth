@@ -130,7 +130,7 @@ module.exports = class Contador extends Command {
                 .addField('**{violeta}**', '<a:t3:683857609023160322>', true)
                 .addField('**{rosa}**', '<a:j_4:675774964997029918>', true)
                 .addField('**{ruby}**', '<a:k5:683064092793110558>', true)
-                .addField('**{red}**', '<a:S6:682727136519258124>', true)
+                .addField('**{red}**', '<a:6r:922390293771333672>', true)
                 .addField('**{redblack}**', '<a:lo7:735367392703807560>', true)
                 .addField('**{ice}**', '<a:8ice:737078967244423189>', true)
                 .addField('**{blk}**', '<a:BLK9:770793783583309866>', true)

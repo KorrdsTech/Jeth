@@ -1,7 +1,7 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class revcargo extends Command {
+module.exports = class retcargo extends Command {
     constructor(name, client) {
         super(name, client)
         this.aliases = ['removercargo', 'cargoremove', 'removecargo']

@@ -2,7 +2,7 @@ const { Command, colors } = require('../../utils')
 const moment = require('moment')
 moment.locale('pt-br')
 
-module.exports = class Registrou extends Command {
+module.exports = class Rep extends Command {
     constructor(name, client) {
         super(name, client)
 

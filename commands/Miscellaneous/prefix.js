@@ -1,6 +1,6 @@
 const { Command, colors } = require('../../utils')
 
-module.exports = class Ping extends Command {
+module.exports = class Prefix extends Command {
     constructor(name, client) {
         super(name, client)
 

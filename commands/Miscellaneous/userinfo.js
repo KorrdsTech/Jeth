@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const moment = require('moment')
 moment.locale('pt-br')
 
-module.exports = class memberinfo extends Command {
+module.exports = class userinfo extends Command {
 	constructor(name, client) {
 		super(name, client)
 

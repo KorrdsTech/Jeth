@@ -2,7 +2,7 @@ const { Command, colors } = require('../../utils')
 const { createCanvas, loadImage } = require('canvas');
 const { MessageAttachment } = require('discord.js');
 
-module.exports = class palavra extends Command {
+module.exports = class perfeito extends Command {
   constructor(name, client) {
     super(name, client)
 
