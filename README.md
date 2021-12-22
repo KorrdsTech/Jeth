@@ -1,111 +1,30 @@
-<div align="center">
-  <br />
-  <p>
-    <a href="https://discord.js.org"><img src="https://discord.js.org/static/logo.svg" width="546" alt="discord.js" /></a>
-  </p>
-  <br />
-  <p>
-    <a href="https://discord.gg/djs"><img src="https://img.shields.io/discord/222078108977594368?color=7289da&logo=discord&logoColor=white" alt="Discord server" /></a>
-    <a href="https://www.npmjs.com/package/discord.js"><img src="https://img.shields.io/npm/v/discord.js.svg?maxAge=3600" alt="NPM version" /></a>
-    <a href="https://www.npmjs.com/package/discord.js"><img src="https://img.shields.io/npm/dt/discord.js.svg?maxAge=3600" alt="NPM downloads" /></a>
-    <a href="https://github.com/discordjs/discord.js/actions"><img src="https://github.com/discordjs/discord.js/workflows/Testing/badge.svg" alt="Build status" /></a>
-    <a href="https://david-dm.org/discordjs/discord.js"><img src="https://img.shields.io/david/discordjs/discord.js.svg?maxAge=3600" alt="Dependencies" /></a>
-    <a href="https://www.patreon.com/discordjs"><img src="https://img.shields.io/badge/donate-patreon-F96854.svg" alt="Patreon" /></a>
-  </p>
-  <p>
-    <a href="https://nodei.co/npm/discord.js/"><img src="https://nodei.co/npm/discord.js.png?downloads=true&stars=true" alt="npm installnfo" /></a>
-  </p>
-</div>
+<html>
+<body>
 
-## Table of contents
+<h2 style="background-color:SlateBlue;">Moderating in superior quality</h2>
+<img src="https://i.imgur.com/jrUy6Ib.png">
+</img>
+<h4 style="color:SlateBlue;">Basics:</h4>
+<h1></h1>
 
-- [About](#about)
-- [Installation](#installation)
-  - [Audio engines](#audio-engines)
-  - [Optional packages](#optional-packages)
-- [Example Usage](#example-usage)
-- [Links](#links)
-  - [Extensions](#extensions)
-- [Contributing](#contributing)
-- [Help](#help)
+<p>  A Jeth tem como objetivo melhorar a qualidade de moderação de seu servidor, desta forma implementando até mesmo comandos que não são nativos do Discord, dando uma cara mais bonita à seus canais de texto quando executados e facilitando o <b><i>logging.</b></i></p>
 
-## About
+<p style="color:SlateBlue;"><b><i>logging !=> Organização das informações da Jeth e outros dentro dos canais de texto do Discord.</i></b></p>
 
-discord.js is a powerful [Node.js](https://nodejs.org) module that allows you to easily interact with the
-[Discord API](https://discord.com/developers/docs/intro).
+<h2 style="background-color:SlateBlue;">Support</h2>
+<h4 style="color:SlateBlue;">Jeth supports Discord users:</h4>
+<h1></h1>
 
-- Object-oriented
-- Predictable abstractions
-- Performant
-- 100% coverage of the Discord API
+<p>  Sabemos que o Discord enfrenta muitos problemas com pessoas que descumprem os termos de serviço do Discord, por este motivo separamos uma equipe nossa de extrema confiança que possa lidar com estas situações, utilizando nosso sistema de blacklist usuários que quebram os termos de serviço fazendo a Jeth se tornar um lugar tóxico são rapidamente eliminados pelo nosso Sistema de Blacklist, diferente de antes, não mais fazemos denúncias automáticas ao aplicar uma blacklist, esta função ainda precisa de manutenção e muita supervisão.</p>
 
-## Installation
+<h2 style="background-color:SlateBlue;">Final Considerations</h2>
+<h4 style="color:SlateBlue;">A brief thank you:</h4>
+<h1></h1>
+<p>  Por fim, queremos agradecer todos que estão nos apoiando principalmente em momentos difíceis e deixando seu upvote juntamente à seu comentário, como prometido em nosso servidor comunidade oficial da Jeth, estamos dando VIP à pessoas que cumprem estes dois pequenos requisitos, gostaria de aproveitar para informar e pedir ajuda com os Boosts em nosso servidor comunidade, cada impulso que você der, cada level que subirmos dentro do <b>Discord Nitro</b> está nos ajudando a criar novas features para a Jeth e entreter você nosso querido(a) usuário(a)</p>
 
-**Node.js 14.0.0 or newer is required.**  
-Ignore any warnings about unmet peer dependencies, as they're all optional.
+<h1></h1>
+<img src="https://i.imgur.com/zGqSvew.png">
+</img>
 
-Without voice support: `npm install discord.js`  
-With voice support ([@discordjs/opus](https://www.npmjs.com/package/@discordjs/opus)): `npm install discord.js @discordjs/opus`  
-With voice support ([opusscript](https://www.npmjs.com/package/opusscript)): `npm install discord.js opusscript`
-
-### Audio engines
-
-The preferred audio engine is @discordjs/opus, as it performs significantly better than opusscript. When both are available, discord.js will automatically choose @discordjs/opus.
-Using opusscript is only recommended for development environments where @discordjs/opus is tough to get working.
-For production bots, using @discordjs/opus should be considered a necessity, especially if they're going to be running on multiple servers.
-
-### Optional packages
-
-- [zlib-sync](https://www.npmjs.com/package/zlib-sync) for WebSocket data compression and inflation (`npm install zlib-sync`)
-- [erlpack](https://github.com/discord/erlpack) for significantly faster WebSocket data (de)serialisation (`npm install discord/erlpack`)
-- One of the following packages can be installed for faster voice packet encryption and decryption:
-  - [sodium](https://www.npmjs.com/package/sodium) (`npm install sodium`)
-  - [libsodium.js](https://www.npmjs.com/package/libsodium-wrappers) (`npm install libsodium-wrappers`)
-- [bufferutil](https://www.npmjs.com/package/bufferutil) for a much faster WebSocket connection (`npm install bufferutil`)
-- [utf-8-validate](https://www.npmjs.com/package/utf-8-validate) in combination with `bufferutil` for much faster WebSocket processing (`npm install utf-8-validate`)
-
-## Example usage
-
-```js
-const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
-
-client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.channel.send('pong');
-  }
-});
-
-client.login('token');
-```
-
-## Links
-
-- [Website](https://discord.js.org/) ([source](https://github.com/discordjs/website))
-- [Documentation](https://discord.js.org/#/docs/main/master/general/welcome)
-- [Guide](https://discordjs.guide/) ([source](https://github.com/discordjs/guide)) - this is still for stable  
-  See also the [Update Guide](https://discordjs.guide/additional-info/changes-in-v12.html), including updated and removed items in the library.
-- [Discord.js Discord server](https://discord.gg/djs)
-- [Discord API Discord server](https://discord.gg/discord-api)
-- [GitHub](https://github.com/discordjs/discord.js)
-- [NPM](https://www.npmjs.com/package/discord.js)
-- [Related libraries](https://discordapi.com/unofficial/libs.html)
-
-### Extensions
-
-- [RPC](https://www.npmjs.com/package/discord-rpc) ([source](https://github.com/discordjs/RPC))
-
-## Contributing
-
-Before creating an issue, please ensure that it hasn't already been reported/suggested, and double-check the
-[documentation](https://discord.js.org/#/docs).  
-See [the contribution guide](https://github.com/discordjs/discord.js/blob/master/.github/CONTRIBUTING.md) if you'd like to submit a PR.
-
-## Help
-
-If you don't understand something in the documentation, you are experiencing problems, or you just need a gentle
-nudge in the right direction, please don't hesitate to join our official [Discord.js Server](https://discord.gg/djs).
+</body>
+</html>
