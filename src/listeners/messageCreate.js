@@ -98,7 +98,7 @@ module.exports = async function onMessage(message, client, messageDelete, msg) {
                     }
                 }
             }
-            if (guildDocument.antInvite && !message.member.hasPermission('ADMINISTRATOR', false, true, true)) {
+            if (guildDocument.antInvite && !message.member.permissions.has('ADMINISTRATOR', false, true, true)) {
                 if (message.channel.id === '842588427170086974') {
                     return;
                 } else {

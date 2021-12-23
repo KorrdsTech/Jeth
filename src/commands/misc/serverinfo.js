@@ -11,7 +11,7 @@ module.exports = class serverinfo extends Command {
   }
 
   async run(message, args) {
-    if (!message.guild.me.hasPermission('SEND_MESSAGES')) return console.log('DISCORD: Estou sem permissão em um servidor.')
+    if (!message.guild.me.permissions.has('SEND_MESSAGES')) return console.log('DISCORD: Estou sem permissão em um servidor.')
     const embed = new Discord.MessageEmbed()
 
       .setTimestamp()

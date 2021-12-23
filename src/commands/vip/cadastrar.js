@@ -70,7 +70,7 @@ module.exports = class cadastrar extends Command {
 //             .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
 //             .setFooter('Jeth | Developers', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-//         if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
+//         if (!message.member.permissions.has('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
 //         if (!usuario) return message.reply('Você não mencionou o usuário!');
 //         if (!cargo_nome) return message.reply('Você não colocou um cargo valido!');
 //         if (usuario.id === message.guild.ownerID) {

@@ -18,7 +18,7 @@ module.exports = class SlowMode extends Command {
             .setDescription('Missing Permissions') // inline false
             .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
             .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
-        if (!message.member.hasPermission('MANAGE_GUILD'))
+        if (!message.member.permissions.has('MANAGE_GUILD'))
             return message.channel.send({ embeds: [embedA] })
         const time = args[0]
         if (!time) return message.reply(`Indique um numero válido.`)

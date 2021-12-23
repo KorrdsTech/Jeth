@@ -11,10 +11,10 @@ module.exports = class Revall extends Command {
 
     async run(message, args) {
 
-        if (!message.member.hasPermission('ADMINISTRATOR', false, true, true)) {
+        if (!message.member.permissions.has('ADMINISTRATOR', false, true, true)) {
             return message.reply('Voce nao tem permissao para isso <:noswift:529635602292015134>').catch(() => { });
         }
-        if (!message.guild.me.hasPermission('ADMINISTRATOR', false, true)) {
+        if (!message.guild.me.permissions.has('ADMINISTRATOR', false, true)) {
             return message.reply('nao tenho permissao para isso <:noswift:529635602292015134>').catch(() => { });
         }
         if (message.mentions.roles.size < 1) return message.channel.send('Marque um cargo').catch(() => { });

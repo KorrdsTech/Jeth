@@ -11,7 +11,7 @@ module.exports = class anuncio extends Command {
 
     async run(message, args) {
         let server = await this.client.database.Guilds.findById(message.guild.id)
-        if (!message.member.hasPermission('MANAGE_MESSAGES'))
+        if (!message.member.permissions.has('MANAGE_MESSAGES'))
             return message.channel.send(`> ${message.author},Você não tem a permissão **\`MANAGE_MESSAGES\`** para executar este comando.`)
         let embedajuda = new MessageEmbed()
             .setTitle('Anuncio | Ajuda', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))

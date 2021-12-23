@@ -3,7 +3,7 @@ const moment = require('moment')
 moment.locale('pt-br')
 
 module.exports = async function onGuildMemberAdd(member) {
-    // if(!this.client.user.me.hasPermission(andfabhsdfhabsdfjh))return vvtnc asdfjabdnsldbf
+    // if(!this.client.user.me.permissions.has(andfabhsdfhabsdfjh))return vvtnc asdfjabdnsldbf
     let guildDocument = await this.database.Guilds.findById(member.guild.id)
     setTimeout(async () => {
         if (guildDocument) {

@@ -35,10 +35,10 @@ module.exports = class kick extends Command {
          .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
          .setTimestamp(new Date());
 
-      if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send({ embeds: [embedA] })
+      if (!message.member.permissions.has('KICK_MEMBERS')) return message.channel.send({ embeds: [embedA] })
       let membro18 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
       if (!membro18) return message.reply('eu procurei, procurei, e não achei este usuário')
-      if (!message.member.hasPermission('KICK_MEMBERS')) {
+      if (!message.member.permissions.has('KICK_MEMBERS')) {
          return message.reply(embedA)
       }
       if (razao13.length < 1) return message.reply('`Adicione um motivo válido!`')

@@ -9,10 +9,10 @@ module.exports = class anuncio extends Command {
   }
 
   async run(message) {
-    if (!message.member.hasPermission('BAN_MEMBERS')) {
+    if (!message.member.permissions.has('BAN_MEMBERS')) {
       return message.reply('Desculpe, você não tem permissão de desbanir usuários neste servidor! <:moderador:662850826737418250>').catch(() => { });
     }
-    if (message.member.hasPermission('BAN_MEMBERS')) {
+    if (message.member.permissions.has('BAN_MEMBERS')) {
       message.guild.fetchBans().then(bans => {
         if (bans.size == 0) { message.reply('There are no banned users.'); throw 'No members to unban.' };
         bans.forEach(ban => {

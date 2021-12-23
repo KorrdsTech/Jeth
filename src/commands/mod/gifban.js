@@ -19,7 +19,7 @@ module.exports = class GifBan extends Command {
         // .setDescription('Missing Permissions') // inline false
         // .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
         // .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL)
-        // if (!message.member.hasPermission('MANAGE_GUILD'))
+        // if (!message.member.permissions.has('MANAGE_GUILD'))
         // return message.channel.send({ embeds: [embedA] })
         this.client.database.Users.findOne({ _id: message.author.id }, (e, doc) => {
             if (doc) {

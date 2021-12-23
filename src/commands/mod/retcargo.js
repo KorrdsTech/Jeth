@@ -19,7 +19,7 @@ module.exports = class revcargo extends Command {
             .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
             .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-        if (!message.member.hasPermission('MANAGE_ROLES'))
+        if (!message.member.permissions.has('MANAGE_ROLES'))
             return message.channel.send({ embeds: [embedA] })
         if (!usuario) return message.reply('`Você não mencionou o usuário!`');
         if (usuario.id === message.guild.ownerID) {

@@ -56,7 +56,7 @@ module.exports = class Ban extends Command {
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
-    if (!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send({ embeds: [embedA] })
+    if (!message.member.permissions.has('BAN_MEMBERS')) return message.channel.send({ embeds: [embedA] })
     let userDocuent = await this.client.database.Users.findById(message.author.id)
     if (!args[0]) return message.reply('mencione ou informe o ID do usuário')
     // ban padrão 17

@@ -20,7 +20,7 @@ module.exports = class unmute extends Command {
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`KICK_MEMBERS`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
-    if (!message.member.hasPermission('KICK_MEMBERS'))
+    if (!message.member.permissions.has('KICK_MEMBERS'))
       return message.channel.send({ embeds: [embedA] })
 
     if (!member) return message.reply(`Mencione alguém por favor.`)
