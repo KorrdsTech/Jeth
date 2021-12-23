@@ -1,11 +1,11 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 
 mongoose.connect(process.env.MONG, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	}, (err) => {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+}, (err) => {
 	if (err) return console.log(`(x) Não consegui me conectar no banco de dados \n${err.stack}`)
-	console.log("(>) Eu me conectei no meu banco de dados!")
+	console.log('(>) Eu me conectei no meu banco de dados!')
 })
 
 var RegistradorSchema = new mongoose.Schema({
@@ -37,26 +37,26 @@ let Guild = new mongoose.Schema({
 	vip: { type: Boolean, default: false },
 	count: { type: Boolean, default: false },
 	antInvite: { type: Boolean, default: false },
-	sugesModule: {type: Boolean, default: false},
+	sugesModule: { type: Boolean, default: false },
 	//messagem dos módulos
-	welcomeMessage: { type: String, default: "" },
-	countMessage: { type: String, default: "{azul}" },
-	leaveMessage: { type: String, default: "" },
-	saidaMessage: { type: String, default: "" },
+	welcomeMessage: { type: String, default: '' },
+	countMessage: { type: String, default: '{azul}' },
+	leaveMessage: { type: String, default: '' },
+	saidaMessage: { type: String, default: '' },
 	//canais para info:
-	infoantinv: { type: String, default: "" },
-	countChannel: { type: String, default: "" },
-	sugesChannel: { type: String, default: "" },
-	channelWelcome: { type: String, default: "" },
-	channelLeave: { type: String, default: "" },
-	channelRegister: { type: String, default: "" },
-	channelsaida: { type: String, default: "" },
+	infoantinv: { type: String, default: '' },
+	countChannel: { type: String, default: '' },
+	sugesChannel: { type: String, default: '' },
+	channelWelcome: { type: String, default: '' },
+	channelLeave: { type: String, default: '' },
+	channelRegister: { type: String, default: '' },
+	channelsaida: { type: String, default: '' },
 	//config de role para registro
-	masculino: { type: String, default: "" },
-	feminino: { type: String, default: "" },
-	registrado: { type: String, default: "" },
-	nbinario: { type: String, default: "" },
-	novato: { type: String, default: "" },
+	masculino: { type: String, default: '' },
+	feminino: { type: String, default: '' },
+	registrado: { type: String, default: '' },
+	nbinario: { type: String, default: '' },
+	novato: { type: String, default: '' },
 	registradores: [RegistradorSchema],
 })
 let User = new mongoose.Schema({
@@ -64,9 +64,9 @@ let User = new mongoose.Schema({
 	blacklist: { type: Boolean, default: false },
 	blacklistReason: { type: String, default: null },
 	rep: { type: Number, default: 0 },
-	repTime: { type: String, default: "000000000000" },
-	gifban: { type: String, default: "" },
-	cor: { type: String, default: "" },
+	repTime: { type: String, default: '000000000000' },
+	gifban: { type: String, default: '' },
+	cor: { type: String, default: '' },
 	vip: { type: Boolean, default: false },
 	strike: { type: Number, default: 0 },
 	staff: { type: Boolean, default: false }
@@ -79,13 +79,13 @@ let userMutados = new mongoose.Schema({
 	channel: String
 })
 
-let Guilds = mongoose.model("Guilds", Guild)
+let Guilds = mongoose.model('Guilds', Guild)
 exports.Guilds = Guilds
-let Users = mongoose.model("Users", User)
+let Users = mongoose.model('Users', User)
 exports.Users = Users
-let Cargos = mongoose.model("Cargo", Cargo)
+let Cargos = mongoose.model('Cargo', Cargo)
 exports.Cargo = Cargos
-let Canals = mongoose.model("Canal", Canal)
+let Canals = mongoose.model('Canal', Canal)
 exports.Canal = Canals
-let Mutados = mongoose.model("Mutados", userMutados)
+let Mutados = mongoose.model('Mutados', userMutados)
 exports.Mutados = Mutados

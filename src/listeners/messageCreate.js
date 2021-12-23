@@ -24,19 +24,19 @@ module.exports = async function onMessage(message, client, messageDelete, msg) {
         }
     }
 
-    if (message.channel.type === "DM") return
+    if (message.channel.type === 'DM') return
     if (!guildDocument) {
         new this.database.Guilds({ _id: message.guild.id }).save()
     }
-    // const hearty = "671437180669001763"
-    // if (message.channel.id === "718178715657568364") {
+    // const hearty = '671437180669001763'
+    // if (message.channel.id === '718178715657568364') {
 
     //     message.react(hearty);
     // }
 
-    const thumbsup = "👍";
-    const thumbsdown = "👎";
-    if (message.channel.id === "718178715657568359") {
+    const thumbsup = '👍';
+    const thumbsdown = '👎';
+    if (message.channel.id === '718178715657568359') {
 
         message.react(thumbsup);
         await message.react(thumbsdown);
@@ -58,9 +58,9 @@ module.exports = async function onMessage(message, client, messageDelete, msg) {
         const suggestionChannel = message.guild.channels.cache.get(guildDocument?.sugesChannel)
         if (!suggestionChannel) return
         if (message.channel.id === suggestionChannel.id) {
-            const sim = "673592197202837524";
-            const duvida = "❓";
-            const nao = "673592197341249559";
+            const sim = '673592197202837524';
+            const duvida = '❓';
+            const nao = '673592197341249559';
 
             message.react(sim);
             await message.react(duvida);
@@ -98,14 +98,14 @@ module.exports = async function onMessage(message, client, messageDelete, msg) {
                     }
                 }
             }
-            if (guildDocument.antInvite && !message.member.hasPermission("ADMINISTRATOR", false, true, true)) {
-                if (message.channel.id === "842588427170086974") {
+            if (guildDocument.antInvite && !message.member.hasPermission('ADMINISTRATOR', false, true, true)) {
+                if (message.channel.id === '842588427170086974') {
                     return;
                 } else {
-                    if (message.content.includes("https://discord.gg/") || message.content.includes("discord.gg/")) {
+                    if (message.content.includes('https://discord.gg/') || message.content.includes('discord.gg/')) {
                         message.delete({ timeout: 100 })
                         await message.reply('<:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!')
-                        let muteRole = message.guild.roles.cache.find(r => r.name === "Muted");
+                        let muteRole = message.guild.roles.cache.find(r => r.name === 'Muted');
                         if (!muteRole) muteRole = await message.guild.roles.create({
                             data: {
                                 name: 'Muted',
@@ -142,10 +142,10 @@ module.exports = async function onMessage(message, client, messageDelete, msg) {
                 } else {
                     let embed = new MessageEmbed()
                         .setThumbnail(this.users.cache.get('753778869013577739').displayAvatarURL({ dynamic: true, size: 1024 }))
-                        .setTitle(`<:a_blurpleemployee:856174396423274516> ${message.author.username}` + "#" + `${message.author.discriminator}`)
+                        .setTitle(`<:a_blurpleemployee:856174396423274516> ${message.author.username}` + '#' + `${message.author.discriminator}`)
                         .setDescription(`**Você mencionou o <@753778869013577739> espere por uma resposta e não mencione novamente !**\n **esperamos que seja por um motivo útil desta vez.**`)
-                        .setColor("BLACK")
-                        .setFooter('Encontrou algum bug? por favor utilize /bug "explique o bug aqui com print se possível" 🤖')
+                        .setColor('BLACK')
+                        .setFooter('Encontrou algum bug? por favor utilize /bug \'explique o bug aqui com print se possível\' 🤖')
                         .setTimestamp(new Date());
 
                     message.channel.send({ embeds: [embed] }).then(msg => { msg.delete({ timeout: 80000 }) })

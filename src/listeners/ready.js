@@ -1,4 +1,4 @@
-const { Message } = require("discord.js");
+const { Message } = require('discord.js');
 
 module.exports = async function onReady() {
   console.log(`Logado.`);
@@ -32,7 +32,7 @@ module.exports = async function onReady() {
         const userId = usuariosMutados[user]._id
         const channel = this.channels.cache.get(usuariosMutados[user].channel)
         try {
-          const role = server.roles.cache.find(r => r.name == "Muted")
+          const role = server.roles.cache.find(r => r.name == 'Muted')
           if (!role) {
             Message.channel.send('erro no cargo')
           }
@@ -60,18 +60,18 @@ module.exports = async function onReady() {
   // // Aqui posta os comandos
   // this.api.applications(this.user.id).commands.post({
   //     data: {
-  //         name: "ping",
-  //         description: "[ 🌐 • Miscellaneous ] Mostra a latência da API."
+  //         name: 'ping',
+  //         description: '[ 🌐 • Miscellaneous ] Mostra a latência da API.'
   //     }
   // })
   // this.api.applications(this.user.id).commands.post({
   //     data: {
-  //         name: "ajuda",
-  //         description: "[ 📝 • Miscellaneous ] Exibe a lista de comandos da aplicação."
+  //         name: 'ajuda',
+  //         description: '[ 📝 • Miscellaneous ] Exibe a lista de comandos da aplicação.'
   //     }
   // })
 
-  // this.ws.on("INTERACTION_CREATE", async (interaction) => {
+  // this.ws.on('INTERACTION_CREATE', async (interaction) => {
   //     // Faço os comandos aqui
   //     const command = interaction.data.name.toLowerCase()
 
@@ -93,7 +93,7 @@ module.exports = async function onReady() {
   //     }
   // })
   // // novo comando
-  // this.ws.on("INTERACTION_CREATE", async (interaction, message) => {
+  // this.ws.on('INTERACTION_CREATE', async (interaction, message) => {
   //     // Faço os comandos aqui
   //     const command = interaction.data.name.toLowerCase()
 

@@ -1,5 +1,5 @@
 module.exports = {
-    colors: require("./colors"),
+    colors: require('./colors'),
     Command: require('./Command'),
     TranslateFunctions: require('./TranslateFunctions')
 }

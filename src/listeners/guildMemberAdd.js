@@ -41,16 +41,16 @@ module.exports = async function onGuildMemberAdd(member) {
                 message = message.replace(/\$\{SERVER\}/g, member.guild.name);
                 message = message.replace(/\$\{AVATAR\}/g, member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 message = message.replace(/\$\{USER-ID\}/g, member.id)
-                message = message.replace(/\$\{CONTA-CRIADA\}/g, moment(member.user.createdTimestamp).format("LL"))
+                message = message.replace(/\$\{CONTA-CRIADA\}/g, moment(member.user.createdTimestamp).format('LL'))
                 message = message.replace(/\$\{USER-NAME\}/g, member.user.username)
                 try {
                     let messageEmbed = JSON.parse(message)
                     channel.send(`${member}`)
-                    channel.send(messageEmbed, m => m.delete({ timeout: 5000}))
+                    channel.send(messageEmbed, m => m.delete({ timeout: 5000 }))
                 } catch (err) {
-                    channel.send(message, m => m.delete({ timeout: 5000}))
+                    channel.send(message, m => m.delete({ timeout: 5000 }))
                 }
-        
+
                 if (guildDocument.novato.length) {
                     member.roles.add(guildDocument.novato, 'Auto-Role | Ativado').catch(() => { })
                 }
