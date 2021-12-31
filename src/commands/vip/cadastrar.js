@@ -1,8 +1,8 @@
 const { Command } = require('../../utils')
 
 module.exports = class cadastrar extends Command {
-  constructor(name, client) {
-    super(name, client)
+  constructor(client) {
+    super(client)
 
     this.aliases = ['cadastrar']
     this.category = 'vip'
@@ -10,8 +10,8 @@ module.exports = class cadastrar extends Command {
   }
 
   async run(message, args) {
-    let usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-    let membro = message.guild.members.cache.get(args[0]) ? message.guild.members.cache.get(args[0]) : message.mentions.members.first() ? message.mentions.members.first() : message.author
+    const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+    const membro = message.guild.members.cache.get(args[0]) ? message.guild.members.cache.get(args[0]) : message.mentions.members.first() ? message.mentions.members.first() : message.author
     if (!membro) message.reply('Não encontrei o usuário!')
 
     this.client.database.Guilds.findOne({ _id: message.guild.id }, (e, server) => {
@@ -51,8 +51,8 @@ module.exports = class cadastrar extends Command {
 // const { MessageEmbed } = require('discord.js')
 
 // module.exports = class setcargo extends Command {
-//     constructor(name, client) {
-//         super(name, client)
+//     constructor(client) {
+//         super(client)
 
 //         this.aliases = ['setar-cargo', 'cargoadd']
 //         this.category = 'sla'
@@ -64,7 +64,7 @@ module.exports = class cadastrar extends Command {
 //         let cargo_nome = message.mentions.roles.first() || message.mentions.roles.array([1])
 //         const embedA = new MessageEmbed()
 //             .setTimestamp()
-//             .setColor(colors.mod)
+//             .setColor(colors['mod'])
 //             .setTitle('**Err:**', `${usuario}`, true)
 //             .setDescription('Missing Permissions') // inline false
 //             .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)

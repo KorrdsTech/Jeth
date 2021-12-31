@@ -2,8 +2,8 @@ const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 
 module.exports = class Ban extends Command {
-  constructor(name, client) {
-    super(name, client)
+  constructor(client) {
+    super(client)
 
     this.aliases = ['banir', 'vaza', 'some']
     this.category = 'mod'
@@ -12,19 +12,19 @@ module.exports = class Ban extends Command {
   async run(message, args) {
 
     const escolha = new Discord.MessageEmbed()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Sistema Trust & Safety')
       .setDescription('**Por favor, escolha um motivo válido abaixo para aplicar o banimento!** \n<a:JT1:739977300564639835> - Conteúdo pornográfico/Gore \n<a:JT2:739977300921024522> - Promover ou participar de Raids a outros servidores \n<a:JT3:739977300895858708> - Discurso de ódio ou Racismo e derivados \n<a:JT4:739977300472234078> - Apologia ao Nazismo e/ou pornografia infântil \n<a:JT5:739977300719697941> - Ações que comprometem o servidor ou os usuários \n<a:JT6:739977300795457687> - Divulgação inapropriada')
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
     // motivo dos banimentos
-    let primeiro = 'Conteúdo pornográfico/Gore'
-    let segundo = 'Promover ou participar de Raids a outros servidores'
-    let terceiro = 'Discurso de ódio ou Racismo e derivados'
-    let quarto = 'Apologia ao Nazismo e/ou pornografia infântil'
-    let quinto = 'Ações que comprometem o servidor ou os usuários'
-    let sexto = 'Divulgação inapropriada'
+    const primeiro = 'Conteúdo pornográfico/Gore'
+    const segundo = 'Promover ou participar de Raids a outros servidores'
+    const terceiro = 'Discurso de ódio ou Racismo e derivados'
+    const quarto = 'Apologia ao Nazismo e/ou pornografia infântil'
+    const quinto = 'Ações que comprometem o servidor ou os usuários'
+    const sexto = 'Divulgação inapropriada'
 
     const membro17 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro17) {
@@ -51,16 +51,16 @@ module.exports = class Ban extends Command {
     const embedA = new Discord.MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
     if (!message.member.permissions.has('BAN_MEMBERS')) return message.channel.send({ embeds: [embedA] })
-    let userDocuent = await this.client.database.Users.findById(message.author.id)
+    const userDocuent = await this.client.database.Users.findById(message.author.id)
     if (!args[0]) return message.reply('mencione ou informe o ID do usuário')
     // ban padrão 17
-    let bannable = message.guild.member(membro17, membro14)
+    const bannable = message.guild.member(membro17, membro14)
     if (bannable) {
       if (!bannable.bannable) return message.reply('eu não posso banir este usuário, o cargo dele é maior que o meu.')
       if (bannable.roles.highest.position > message.member.roles.highest.position) return message.reply(`você não pode banir esse usuário, pois o cargo dele é maior ou igual ao seu.`)
@@ -76,7 +76,7 @@ module.exports = class Ban extends Command {
       .setTimestamp(new Date());
 
     // banimento private
-    let bans = await message.guild.fetchBans('753778869013577739');
+    const bans = await message.guild.fetchBans('753778869013577739');
     let reason = args.slice(1).join(' ') || 'Nenhum motivo especificado';
 
     const warnembed14 = new Discord.MessageEmbed()
@@ -100,7 +100,7 @@ module.exports = class Ban extends Command {
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());
 
-    let argumentos = args.slice(1).join(' ');
+    const argumentos = args.slice(1).join(' ');
     if (argumentos) {
       message.guild.members.ban(membro17)
       warnembed18.fields[1].value = argumentos

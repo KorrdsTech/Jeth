@@ -2,8 +2,8 @@ const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 
 module.exports = class unmute extends Command {
-  constructor(name, client) {
-    super(name, client)
+  constructor(client) {
+    super(client)
 
     this.aliases = ['desmute', 'retirarmute', 'desmutar']
     this.category = 'mod'
@@ -11,11 +11,11 @@ module.exports = class unmute extends Command {
   }
 
   async run(message, args) {
-    let member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
+    const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
     const embedA = new Discord.MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${member}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`KICK_MEMBERS`', true)

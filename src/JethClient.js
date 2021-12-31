@@ -1,4 +1,4 @@
-const { Client, Collection } = require('discord.js')
+const { Client, Collection, MessageEmbed } = require('discord.js')
 const Fs = require('fs')
 
 module.exports = class JethCanary extends Client {
@@ -15,11 +15,11 @@ module.exports = class JethCanary extends Client {
     Fs.readdirSync(path)
       .forEach(file => {
         try {
-          let filePath = path + '/' + file
+          const filePath = path + '/' + file
           if (file.endsWith('.js')) {
             const Command = require(`.${filePath}`)
-            const commandName = file.replace(/.js/g, '').toLowerCase()
-            const command = new Command(commandName, this)
+            const command = new Command(this)
+            const commandName = (command.name !== undefined) ? command.name : command.name = file.replace(/.js/g, '').toLowerCase()
             return this.commands.set(commandName, command)
           } else if (Fs.lstatSync(filePath).isDirectory()) {
             this.initCommands(filePath)
@@ -34,13 +34,13 @@ module.exports = class JethCanary extends Client {
     Fs.readdirSync(path)
       .forEach(file => {
         try {
-          let filePath = path + '/' + file
+          const filePath = path + '/' + file
           if (file.endsWith('.js')) {
-            let Listener = require(`.${filePath}`)
+            const Listener = require(`.${filePath}`)
             this.on(file.replace(/.js/g, ''), Listener)
           }
 
-          let stats = Fs.lstatSync(filePath)
+          const stats = Fs.lstatSync(filePath)
           if (stats.isDirectory()) {
             this.initListeners(filePath)
           }
@@ -52,7 +52,7 @@ module.exports = class JethCanary extends Client {
 
   sendLoggerError(error) {
     console.log(error)
-    let embed = new MessageEmbed()
+    const embed = new MessageEmbed()
       .setColor('RED')
       .setTitle(error.name)
       .setAuthor(this.user.username, this.user.displayAvatarURL({ dynamic: true, size: 1024 }))

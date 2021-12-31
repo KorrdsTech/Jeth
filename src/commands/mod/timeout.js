@@ -3,8 +3,8 @@ const Discord = require('discord.js')
 const ms = require('parse-duration')
 
 module.exports = class Timeout extends Command {
-  constructor(name, client) {
-    super(name, client)
+  constructor(client) {
+    super(client)
 
     this.aliases = ['tempofora']
     this.category = 'Moderação'
@@ -14,7 +14,7 @@ module.exports = class Timeout extends Command {
     // Embed erro de permissões:
     const embedA = new Discord.MessageEmbed()
     embedA.setTimestamp()
-    embedA.setColor(colors.mod)
+    embedA.setColor(colors['mod'])
     embedA.setTitle('**Err:**', `${message.author.username}`, true)
     embedA.setDescription('Missing Permissions') // inline false
     embedA.addField('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERS`', true)

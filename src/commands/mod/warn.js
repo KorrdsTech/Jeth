@@ -2,8 +2,8 @@ const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 
 module.exports = class Warn extends Command {
-  constructor(name, client) {
-    super(name, client)
+  constructor(client) {
+    super(client)
 
     this.aliases = ['aviso', 'advertencia', 'punir']
     this.category = 'mod'
@@ -12,13 +12,13 @@ module.exports = class Warn extends Command {
 
   async run(message, args, client) {
 
-    var razao = args.slice(1).join(' ')
-    let razao1 = 'Possuir muitos avisos dentro de um servidor'
-    let member = message.mentions.users.first()
+    let razao = args.slice(1).join(' ')
+    const razao1 = 'Possuir muitos avisos dentro de um servidor'
+    const member = message.mentions.users.first()
 
     const embedA = new Discord.MessageEmbed()
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${member}`, true)
       .setDescription('Missing Permissions')
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
@@ -31,7 +31,7 @@ module.exports = class Warn extends Command {
     }
     // const embedC = new Discord.MessageEmbed()
     // .setTimestamp()
-    // .setColor(colors.mod)
+    // .setColor(colors['mod'])
     // .setTitle('**Err:**', true)
     // .setDescription('Missing Permissions') // inline false
     // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
@@ -110,7 +110,6 @@ module.exports = class Warn extends Command {
       .addField('<:FeelsCoffeeMan:651528973385465867> Motivo:', `${razao1}`)
       .setFooter('Auto Moderação - :police_officer:')
       .setTimestamp(new Date());
-
 
     const warnembed18 = new Discord.MessageEmbed()
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))

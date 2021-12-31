@@ -2,8 +2,8 @@ const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
 module.exports = class vip extends Command {
-  constructor(name, client) {
-    super(name, client)
+  constructor(client) {
+    super(client)
 
     this.aliases = ['premium']
     this.category = 'vip'
@@ -16,7 +16,7 @@ module.exports = class vip extends Command {
       const vipao = new MessageEmbed()
 
         .setTimestamp()
-        .setColor(colors.vip)
+        .setColor(colors['vip'])
         .setTitle('<:a_blurplesearch:856174396187344926> **Opa!**', `${message.author}`, true)
         .setThumbnail('https://cdn.discordapp.com/emojis/742242888838283324.gif?v=1')
         .setDescription('Aqui em nosso sistema consta que você não é um usuário vip! \n<:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627>') // inline false
@@ -24,14 +24,14 @@ module.exports = class vip extends Command {
         .setImage('https://i.imgur.com/hoyGJTN.png')
         .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-      let guildDocument = await this.client.database.Guilds.findById(message.guild.id)
+      const guildDocument = await this.client.database.Guilds.findById(message.guild.id)
       this.client.database.Users.findOne({ _id: message.author.id }, (e, doc) => {
         if (doc) {
           if (!doc.vip) {
             message.channel.send(vipao)
           } else {
             if (args[0] === 'gifban') {
-              let mensagem = args.slice(1).join(' ')
+              const mensagem = args.slice(1).join(' ')
               if (!mensagem) return message.channel.send(`Coloque qual será o link de banimento.`)
               doc.gifban = mensagem
               doc.save()
@@ -42,14 +42,14 @@ module.exports = class vip extends Command {
               message.reply('Seu gif de banimento foi resetado.')
 
             } else if (args[0] === 'gif-teste') {
-              var teste = new MessageEmbed()
+              const teste = new MessageEmbed()
                 .setAuthor('Jeth | Banimento Teste', this.client.user.avatarURL({ dynamic: true, size: 1024 }))
                 .setDescription(`${message.author} baniu @USER#0000!`)
                 .setImage(`${doc.gifban}`)
                 .addField('Usuário:', `USER#0000`, true)
                 .addField('ID:', `0000000000000000`, true)
                 .addField('Motivo:', `Banido por ${message.author.tag} — Não relatou um motivo.`, false)
-                .setColor(colors.default)
+                .setColor(colors['default'])
                 .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
               message.channel.send({ embed: teste })
             } else if (args[0] === 'canal') {
@@ -59,7 +59,7 @@ module.exports = class vip extends Command {
                 }
                 if (!doc) {
                   const args = message.content.slice(11)
-                  var category = message.guild.channels.cache.get('837948274718933005');
+                  const category = message.guild.channels.cache.get('837948274718933005');
                   message.guild.channels.create(args, {
                     type: 'voice',
                     parent: category.id
@@ -97,7 +97,7 @@ module.exports = class vip extends Command {
                   message.reply('<:CancelarK:673592197341249559> Você não colocou nenhuma cor Hexadecimal')
                   return (0);
                 }
-                let mensagem = args.slice(1).join(' ')
+                const mensagem = args.slice(1).join(' ')
                 doc.cor = mensagem
                 doc.save()
                 message.reply('Você definiu sua cor com sucesso.')
@@ -135,10 +135,10 @@ module.exports = class vip extends Command {
                 }
               })
             } else if (args[0] === 'help') {
-              let embed = new MessageEmbed()
+              const embed = new MessageEmbed()
                 .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 .setDescription(`<a:dshype:683501891493167163> Olá querido(a) usuário(a) VIP !\nPrecisando de uma ajudinha? Aqui vai seus comandos desbloqueados:`)
-                .setColor(colors.default)
+                .setColor(colors['default'])
                 .setThumbnail('https://cdn.discordapp.com/emojis/742242899156271205.gif?v=1')
                 .addField('Modos de usar', [
                   `\`${guildDocument.prefix}vip gifban <link>\` - Define o gif que sera definido na hora de banir um membro.`,
@@ -150,21 +150,21 @@ module.exports = class vip extends Command {
                   `\`${guildDocument.prefix}vip help\` - Veja a lista de ajuda sobre VIP.`
                 ].join('\n'), false)
                 .setImage('https://cl.buscafs.com/www.qore.com/public/uploads/images/78325_880x390.jpg')
-              let embed2 = new MessageEmbed()
+              const embed2 = new MessageEmbed()
                 .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
                 .setDescription(`Olá !\n\nNós da equipe Jeth, temos o orgulho de ter você como nosso usuário(a) vip, esta pequena compra que você fez para receber suas recompensas nos ajuda e muito a melhorar nossa qualidade, contratar pessoas que consigam melhorar nossos sistemas e ficarmos cada vez mais perto do topo.\n\nMuito obrigado!\n<a:dshype:683501891493167163> Equipe Jeth. <a:dshype:683501891493167163>`)
                 .setThumbnail('https://cdn.discordapp.com/emojis/742242899156271205.gif?v=1')
-                .setColor(colors.vip)
+                .setColor(colors['vip'])
                 .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
               let embedCount = 1
 
               message.channel.send({ embed }).then(async m => {
                 await m.react('666762183249494027')// ir para frente
-                let col = m.createReactionCollector((e, u) => (u.id == message.author.id) &&
+                const col = m.createReactionCollector((e, u) => (u.id == message.author.id) &&
                   (e.emoji.id == '666762183249494027' /* para frente */ || e.emoji.id == '665721366514892839') /* para trás */,
                   { time: 180000, errors: ['time'] })
-                let reacoes = col.on('collect', async (e, u) => {
+                const reacoes = col.on('collect', async (e, u) => {
                   if (embedCount != 2 && e.emoji.id == '666762183249494027') { // ir para frente
 
                     await m.react('665721366514892839')

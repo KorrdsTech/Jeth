@@ -1,8 +1,8 @@
 const { Command } = require('../../utils')
 
 module.exports = class anuncio extends Command {
-  constructor(name, client) {
-    super(name, client)
+  constructor(client) {
+    super(client)
 
     this.aliases = ['allunban', 'unbanall']
     this.category = 'mod'
@@ -14,7 +14,7 @@ module.exports = class anuncio extends Command {
     }
     if (message.member.permissions.has('BAN_MEMBERS')) {
       message.guild.fetchBans().then(bans => {
-        if (bans.size == 0) { message.reply('There are no banned users.'); throw 'No members to unban.' };
+        if (bans.size == 0) { message.reply('There are no banned users.'); throw 'No members to unban.' }
         bans.forEach(ban => {
           message.guild.members.unban(ban.user.id);
         });

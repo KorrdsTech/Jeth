@@ -1,3 +1,3 @@
 module.exports = function (error) {
-    this.sendLoggerError(error)
+  this.sendLoggerError(error)
 }
