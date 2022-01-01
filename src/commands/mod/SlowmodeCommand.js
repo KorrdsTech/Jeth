@@ -1,10 +1,11 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class SlowMode extends Command {
+module.exports = class SlowmodeCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'slowmode'
     this.aliases = ['modolento']
     this.category = 'mod'
   }
@@ -24,11 +25,11 @@ module.exports = class SlowMode extends Command {
     if (!time) return message.reply(`Indique um numero válido.`)
     if (time > 600) return message.reply(`Você não pode colocar 600 segundos de slowmode burrinho.`)
     if (0 < time) {
-      message.channel.setRateLimitPerUser(time).then(() => {
+      message.channel.edit({ rateLimitPerUser: time }).then(() => {
         message.reply(`Slow mode ativado em: ${time}.`)
       })
     } else {
-      message.channel.setRateLimitPerUser(time).then(() => {
+      message.channel.setRateLimitPerUser({ rateLimitPerUser: time }).then(() => {
         message.reply(`Slow mode desativado.`)
       })
     }

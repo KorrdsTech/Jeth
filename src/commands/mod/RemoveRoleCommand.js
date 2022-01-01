@@ -1,16 +1,18 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class revcargo extends Command {
+module.exports = class RemoveRoleCommand extends Command {
   constructor(client) {
     super(client)
+
+    this.name = 'removerole'
     this.aliases = ['removercargo', 'cargoremove', 'removecargo']
     this.category = 'mod'
   }
 
   async run(message, args) {
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-    const cargo_nome = message.mentions.roles.first() || message.mentions.roles.array([1])
+    const cargo_nome = message.mentions.roles.first() || message.mentions.roles.array([1]) || message.guild.roles.cache.find(role => role.name === `${cargo_nome}`)
     const embedA = new MessageEmbed()
       .setTimestamp()
       .setColor(colors['mod'])
@@ -52,7 +54,6 @@ module.exports = class revcargo extends Command {
     // }
 
     if (!cargo_nome) return message.reply('`Você não colocou um cargo valido!`');
-    const cargo = message.guild.roles.cache.find(role => role.name === `${cargo_nome}`)
 
     const embed = new MessageEmbed()
       .setTimestamp()

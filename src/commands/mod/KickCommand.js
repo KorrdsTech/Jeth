@@ -1,10 +1,11 @@
 const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 
-module.exports = class kick extends Command {
+module.exports = class KickCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'kick'
     this.aliases = ['kickar', 'expulsar']
     this.category = 'mod'
   }

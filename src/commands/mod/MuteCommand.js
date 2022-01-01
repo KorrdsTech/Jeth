@@ -2,12 +2,13 @@ const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 const parse = require('parse-duration')
 
-module.exports = class mute extends Command {
+module.exports = class MuteCommand extends Command {
   constructor(client) {
     super(client)
 
-    this.aliases = ['mutech', 'mute']
-    this.category = 'Moderação'
+    this.name = 'mute'
+    this.aliases = []
+    this.category = 'mod'
     this.subcommandsOnly = false
   }
 

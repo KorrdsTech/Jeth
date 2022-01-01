@@ -1,10 +1,11 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { MessageEmbed, Permissions } = require('discord.js')
 
-module.exports = class unmute extends Command {
+module.exports = class UnmuteCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'unmute'
     this.aliases = ['desmute', 'retirarmute', 'desmutar']
     this.category = 'mod'
     this.subcommandsOnly = false
@@ -12,7 +13,7 @@ module.exports = class unmute extends Command {
 
   async run(message, args) {
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
-    const embedA = new Discord.MessageEmbed()
+    const embedA = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors['mod'])

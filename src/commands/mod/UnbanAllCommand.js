@@ -1,10 +1,11 @@
 const { Command } = require('../../utils')
 
-module.exports = class anuncio extends Command {
+module.exports = class UnbanAllCommand extends Command {
   constructor(client) {
     super(client)
 
-    this.aliases = ['allunban', 'unbanall']
+    this.name = 'unbanall'
+    this.aliases = ['allunban']
     this.category = 'mod'
   }
 

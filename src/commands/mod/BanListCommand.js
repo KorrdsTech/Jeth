@@ -1,10 +1,10 @@
-const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Command } = require('../../utils')
 
-module.exports = class Ban extends Command {
+module.exports = class BanListCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'banlist'
     this.aliases = ['watchdogslist']
     this.category = 'mod'
   }

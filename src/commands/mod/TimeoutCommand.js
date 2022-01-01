@@ -2,12 +2,13 @@ const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 const ms = require('parse-duration')
 
-module.exports = class Timeout extends Command {
+module.exports = class TimeoutCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'timeout'
     this.aliases = ['tempofora']
-    this.category = 'Moderação'
+    this.category = 'mod'
   }
 
   async run(message, args) {
@@ -24,6 +25,7 @@ module.exports = class Timeout extends Command {
     if (!message.member.permissions.has('MODERATE_MEMBERS')) return message.channel.send({ embeds: [embedA] });
     // define o que é user, neste caso user é o primeiro usuário que o autor colocar o ID ou mencionar no chat
     const user = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
+    const member = await message.guild.members.fetch(user.id)
     // define qual vai ser o motivo do timeout.
     const reason = args.slice(2).join(' ')
     // define o temporizados do timeout.
@@ -43,12 +45,7 @@ module.exports = class Timeout extends Command {
     embed.setTimestamp(new Date());
 
     // executa o corte de comunicação ou timeout.
-    this.client.api.guilds(message.guild.id).members(user.id).patch({
-      data: {
-        communication_disabled_until: new Date(new Date(Date.now() + ms(timer)).toUTCString()).toISOString()
-      },
-      reason: reason
-    }).then(() => {
+    member.timeout(ms(timer), reason).then(() => {
       // envia a mensagem de confirmação
       message.channel.send({ embeds: [embed] })
     })

@@ -1,11 +1,12 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class welcome extends Command {
+module.exports = class WelcomeCommand extends Command {
   constructor(client) {
     super(client)
 
-    this.aliases = ['welcome', 'bem-vindo', 'bemvindo']
+    this.name = 'welcome'
+    this.aliases = ['bem-vindo', 'bemvindo']
     this.category = 'mod'
   }
 
@@ -48,7 +49,7 @@ module.exports = class welcome extends Command {
       guildDocument.novato = role.id;
       guildDocument.save().then(() => {
         const embed = new MessageEmbed()
-          .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+          .setAuthor(message.author, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setDescription(`Você definiu o cargo ${role} como auto-role Com sucesso.`)
           .setColor(colors['default'])
           .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
@@ -118,10 +119,9 @@ module.exports = class welcome extends Command {
       let embedCount = 1
       message.channel.send({ embed }).then(async m => {
         await m.react('666762183249494027')// ir para frente
-        const col = m.createReactionCollector((e, u) => (u.id == message.author.id) &&
-          (e.emoji.id == '666762183249494027' /* para frente */ || e.emoji.id == '665721366514892839') /* para trás */,
-          { time: 180000, errors: ['time'] })
-        const reacoes = col.on('collect', async (e, u) => {
+        const filter = (e, u) => (u.id == message.author.id) && (e.emoji.id == '666762183249494027' /* para frente */ || e.emoji.id == '665721366514892839')
+        const col = m.createReactionCollector({ filter, time: 180000, errors: ['time'] })
+        col.on('collect', async (e) => {
           if (embedCount != 2 && e.emoji.id == '666762183249494027') { // ir para frente
 
             await m.react('665721366514892839')

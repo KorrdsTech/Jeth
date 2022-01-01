@@ -1,10 +1,11 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class unban extends Command {
+module.exports = class UnbanCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'unban'
     this.aliases = ['desban', 'desbanir', 'appeal']
     this.category = 'mod'
     this.subcommandsOnly = false
@@ -13,7 +14,6 @@ module.exports = class unban extends Command {
   async run(message, args) {
 
     const usuario = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
-    const reason = args
     const embedA = new MessageEmbed()
 
       .setTimestamp()
@@ -30,14 +30,14 @@ module.exports = class unban extends Command {
 
       .setColor('#030303')
       .setTitle('**Ação | Unban**')
-      .setThumbnail(usuario.displayAvatarURL({ format: usuario.avatar.startsWith('a_') ? 'gif' : 'png' }))
+      .setThumbnail(usuario.displayAvatarURL({ dynamic: true, format: 'png' }))
       .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Usuário:** ${usuario.username} \n**ID:** ${usuario.id}`)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date());
 
-    message.guild.members.unban(args[0]).then(msg => {
+    message.guild.members.unban(args[0]).then(() => {
       message.channel.send({ embeds: [embed] })
-    }).catch(err => {
+    }).catch(() => {
       message.channel.send(`**${message.author}** Este usuário não está banido!`)
 
     })

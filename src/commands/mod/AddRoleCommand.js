@@ -1,17 +1,18 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class setcargo extends Command {
+module.exports = class AddRoleCommand extends Command {
   constructor(client) {
     super(client)
 
-    this.aliases = ['setar-cargo', 'cargoadd']
+    this.name = 'addrole'
+    this.aliases = ['setar-cargo', 'cargoadd', 'setcargo']
     this.category = 'mod'
   }
 
   async run(message, args) {
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-    const cargo_nome = message.mentions.roles.first() || message.mentions.roles.array([1])
+    const cargo_nome = message.mentions.roles.first() || message.mentions.roles.array([1]) || message.guild.roles.cache.find(role => role.name.includes(args.slice(1).join(' ')))
     const embedA = new MessageEmbed()
       .setTimestamp()
       .setColor(colors['mod'])
@@ -51,8 +52,6 @@ module.exports = class setcargo extends Command {
     //     message.reply(embedC);
     //     return 0;
     // }
-
-    const cargo = message.guild.roles.cache.find(role => role.name === `${cargo_nome}`)
 
     const embed = new MessageEmbed()
       .setTimestamp()

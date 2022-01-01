@@ -1,10 +1,11 @@
 const { Command, colors } = require('../../utils')
 const Discord = require('discord.js');
 
-module.exports = class unwarn extends Command {
+module.exports = class UnwarnCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'unwarn'
     this.aliases = []
     this.category = 'mod'
   }

@@ -1,16 +1,17 @@
 const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 
-module.exports = class Warn extends Command {
+module.exports = class WarnCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'warn'
     this.aliases = ['aviso', 'advertencia', 'punir']
     this.category = 'mod'
     this.subcommandsOnly = false
   }
 
-  async run(message, args, client) {
+  async run(message, args) {
 
     let razao = args.slice(1).join(' ')
     const razao1 = 'Possuir muitos avisos dentro de um servidor'
@@ -128,12 +129,11 @@ module.exports = class Warn extends Command {
     if (member.roles.has(adv1.id)) {
       member.roles.add(adv2)
     } else
-      if (member.roles.has(adv2.id)) {
-        member.roles.add(adv3)
-      } else
-        if (member.roles.has(adv3.id)) {
-          member.kick(razao1)
-          member.send(embed1)
-        }
+    if (member.roles.has(adv2.id)) {
+      member.roles.add(adv3)
+    } else if (member.roles.has(adv3.id)) {
+      member.kick(razao1)
+      member.send(embed1)
+    }
   }
 }

@@ -1,26 +1,16 @@
-const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Command } = require('../../utils')
 
-module.exports = class GifBan extends Command {
+module.exports = class GifBanCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'gifban'
     this.aliases = ['banimentogif', 'bangif', 'gifbanimento']
     this.category = 'mod'
   }
 
   async run(message, args) {
     const guildDocument = await this.client.database.Guilds.findById(message.guild.id)
-
-    // const embedA = new Discord.MessageEmbed()
-    // .setTimestamp()
-    // .setColor(colors['mod'])
-    // .setTitle('**Err:**', `${message.author}`, true)
-    // .setDescription('Missing Permissions') // inline false
-    // .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
-    // .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL)
-    // if (!message.member.permissions.has('MANAGE_GUILD'))
-    // return message.channel.send({ embeds: [embedA] })
     this.client.database.Users.findOne({ _id: message.author.id }, (e, doc) => {
       if (doc) {
         if (!doc.vip) {
@@ -35,7 +25,7 @@ module.exports = class GifBan extends Command {
           message.channel.send(`${message.author}, você alterou a sua ilustração de banimento!,Utilize **${guildDocument.prefix}vip**.`)
         }
       } else {
-        const saved = new client.database.Users({ _id: message.author.id })
+        const saved = new this.client.database.Users({ _id: message.author.id })
         saved.save().then(() => {
           message.channel.send('<a:loading:663803525603655682> Salvando cadastro... Execute o comando novamente!')
         })

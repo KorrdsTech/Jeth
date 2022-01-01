@@ -11,8 +11,7 @@ module.exports = class softban extends Command {
   }
 
   async run(message, args) {
-    const cor = '#c635ff'
-    const usuario = bot.users.cache.get(args[0]) || message.mentions.users.cache.first()
+    const usuario = this.client.users.cache.get(args[0]) || message.mentions.users.cache.first()
     if (!message.guild.member(message.author.id).permissions.has('BAN_MEMBERS')) return message.reply(':x: **|** Você não tem permissão para executar este comando!')
     if (message.mentions.users.size < 1) return message.reply('Mencione algum membro')
     if (!message.guild.member(usuario).bannable) return message.reply(`:x: **|** Eu não posso punir essa pessoa, talvez o cargo dela seja maior que o meu`)
@@ -36,7 +35,7 @@ module.exports = class softban extends Command {
     message.guild.unban(usuario)
     const embed = new Discord.MessageEmbed()
       .setDescription(`${usuario.username} foi **Silenciosamente Banido** do servidor por ${message.author}\nMotivo: ${razao} `)
-      .setColor(cor)
+      .setColor(colors['mod'])
     message.channel.send({ embeds: [embed] })
   }
 }

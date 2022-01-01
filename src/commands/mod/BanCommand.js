@@ -1,10 +1,12 @@
+// Need a rework
 const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 
-module.exports = class Ban extends Command {
+module.exports = class BanCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'ban'
     this.aliases = ['banir', 'vaza', 'some']
     this.category = 'mod'
   }
