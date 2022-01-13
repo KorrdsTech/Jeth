@@ -1,19 +1,20 @@
-const { MessageEmbed, GuildMemberManager } = require('discord.js')
-const { colors } = require('../utils')
-const { Permissions, Discord } = require('discord.js');
+const { MessageEmbed } = require('discord.js')
 
-module.exports = async function onGuildBanAdd(ban, message) {
+module.exports = async function onGuildBanAdd(ban) {
+
     const guild = this.guilds.cache.get('804575416098488380')
-	if (ban.guild.id !== guild.id) return
-    const fetchedLogs = await guild.fetchAuditLogs({
-		limit: 1,
-		type: 'MEMBER_BAN_ADD',
-	});
+	const loggs = guild.channels.cache.get('832809257643671552')
+	
+        if (ban.id !== guild.id) return;
+            const fetchedLogs = await guild.fetchAuditLogs({
+                limit: 1,
+                type: 'MEMBER_BAN_ADD',
+            })
+
 	// Since there's only 1 audit log entry in this collection, grab the first one
 	const banLog = fetchedLogs.entries.first();
 
 	// Perform a coherence check to make sure that there's *something*
-    const loggs = guild.channels.cache.get('831041533469655070')
 	if (!banLog) return loggs.send(`<a:a_Wumpus_Sad:924250380953583659> ${ban.user.tag} foi banido do ${ban.guild.name} mas nenhum registro de auditoria foi encontrado.`);
 
 	// Now grab the user object of the person who banned the member
@@ -40,4 +41,4 @@ module.exports = async function onGuildBanAdd(ban, message) {
 	// 	banned.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:**  😵‍💫Desconhecido😵‍💫 \n**ID:**  😵‍💫Desconhecido😵‍💫` + `\n<:Kaeltec:673592197177933864> **Banido:** ${target.tag} \n**ID:** ${target.id}`)
     //     channel.send(banned)
 	// }
-};
+	}
