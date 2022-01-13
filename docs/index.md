@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+## Bem vindo a página da Jeth
 
-You can use the [editor on GitHub](https://github.com/RootGC/JethJS/edit/development/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Você pode ajudar nosso projeto votando pela top.gg [clicando aqui](https://top.gg/bot/718210363014905866) para podermos manter nossa influência e continuarmos expandindo para diversos servidores dentro do Discord.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Encontrou um bug?
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Disponibilizamos a você dois métodos para reporta-lo:
 
 ```markdown
-Syntax highlighted code block
+* Utilizando o comando:
 
-# Header 1
-## Header 2
-### Header 3
++ -bug
 
-- Bulleted
-- List
+* dentro de seu servidor você será capaz de enviar diretamente para nossa equipe de suporte uma descrição completa
+* do problema que está enfrentando que tentaremos entrar em contato e lhe ajudar.
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+* Ou caso você já seja mais experiente e saiba de que se trata de um erro de programação pode criar um Issue em
+* nosso projeto explicando detalhadamente como tudo deveria ocorrer, e o que está causando o problema, ambas as
+* opções tem um guia caso necessite.
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Para mais detalhes sinta-se livre para entrar em nosso servidor de suporte [clicando aqui](https://discord.gg/VnYbWUz3ZZ).
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/RootGC/JethJS/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Oferecemos suporte ou contato para os membros que entrarem no link acima.
