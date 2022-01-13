@@ -3,9 +3,8 @@ const { colors } = require('../utils')
 const { Permissions, Discord } = require('discord.js');
 
 module.exports = async function onGuildBanAdd(ban, message) {
-	return
     const guild = this.guilds.cache.get('804575416098488380')
-	if(!ban.guild === guild.id) return;
+	if (ban.guild.id !== guild.id) return
     const fetchedLogs = await guild.fetchAuditLogs({
 		limit: 1,
 		type: 'MEMBER_BAN_ADD',
