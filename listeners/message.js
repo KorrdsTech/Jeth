@@ -140,7 +140,7 @@ module.exports = async function onMessage(message, client, messageDelete, msg) {
 // block words
 let guild = await this.database.Guilds.findById('804575416098488380')
 if(message.guild.id === guild.id){
-    const forbiddenWords = ["corno", "g4do", "g4d0", "c0rno","gado", "c0rn0", "macaco", "preto", "lesbica", "lésbica", "gay", "viado", "seu preto", "sua preta", "macaca", "buceta"]
+    const forbiddenWords = ["corno", "g4do", "g4d0", "c0rno","gado", "c0rn0", "macaco", "preto", "lesbica", "lésbica", "gay", "viado", "seupreto", "suapreta", "macaca", "buceta"]
     if(message.content.split(" ").some(wordMsg => forbiddenWords.includes(wordMsg))){
         message.delete({timeout: 5})
         let mensagem = `${message.author} <:a_angyy:924250381108785192> Você utilizou uma ou mais palavras ofensivas em sua mensagem, para a segurança de nossa comunidade, ela foi apagada! se continuar com um comportamento tóxico será banido de nossa comunidade.`
