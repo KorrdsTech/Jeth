@@ -13,7 +13,6 @@ module.exports = class unban extends Command {
     async run(message, args) {
 
         let usuario = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ""))
-        let reason = args
         const embedA = new MessageEmbed()
 
             .setTimestamp()
@@ -30,7 +29,7 @@ module.exports = class unban extends Command {
 
             .setColor("#030303")
             .setTitle('**Ação | Unban**')
-            .setThumbnail(usuario.displayAvatarURL({ format: usuario.avatar.startsWith("a_") ? "gif" : "png" }))
+            .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Usuário:** ${usuario.username} \n**ID:** ${usuario.id}`)
             .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
             .setTimestamp(new Date());
