@@ -28,11 +28,12 @@ module.exports = async function onMessage(message, client, messageDelete, msg) {
     if (!guildDocument) {
         new this.database.Guilds({ _id: message.guild.id }).save()
     }
-    // const hearty = "671437180669001763"
-    // if (message.channel.id === "718178715657568364") {
 
-    //     message.react(hearty);
-    // }
+    const hearty = "924250384258711592"
+    if (message.channel.id === "932041948041207808") {
+
+        message.react(hearty);
+    }
 
     const thumbsup = "👍";
     const thumbsdown = "👎";
@@ -147,14 +148,14 @@ if(message.guild.id === guild.id){
                 }
             }
             let mention = message.content.split(/ +/g)[0];
-            if (mention === `<@!753778869013577739>` || mention === `<@!753778869013577739`) {
+            if (mention === `<@!442774319819522059>` || mention === `<@!442774319819522059`) {
                 if (message.guild.id !== '804575416098488380') {
                     return;
                 } else {
                     let embed = new MessageEmbed()
-                        .setThumbnail(this.users.cache.get('753778869013577739').displayAvatarURL({ dynamic: true, size: 1024 }))
+                        .setThumbnail(this.users.cache.get('442774319819522059').displayAvatarURL({ dynamic: true, size: 1024 }))
                         .setTitle(`<:a_blurpleemployee:856174396423274516> ${message.author.username}` + "#" + `${message.author.discriminator}`)
-                        .setDescription(`**Você mencionou o <@753778869013577739> espere por uma resposta e não mencione novamente !**\n **esperamos que seja por um motivo útil desta vez.**`)
+                        .setDescription(`**Você mencionou o <@442774319819522059> espere por uma resposta e não mencione novamente !**\n **esperamos que seja por um motivo útil desta vez.**`)
                         .setColor("BLACK")
                         .setFooter('Encontrou algum bug? por favor utilize /bug "explique o bug aqui com print se possível" 🤖')
                         .setTimestamp(new Date());
