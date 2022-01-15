@@ -1,5 +1,5 @@
 const { RichEmbed } = require('discord.js')
-const devs = ['275382856723726336', '753778869013577739']
+const devs = ['395788326835322882', '753778869013577739']
 class Command {
     constructor(name, client) {
         this.name = name
