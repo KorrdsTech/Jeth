@@ -53,76 +53,6 @@ module.exports = async function onMessage(message, client, messageDelete, msg) {
         // message.guild.channels.cache.get('831041533469655070').send(delEmbed)
    // })    // end of it finnaly :3
 
-
-    //anti-spam
-    const usersMap = new Map();
-    const LIMIT = 3;
-    const TIME = 7000;
-    const DIFF = 3000;
-    
-        if(message.author.bot) return;
-        if(usersMap.has(message.author.id)) {
-            const userData = usersMap.cache.get(message.author.id);
-            const { lastMessage, timer } = userData;
-            const difference = message.createdTimestamp - lastMessage.createdTimestamp;
-            let msgCount = userData.msgCount;
-            console.log(difference);
-    
-            if(difference > DIFF) {
-                clearTimeout(timer);
-                console.log('Cleared Timeout');
-                userData.msgCount = 1;
-                userData.lastMessage = message;
-                userData.timer = setTimeout(() => {
-                    usersMap.delete(message.author.id);
-                    console.log('Removed from map.')
-                }, TIME);
-                usersMap.set(message.author.id, userData)
-            }
-            else {
-                ++msgCount;
-                if(parseInt(msgCount) === LIMIT) {
-                    let muterole = message.guild.roles.cache.find(role => role.name === 'muted');
-                    if(!muterole) {
-                        try{
-                            muterole = await message.guild.roles.create({
-                                name : "muted",
-                                permissions: []
-                            })
-                            message.guild.channels.cache.forEach(async (channel, id) => {
-                                await channel.createOverwrite(muterole, {
-                                    SEND_MESSAGES: false,
-                                    ADD_REACTIONS : false
-                                })
-                            })
-                        }catch (e) {
-                            console.log(e)
-                        }
-                    }
-                    message.member.roles.add(muterole);
-                    message.channel.send('You have been muted!');
-                    setTimeout(() => {
-                        message.member.roles.remove(muterole);
-                        message.channel.send('You have been unmuted!')
-                    }, TIME);
-                } else {
-                    userData.msgCount = msgCount;
-                    usersMap.set(message.author.id, userData);
-                }
-            }
-        }
-        else {
-            let fn = setTimeout(() => {
-                usersMap.delete(message.author.id);
-                console.log('Removed from map.')
-            }, TIME);
-            usersMap.set(message.author.id, {
-                msgCount: 1,
-                lastMessage : message,
-                timer : fn
-            });
-        }
-
     if (guildDocument?.sugesModule) {
         const suggestionChannel = message.guild.channels.cache.get(guildDocument?.sugesChannel)
         if (!suggestionChannel) return
@@ -143,7 +73,7 @@ if(message.guild.id === guild.id){
     const forbiddenWords = ["corno", "g4do", "g4d0", "c0rno","gado", "c0rn0", "macaco", "preto", "lesbica", "lésbica", "gay", "viado", "seupreto", "suapreta", "macaca", "buceta"]
     if(message.content.split(" ").some(wordMsg => forbiddenWords.includes(wordMsg))){
         message.delete({timeout: 5})
-        let mensagem = `${message.author} <:a_angyy:924250381108785192> Você utilizou uma ou mais palavras ofensivas em sua mensagem, para a segurança de nossa comunidade, ela foi apagada! se continuar com um comportamento tóxico será banido de nossa comunidade.`
+        let mensagem = `${message.author} <:a_angyy:924250381108785192> Você utilizou uma ou mais palavras ofensivas em sua mensagem, para a segurança de nossa comunidade, ela foi apagada! se continuar com um comportamento tóxico será banido de nossa comunidade.` 
         await message.channel.send(mensagem).then(m => m.delete({timeout: 5000}))
         return
     }

@@ -51,8 +51,8 @@ module.exports = async function onGuildMemberAdd(member) {
                     channel.send(message, m => m.delete({ timeout: 5000}))
                 }
         
-                if (guildDocument.novato.length) {
-                    member.roles.add(guildDocument.novato, 'Auto-Role | Ativado').catch(() => { })
+                if (guildDocument.autorole.length) {
+                    member.roles.add(guildDocument.autorole, 'Auto-Role | Ativado').catch(() => { })
                 }
             } else {
                 return;
