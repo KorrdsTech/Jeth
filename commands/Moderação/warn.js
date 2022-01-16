@@ -49,7 +49,7 @@ module.exports = class Warn extends Command {
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Aviso')
       .setColor("#ff004c")
-      .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Advertido:** ${member.username} \n**ID:** ${member.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${razao}`)
+      .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Advertido:** ${member.user.username} \n**ID:** ${member.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${razao}`)
       .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp();
 
@@ -104,19 +104,21 @@ module.exports = class Warn extends Command {
       .setFooter('Se você acha que a punição foi aplicada incorretamente, recorra ao staffer! 🥶')
       .setTimestamp(new Date());
 
-    await message.channel.send(warnembed)
-    await member.send(warnembed18)
-    await message.guild.member(member).roles.add(adv1)
 
-    if (member.roles.cache.has(adv1.id)) {
-      member.roles.add(adv2)
-    } else
-      if (member.roles.cache.has(adv2.id)) {
-        member.roles.add(adv3)
+      if (member.roles.cache.has(adv1.id)) {
+        await member.roles.add(adv2)
       } else
-        if (member.roles.cache.has(adv3.id)) {
-          member.kick(razao1)
-          member.send(embed1)
-        }
+        if (member.roles.cache.has(adv2.id)) {
+          member.roles.add(adv3)
+        } else
+          if (member.roles.cache.has(adv3.id)) {
+            member.kick(razao1)
+            member.send(embed1)
+          }
+             message.channel.send(warnembed)
+             member.send(warnembed18)
+             message.guild.member(member).roles.add(adv1);
+    }
+
   }
-}
+

@@ -97,7 +97,7 @@ module.exports = class Ban extends Command {
     const warnembed18 = new Discord.MessageEmbed()
 
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-      .setTitle(`${message.author}`)
+      .setTitle(`${message.author.username}`)
       .setDescription(`:do_not_litter: **Você foi banido do servidor ${message.guild.name} :no_entry_sign:**`)
       .setColor("#ffefad")
       .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
