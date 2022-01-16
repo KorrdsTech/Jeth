@@ -45,15 +45,26 @@ module.exports = class welcomeModule extends Command {
         } else if (args[0] === 'autorole') {
             var role = message.mentions.roles.first();
             if (!role) return message.channel.send(`${message.author},por favor mencione o cargo.`)
-            guildDocument.novato = role.id;
+            guildDocument.autorole = role.id;
             guildDocument.save().then(() => {
                 let embed = new MessageEmbed()
                     .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
-                    .setDescription(`Você definiu o cargo ${role} como auto-role Com sucesso.`)
+                    .setDescription(`Você definiu o cargo ${role} como auto-role com sucesso.`)
                     .setColor(colors.default)
                     .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
                     .setTimestamp();
                 message.channel.send(embed)
+            })
+        } else if (args[0] === 'delrole') {
+            guildDocument.autorole = '';
+            guildDocument.save().then(() => {
+                let embed = new MessageEmbed()
+                .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+                .setDescription(`Você removeu o cargo ${role} como auto-role com sucesso.`)
+                .setColor(colors.default)
+                .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+                .setTimestamp();
+            message.channel.send(embed)
             })
         } else if (args[0] === 'desativar') {
             if (!guildDocument.welcomeModule) return message.channel.send(`Este servidor não possui um welcome ativado!`)
@@ -75,6 +86,7 @@ module.exports = class welcomeModule extends Command {
                     `\`${guildDocument.prefix}welcome mensagem <mensagem>\` - Define a mensagem que será exibida no welcome.`,
                     `\`${guildDocument.prefix}welcome desativar\` - Caso haja algum welcome ligado/definido, ele será removido e o sistema desligado.`,
                     `\`${guildDocument.prefix}welcome autorole @role\` - Para setar uma role ao usuario entrar automatico.`,
+                    `\`${guildDocument.prefix}welcome delrole\` - Para remover uma role definida no comando acima.`,
                     `\n**Lembre-se se ver os \`Placeholders\` abaixo para não errar nada!**\n`
                 ].join('\n'), false)
                 .addField('Placeholders', [
@@ -101,8 +113,8 @@ module.exports = class welcomeModule extends Command {
             }
             embed2.addField("Welcome | Canal:", canalBemVindo);
             let MsgAt = `<a:warnRoxo:664240941175144489> Desativado`;
-            if (guildDocument.novato.length) {
-                MsgAt = `<:concludo:739830713792331817> Ativo: <@&${guildDocument.novato}>`;
+            if (guildDocument.autorole.length) {
+                MsgAt = `<:concludo:739830713792331817> Ativo: <@&${guildDocument.autorole}>`;
             }
             embed2.addField("Welcome | Auto-Role:", MsgAt);
             let MsgCount = `<:rejected:739831089543118890> Desativado`;

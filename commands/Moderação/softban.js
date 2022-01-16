@@ -32,7 +32,7 @@ module.exports = class softban extends Command {
         //     message.reply(embedC);
         //     return 0;
         // }
-        message.guild.member(usuario).ban(7)
+        message.guild.member(usuario).ban({days: 7})
         message.guild.unban(usuario)
         var embed = new Discord.MessageEmbed()
             .setDescription(`${usuario.username} foi **Suavemente Banido** do servidor por ${message.author}\nMotivo: ${razao} `)

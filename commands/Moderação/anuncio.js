@@ -72,7 +72,7 @@ module.exports = class anuncio extends Command {
                 .setAuthor(`Anunciado por ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                 .setDescription(announce)
                 .setImage(`${server.linkanuncio || ""}`)
-                .setFooter("🧪・JScience", message.guild.iconURL({ dynamic: true, size: 1024 }))
+                .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
 
             let embedreply = new MessageEmbed()
                 .setAuthor('Aviso', message.guild.iconURL({ dynamic: true, size: 1024 }) && this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
