@@ -6,7 +6,7 @@ Currently those versions displayed in this box have our support.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.0.x   | :white_check_mark: |
+| 5.9.1   | :white_check_mark: |
 | ------- | ------------------ |
 
 ## Reporting a Vulnerability
