@@ -11,7 +11,7 @@ module.exports = class bug extends Command {
   }
 
   async run(message, args) {
-    var dono = ['753778869013577739']
+    var dono = ['442774319819522059']
     let report = args.join(" ");
     if (!args[3]) return message.reply("<a:astaff:671435205302681603> `Err! Explique aqui detalhadamente o bug encontrado, ele será reportado diretamente para o coder do bot.`")
 
