@@ -15,7 +15,7 @@ module.exports = class suggestion extends Command {
 
             .setTimestamp()
             .setColor(colors.mod)
-            .setTitle('**Err:**', `${message.author}`, true)
+            .setTitle('**Err:**', `${message.author.username}`, true)
             .setDescription('Missing Permissions') // inline false
             .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
             .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
