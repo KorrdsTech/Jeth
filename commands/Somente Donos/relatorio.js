@@ -14,7 +14,7 @@ module.exports = class relatorio extends Command {
         let rel = args.slice(0).join(" ")
         let role = message.guild.roles.cache.get("831041495326261278")
         if(!message.author.roles === role) message.channel.send('Forbiden Acess!')
-        if(!rel) message.reply('<:a_blurplesettings:856174395801075773> Esqueceu de colocar o conteúdo do seu relatório!')
+        if(!rel) return message.reply('<:a_blurplesettings:856174395801075773> Esqueceu de colocar o conteúdo do seu relatório!')
         const embed = new MessageEmbed()
         .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
         .setAuthor(`${message.author.username} Enviou seu relatório`, message.author.avatarURL({ dynamic: true, size: 1024 }))
