@@ -74,7 +74,7 @@ if(message.guild.id === guild.id){
     const forbiddenWords = ["corno", "g4do", "g4d0", "c0rno", "gado", "c0rn0", "macaco", "preto", "lesbica", "lésbica", "gay", "viado", "seupreto", "suapreta", "macaca", "buceta", "pedofilia", "pedofilo", "pedo", "p3do", "pedófilo"]
     if(message.content.split(" ").some(wordMsg => forbiddenWords.includes(wordMsg))){
         message.delete({timeout: 5})
-        let mensagem = `${message.author} <:a_angyy:924250381108785192> Você utilizou uma ou mais palavras ofensivas em sua mensagem, para a segurança de nossa comunidade, ela foi apagada! se continuar com um comportamento tóxico será banido de nossa comunidade.` 
+        let mensagem = `${message.author} <a:b_bruh:934175861429633024> Você utilizou uma ou mais palavras ofensivas em sua mensagem, para a segurança de nossa comunidade, ela foi apagada! se continuar com um comportamento tóxico será banido de nossa comunidade.` 
         await message.channel.send(mensagem).then(m => m.delete({timeout: 5000}))
         return
     }
