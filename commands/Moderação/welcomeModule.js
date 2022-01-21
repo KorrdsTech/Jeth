@@ -13,7 +13,7 @@ module.exports = class welcomeModule extends Command {
         const embedA = new MessageEmbed()
             .setTimestamp()
             .setColor(colors.default)
-            .setTitle('**Err:**', `${message.author}`, true)
+            .setTitle('**Err:**', `${message.author.username}`, true)
             .setDescription('Missing Permissions') // inline false
             .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
             .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
