@@ -3,11 +3,12 @@ const { MessageEmbed } = require('discord.js')
 const moment = require('moment')
 moment.locale('pt-br')
 
-module.exports = class Registrar extends Command {
+module.exports = class RegisterCommand extends Command {
   constructor(client) {
     super(client)
 
-    this.aliases = ['register', 'r']
+    this.name = 'register'
+    this.aliases = ['registrar', 'r']
     this.category = 'registry'
     this.subcommandsOnly = false
   }

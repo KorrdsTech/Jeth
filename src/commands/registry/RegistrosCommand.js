@@ -1,17 +1,17 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
 
-module.exports = class Registros extends Command {
+module.exports = class RegistrosCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'registros'
     this.aliases = ['topregistros']
     this.category = 'registry'
     this.subcommandsOnly = false
   }
 
   async run(message) {
-    const guildDocument = await this.client.database.Guilds.findById(message.guild.id).lean()
+    await this.client.database.Guilds.findById(message.guild.id).lean()
       .then(async guildTable => {
         if (!guildTable) {
           const newGuild = new this.client.database.Guilds({ _id: message.guild.id });

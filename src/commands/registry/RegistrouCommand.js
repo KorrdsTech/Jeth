@@ -1,12 +1,12 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
 const moment = require('moment')
 moment.locale('pt-br')
 
-module.exports = class Registrou extends Command {
+module.exports = class RegistrouCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'registrou'
     this.aliases = []
     this.category = 'registry'
     this.subcommandsOnly = false
