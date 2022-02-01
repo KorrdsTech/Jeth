@@ -1,4 +1,4 @@
-const devs = process.env?.OWNERS.split(',')
+const devs = process.env?.OWNERS
 class Command {
   constructor(client) {
     this.name = undefined
