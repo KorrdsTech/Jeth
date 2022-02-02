@@ -10,6 +10,7 @@ module.exports = class vip extends Command {
   }
 
   async run(message, args) {
+    const role = await this.client.database.Cargo.findOne({ _id: message.author.id })
     if (message.guild.id !== '804575416098488380') {
       return message.channel.send('<:CancelarK:673592197341249559> Este comando só pode ser executado no servidor oficial da **Jeth!**');
     } else {
@@ -53,13 +54,17 @@ module.exports = class vip extends Command {
                 .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
               message.channel.send({ embed: teste })
             } else if (args[0] === 'canal') {
+              this.client.database.Cargo.findOne({ _id: message.author.id }, (e, det) => {
+                if (!det) {
+                  message.channel.send('Você não criou seu cargo próprio!')
+                } else {
               this.client.database.Canal.findOne({ _id: message.author.id }, (e, doc) => {
                 if (doc) {
-                  message.channel.send('Você já possui uma role própria!')
+                  message.channel.send('Você já possui um canal próprio!')
                 }
                 if (!doc) {
                   const args = message.content.slice(11)
-                  var category = message.guild.channels.cache.get("837948274718933005");
+                  var category = message.guild.channels.cache.get("938180754049990786");
                   message.guild.channels.create(args, {
                     type: 'voice',
                     parent: category.id
@@ -78,6 +83,13 @@ module.exports = class vip extends Command {
                       MUTE_MEMBERS: true,
                       PRIORITY_SPEAKER: true
                     })
+                    c.updateOverwrite(message.guild.roles.cache.get(role.roleID), { 
+                      CONNECT: true,
+                      MANAGE_CHANNELS: false,
+                      DEAFEN_MEMBERS: true,
+                      MUTE_MEMBERS: true,
+                      PRIORITY_SPEAKER: true
+                    })
                     message.channel.send('Canal criado com sucesso!')
                     const canal = this.client.database.Canal({ _id: message.author.id })
                     canal.save().then(() => {
@@ -86,6 +98,8 @@ module.exports = class vip extends Command {
                   })
                 }
               })
+            }
+          })
             } else if (args[0] === 'cor') {
               this.client.database.Users.findOne({ _id: message.author.id }, (e, doc) => {
                 if (!message.content.includes('#')) {
@@ -125,7 +139,7 @@ module.exports = class vip extends Command {
                       }).then(rolec => {
                         message.channel.send('Cargo criado com sucesso!')
                         message.member.roles.add(rolec.id)
-                        const cargo = this.client.database.Cargo({ _id: message.author.id })
+                        const cargo = this.client.database.Cargo({ _id: message.author.id, roleID: rolec.id })
                         cargo.save().then(() => {
                           message.channel.send("Usuário salvo na database")
                         })
