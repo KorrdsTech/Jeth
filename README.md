@@ -20,4 +20,4 @@ logging !=> Organização das informações da Jeth e outros dentro dos canais d
   Por fim, queremos agradecer todos que estão nos apoiando principalmente em momentos difíceis e deixando seu upvote juntamente à seu comentário, como prometido em nosso servidor comunidade oficial da Jeth, estamos dando VIP à pessoas que cumprem estes dois pequenos requisitos, gostaria de aproveitar para informar e pedir ajuda com os Boosts em nosso servidor comunidade, cada impulso que você der, cada level que subirmos dentro do `Discord Nitro` está nos ajudando a criar novas features para a Jeth e entreter você nosso querido(a) usuário(a)
 
 
-![image](https://i.imgur.com/zGqSvew.png)
+![image](https://i.imgur.com/WroGjIl.gif)
