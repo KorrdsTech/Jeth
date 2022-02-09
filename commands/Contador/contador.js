@@ -67,6 +67,9 @@ module.exports = class Contador extends Command {
             if (mensagem.includes('{bouncepurple}') && !guildDocument.partner) {
                 return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de contador é apenas para servidores premium!')
             }
+            if (mensagem.includes('{exa-new}') && !guildDocument.partner) {
+                return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de contador é apenas para servidores premium!')
+            }
 
             guildDocument.countMessage = mensagem
             guildDocument.count = true
@@ -82,7 +85,7 @@ module.exports = class Contador extends Command {
                         .replace('{gold}', TranslateFunctions.gold(message.guild.memberCount))
                         .replace('{green}', TranslateFunctions.green(message.guild.memberCount))
                         .replace('{rosa}', TranslateFunctions.rosa(message.guild.memberCount))
-                        .replace('{red}', TranslateFunctions.red(message.guild.memberCount))
+                        .replace('{exa}', TranslateFunctions.exa(message.guild.memberCount))
                         .replace('{ruby}', TranslateFunctions.ruby(message.guild.memberCount))
                         .replace('{amarelo}', TranslateFunctions.amarelo(message.guild.memberCount))
                         .replace('{violeta}', TranslateFunctions.violeta(message.guild.memberCount))
@@ -95,6 +98,7 @@ module.exports = class Contador extends Command {
                         .replace('{rainbow}', TranslateFunctions.rainbow(message.guild.memberCount))
                         .replace('{blk}', TranslateFunctions.blk(message.guild.memberCount))
                         .replace('{bouncepurple}', TranslateFunctions.bouncepurple(message.guild.memberCount))
+                        .replace('{exa-new}', TranslateFunctions.exanew(message.guild.memberCount))
                         .replace('{bouncepink}', TranslateFunctions.bouncepink(message.guild.memberCount)))
             }, 5000)
         } else if (args[0] === 'remover') {
@@ -130,7 +134,7 @@ module.exports = class Contador extends Command {
                 .addField('**{violeta}**', '<a:t3:683857609023160322>', true)
                 .addField('**{rosa}**', '<a:j_4:675774964997029918>', true)
                 .addField('**{ruby}**', '<a:k5:683064092793110558>', true)
-                .addField('**{red}**', '<a:6r:922390293771333672>', true)
+                .addField('**{exa}**', '<a:6r:922390293771333672>', true)
                 .addField('**{redblack}**', '<a:lo7:735367392703807560>', true)
                 .addField('**{ice}**', '<a:8ice:737078967244423189>', true)
                 .addField('**{blk}**', '<a:BLK9:770793783583309866>', true)
@@ -144,6 +148,7 @@ module.exports = class Contador extends Command {
                 .addField('**{green}**', '<a:g7:683859048638185487>', true)
                 .addField('**{gold}**', '<a:gold8:669218300655435776>', true)
                 .addField('**{natal}**', '<a:v9:684833174983147520>', true)
+                .addField('**{exa-new}**', '<a:0r:940889959563407370>', true)
                 .addField('**{bouncepurple}**', '<a:0_:875581760262504468>', true)
                 .setColor(colors.default)
             let canalContador = `<a:warnRoxo:664240941175144489> Desativado`;
