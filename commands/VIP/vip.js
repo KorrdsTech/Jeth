@@ -70,6 +70,7 @@ module.exports = class vip extends Command {
                     parent: category.id
                   }).then(async c => {
                     c.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
+                      VIEW_CHANNEL: false,
                       CONNECT: false,
                       MANAGE_CHANNELS: false,
                       DEAFEN_MEMBERS: false,
@@ -77,6 +78,7 @@ module.exports = class vip extends Command {
                       PRIORITY_SPEAKER: false
                     })
                     c.updateOverwrite(message.member.user, {
+                      VIEW_CHANNEL: true,
                       CONNECT: true,
                       MANAGE_CHANNELS: true,
                       DEAFEN_MEMBERS: true,
@@ -84,6 +86,7 @@ module.exports = class vip extends Command {
                       PRIORITY_SPEAKER: true
                     })
                     c.updateOverwrite(message.guild.roles.cache.get(role.roleID), { 
+                      VIEW_CHANNEL: true,
                       CONNECT: true,
                       MANAGE_CHANNELS: false,
                       DEAFEN_MEMBERS: true,
@@ -93,7 +96,61 @@ module.exports = class vip extends Command {
                     message.channel.send('Canal criado com sucesso!')
                     const canal = this.client.database.Canal({ _id: message.author.id })
                     canal.save().then(() => {
-                      message.channel.send("Usuário salvo na database")
+                      var categoria = message.guild.channels.cache.get("878494223798779964");
+                      let name = `VIP verification request: ${message.author}`;
+                      let lerole = message.guild.roles.cache.get('838650358342352927')
+                  message.guild.channels.create(name, {
+                    type: 'text',
+                    parent: categoria.id
+                  }).then(async d => {
+                    d.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
+                      VIEW_CHANNEL: false,
+                      SEND_MESSAGES: false,
+                      MANAGE_CHANNELS: false,
+                    })
+                    d.updateOverwrite(message.member.user, {
+                      VIEW_CHANNEL: true,
+                      SEND_MESSAGES: true,
+                      MANAGE_CHANNELS: false,
+                    })
+                    d.updateOverwrite(message.guild.roles.cache.get('838650358342352927'), { 
+                      VIEW_CHANNEL: true,
+                      SEND_MESSAGES: true,
+                      MANAGE_CHANNELS: true,
+                    }).then(channel => channel.send(`${lerole}, ${message.author} requer aprovação para sua call, caso a mesma seja aprovada reaja abaixo, nome da call: ${args}`).then(msg => {
+                      setTimeout(() => {
+                          msg.react('856174396372680714')
+                      }, 500)
+                      setTimeout(() => {
+                          msg.react('856174396232957962')
+                      }, 1000)
+                      const solaris = message.guild.members.cache.get('442774319819522059')
+                      const collector = msg.createReactionCollector((r, u) => (r.emoji.id === '856174396372680714', '856174396232957962') && (u.id !== this.client.user.id && u.id === solaris.id))
+                      collector.on('collect', r => {
+                          switch (r.emoji.id) {
+                              case '856174396372680714':
+                                c.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
+                                  VIEW_CHANNEL: true,
+                                  CONNECT: false,
+                                  MANAGE_CHANNELS: false,
+                                  DEAFEN_MEMBERS: false,
+                                  MUTE_MEMBERS: false,
+                                  PRIORITY_SPEAKER: false
+                                })
+                                   message.reply(`Criação aprovada`)
+                                   d.delete()
+                                  break;
+                              case '856174396232957962':
+                                   message.reply(`Criação Recusada`)
+                                   c.delete()
+                                   d.delete()
+                                  break;
+                          }
+                        })
+                      })
+                    )
+                        message.channel.send("Usuário salvo na database")
+                      })
                     })
                   })
                 }
