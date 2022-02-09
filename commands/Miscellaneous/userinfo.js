@@ -21,37 +21,37 @@ module.exports = class userinfo extends Command {
 
 		if (jeth.members.cache.get(pUser.user.id)) {
 			if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('838581046881681419')) {
-		  flags.push('<:CEO:938280523585957978>')
+		  flags.push('<:ThisUserIsCEO:938280523585957978>')
 		}
 	}
 
 		if (jeth.members.cache.get(pUser.user.id)) {
 			if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('831041495326261278')) {
-		  flags.push('<:StaffJeth:938280523447566376>')
+		  flags.push('<:ThisUserIsJethStaff:938280523447566376>')
 		}
 	}
 
 	if (jeth.members.cache.get(pUser.user.id)) {
 		if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('804590005577842689')) {
-		  flags.push('<:ServerBooster:938280524047343656>')
+		  flags.push('<:ThisUserIsServerBooster:938280524047343656>')
 		}
 	}
 
 	if (jeth.members.cache.get(pUser.user.id)) {
 		if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('839754099573522452')) {
-		  flags.push('<:UsuarioVIP:938280523468509245>')
+		  flags.push('<:ThisUserIsVIP:938280523468509245>')
 		}
 	}
 	
 		if (jeth.members.cache.get(pUser.user.id)) {
 			if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('838921340085731338')) {
-		  flags.push('<:BugHunter:938280523426578534>')
+		  flags.push('<:ThisUserIsBugHunter:938280523426578534>')
 		}
 	}
 
 		if (jeth.members.cache.get(pUser.user.id)) {
 			if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('838994687985451039')) {
-		  flags.push('<:ParceiroJeth:938282680028651600>')
+		  flags.push('<:ThisUserIsJethPartner:938282680028651600>')
 		}
 	}
 
@@ -75,9 +75,21 @@ module.exports = class userinfo extends Command {
 
 		if (jeth.members.cache.get(pUser.user.id)) {
 			if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('838650358342352927')) {
-			flags.push('<:TrustSafety:938280523091025964>')
+			flags.push('<:ThisUserIsTrustSafety:938280523091025964>')
 		}
 	}
+
+	if (jeth.members.cache.get(pUser.user.id)) {
+		if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('879143131667369985')) {
+		flags.push('<:ThisUserIsJethDev:939896774267654264>')
+	}
+}
+
+		if (jeth.members.cache.get(pUser.user.id)) {
+		if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('832751943452590140')) {
+		flags.push('<a:ThisUserIsPatreon:940901127048814644>')
+	}
+}
 
 		let normalUser = new Discord.MessageEmbed()
 			.setAuthor(pUser.user.tag, pUser.user.displayAvatarURL({ dynamic: true, size: 1024 }))
