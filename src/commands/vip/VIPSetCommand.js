@@ -1,10 +1,11 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class setcargo extends Command {
+module.exports = class VIPSetCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'vipset'
     this.aliases = ['setvip', 'darvip', 'setarvip']
     this.category = 'vip'
   }
@@ -42,8 +43,6 @@ module.exports = class setcargo extends Command {
       message.reply('Você não tem permissão para setar vip neste usuário');
       return 0;
     }
-
-    const cargo = message.guild.roles.cache.find(role => role.name === `${cargo_nome}`)
 
     const embed = new MessageEmbed()
       .setTimestamp()

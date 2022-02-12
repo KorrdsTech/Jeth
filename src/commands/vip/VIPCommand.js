@@ -1,10 +1,11 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class vip extends Command {
+module.exports = class VIPCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'vip'
     this.aliases = ['premium']
     this.category = 'vip'
   }

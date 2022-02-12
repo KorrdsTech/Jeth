@@ -1,11 +1,12 @@
-const { Command, colors } = require('../../utils')
+const { Command } = require('../../utils')
 const moment = require('moment')
 moment.locale('pt-br')
 
-module.exports = class Registrou extends Command {
+module.exports = class RepCommand extends Command {
   constructor(client) {
     super(client)
 
+    this.name = 'rep'
     this.aliases = []
     this.category = 'social'
     this.subcommandsOnly = false

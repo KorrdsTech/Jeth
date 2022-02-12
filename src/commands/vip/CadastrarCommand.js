@@ -1,16 +1,16 @@
 const { Command } = require('../../utils')
 
-module.exports = class cadastrar extends Command {
+module.exports = class CadastrarCommand extends Command {
   constructor(client) {
     super(client)
 
-    this.aliases = ['cadastrar']
+    this.name = 'cadastrar'
+    this.aliases = []
     this.category = 'vip'
     this.adminOnly = true
   }
 
   async run(message, args) {
-    const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
     const membro = message.guild.members.cache.get(args[0]) ? message.guild.members.cache.get(args[0]) : message.mentions.members.first() ? message.mentions.members.first() : message.author
     if (!membro) message.reply('Não encontrei o usuário!')
 
@@ -23,7 +23,7 @@ module.exports = class cadastrar extends Command {
             if (doc) {
               if (doc.vip)
                 doc.gifban = '',
-                  doc.vip = false
+                doc.vip = false
               else doc.vip = true
 
               doc.save().then(() => {
