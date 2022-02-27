@@ -3,14 +3,14 @@ module.exports = class Collection {
     this.model = model
   }
 
-  async findOneById(id) {
-    return await this.model.findOne({ id })
+  async findOneById(_id) {
+    return await this.model.findOne({ _id })
   }
 
-  async getOrCreate(id, defaultValues) {
-    const data = await this.findOneById(id)
+  async getOrCreate(_id, defaultValues) {
+    const data = await this.findOneById(_id)
     if (!data) {
-      this.model({ id, defaultValues }).save()
+      this.model({ _id, defaultValues }).save()
     }
 
     return data
