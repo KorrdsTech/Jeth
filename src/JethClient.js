@@ -1,13 +1,13 @@
 const { Client, Collection, MessageEmbed } = require('discord.js')
 const Fs = require('fs')
-
+const Database = require('./utils/database/Database')
 module.exports = class JethCanary extends Client {
   constructor(options = {}) {
     super(options)
 
     this.commands = new Collection()
     this.initCommands('./src/commands')
-    this.database = require('./utils/database.js')
+    this.database = new Database()
     this.initListeners('./src/listeners')
   }
 
