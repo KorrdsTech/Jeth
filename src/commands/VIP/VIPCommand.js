@@ -126,8 +126,9 @@ module.exports = class vip extends Command {
                                 msg.react('856174396232957962')
                               }, 1000)
                               const solaris = message.guild.members.cache.get('442774319819522059')
-                              const collector = msg.createReactionCollector((r, u) => (r.emoji.id === '856174396372680714', '856174396232957962') && (u.id !== this.client.user.id && u.id === solaris.id))
-                              collector.on('collect', r => {
+                              const filter = msg.createReactionfilter((r, u) => (r.emoji.id === '856174396372680714', '856174396232957962') && (u.id !== this.client.user.id && u.id === solaris.id))
+                              const col = msg.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+                              col.on('collect', async (r) => {
                                 switch (r.emoji.id) {
                                   case '856174396372680714':
                                     c.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
@@ -233,10 +234,9 @@ module.exports = class vip extends Command {
 
               message.channel.send({ embed }).then(async m => {
                 await m.react('666762183249494027')// ir para frente
-                const col = m.createReactionCollector((e, u) => (u.id == message.author.id) &&
-                  (e.emoji.id == '666762183249494027' /* para frente */ || e.emoji.id == '665721366514892839') /* para trás */,
-                { time: 180000, errors: ['time'] })
-                const reacoes = col.on('collect', async (e, u) => {
+                const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027'|| e.emoji.id == '665721366514892839')
+                const col = m.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+                col.on('collect', async (e) => {
                   if (embedCount != 2 && e.emoji.id == '666762183249494027') { // ir para frente
 
                     await m.react('665721366514892839')

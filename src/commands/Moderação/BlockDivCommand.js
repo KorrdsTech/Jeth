@@ -59,10 +59,9 @@ module.exports = class blockdiv extends Command {
       let embedCount = 1
       message.channel.send({ embed }).then(async m => {
         await m.react('666762183249494027')// ir para frente
-        const col = m.createReactionCollector((e, u) => (u.id == message.author.id) &&
-                    (e.emoji.id == '666762183249494027' /* para frente */ || e.emoji.id == '665721366514892839') /* para trás */,
-        { time: 180000, errors: ['time'] })
-        const reacoes = col.on('collect', async (e, u) => {
+        const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027'|| e.emoji.id == '665721366514892839')
+        const col = m.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+        col.on('collect', async (e) => {
           if (embedCount != 2 && e.emoji.id == '666762183249494027') { // ir para frente
 
             await m.react('665721366514892839')

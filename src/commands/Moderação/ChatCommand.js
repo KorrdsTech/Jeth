@@ -12,7 +12,7 @@ module.exports = class chat extends Command {
     this.subcommandsOnly = false
   }
 
-  async run(message, args) {
+  async run(message) {
     const embedA = new Discord.MessageEmbed()
 
       .setTimestamp()
@@ -36,26 +36,29 @@ module.exports = class chat extends Command {
       await ell.react(emojis[i]);
     }
 
-    const collector = ell.createReactionCollector(
+    const filter = ell.createReactionfilter(
       ((_, u) => _ && u.id === message.author.id),
       { time: 60000 }
     )
-           //criando o collector com o filtro acima, max é o maximo de reações como na array tem 3 emojis o numero irá ser 3, e o time é o tempo maximo para reações coloquei 30s
-    collector.on('collect', (reaction) => {
+
+    const embedlockado = new MessageEmbed()
+      .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi bloqueado com sucesso!`)
+      .setColor(colors.default)
+
+    const embeddeslockado = new MessageEmbed()
+      .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi desbloqueado com sucesso!`)
+      .setColor(colors.default)
+
+    const col = ell.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+    col.on('collect', async (reaction) => {
       console.log(reaction.emoji.id)
       switch (reaction.emoji.id) {
         case '739830713792331817':
-          const embedlockado = new MessageEmbed()
-            .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi bloqueado com sucesso!`)
-            .setColor(colors.default)
           ell.edit(embedlockado)
           message.channel.updateOverwrite(message.guild.id,
             { SEND_MESSAGES: false })
           break
         case '739831089543118890':
-          const embeddeslockado = new MessageEmbed()
-            .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi desbloqueado com sucesso!`)
-            .setColor(colors.default)
           ell.edit(embeddeslockado)
           message.channel.updateOverwrite(message.guild.id,
             { SEND_MESSAGES: true })

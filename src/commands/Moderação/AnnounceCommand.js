@@ -92,8 +92,9 @@ module.exports = class anuncio extends Command {
         setTimeout(() => {
           msg.react('667590655698141197')
         }, 1500)
-        const collector = msg.createReactionCollector((r, u) => (r.emoji.id === '667590654200774656', '667590655744147521', '667590655698141197') && (u.id !== this.client.user.id && u.id === message.author.id))
-        collector.on('collect', r => {
+        const filter = msg.createReactionfilter((r, u) => (r.emoji.id === '667590654200774656', '667590655744147521', '667590655698141197') && (u.id !== this.client.user.id && u.id === message.author.id))
+        const col = msg.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+        col.on('collect', async (r) => {
           switch (r.emoji.id) {
             case '667590654200774656':
               chat.send('@everyone', embed)

@@ -44,7 +44,7 @@ module.exports = class welcomeModule extends Command {
         })
       })
     } else if (args[0] === 'autorole') {
-      var role = message.mentions.roles.first();
+      const role = message.mentions.roles.first();
       if (!role) return message.channel.send(`${message.author},por favor mencione o cargo.`)
       guildDocument.autorole = role.id;
       guildDocument.save().then(() => {
@@ -57,6 +57,7 @@ module.exports = class welcomeModule extends Command {
         message.channel.send(embed)
       })
     } else if (args[0] === 'delrole') {
+      const role = message.mentions.roles.first();
       guildDocument.autorole = '';
       guildDocument.save().then(() => {
         const embed = new MessageEmbed()
@@ -131,10 +132,9 @@ module.exports = class welcomeModule extends Command {
       let embedCount = 1
       message.channel.send({ embed }).then(async m => {
         await m.react('666762183249494027')// ir para frente
-        const col = m.createReactionCollector((e, u) => (u.id == message.author.id) &&
-                    (e.emoji.id == '666762183249494027' /* para frente */ || e.emoji.id == '665721366514892839') /* para trás */,
-        { time: 180000, errors: ['time'] })
-        const reacoes = col.on('collect', async (e, u) => {
+        const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027'|| e.emoji.id == '665721366514892839')
+        const col = m.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+        col.on('collect', async (e) => {
           if (embedCount != 2 && e.emoji.id == '666762183249494027') { // ir para frente
 
             await m.react('665721366514892839')
