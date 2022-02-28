@@ -35,7 +35,7 @@ module.exports = class reply extends Command {
             .setColor(colors.default)
             .setTitle('**Ticket Reply:**', `${usuario}`, true)
             .setDescription('Você recebeu resposta à algum ticket aberto dentro de nosso suporte, pode ser por ter pedido ajuda, por ter dado alguma sugestão e outros.') // inline false
-            .addField("<:b_information:742270909259317278> Resposta:", razao13, true)
+            .addField("<:b_blurplesupport:856174396129148968> Resposta:", razao13, true)
             .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
         usuario.send(embedB)
