@@ -1,5 +1,4 @@
-const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { Command } = require('../../utils')
 
 module.exports = class deleteModule extends Command {
   constructor(name, client) {
@@ -10,13 +9,9 @@ module.exports = class deleteModule extends Command {
     this.category = 'Miscellaneous'
   }
 
-  async run(message) {
+  // eslint-disable-next-line no-unused-vars
+  async run(message, args) {
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
-    if (!guildDocument) {
-      new this.client.database.Users({
-        _id: message.guild.id
-      }).save()
-    }
     if (guildDocument.delete) {
       guildDocument.delete = false
       guildDocument.save().then(async () => {

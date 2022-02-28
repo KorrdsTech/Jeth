@@ -1,5 +1,4 @@
-const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Command } = require('../../utils')
 
 module.exports = class GifBan extends Command {
   constructor(name, client) {
@@ -8,39 +7,23 @@ module.exports = class GifBan extends Command {
     this.name = 'gifban'
     this.aliases = ['gifban', 'banimentogif', 'bangif', 'gifbanimento']
     this.category = 'Moderação'
+    this.permissions = ['MANAGE_GUILD']
   }
 
   async run(message, args) {
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
+    const doc = await this.client.database.user.getOrCreate(message.author.id)
 
-        // const embedA = new Discord.MessageEmbed()
-        // .setTimestamp()
-        // .setColor(colors.mod)
-        // .setTitle('**Err:**', `${message.author.username}`, true)
-        // .setDescription('Missing Permissions') // inline false
-        // .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
-        // .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL)
-        // if (!message.member.hasPermission('MANAGE_GUILD'))
-        // return message.channel.send(embedA)
-    this.client.database.Users.findOne({ _id: message.author.id }, (e, doc) => {
-      if (doc) {
-        if (!doc.vip) {
-          message.reply(`Você não está setado como vip do bot e não pode setar seu gif de banimento.`)
-        } else { // faz por else talvez resolva
-          if (!args[0]) {
-            return message.channel.send(`${message.author}, você deve enviar uma imagem ou especificar um link válido.`)
-          }
-
-          doc.gifban = args[0]
-          doc.save()
-          message.channel.send(`${message.author}, você alterou a sua ilustração de banimento!,Utilize **${guildDocument.prefix}vip**.`)
-        }
-      } else {
-        const saved = new client.database.Users({ _id: message.author.id })
-        saved.save().then(() => {
-          message.channel.send('<a:loading:663803525603655682> Salvando cadastro... Execute o comando novamente!')
-        })
+    if (!doc.vip) {
+      message.reply(`Você não está setado como vip do bot e não pode setar seu gif de banimento.`)
+    } else { // faz por else talvez resolva
+      if (!args[0]) {
+        return message.channel.send(`${message.author}, você deve enviar uma imagem ou especificar um link válido.`)
       }
-    })
+
+      doc.gifban = args[0]
+      doc.save()
+      message.channel.send(`${message.author}, você alterou a sua ilustração de banimento!,Utilize **${guildDocument.prefix}vip**.`)
+    }
   }
 }

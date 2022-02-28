@@ -12,7 +12,7 @@ module.exports = class strike extends Command {
   }
 
   async run(message, args) {
-    const staff = await this.client.database.Users.findById(message.author.id)
+    const staff = await this.client.database.user.getOrCreate(message.author.id)
     if (!staff.staff) {
       return message.channel.send('Você não pode utilizar este comando, somente os membros confiados da equipe <@&718178715426619489>')
     }
@@ -22,12 +22,7 @@ module.exports = class strike extends Command {
         if (!usuario) {
           message.channel.send('Mencione um membro valido.')
         }
-        const guildDocument = await this.client.database.Users.findById(usuario.id)
-        if (!guildDocument) {
-          new this.client.database.Users({
-            _id: usuario.id
-          }).save()
-        }
+        const guildDocument = await this.client.database.user.getOrCreate(usuario.id)
         const strike = new MessageEmbed()
 
           .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
@@ -50,6 +45,7 @@ module.exports = class strike extends Command {
         break
       case 'remove': {
         const usuario = await this.client.users.fetch(args[1].replace(/[<@!>]/g, ''))
+        const guildDocument = await this.client.database.user.getOrCreate(usuario.id)
         message.channel.send(`${usuario.tag} Teve seu strike removido! <:a_blurplecertifiedmoderator:856174396225355776>`)
         guildDocument.strike -= 1
         guildDocument.save()

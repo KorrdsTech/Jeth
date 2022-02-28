@@ -16,7 +16,7 @@ module.exports = class cadastrar extends Command {
 
     const server = await this.client.database.guild.getOrCreate(message.guild.id)
     if (!server.partner) return message.reply(`<a:Jeth_hype:665309103748284426> Este servidor não tem parceria com o bot então,você não pode usar o comando.`)
-    const doc = await this.client.database.Users.getOrCreate(membro.id)
+    const doc = await this.client.database.user.getOrCreate(membro.id)
     if (doc) {
       if (doc.vip){
         doc.gifban = '',

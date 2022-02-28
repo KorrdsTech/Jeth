@@ -1,4 +1,4 @@
-const { model, Schema }
+const { model, Schema } = require('mongoose')
 const User = new Schema({
   _id: { type: String },
   blacklist: { type: Boolean, default: false },

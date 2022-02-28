@@ -1,4 +1,4 @@
-const { Command, colors } = require('../../utils')
+const { Command } = require('../../utils')
 
 module.exports = class userclear extends Command {
 
@@ -13,7 +13,7 @@ module.exports = class userclear extends Command {
 
   async run(message) {
     this.client.users.forEach(u => {
-      this.client.database.Users.findOneAndDelete(u.id).then(async () => {
+      this.client.database.user.getAndDelete(u.id).then(async () => {
         message.channel.send(`${u.tag} deletado...`)
       })
     })

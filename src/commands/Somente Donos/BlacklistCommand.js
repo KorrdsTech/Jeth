@@ -1,4 +1,4 @@
-const { Command, colors } = require('../../utils')
+const { Command } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
 module.exports = class blacklist extends Command {
@@ -12,7 +12,7 @@ module.exports = class blacklist extends Command {
   }
 
   async run(message, args) {
-    const staff = await this.client.database.Users.findById(message.author.id)
+    const staff = await this.client.database.user.getOrCreate(message.author.id)
     if (!staff.staff) {
       return message.channel.send('Você não pode utilizar este comando, somente os membros confiados da equipe <@&718178715426619489>')
     }
@@ -23,13 +23,8 @@ module.exports = class blacklist extends Command {
     if (!usuario) {
       message.channel.send('Mencione um membro valido.')
     }
-    const guildDocument = await this.client.database.Users.findById(usuario.id)
-    if (!guildDocument) {
-      new this.client.database.Users({
-        _id: usuario.id
-      }).save()
-    }
-    const reason = args.slice(1).join(' ')
+    const guildDocument = await this.client.database.user.getOrCreate(usuario.id)
+    let reason = args.slice(1).join(' ')
     if (!reason) {
       reason = 'Qual o motivo da blacklist?'
     }

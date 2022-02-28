@@ -1,6 +1,4 @@
-const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
-const { Users } = require('../../database')
+const { Command } = require('../../utils')
 
 module.exports = class blList extends Command {
   constructor(name, client) {
@@ -12,8 +10,9 @@ module.exports = class blList extends Command {
     this.adminOnly = true
   }
 
+  // eslint-disable-next-line no-unused-vars
   async run(message, args) {
-    const userDoc = await this.client.database.Users.find({ 'blacklist': true })
+    const userDoc = await this.client.database.user.find({ 'blacklist': true })
     const msg = [];
 
     for (let i = 0; i < userDoc.length; i++) {

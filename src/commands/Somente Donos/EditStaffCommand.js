@@ -11,18 +11,19 @@ module.exports = class editstaff extends Command {
   }
 
   async run(message, args) {
-    const staff = await this.client.database.Users.findById(message.author.id)
+    const staff = await this.client.database.user.getOrCreate(message.author.id)
     if (!staff.staff) {
       return message.channel.send('Você não pode utilizar este comando, somente os membros confiados da equipe <@&832812234551066624>')
     }
-    if (!args[0]) {1
+    if (!args[0]) {
+      1
       return message.channel.send('Você tem que falar o id do usuario para que eu possa adicionar a TES...').then(sent => sent.delete({ timeout: 15000 }))
     }
     const usuario = await this.client.users.fetch(args[1].replace(/[<@!>]/g, ''))
     if (!usuario) {
       message.channel.send('Mencione um membro valido.')
     }
-    const userDB = await this.client.database.Users.findById(usuario.id)
+    const userDB = await this.client.database.user.getOrCreate(usuario.id)
 
     switch (args[0]) {
       case 'add': {
