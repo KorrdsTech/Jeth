@@ -1,30 +1,31 @@
 const { Command, colors } = require('../../utils')
-const Discord = require("discord.js");
+const Discord = require('discord.js');
 
 module.exports = class Eightball extends Command {
-    constructor(name, client) {
-        super(name, client)
+  constructor(name, client) {
+    super(name, client)
 
-        this.name = 'eightball'
-        this.aliases = ['8ball', 'eightball', 'cristal']
-        this.category = 'Entretenimento'
-    }
-    async run(message, args) {
+    this.name = 'eightball'
+    this.aliases = ['8ball', 'eightball', 'cristal']
+    this.category = 'Entretenimento'
+  }
 
-        if (!args[2]) return message.reply("`Por favor, faça a pergunta completa`")
-        let replies = ["Sim.", "Não.", "Eu não sei.", "talvez.", "Depende."]
+  async run(message, args) {
 
-        let result = Math.floor(Math.random() * replies.length);
-        let question = args.join(" ");
+    if (!args[2]) return message.reply('`Por favor, faça a pergunta completa`')
+    const replies = ['Sim.', 'Não.', 'Eu não sei.', 'talvez.', 'Depende.']
 
-        let ballembed = new Discord.MessageEmbed()
-            .setAuthor(message.author.tag)
-            .setColor(colors.default)
-            .addField('Questão', question)
-            .addField("Resposta", replies[result])
-            .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
-            .setTimestamp()
+    const result = Math.floor(Math.random() * replies.length);
+    const question = args.join(' ');
 
-        message.channel.send(ballembed);
-    }
+    const ballembed = new Discord.MessageEmbed()
+      .setAuthor(message.author.tag)
+      .setColor(colors.default)
+      .addField('Questão', question)
+      .addField('Resposta', replies[result])
+      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setTimestamp()
+
+    message.channel.send(ballembed);
+  }
 }

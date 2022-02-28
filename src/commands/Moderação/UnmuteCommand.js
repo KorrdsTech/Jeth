@@ -12,7 +12,7 @@ module.exports = class unmute extends Command {
   }
 
   async run(message, args) {
-    let member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
+    const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
     const embedA = new Discord.MessageEmbed()
 
       .setTimestamp()
@@ -20,29 +20,29 @@ module.exports = class unmute extends Command {
       .setTitle('**Err:**', `${member}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`KICK_MEMBERS`', true)
-      .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
     if (!message.member.hasPermission('KICK_MEMBERS'))
       return message.channel.send(embedA)
-      
+
     if (!member) return message.reply(`Mencione alguém por favor.`)
-    let muteRole = message.guild.roles.cache.find(r => r.name === "Muted");
+    let muteRole = message.guild.roles.cache.find(r => r.name === 'Muted');
     if (!muteRole) muteRole = await message.guild.roles.create({
-        data: {
-            name: 'Muted',
-            color: '#080808',
-            permissions: [Permissions.READ_MESSAGES]
-        },
-        reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
-      }).catch(console.error)
+      data: {
+        name: 'Muted',
+        color: '#080808',
+        permissions: [Permissions.READ_MESSAGES]
+      },
+      reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
+    }).catch(console.error)
 
-        await message.member.roles.add(muteRole).catch(() => { })
-        await message.guild.channels.cache.forEach(channel => {
-          channel.updateOverwrite(muteRole, {
-              SEND_MESSAGES: false
-          })
-        });
+    await message.member.roles.add(muteRole).catch(() => { })
+    await message.guild.channels.cache.forEach(channel => {
+      channel.updateOverwrite(muteRole, {
+        SEND_MESSAGES: false
+      })
+    });
 
-    let reason = args.slice(1).join(" ")
+    let reason = args.slice(1).join(' ')
     if (!reason) {
       reason = `Motivo: Sem-Motivo`
     }
@@ -51,6 +51,6 @@ module.exports = class unmute extends Command {
       message.channel.send(`${member} foi **desmutado** por ${message.author}`)
       this.client.database.Mutados.findByIdAndDelete(member.id)
     })
-    .catch(err => console.log('Algo deu errado: '+ err))
+      .catch(err => console.log('Algo deu errado: '+ err))
   }
 }

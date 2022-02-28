@@ -4,7 +4,7 @@ moment.locale('pt-br')
 
 module.exports = async function onGuildMemberAdd(member) {
   // if(!this.client.user.me.permissions.has(andfabhsdfhabsdfjh))return vvtnc asdfjabdnsldbf
-  const guildDocument = await this.database.Guilds.findById(member.guild.id)
+  const guildDocument = await this.database.guild.getOrCreate(member.guild.id)
   setTimeout(async () => {
     if (guildDocument) {
       if (guildDocument.count) {

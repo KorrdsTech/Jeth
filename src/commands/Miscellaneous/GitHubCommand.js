@@ -1,6 +1,6 @@
-const Discord = require("discord.js");
+const Discord = require('discord.js');
 const { Command, colors } = require('../../utils')
-const axios = require("axios");
+const axios = require('axios');
 
 module.exports = class github extends Command {
   constructor(name, client) {
@@ -13,16 +13,16 @@ module.exports = class github extends Command {
   }
 
   async run(message, args) {
-    let usuario = args.slice(0).join(" ")
+    const usuario = args.slice(0).join(' ')
     if (!usuario) message.channel.send('<a:9komi:663575133151035392> **Por favor!** Diga o nome de um usuário para pesquisar na lista ...')
     axios.get(`https://api.github.com/users/${usuario}`)
       .then(async function (response) {
-        let nome = response.data.name
-        let avatar = response.data.avatar_url
-        let bio = response.data.bio
-        let tipo = response.data.type
-        let compania = response.data.company
-        let link = response.data.html_url
+        const nome = response.data.name
+        const avatar = response.data.avatar_url
+        const bio = response.data.bio
+        const tipo = response.data.type
+        const compania = response.data.company
+        const link = response.data.html_url
         message.channel.send(new Discord.MessageEmbed()
           .setTitle(`Github`)
           .setColor(colors.default)

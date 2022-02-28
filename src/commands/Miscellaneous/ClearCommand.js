@@ -31,7 +31,7 @@ module.exports = class apagar extends Command {
       message.channel.send(error);
     }
     if (!deleteCount || deleteCount < 2 || deleteCount > 100)
-      return message.reply("`Por favor, forneça um número entre 2 e 100 para o número de mensagens a serem excluídas`");
+      return message.reply('`Por favor, forneça um número entre 2 e 100 para o número de mensagens a serem excluídas`');
 
     const fetched = await message.channel.messages.fetch({ limit: deleteCount });
     message.channel.bulkDelete(fetched)

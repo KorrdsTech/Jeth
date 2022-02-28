@@ -1,57 +1,55 @@
 const { Command, colors } = require('../../utils')
-const Discord = require("discord.js");
-
+const Discord = require('discord.js');
 
 module.exports = class unwarn extends Command {
-    constructor(name, client) {
-        super(name, client)
+  constructor(name, client) {
+    super(name, client)
 
-        this.name = 'unwarn'
-        this.aliases = ['unwarn']
-        this.category = 'Moderação'
-    }
-    async run(message, args) {
+    this.name = 'unwarn'
+    this.aliases = ['unwarn']
+    this.category = 'Moderação'
+  }
 
-        let adv1 = message.guild.roles.cache.find(role => role.name === 'Advertência 1');
-        let adv2 = message.guild.roles.cache.find(role => role.name === 'Advertência 2');
-        let adv3 = message.guild.roles.cache.find(role => role.name === 'Advertência 3');
+  async run(message, args) {
 
-        var unwarn = message.mentions.members.first();
-        let usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+    const adv1 = message.guild.roles.cache.find(role => role.name === 'Advertência 1');
+    const adv2 = message.guild.roles.cache.find(role => role.name === 'Advertência 2');
+    const adv3 = message.guild.roles.cache.find(role => role.name === 'Advertência 3');
 
-        const embedA = new Discord.MessageEmbed()
+    const unwarn = message.mentions.members.first();
+    const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
-            .setTimestamp()
-            .setColor(colors.mod)
-            .setTitle('**Err:**', `${usuario}`, true)
-            .setDescription('Missing Permissions') // inline false
-            .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-            .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+    const embedA = new Discord.MessageEmbed()
 
-        if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(embedA)
-        if (!unwarn) return message.reply("Mencione o membro que deseja dar warn!")
+      .setTimestamp()
+      .setColor(colors.mod)
+      .setTitle('**Err:**', `${usuario}`, true)
+      .setDescription('Missing Permissions') // inline false
+      .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
+      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-        const unwarnembed = new Discord.MessageEmbed()
+    if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(embedA)
+    if (!unwarn) return message.reply('Mencione o membro que deseja dar warn!')
 
-            .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
-            .setTitle('Aviso | Removido')
-            .setColor("#ff004c")
-            .addField('**Staff:**', `${message.author}`, true)
-            .addField('**ID:**', `${message.author.id}`, true) //inline
-            .addField('**Usuário**:', `${unwarn}`, true)
-            .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
-            .setTimestamp();
+    const unwarnembed = new Discord.MessageEmbed()
 
-        if (unwarn.roles.cache.has(adv1.id))
-            unwarn.roles.remove(adv1)
+      .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
+      .setTitle('Aviso | Removido')
+      .setColor('#ff004c')
+      .addField('**Staff:**', `${message.author}`, true)
+      .addField('**ID:**', `${message.author.id}`, true) //inline
+      .addField('**Usuário**:', `${unwarn}`, true)
+      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setTimestamp();
 
+    if (unwarn.roles.cache.has(adv1.id))
+      unwarn.roles.remove(adv1)
 
-        if (unwarn.roles.cache.has(adv2.id))
-            unwarn.roles.remove(adv2)
+    if (unwarn.roles.cache.has(adv2.id))
+      unwarn.roles.remove(adv2)
 
-
-        if (unwarn.roles.cache.has(adv3.id))
-            unwarn.roles.remove(adv3)
-        message.channel.send(unwarnembed)
-    }
+    if (unwarn.roles.cache.has(adv3.id))
+      unwarn.roles.remove(adv3)
+    message.channel.send(unwarnembed)
+  }
 }

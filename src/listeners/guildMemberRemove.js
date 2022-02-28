@@ -1,7 +1,7 @@
 const { TranslateFunctions } = require('../utils')
 
 module.exports = async function onGuildMemberRemove(member) {
-  const guildDocument = await this.database.Guilds.findById(member.guild.id)
+  const guildDocument = await this.database.guild.getOrCreate(member.guild.id)
   setTimeout(async () => {
     if (guildDocument) {
       if (guildDocument.count) {
@@ -40,9 +40,9 @@ module.exports = async function onGuildMemberRemove(member) {
         try {
           const messageEmbed = JSON.parse(message)
           channel.send(`${member}`)
-          channel.send(messageEmbed).catch(er => {console.log(er)})
+          channel.send(messageEmbed).catch(er => { console.log(er) })
         } catch (err) {
-          channel.send(message).catch(err => {console.log(err)})
+          channel.send(message).catch(err => { console.log(err) })
         }
         const registradores = guildDocument.registradores;
         for (let i = 0; i < registradores.length; ++i) {

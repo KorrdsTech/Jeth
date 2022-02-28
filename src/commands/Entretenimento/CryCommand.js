@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require("discord.js");
+const Discord = require('discord.js');
 
 module.exports = class cry extends Command {
   constructor(name, client) {
@@ -9,17 +9,18 @@ module.exports = class cry extends Command {
     this.aliases = ['cry']
     this.category = 'diversão'
   }
-  async run(message, args) {
-    let defineduser = message.mentions.users.first();
 
-    let gifs = ["https://i.imgur.com/DAUCIHG.gif", "https://media0.giphy.com/media/ROF8OQvDmxytW/giphy.gif", "https://i.gifer.com/C1la.gif"];
+  async run(message, args) {
+    const defineduser = message.mentions.users.first();
+
+    const gifs = ['https://i.imgur.com/DAUCIHG.gif', 'https://media0.giphy.com/media/ROF8OQvDmxytW/giphy.gif', 'https://i.gifer.com/C1la.gif'];
 
     if (!defineduser) {
       var Embed = new Discord.MessageEmbed()
         .setColor(colors.default)
         .setDescription(`${message.author} **chorou de tristeza (╥﹏╥)**`)
         .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-        .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+        .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
         .setTimestamp()
       try {
         message.delete({ timeout: 100 }).catch(() => { })

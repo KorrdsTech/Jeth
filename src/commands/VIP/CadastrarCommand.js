@@ -1,53 +1,35 @@
-const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
-const client = new Discord.Client();
+const { Command } = require('../../utils')
 
 module.exports = class cadastrar extends Command {
-    constructor(name, client) {
-        super(name, client)
+  constructor(name, client) {
+    super(name, client)
 
-        this.name = 'cadastrar'
-        this.aliases = ['cadastrar']
-        this.category = 'VIP'
-        this.adminOnly = true
+    this.name = 'cadastrar'
+    this.aliases = ['cadastrar']
+    this.category = 'VIP'
+    this.adminOnly = true
+  }
+
+  async run(message, args) {
+    const membro = message.guild.members.cache.get(args[0]) ? message.guild.members.cache.get(args[0]) : message.mentions.members.first() ? message.mentions.members.first() : message.author
+    if (!membro) message.reply('Não encontrei o usuário!')
+
+    const server = await this.client.database.guild.getOrCreate(message.guild.id)
+    if (!server.partner) return message.reply(`<a:Jeth_hype:665309103748284426> Este servidor não tem parceria com o bot então,você não pode usar o comando.`)
+    const doc = await this.client.database.Users.getOrCreate(membro.id)
+    if (doc) {
+      if (doc.vip){
+        doc.gifban = '',
+        doc.vip = false
+      } else {
+        doc.vip = true
+      }
+
+      doc.save().then(() => {
+        message.channel.send(`<a:Jeth_hype:665309103748284426> O **VIP** do membro ${membro} foi ${doc.vip ? 'ativado' : 'desativado'}.`)
+      })
     }
-
-    async run(message, args) {
-        let usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-        let membro = message.guild.members.cache.get(args[0]) ? message.guild.members.cache.get(args[0]) : message.mentions.members.first() ? message.mentions.members.first() : message.author
-        if (!membro) message.reply('Não encontrei o usuário!')
-
-        this.client.database.Guilds.findOne({ _id: message.guild.id }, (e, server) => {
-            if (server) {
-                if (!server.partner) {
-                    message.reply(`<a:Jeth_hype:665309103748284426> Este servidor não tem parceria com o bot então,você não pode usar o comando.`)
-                } else {
-                    this.client.database.Users.findOne({ _id: membro.id }, (e, doc) => {
-                        if (doc) {
-                            if (doc.vip)
-                                doc.gifban = '',
-                                    doc.vip = false
-                            else doc.vip = true
-
-                            doc.save().then(() => {
-                                message.channel.send(`<a:Jeth_hype:665309103748284426> O **VIP** do membro ${membro} foi ${doc.vip ? 'ativado' : 'desativado'}.`)
-                            })
-                        } else {
-                            const saved = new this.client.database.Users({ _id: membro.id })
-                            saved.save().then(() => {
-                                message.channel.send("<a:loading:663803525603655682> Salvando cadastro... Execute o comando novamente!")
-                            })
-                        }
-                    })
-                }
-            } else {
-                const saved = new this.client.database.Guilds({ _id: membro.id })
-                saved.save().then(() => {
-                    message.channel.send("<a:loading:663803525603655682> Salvando cadastro... Execute o comando novamente!")
-                })
-            }
-        })
-    }
+  }
 }
 
 //const { Command, TranslateFunctions } = require('../../utils')
