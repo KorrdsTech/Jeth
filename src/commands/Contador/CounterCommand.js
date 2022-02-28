@@ -80,8 +80,7 @@ module.exports = class Contador extends Command {
       setTimeout(async () => {
                 //ja volto ai
         await message.channel.send(`Mensagem definida como \`${guildDocument.countMessage}\`\nContador ativado...`)
-        await defaultChannel.setTopic
-        (guildDocument.countMessage.replace('{azul}', TranslateFunctions.azul(message.guild.memberCount))
+        await defaultChannel.setTopic(guildDocument.countMessage.replace('{azul}', TranslateFunctions.azul(message.guild.memberCount))
           .replace('{pinky}', TranslateFunctions.pinky(message.guild.memberCount))
           .replace('{gold}', TranslateFunctions.gold(message.guild.memberCount))
           .replace('{green}', TranslateFunctions.green(message.guild.memberCount))
