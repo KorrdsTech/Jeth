@@ -11,7 +11,7 @@ module.exports = class reply extends Command {
     }
 
     async run(message, args) {
-        var ids = ["753778869013577739", "395788326835322882"];
+        var ids = ["442774319819522059", "395788326835322882"];
 
         let usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
