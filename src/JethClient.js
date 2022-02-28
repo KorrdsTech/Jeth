@@ -1,8 +1,8 @@
 const { Client, Collection, MessageEmbed } = require('discord.js')
 const Fs = require('fs')
 const Database = require('./utils/database/Database')
-module.exports = class JethCanary extends Client {
-  constructor(options = {}) {
+module.exports = class JethClient extends Client {
+  constructor(options) {
     super(options)
 
     this.commands = new Collection()

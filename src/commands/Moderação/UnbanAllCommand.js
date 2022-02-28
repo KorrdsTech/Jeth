@@ -1,7 +1,5 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
-const Discord = require('discord.js')
-const client = new Discord.Client();
 
 module.exports = class allunban extends Command {
   constructor(name, client) {

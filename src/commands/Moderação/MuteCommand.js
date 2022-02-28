@@ -1,7 +1,6 @@
 const { Command, colors } = require('../../utils')
 const Discord = require('discord.js')
 const parse = require('parse-duration')
-const client = new Discord.Client()
 
 module.exports = class mute extends Command {
   constructor(name, client) {
@@ -16,7 +15,6 @@ module.exports = class mute extends Command {
   async run(message, args) {
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
     const embedA = new Discord.MessageEmbed()
-
       .setTimestamp()
       .setColor(colors.mod)
       .setTitle('**Err:**', `${member}`, true)
@@ -37,7 +35,7 @@ module.exports = class mute extends Command {
       data: {
         name: 'Muted',
         color: '#080808',
-        permissions: [Permissions.READ_MESSAGES]
+        permissions: ['READ_MESSAGES']
       },
       reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
     }).catch(console.error)

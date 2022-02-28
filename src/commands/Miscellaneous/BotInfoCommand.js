@@ -1,6 +1,7 @@
 const { Command, colors } = require('../../utils');
 const Discord = require('discord.js');
-const client = new Discord.Client()
+const moment = require('moment')
+require('moment-duration-format')
 
 module.exports = class info extends Command {
   constructor(name, client) {
@@ -13,12 +14,8 @@ module.exports = class info extends Command {
   }
 
   async run(message, client) {
-    const moment = require('moment')
     moment.locale('pt-br')
-    const moment1 = require('moment-duration-format')
-    var client = this.client
     const embed = new Discord.MessageEmbed()
-
       .setDescription('<:info:695503582342152273> **Informações:**')
       .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTimestamp()
@@ -32,6 +29,6 @@ module.exports = class info extends Command {
         { name: '<:9461systemmessageuser:832746852633149460> Programadores:', value: '<@442774319819522059> \n <@395788326835322882>', inline: false }
       )
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }));
-    message.channel.send(embed).catch(() => { });
+    message.channel.send(embed)
   }
 };

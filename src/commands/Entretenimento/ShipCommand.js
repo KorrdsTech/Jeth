@@ -1,7 +1,6 @@
 const { Command, colors } = require('../../utils')
 const Discord = require('discord.js');
-const Jimp = require('jimp');
-const { getMember } = require('../../functions.js');
+const { getMember } = require('../../utils/functions.js');
 
 module.exports = class ship extends Command {
   constructor(name, client) {
@@ -12,7 +11,7 @@ module.exports = class ship extends Command {
     this.category = 'Entretenimento'
   }
 
-  async run(message, args, buffer) {
+  async run(message, args) {
         // Get a member from mention, id, or username
     let person = getMember(message, args[0]);
 
