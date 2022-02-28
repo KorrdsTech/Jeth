@@ -12,7 +12,7 @@ module.exports = class blList extends Command {
 
   // eslint-disable-next-line no-unused-vars
   async run(message, args) {
-    const userDoc = await this.client.database.user.find({ 'blacklist': true })
+    const userDoc = await this.client.database.user.model.find({ 'blacklist': true })
     const msg = [];
 
     for (let i = 0; i < userDoc.length; i++) {

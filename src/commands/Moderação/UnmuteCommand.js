@@ -30,7 +30,7 @@ module.exports = class unmute extends Command {
       data: {
         name: 'Muted',
         color: '#080808',
-        permissions: [Permissions.READ_MESSAGES]
+        permissions: ['READ_MESSAGES']
       },
       reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
     }).catch(console.error)
@@ -47,9 +47,9 @@ module.exports = class unmute extends Command {
       reason = `Motivo: Sem-Motivo`
     }
 
-    message.guild.member(member).roles.remove(muteRole.id).then(() => {
+    message.guild.member(member).roles.remove(muteRole.id).then(async () => {
       message.channel.send(`${member} foi **desmutado** por ${message.author}`)
-      this.client.database.Mutados.findByIdAndDelete(member.id)
+      await this.client.database.mutado.getAndDelete(member.id)
     })
       .catch(err => console.log('Algo deu errado: '+ err))
   }

@@ -23,10 +23,10 @@ module.exports = async function onReady() {
   // Essa funcao busca na Db usuarios mutados e tenta remover o cargo deles
   // se ja passou tempo de mute
   const muteCheck = async () => {
-    const usuariosMutados = await this.database.Mutados.find({}).lean()
+    const usuariosMutados = await this.database.mutado.model.find({}).lean()
     for (let user = 0; user < usuariosMutados.length; user++) {
       console.log(usuariosMutados.length > 0 ? usuariosMutados : [])
-      this.database.Mutados.deleteOne({ _id: usuariosMutados[user]._id })
+      this.database.mutado.getAndDelete(usuariosMutados[user]._id)
       if (Date.now() >= usuariosMutados[user].time) {
         const server = this.guilds.cache.get(usuariosMutados[user].server)
         const userId = usuariosMutados[user]._id
@@ -40,14 +40,14 @@ module.exports = async function onReady() {
           if (!server.members.cache.get(userId)?.roles?.cache?.get(role.id)) return
           server.members.cache.get(userId).roles.remove(role).then(() => {
             channel.send(`Usuário ${this.users.cache.get(userId)} desmutado. <:a_blurplesettings:856174395801075773>`)
-            this.database.Mutados.deleteOne({ _id: userId }, (err) => console.log(err))
+            this.database.mutado.getAndDelete(userId)
             console.log(`Usuário ${this.users.cache.get(userId).tag} foi desmutado e removido da Db`)
           })
         }
 
         catch (err) {
           console.log(`Algo errado em tentar remover cargo de ${this.users.cache.get(userId)}, ${err}`)
-          this.database.Mutados.deleteOne({ _id: userId })
+          this.database.mutado.getAndDelete(userId)
         }
 
       }
