@@ -21,6 +21,6 @@ module.exports = class vote extends Command {
       .setDescription(`<:a_blurplestar:856174396179480576> Deixe seu voto no bot da Jeth nos ajudando a crescer no discord e podendo ganhar recompensas dependendo de eventos, não se esqueça também de deixar sua análise nos comentários do bot, seja boa ou ruim, isto nos ajuda a melhorar [Avalie Aqui!](https://top.gg/bot/718210363014905866/vote)`)
       .setFooter(`・Avaliado pela equipe Trust & Safety`, message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date());
-    message.channel.send(embed)
+    message.channel.send({ embeds: [embed] })
   }
 }

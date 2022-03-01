@@ -20,7 +20,7 @@ module.exports = class saida extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
     if (!message.member.hasPermission('MANAGE_GUILD'))
-      return message.channel.send(embedA)
+      return message.channel.send({ embeds: [embedA] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     if (args[0] === 'canal') {
       const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
@@ -115,7 +115,7 @@ module.exports = class saida extends Command {
             await m.react('666762183249494027')
             e.users.cache.map(u => e.remove(u.id))
 
-            m.edit(embed)
+            m.edit({ embeds: [embed] })
             embedCount = 1
           }
         })

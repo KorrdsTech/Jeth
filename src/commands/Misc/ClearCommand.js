@@ -22,7 +22,7 @@ module.exports = class apagar extends Command {
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
     if (!message.member.hasPermission('MANAGE_MESSAGES'))
-      return message.channel.send(embedA)
+      return message.channel.send({ embeds: [embedA] })
     const deleteCount = parseInt(args[0], 10);
     try {
       message.delete();
@@ -41,7 +41,7 @@ module.exports = class apagar extends Command {
       .setTitle(`<:ayaya:683491996790554629> ${message.author.username}`, true)
       .setDescription(`As mensagens requisitadas no servidor ${message.guild} foram **deletadas** com sucesso!`)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
-    return message.author.send(embedB)
+    return message.author.send({ embeds: [embedA] })
       .catch(error => message.reply(`Não foi possível deletar mensagens devido a: ${error}`));
   }
 }

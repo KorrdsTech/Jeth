@@ -37,7 +37,7 @@ module.exports = class evalcmd extends Command {
         .setTitle(`Oh no... An error occurred while doing this action, I'm sorry for what happened. :sob:`)
         .setDescription(`\`\`\`${err.stack}\`\`\``)
 
-      message.channel.send(embed)
+      message.channel.send({ embeds: [embed] })
     }
   }
 }

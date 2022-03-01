@@ -29,6 +29,6 @@ module.exports = class info extends Command {
         { name: '<:9461systemmessageuser:832746852633149460> Programadores:', value: '<@442774319819522059> \n <@395788326835322882>', inline: false }
       )
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }));
-    message.channel.send(embed)
+    message.channel.send({ embeds: [embed] })
   }
 };

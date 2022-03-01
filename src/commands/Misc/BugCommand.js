@@ -25,7 +25,7 @@ module.exports = class bug extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date())
 
-    this.client.users.cache.get(dono.toString()).send(embed)
+    this.client.users.cache.get(dono.toString()).send({ embeds: [embed] })
     message.reply(`Seu ticket foi enviado com sucesso!`);
   }
 };

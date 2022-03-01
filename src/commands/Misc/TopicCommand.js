@@ -21,7 +21,7 @@ module.exports = class topico extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_CHANNELS`', true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
     if (!message.member.hasPermission('MANAGE_CHANNELS'))
-      return message.channel.send(embedA)
+      return message.channel.send({ embeds: [embedA] })
     const topico = args.join(' ')
     if (args.length === 0)
       return message.reply(`Mencione o canal ou escreva uma mensagem para mim definir no tópico do canal.`);

@@ -88,6 +88,6 @@ module.exports = class Registrys extends Command {
                     `**Total: ${top[i].t}**`
       );
     }
-    message.channel.send(embed).catch(() => { });
+    message.channel.send({ embeds: [embed] }).catch(() => { });
   }
 }

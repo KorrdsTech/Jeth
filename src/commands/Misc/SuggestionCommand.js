@@ -21,7 +21,7 @@ module.exports = class suggestion extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
     if (!message.member.hasPermission('MANAGE_GUILD'))
-      return message.channel.send(embedA)
+      return message.channel.send({ embeds: [embedA] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
     const prefix = documento.prefix

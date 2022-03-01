@@ -36,7 +36,7 @@ module.exports = class kick extends Command {
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());
 
-    if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send(embedA)
+    if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send({ embeds: [embedA] })
     const membro18 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro18) return message.reply('eu procurei, procurei, e não achei este usuário')
     if (razao13.length < 1) return message.reply('`Adicione um motivo válido!`')
@@ -52,7 +52,7 @@ module.exports = class kick extends Command {
       // let target18 = membro18.roles.highest;
       // let clientRole = message.guild.me.roles.highest;
       // if (clientRole.comparePositionTo(target18) <= 0) {
-      //     message.reply(embedC);
+      //     message.reply({ embeds: [embedA] });
       //     return 0;
       // }
 

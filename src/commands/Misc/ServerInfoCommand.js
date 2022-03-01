@@ -22,7 +22,7 @@ module.exports = class serverinfo extends Command {
       .setDescription(`🙋🏻 **| Nome:** \n${message.guild.name} \n \n 👑 **| Dono:** \n ${message.guild.owner.user} \n \n  🤹🏼‍♂️ **| Membros:** \n ${message.guild.memberCount} \n \n 🗺 **| Região do Servidor:** \n ${message.guild.region} \n \n ⌛️ **| Criado:** \n ${message.guild.createdAt}`) // inline false
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-    message.channel.send(embed)
+    message.channel.send({ embeds: [embed] })
   }
 }
 

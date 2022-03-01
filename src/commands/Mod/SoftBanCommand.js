@@ -30,7 +30,7 @@ module.exports = class softban extends Command {
         // let targetMember = usuario.roles.highest;
         // let clientRole = message.guild.me.roles.highest;
         // if (clientRole.comparePositionTo(targetMember) <= 0) {
-        //     message.reply(embedC);
+        //     message.reply({ embeds: [embedA] });
         //     return 0;
         // }
     message.guild.member(usuario).ban({ days: 7 })
@@ -38,6 +38,6 @@ module.exports = class softban extends Command {
     const embed = new Discord.MessageEmbed()
       .setDescription(`${usuario.username} foi **Suavemente Banido** do servidor por ${message.author}\nMotivo: ${razao} `)
       .setColor(cor)
-    message.channel.send(embed)
+    message.channel.send({ embeds: [embed] })
   }
 }

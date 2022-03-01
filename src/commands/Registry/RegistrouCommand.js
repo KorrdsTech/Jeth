@@ -49,7 +49,7 @@ module.exports = class Registryu extends Command {
           .setThumbnail('https://cdn.discordapp.com/emojis/722682133432500251.png?v=1')
           .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
           .setTimestamp();
-        return message.channel.send(embed).catch(() => { });
+        return message.channel.send({ embeds: [embed] }).catch(() => { });
       }
     }
     message.reply('Usuário não registrado, fale com um registrador.').catch(() => { });

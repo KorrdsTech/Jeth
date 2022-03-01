@@ -21,7 +21,7 @@ module.exports = class setcargo extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-    if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(embedA)
+    if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
     if (!usuario) return message.reply('Você não mencionou o usuário!');
     if (!cargo_nome) return message.reply('Você não colocou um cargo valido!');
     if (usuario.id === message.guild.ownerID) {
@@ -49,7 +49,7 @@ module.exports = class setcargo extends Command {
 
         // let clientRole = message.guild.me.roles.highest;
         // if (clientRole.comparePositionTo(targetMember) <= 0) {
-        //     message.reply(embedC);
+        //     message.reply({ embeds: [embedA] });
         //     return 0;
         // }
 
@@ -66,7 +66,7 @@ module.exports = class setcargo extends Command {
 
     if (usuario.roles.cache.has(cargo_nome)) return message.reply('o membro mencionado já possui esse cargo.')
     usuario.roles.add(cargo_nome)
-    message.channel.send(embed)
+    message.channel.send({ embeds: [embed] })
 
   }
 }

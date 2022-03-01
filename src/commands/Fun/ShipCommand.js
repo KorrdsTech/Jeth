@@ -45,6 +45,6 @@ module.exports = class ship extends Command {
       .setImage(imagens_ships[Math.floor(Math.random() * imagens_ships.length)])
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp();
-    message.channel.send(embed);
+    message.channel.send({ embeds: [embed] });
   }
 }

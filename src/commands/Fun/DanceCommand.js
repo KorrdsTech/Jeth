@@ -22,7 +22,7 @@ module.exports = class dancar extends Command {
         .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
         .setTimestamp()
       try {
-        message.channel.send(embed)
+        message.channel.send({ embeds: [embed] })
       } catch (error) {
         console.log(error);
         message.channel.send(error);

@@ -22,7 +22,7 @@ module.exports = class unban extends Command {
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
-    if (!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send(embedA)
+    if (!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send({ embeds: [embedA] })
 
     if (!args[0]) return message.channel.send(`**${message.author}**,Insira o id do membro para eu desbanir ele.`)
 
@@ -36,7 +36,7 @@ module.exports = class unban extends Command {
       .setTimestamp(new Date());
 
     message.guild.members.unban(args[0]).then(msg => {
-      message.channel.send(embed)
+      message.channel.send({ embeds: [embed] })
     }).catch(err => {
       message.channel.send(`**${message.author}** Este usuário não está banido!`)
 

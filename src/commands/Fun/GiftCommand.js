@@ -22,6 +22,6 @@ module.exports = class presente extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp();
 
-    message.channel.send(embed)
+    message.channel.send({ embeds: [embed] })
   }
 }

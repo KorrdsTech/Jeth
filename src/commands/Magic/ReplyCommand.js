@@ -26,7 +26,7 @@ module.exports = class reply extends Command {
 
     if (!ids.includes(message.author.id))
 
-      return message.channel.send(embedA);
+      return message.channel.send({ embeds: [embedA] });
 
     const razao13 = args.slice(1).join(' ');
     if (!razao13) return message.reply('Faltando argumentos')
@@ -39,7 +39,7 @@ module.exports = class reply extends Command {
       .addField('<:b_information:742270909259317278> Resposta:', razao13, true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-    usuario.send(embedB)
+    usuario.send({ embeds: [embedA] })
     if (!Error) {
       return message.channel.send('<:rejected:739831089543118890> Erro, usuário com Direct Message Bloqueada!');
     } else

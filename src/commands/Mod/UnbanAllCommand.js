@@ -20,7 +20,7 @@ module.exports = class allunban extends Command {
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Todos os usuários desbanidos!** você com sucesso desbaniu todos os usuários do servidor.')
 
     if (!message.member.hasPermission('BAN_MEMBERS')) {
-      return message.reply(embed).catch(() => { });
+      return message.reply({ embeds: [embed] }).catch(() => { });
     }
     if (message.member.hasPermission('BAN_MEMBERS')) {
       message.guild.fetchBans().then(bans => {
@@ -29,6 +29,6 @@ module.exports = class allunban extends Command {
           message.guild.members.unban(ban.user.id);
         });
       }).then(() => message.reply(embed2)).catch(e => console.log(e))
-    } else {message.reply(embed)}
+    } else {message.reply({ embeds: [embed] })}
   }
 };

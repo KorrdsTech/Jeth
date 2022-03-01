@@ -25,6 +25,6 @@ module.exports = class Reps extends Command {
       .addField('Usuário:', `${member}`)
       .addField('Reps:', `${user.rep}`)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
-    message.channel.send(embed)
+    message.channel.send({ embeds: [embed] })
   }
 }

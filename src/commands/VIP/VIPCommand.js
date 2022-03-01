@@ -241,7 +241,7 @@ module.exports = class vip extends Command {
                 await m.react('666762183249494027')
                 e.users.cache.map(u => e.remove(u.id))
 
-                m.edit(embed)
+                m.edit({ embeds: [embed] })
                 embedCount = 1
               }
             })

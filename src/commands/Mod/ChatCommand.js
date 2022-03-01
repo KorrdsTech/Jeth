@@ -23,7 +23,7 @@ module.exports = class chat extends Command {
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
     if (!message.member.hasPermission('MANAGE_MESSAGES'))
-      return message.channel.send(embedA)
+      return message.channel.send({ embeds: [embedA] })
 
     const embedlock = new MessageEmbed()
       .setColor(colors.default)

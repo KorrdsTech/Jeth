@@ -22,7 +22,7 @@ module.exports = class unmute extends Command {
       .addField('*Verifique se você possui a permissão:*', '`KICK_MEMBERS`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
     if (!message.member.hasPermission('KICK_MEMBERS'))
-      return message.channel.send(embedA)
+      return message.channel.send({ embeds: [embedA] })
 
     if (!member) return message.reply(`Mencione alguém por favor.`)
     let muteRole = message.guild.roles.cache.find(r => r.name === 'Muted');

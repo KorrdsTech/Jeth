@@ -107,7 +107,7 @@ module.exports = class anuncio extends Command {
               message.reply(`Anúncio enviado com sucesso.`)
               break;
             case '667590655698141197':
-              chat.send(embed)
+              chat.send({ embeds: [embed] })
               msg.delete()
               message.reply(`Anúncio enviado com sucesso.`)
           }

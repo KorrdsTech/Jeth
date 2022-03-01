@@ -43,7 +43,7 @@ module.exports = class Ping extends Command {
         `Use \`${prefix}ajuda\` para saber mais comandos!`
       ])
 
-    const msg = await message.channel.send(embed) // Aqui o bot irá mostrar a primeira embed
+    const msg = await message.channel.send({ embeds: [embed] }) // Aqui o bot irá mostrar a primeira embed
     setTimeout(() => { // Aqui criamos um timeout para mostrar a primeira embed com a duração de 3 segundos, para depois editar ela e mostrar a segunda embed
       msg.edit(embed2)
     }, 3000) // 1000 ms = 1s

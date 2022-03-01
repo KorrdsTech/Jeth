@@ -23,6 +23,6 @@ module.exports = class relatorio extends Command {
       .setDescription(`${rel}`)
       .setFooter('☕️・https://discordapp.com/guidelines', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date());
-    await this.client.channels.cache.get('831041531930476593').send(embed)
+    await this.client.channels.cache.get('831041531930476593').send({ embeds: [embed] })
   }
 }
