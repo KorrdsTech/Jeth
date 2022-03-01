@@ -14,7 +14,7 @@ module.exports = class Reps extends Command {
   }
 
   async run(message, args) {
-    const member = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]) || message.author)
+    const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.author;
     if (!member) return message.channel.send('Algum erro terrível aconteceu, entre em contato com skedaddle via /bug')
     const user = await this.client.database.user.getOrCreate(member.id)
     const embed = new MessageEmbed()
