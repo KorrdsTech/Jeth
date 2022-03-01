@@ -72,7 +72,6 @@ module.exports = async function onMessage(message) {
   }
   const args = message.content.slice(prefix.length).trim().split(' ')
   const name = args.shift().toLowerCase()
-  console.log(name)
   const command = this.commands.find(command => command.name === name || command.aliases.includes(name))
   if (command?.permissions && !message.member.permissions.has(command.permissions)) {
     const embed = new MessageEmbed()
