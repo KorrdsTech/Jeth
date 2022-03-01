@@ -23,6 +23,6 @@ module.exports = class tapa extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp();
 
-    message.channel.send(slapEmbed)
+    message.channel.send({ embeds: [slapEmbed] })
   }
 }

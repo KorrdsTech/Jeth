@@ -97,12 +97,12 @@ module.exports = class anuncio extends Command {
         col.on('collect', async (r) => {
           switch (r.emoji.id) {
             case '667590654200774656':
-              chat.send('@everyone', embed)
+              chat.send('@everyone', { embeds: [embed] })
               msg.delete()
               message.reply(`Anúncio enviado com sucesso.`)
               break;
             case '667590655744147521':
-              chat.send('@here', embed)
+              chat.send('@here', { embeds: [embed] })
               msg.delete()
               message.reply(`Anúncio enviado com sucesso.`)
               break;

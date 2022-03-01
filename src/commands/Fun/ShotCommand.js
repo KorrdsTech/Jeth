@@ -10,7 +10,7 @@ module.exports = class atirar extends Command {
     this.category = 'Fun'
   }
 
-  async run(message, args) {
+  async run(message) {
     const user = message.mentions.members.first();
 
     if (!user) return message.channel.send('Mencione alguém');
@@ -27,7 +27,7 @@ module.exports = class atirar extends Command {
       .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
     try {
       message.delete({ timeout: 100 }).catch(() => { })
-      message.channel.send(aEmbed);
+      message.channel.send({ embeds: [aEmbed] });
     } catch (error) {
       console.log(error);
       message.channel.send(`${error}`);

@@ -40,7 +40,7 @@ module.exports = async function onGuildMemberRemove(member) {
         try {
           const messageEmbed = JSON.parse(message)
           channel.send(`${member}`)
-          channel.send(messageEmbed).catch(er => { console.log(er) })
+          channel.send({ embeds: [messageEmbed] }).catch(er => { console.log(er) })
         } catch (err) {
           channel.send(message).catch(err => { console.log(err) })
         }

@@ -46,7 +46,7 @@ module.exports = async function onMessage(message) {
   // .setDescription(`**Conteúdo da Mensagem:** ${message.cleanContent}\n**Horário:** ${new Date()}\n**Canal da Mensagem:** ${message.channel.name}`)
   // .setTimestamp();
 
-  // message.guild.channels.cache.get('831041533469655070').send(delEmbed)
+  // message.guild.channels.cache.get('831041533469655070').send(del{ embeds: [Hugembed] })
   // })    // end of it finnaly :3
 
   if (guildDocument?.sugesModule) {

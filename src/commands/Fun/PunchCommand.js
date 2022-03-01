@@ -18,11 +18,11 @@ module.exports = class soco extends Command {
 
     const socoEmbed = new Discord.MessageEmbed()
       .setColor(colors.default)
-      .setDescription(`🥊 ${message.author} **nocauteou o usuário** ${message.mentions.users.first().username}`)
+      .setDescription(`🥊 ${message.author} **Nocauteou o usuário** ${message.mentions.users.first().username}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp();
-    message.channel.send(socoEmbed)
+    message.channel.send({ embeds: [socoEmbed] })
     try {
       message.delete({ timeout: 100 }).catch(() => { })
     } catch (error) {

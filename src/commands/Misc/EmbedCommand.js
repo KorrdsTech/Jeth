@@ -44,7 +44,7 @@ module.exports = class Embed extends Command {
         message.channel.send({ embed: a.embed })
           .catch(e => console.log(e))
       }
-      console.log((a.embed))
+      console.log(({ embeds: [ajuda] }))
     } catch (e) {
       message.channel.send(args.join(' '), { disableEveryone: true })
         .catch(e => console.log(e))

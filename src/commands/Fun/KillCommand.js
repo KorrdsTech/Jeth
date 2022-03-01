@@ -24,6 +24,6 @@ module.exports = class KillCommand extends Command {
       .setFooter(`Killstreak por ${message.author}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTimestamp();
 
-    message.channel.send(killEmbed)
+    message.channel.send({ embeds: [killEmbed] })
   }
 }

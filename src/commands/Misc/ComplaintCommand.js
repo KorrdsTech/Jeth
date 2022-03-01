@@ -1,5 +1,4 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 
 module.exports = class complaint extends Command {
@@ -36,8 +35,8 @@ module.exports = class complaint extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date());
 
-    message.author.send(reportembed)
-    await this.client.channels.cache.get('838234183566360636').send(reportembed)
+    message.author.send({ embeds: [reportembed] })
+    await this.client.channels.cache.get('838234183566360636').send({ embeds: [reportembed] })
     await this.client.channels.cache.get('838234183566360636').send(`Reported by: ${message.author.tag}`)
     await message.reply('<:a_blurplecertifiedmoderator:856174396225355776> Thank you for your complaint!')
 

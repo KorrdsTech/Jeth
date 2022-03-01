@@ -11,7 +11,7 @@ module.exports = class Warn extends Command {
     this.subcommandsOnly = false
   }
 
-  async run(message, args, client) {
+  async run(message, args) {
 
     let razao = args.slice(1).join(' ')
     const razao1 = 'Possuir muitos avisos dentro de um servidor'
@@ -114,7 +114,7 @@ module.exports = class Warn extends Command {
       member.kick(razao1)
       member.send(embed1)
     }
-    message.channel.send(warnembed)
+    message.channel.send({ embeds: [warnembed] })
     member.send(warnembed18)
     message.guild.member(member).roles.add(adv1);
   }

@@ -50,6 +50,6 @@ module.exports = class unwarn extends Command {
 
     if (unwarn.roles.cache.has(adv3.id))
       unwarn.roles.remove(adv3)
-    message.channel.send(unwarnembed)
+    message.channel.send({ embeds: [unwarnembed] })
   }
 }
