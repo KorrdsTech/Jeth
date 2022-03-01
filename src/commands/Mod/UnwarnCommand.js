@@ -28,7 +28,7 @@ module.exports = class unwarn extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
+    if (!message.member.permissions.has('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
     if (!unwarn) return message.reply('Mencione o membro que deseja dar warn!')
 
     const unwarnembed = new Discord.MessageEmbed()

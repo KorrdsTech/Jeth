@@ -53,7 +53,7 @@ module.exports = class Ban extends Command {
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    if (!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send({ embeds: [embedA] })
+    if (!message.member.permissions.has('BAN_MEMBERS')) return message.channel.send({ embeds: [embedA] })
     const userDocuent = await this.client.database.user.getOrCreate(message.author.id)
     // ban padrão 17
     const bannable = message.guild.member(membro17, membro14)

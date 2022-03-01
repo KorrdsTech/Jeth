@@ -19,10 +19,10 @@ module.exports = class allunban extends Command {
       .setColor(colors.default)
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Todos os usuários desbanidos!** você com sucesso desbaniu todos os usuários do servidor.')
 
-    if (!message.member.hasPermission('BAN_MEMBERS')) {
+    if (!message.member.permissions.has('BAN_MEMBERS')) {
       return message.reply({ embeds: [embed] }).catch(() => { });
     }
-    if (message.member.hasPermission('BAN_MEMBERS')) {
+    if (message.member.permissions.has('BAN_MEMBERS')) {
       message.guild.fetchBans().then(bans => {
         if (bans.size == 0) {message.reply('There are no banned users.'); throw 'No members to unban.'}
         bans.forEach(ban => {

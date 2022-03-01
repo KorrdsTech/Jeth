@@ -38,7 +38,7 @@ module.exports = class mute extends Command {
 
     let muteRole = message.guild.roles.cache.find(r => r.name === 'Muted');
 
-    if (!message.member.hasPermission('KICK_MEMBERS'))
+    if (!message.member.permissions.has('KICK_MEMBERS'))
       return message.channel.send({ embeds: [erroDePermissão] })
 
     if (!member) return message.reply(`Mencione o usuario a ser punido por favor.`)

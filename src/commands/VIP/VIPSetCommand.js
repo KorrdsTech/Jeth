@@ -32,7 +32,7 @@ module.exports = class vipset extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
+    if (!message.member.permissions.has('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
     if (!usuario) return message.reply('Você não mencionou o usuário!');
     if (usuario.id === message.guild.ownerID) {
       message.reply('Você não tem permissão para setar role neste usuário');

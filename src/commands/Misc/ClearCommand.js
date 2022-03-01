@@ -21,7 +21,7 @@ module.exports = class apagar extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_MESSAGES`', true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-    if (!message.member.hasPermission('MANAGE_MESSAGES'))
+    if (!message.member.permissions.has('MANAGE_MESSAGES'))
       return message.channel.send({ embeds: [embedA] })
     const deleteCount = parseInt(args[0], 10);
     try {

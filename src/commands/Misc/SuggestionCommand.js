@@ -12,7 +12,7 @@ module.exports = class suggestion extends Command {
   }
 
   async run(message, args) {
-    const embedA = new Discord.MessageEmbed()
+    const erroDePermissão = new Discord.MessageEmbed()
 
       .setTimestamp()
       .setColor(colors.mod)
@@ -20,8 +20,10 @@ module.exports = class suggestion extends Command {
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
-    if (!message.member.hasPermission('MANAGE_GUILD'))
-      return message.channel.send({ embeds: [embedA] })
+
+    if (!message.member.permissions.has('MANAGE_GUILD'))
+      return message.channel.send({ embeds: [erroDePermissão] })
+
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
     const prefix = documento.prefix
@@ -33,6 +35,7 @@ module.exports = class suggestion extends Command {
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setDescription(`Para definir o canal de sugestão basta utilizar o comando\n **${prefix}suggestion canal <#canal>** \n\nAssim que o canal for definido, qualquer mensagem enviada nele, receberá a reação dos emojis Sim, não ou não especificado.\nCaso queira desativar o canal de sugestões basta utilizar \n**${prefix}suggestion remover**`) // inline false
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+
     if (!args[0]) message.channel.send(mododeuso)
     if (args[0] === 'canal') {
       const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
@@ -53,6 +56,7 @@ module.exports = class suggestion extends Command {
     }
   }
 }
+
 exports.help = {
   name: 'serverinfo'
 }
