@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { Discord } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 
 module.exports = class Prefix extends Command {
   constructor(name, client) {
@@ -14,7 +14,7 @@ module.exports = class Prefix extends Command {
   async run(message, args) {
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
 
-    const erroDePermissão = new Discord.MessageEmbed()
+    const erroDePermissão = new MessageEmbed()
       .setTimestamp()
       .setColor(colors.mod)
       .setTitle('**Err:**', `${message.author}`, true)

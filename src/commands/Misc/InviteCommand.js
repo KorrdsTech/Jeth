@@ -1,6 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js')
 
 module.exports = class convite extends Command {
   constructor(name, client) {
@@ -12,8 +11,8 @@ module.exports = class convite extends Command {
     this.subcommandsOnly = false
   }
 
-  async run(message, args) {
-    const embed = new Discord.MessageEmbed()
+  async run(message) {
+    const embed = new MessageEmbed()
       .setThumbnail(this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('<:Convite:673592197064556563> **Jeth Link** <:Convite:673592197064556563>')
       .setColor(colors.default)

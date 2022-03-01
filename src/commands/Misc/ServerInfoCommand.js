@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 
 module.exports = class serverinfo extends Command {
   constructor(name, client) {
@@ -13,7 +13,7 @@ module.exports = class serverinfo extends Command {
 
   async run(message, args) {
     if (!message.guild.me.permissions.has('SEND_MESSAGES')) return console.log('DISCORD: Estou sem permissão em um servidor.')
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors.default)

@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js');
+const { Discord, MessageEmbed } = require('discord.js');
 
 module.exports = class Eightball extends Command {
   constructor(name, client) {
@@ -18,7 +18,7 @@ module.exports = class Eightball extends Command {
     const result = Math.floor(Math.random() * replies.length);
     const question = args.join(' ');
 
-    const ballembed = new Discord.MessageEmbed()
+    const ballembed = new MessageEmbed()
       .setAuthor(message.author.tag)
       .setColor(colors.default)
       .addField('Questão', question)

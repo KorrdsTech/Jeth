@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 const { MessageEmbed } = require('discord.js');
 
 module.exports = class vote extends Command {
@@ -13,7 +13,7 @@ module.exports = class vote extends Command {
   }
 
   async run(message, args) {
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
       .setThumbnail('https://cdn.discordapp.com/attachments/804599688728412171/873270109416857670/frame.png')
       .setTitle('<:a_blurplepartner:856174395869626399> **Jeth Analytic:**')
       .setColor(colors.default)

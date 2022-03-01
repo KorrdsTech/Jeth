@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js');
+const { Discord, MessageEmbed } = require('discord.js');
 
 module.exports = class correr extends Command {
   constructor(name, client) {

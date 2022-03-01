@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 const { error } = require('console')
 
 module.exports = class Raidban extends Command {
@@ -13,14 +13,14 @@ module.exports = class Raidban extends Command {
 
   async run(message, args) {
 
-    const escolha = new Discord.MessageEmbed()
+    const escolha = new MessageEmbed()
       .setColor(colors.default)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Sistema Trust & Safety')
       .setDescription('**Por favor, escolha um motivo válido abaixo para aplicar o banimento!** \n<a:JT1:739977300564639835> - Conteúdo pornográfico/Gore \n<a:JT2:739977300921024522> - Promover ou participar de Raids a outros servidores \n<a:JT3:739977300895858708> - Discurso de ódio ou Racismo e derivados \n<a:JT4:739977300472234078> - Apologia ao Nazismo e/ou pornografia infântil \n<a:JT5:739977300719697941> - Ações que comprometem o servidor ou os usuários \n<a:JT6:739977300795457687> - Divulgação inapropriada')
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    const link = new Discord.MessageEmbed()
+    const link = new MessageEmbed()
       .setColor(colors.default)
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Usuário inválido!** o usuário que você inseriu não existe ou não foi reconhecido, por favor tente novamente utilizando o ID')
 
@@ -45,7 +45,7 @@ module.exports = class Raidban extends Command {
     }
     const guildDocument1 = await this.client.database.user.getOrCreate(membro14.id)
 
-    const embedA = new Discord.MessageEmbed()
+    const embedA = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors.mod)
@@ -63,7 +63,7 @@ module.exports = class Raidban extends Command {
       if (bannable.roles.highest.position > message.member.roles.highest.position) return message.reply(`você não pode banir esse usuário, pois o cargo dele é maior ou igual ao seu.`)
     }
 
-    const warnembed17 = new Discord.MessageEmbed()
+    const warnembed17 = new MessageEmbed()
 
       .setThumbnail(membro17.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Ban Raid')
@@ -76,7 +76,7 @@ module.exports = class Raidban extends Command {
     const bans = await message.guild.fetchBans('753778869013577739');
     let reason = args.slice(1).join(' ') || 'Nenhum motivo especificado';
 
-    const warnembed14 = new Discord.MessageEmbed()
+    const warnembed14 = new MessageEmbed()
 
       .setThumbnail(membro14.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setAuthor(`${message.author.username} Já baniu ${bans.size} usuários`, message.author.avatarURL({ dynamic: true, size: 1024 }))
@@ -85,7 +85,7 @@ module.exports = class Raidban extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date());
 
-    const warnembed18 = new Discord.MessageEmbed()
+    const warnembed18 = new MessageEmbed()
 
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTitle(`${message.author}`)

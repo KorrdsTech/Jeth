@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 
 module.exports = class kick extends Command {
   constructor(name, client) {
@@ -14,7 +14,7 @@ module.exports = class kick extends Command {
 
     const usuario = message.author;
       // code erro de perm
-    const embedA = new Discord.MessageEmbed()
+    const embedA = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors.mod)
@@ -24,7 +24,7 @@ module.exports = class kick extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       // code dm do kickado
     const razao13 = args.slice(1).join(' ');
-    const warnembed18 = new Discord.MessageEmbed()
+    const warnembed18 = new MessageEmbed()
 
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTitle(`${message.author}`)
@@ -41,7 +41,7 @@ module.exports = class kick extends Command {
     if (!membro18) return message.reply('eu procurei, procurei, e não achei este usuário')
     if (razao13.length < 1) return message.reply('`Adicione um motivo válido!`')
 
-      // const embedC = new Discord.MessageEmbed()
+      // const embedC = new MessageEmbed()
       // .setTimestamp()
       // .setColor(colors.mod)
       // .setTitle('**Err:**', true)
@@ -56,7 +56,7 @@ module.exports = class kick extends Command {
       //     return 0;
       // }
 
-    const warnembed13 = new Discord.MessageEmbed()
+    const warnembed13 = new MessageEmbed()
 
       .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Kick')

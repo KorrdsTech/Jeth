@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 
 module.exports = class suggestion extends Command {
   constructor(name, client) {
@@ -12,7 +12,7 @@ module.exports = class suggestion extends Command {
   }
 
   async run(message, args) {
-    const erroDePermissão = new Discord.MessageEmbed()
+    const erroDePermissão = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors.mod)
@@ -27,7 +27,7 @@ module.exports = class suggestion extends Command {
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
     const prefix = documento.prefix
-    const mododeuso = new Discord.MessageEmbed()
+    const mododeuso = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors.default)

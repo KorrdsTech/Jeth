@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js');
+const { Discord, MessageEmbed } = require('discord.js');
 const Jimp = require('jimp');
 
 module.exports = class palavra extends Command {

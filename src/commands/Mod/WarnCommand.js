@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 
 module.exports = class Warn extends Command {
   constructor(name, client) {
@@ -17,7 +17,7 @@ module.exports = class Warn extends Command {
     const razao1 = 'Possuir muitos avisos dentro de um servidor'
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
 
-    const embedA = new Discord.MessageEmbed()
+    const embedA = new MessageEmbed()
       .setTimestamp()
       .setColor(colors.mod)
       .setTitle('**Err:**', `${member}`, true)
@@ -30,7 +30,7 @@ module.exports = class Warn extends Command {
     if (!razao.length) {
       razao = 'Sem motivos.'
     }
-    // const embedC = new Discord.MessageEmbed()
+    // const embedC = new MessageEmbed()
     // .setTimestamp()
     // .setColor(colors.mod)
     // .setTitle('**Err:**', true)
@@ -45,7 +45,7 @@ module.exports = class Warn extends Command {
     //     return 0;
     // }
 
-    const warnembed = new Discord.MessageEmbed()
+    const warnembed = new MessageEmbed()
 
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Aviso')
@@ -85,7 +85,7 @@ module.exports = class Warn extends Command {
       reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
     }).catch(console.error)
 
-    const embed1 = new Discord.MessageEmbed()
+    const embed1 = new MessageEmbed()
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTitle(`${message.author.username}`)
       .setDescription(`:do_not_litter: **Você foi removido do servidor ${message.guild.name} <:pepoEZ:651528973729398882>**`)
@@ -94,7 +94,7 @@ module.exports = class Warn extends Command {
       .setFooter('Auto Mod - :police_officer:')
       .setTimestamp(new Date());
 
-    const warnembed18 = new Discord.MessageEmbed()
+    const warnembed18 = new MessageEmbed()
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTitle(`${message.author.username}`)
       .setDescription(`:do_not_litter: **Você recebeu uma advertência no servidor ${message.guild.name} :no_entry_sign:**`)

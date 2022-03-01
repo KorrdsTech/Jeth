@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js');
+const { Discord, MessageEmbed } = require('discord.js');
 const { getMember } = require('../../utils/functions.js');
 
 module.exports = class ship extends Command {
@@ -38,7 +38,7 @@ module.exports = class ship extends Command {
       'https://i.gifer.com/2q3j.gif'
     ];
 
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
       .setColor(colors.default)
       .addField(`💗 **${person.displayName}** ama **${message.member.displayName}** este tanto:`,
         `💟 ${Math.floor(love)}%\n\n${loveLevel}`)

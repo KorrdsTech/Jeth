@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 
 module.exports = class softban extends Command {
   constructor(name, client) {
@@ -19,7 +19,7 @@ module.exports = class softban extends Command {
     if (!message.guild.member(usuario).bannable) return message.reply(`:x: **|** Eu não posso punir essa pessoa, talvez o cargo dela seja maior que o meu`)
     let razao = args.slice(1).join(' ')
     if (!razao) razao = 'Sem motivo declarado'
-        // const embedC = new Discord.MessageEmbed()
+        // const embedC = new MessageEmbed()
         // .setTimestamp()
         // .setColor(colors.mod)
         // .setTitle('**Err:**', true)
@@ -35,7 +35,7 @@ module.exports = class softban extends Command {
         // }
     message.guild.member(usuario).ban({ days: 7 })
     message.guild.unban(usuario)
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
       .setDescription(`${usuario.username} foi **Suavemente Banido** do servidor por ${message.author}\nMotivo: ${razao} `)
       .setColor(cor)
     message.channel.send({ embeds: [embed] })

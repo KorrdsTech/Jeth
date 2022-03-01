@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const { Discord, MessageEmbed } = require('discord.js');
 const { Command, colors } = require('../../utils')
 const axios = require('axios');
 
@@ -23,7 +23,7 @@ module.exports = class github extends Command {
         const tipo = response.data.type
         const compania = response.data.company
         const link = response.data.html_url
-        message.channel.send(new Discord.MessageEmbed()
+        message.channel.send(new MessageEmbed()
           .setTitle(`Github`)
           .setColor(colors.default)
           .setThumbnail(avatar)

@@ -1,4 +1,5 @@
 const { Command, colors } = require('../../utils')
+const { MessageEmbed } = require('discord.js')
 
 String.prototype.replaceAll = function (de, para) {
   let str = this
@@ -20,8 +21,7 @@ module.exports = class Embed extends Command {
   }
 
   async run(message, args) {
-    const Discord = require('discord.js')
-    const ajuda = new Discord.MessageEmbed()
+    const ajuda = new MessageEmbed()
       .setAuthor(message.author.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle(`Defina algo para eu transformar em embed.`)
       .addField(`Placeholder's`, `**{guild-name}** - Para dar o nome do servidor.\n**{user-icon}** - Para dar o avatar do autor.\n**{guild-icon}** - Para dar o avatar do servidor.\n**{user}** - Para dar o nickname do autor.\n**{mention}** - Para te mencionar.`, false)

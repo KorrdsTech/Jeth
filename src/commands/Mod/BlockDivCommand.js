@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { Discord } = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 
 module.exports = class blockdiv extends Command {
   constructor(name, client) {
@@ -11,7 +11,7 @@ module.exports = class blockdiv extends Command {
   }
 
   async run(message, args) {
-    const erroDePermissão = new Discord.MessageEmbed()
+    const erroDePermissão = new MessageEmbed()
       .setTimestamp()
       .setColor(colors.mod)
       .setTitle('**Err:**', true)
@@ -41,7 +41,7 @@ module.exports = class blockdiv extends Command {
       guildDocument.save()
       message.channel.send('Okay o módulo de Anti-Convite foi Ativado.')
     } else {
-      const embed = new Discord.MessageEmbed()
+      const embed = new MessageEmbed()
       embed.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       embed.setColor(colors.default)
       embed.setDescription(`Dúvidas de como usar o Counter?\nAqui vai algumas dicas...`)
@@ -51,7 +51,7 @@ module.exports = class blockdiv extends Command {
         `\`${guildDocument.prefix}div desativar\` - Caso haja algum Anti-Invite ligado/definido, ele será removido e o sistema desligado.`,
       ].join('\n'), false)
 
-      const embed2 = new Discord.MessageEmbed()
+      const embed2 = new MessageEmbed()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como esta o Anti-Invite?\nAqui vai o seu painel...`)
         .setColor(colors.default)
@@ -66,7 +66,7 @@ module.exports = class blockdiv extends Command {
       embed2.addField('Anti-Invite está:', msgWelcome)
 
       let embedCount = 1
-      message.channel.send({ embed }).then(async m => {
+      message.channel.send({ embeds: [embed] }).then(async m => {
         await m.react('666762183249494027')// ir para frente
         const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027'|| e.emoji.id == '665721366514892839')
         const col = m.createReactionfilter({ filter, time: 180_000, errors: ['time'] })

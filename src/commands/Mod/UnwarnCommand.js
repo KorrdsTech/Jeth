@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js');
+const { Discord, MessageEmbed } = require('discord.js');
 
 module.exports = class unwarn extends Command {
   constructor(name, client) {
@@ -19,7 +19,7 @@ module.exports = class unwarn extends Command {
     const unwarn = message.mentions.members.first();
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
-    const embedA = new Discord.MessageEmbed()
+    const embedA = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors.mod)
@@ -31,7 +31,7 @@ module.exports = class unwarn extends Command {
     if (!message.member.permissions.has('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
     if (!unwarn) return message.reply('Mencione o membro que deseja dar warn!')
 
-    const unwarnembed = new Discord.MessageEmbed()
+    const unwarnembed = new MessageEmbed()
 
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Aviso | Removido')

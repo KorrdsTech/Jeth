@@ -222,7 +222,7 @@ module.exports = class vip extends Command {
 
           let embedCount = 1
 
-          message.channel.send({ embed }).then(async m => {
+          message.channel.send({ embeds: [embed] }).then(async m => {
             await m.react('666762183249494027')// ir para frente
             const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
             const col = m.createReactionfilter({ filter, time: 180_000, errors: ['time'] })

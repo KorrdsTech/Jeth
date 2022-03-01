@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 
 module.exports = class changeAvatar extends Command {
   constructor(name, client) {
@@ -16,7 +16,7 @@ module.exports = class changeAvatar extends Command {
     if (!avatar || avatar === undefined) return message.reply('Digite um link de uma imagem.')
 
     this.client.user.setAvatar(avatar).then(() => {
-      const embed = new Discord.MessageEmbed()
+      const embed = new MessageEmbed()
         .setAuthor('Avatar trocado.', avatar)
         .setImage(avatar)
         .setColor(colors.default)

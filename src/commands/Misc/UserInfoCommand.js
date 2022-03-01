@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 const moment = require('moment')
 moment.locale('pt-br')
 
@@ -91,7 +91,7 @@ module.exports = class userinfo extends Command {
       }
     }
 
-    const normalUser = new Discord.MessageEmbed()
+    const normalUser = new MessageEmbed()
       .setAuthor(pUser.user.tag, pUser.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .addField(`Discord Tag`, `${flags?.join(' ')} \n**${pUser.user.tag}**`, true)
       .addField('Status', `\`\`\`md\n# ${pUser.presence.status} \`\`\``, true)

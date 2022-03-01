@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { Discord } = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 const parse = require('parse-duration')
 
 module.exports = class mute extends Command {
@@ -17,7 +17,7 @@ module.exports = class mute extends Command {
 
     const time = args[1];
 
-    const erroDePermissão = new Discord.MessageEmbed()
+    const erroDePermissão = new MessageEmbed()
       .setTimestamp()
       .setColor(colors.mod)
       .setTitle('**Err:**', `${member}`, true)
@@ -26,7 +26,7 @@ module.exports = class mute extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date());
 
-    const confirmaçãoMutado = new Discord.MessageEmbed()
+    const confirmaçãoMutado = new MessageEmbed()
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Mute')
       .setColor('#ff112b')

@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js');
+const { Discord, MessageEmbed } = require('discord.js');
 
 module.exports = class abracar extends Command {
   constructor(name, client) {
@@ -15,7 +15,7 @@ module.exports = class abracar extends Command {
     const gifs = ['http://1.bp.blogspot.com/-2K2IFjMGJ5M/VYdu-DjrAeI/AAAAAAAAJSU/Psjf62_VcDo/s1600/hug_anime_conversacult.gif', 'https://i.pinimg.com/originals/82/c8/e9/82c8e9ff24cce631fa061b35cf9fe82b.gif', 'https://i.pinimg.com/originals/f0/ee/e6/f0eee67fa8e98c4e5c08ce01f36dee0e.gif'];
     const user = message.mentions.users.first();
 
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
       .setColor(colors.default)
       .setDescription(`:blush: ${message.author} **se deu um abraço**`)
       .setImage(self[Math.floor(Math.random() * self.length)])
@@ -24,7 +24,7 @@ module.exports = class abracar extends Command {
 
     if (message.mentions.users.size < 1) return message.channel.send({ embeds: [embed] })
     if (user.id == message.author.id) message.channel.send({ embeds: [embed] })// return message.reply("Você não pode abraçar a si mesmo.")
-    const HugEmbed = new Discord.MessageEmbed()
+    const HugEmbed = new MessageEmbed()
       .setColor(colors.default)
       .setTitle(`:blush: ${message.author.username} **deu um abraço no(a)** ${user.username}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])

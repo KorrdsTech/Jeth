@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js');
+const { Discord, MessageEmbed } = require('discord.js');
 
 module.exports = class atirar extends Command {
   constructor(name, client) {
@@ -18,7 +18,7 @@ module.exports = class atirar extends Command {
 
     const gifs = ['https://i.pinimg.com/originals/40/49/b5/4049b559d6f08dc8ac5c174a53d109d4.gif', 'https://pa1.narvii.com/6553/291bada149c311fe54df1ca479732115c321a5f2_hq.gif', 'https://i.pinimg.com/originals/2d/fa/a9/2dfaa995a09d81a07cad24d3ce18e011.gif']
 
-    const aEmbed = new Discord.MessageEmbed()
+    const aEmbed = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors.default)

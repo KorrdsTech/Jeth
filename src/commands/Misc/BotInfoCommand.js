@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils');
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const moment = require('moment')
 require('moment-duration-format')
 
@@ -16,7 +16,7 @@ module.exports = class info extends Command {
   // eslint-disable-next-line no-unused-vars
   async run(message, args) {
     moment.locale('pt-br')
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
       .setDescription('<:info:695503582342152273> **Informações:**')
       .setThumbnail(this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTimestamp()

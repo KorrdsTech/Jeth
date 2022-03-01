@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 const ms = require('ms')
 
 module.exports = class Timeout extends Command {
@@ -13,7 +13,7 @@ module.exports = class Timeout extends Command {
 
   async run(message, args) {
             // Embed erro de permissões:
-    const embedA = new Discord.MessageEmbed()
+    const embedA = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors.mod)
@@ -38,7 +38,7 @@ module.exports = class Timeout extends Command {
     if (reason.length < 1) return message.reply('`Adicione um motivo válido!`')
 
             // Embed confirmação:
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
 
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Timeout')

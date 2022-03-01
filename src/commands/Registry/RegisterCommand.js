@@ -110,7 +110,7 @@ module.exports = class Registrar extends Command {
               .setDescription(`${message.author} você Registryu o usuário(a) ${member} com sucesso.`)
               .setFooter('Depois desse Registry cairia bem um bolo né? 🍰')
               .setColor(colors.default);
-            canal.send(embedSv).catch(() => { });
+            canal.send({ embeds: [embedSv] }).catch(() => { });
             message.reply('<:concludo:739830713792331817> **|** Usuário registrado com sucesso.').then(msg => { msg.delete({ timeout: 5000 }) })
             const embedDM1 = new MessageEmbed()
               .setTitle(`${message.guild.name} | Notificação Registry`)

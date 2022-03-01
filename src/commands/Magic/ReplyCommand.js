@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 
 module.exports = class reply extends Command {
   constructor(name, client) {
@@ -16,7 +16,7 @@ module.exports = class reply extends Command {
 
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
-    const embedA = new Discord.MessageEmbed()
+    const embedA = new MessageEmbed()
       .setTimestamp()
       .setColor(colors.mod)
       .setTitle('**Err:**', `${usuario}`, true)
@@ -31,7 +31,7 @@ module.exports = class reply extends Command {
     const razao13 = args.slice(1).join(' ');
     if (!razao13) return message.reply('Faltando argumentos')
 
-    const embedB = new Discord.MessageEmbed()
+    const embedB = new MessageEmbed()
       .setTimestamp()
       .setColor(colors.default)
       .setTitle('**Ticket Reply:**', `${usuario}`, true)

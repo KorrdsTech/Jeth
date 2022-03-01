@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 
 module.exports = class RenameChannel extends Command {
   constructor(name, client) {
@@ -11,7 +11,7 @@ module.exports = class RenameChannel extends Command {
   }
 
   async run(message, args, server) {
-    const embedA = new Discord.MessageEmbed()
+    const embedA = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors.default)

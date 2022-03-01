@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js');
+const { Discord, MessageEmbed } = require('discord.js');
 
 module.exports = class battle extends Command {
   constructor(name, client) {
@@ -41,7 +41,7 @@ module.exports = class battle extends Command {
           return falasPerdedor[Math.floor(Math.random() * falasPerdedor.length)]
       }
     }
-    const embedB = new Discord.MessageEmbed()
+    const embedB = new MessageEmbed()
       .setTitle('🏹 | Batalha')
       .setDescription(' O ' + v + ' e' + v2 + ' **estão disputando uma batalha!**')
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])

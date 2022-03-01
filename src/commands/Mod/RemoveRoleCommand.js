@@ -39,7 +39,7 @@ module.exports = class retcargo extends Command {
       return 0;
     }
 
-        // const embedC = new Discord.MessageEmbed()
+        // const embedC = new MessageEmbed()
         // .setTimestamp()
         // .setColor(colors.mod)
         // .setTitle('**Err:**', true)

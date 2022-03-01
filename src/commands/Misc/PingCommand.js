@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const Discord = require('discord.js')
+const { Discord, MessageEmbed } = require('discord.js')
 
 module.exports = class Ping extends Command {
   constructor(name, client) {
@@ -15,14 +15,14 @@ module.exports = class Ping extends Command {
   async run(message, args) {
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
     const prefix = documento.prefix
-    const embed = new Discord.MessageEmbed() // Aqui vai ser a primeira embed que o bot irá mostrar
+    const embed = new MessageEmbed() // Aqui vai ser a primeira embed que o bot irá mostrar
       .setTitle(message.author.username)
       .setColor(colors.default)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setDescription(`Calculando...`)
       .addField(`<:9605discordslashcommand:832746852667490334> ⇝ Ajuda`, `Use \`${prefix}ajuda\` para saber mais comandos!`)
 
-    const embed2 = new Discord.MessageEmbed() // Aqui vai ser a segunda embed que o bot irá mostrar
+    const embed2 = new MessageEmbed() // Aqui vai ser a segunda embed que o bot irá mostrar
       .setTitle(message.author.username)
       .setColor(colors.default)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
@@ -31,7 +31,7 @@ module.exports = class Ping extends Command {
         `Use \`${prefix}ajuda\` para saber mais comandos!`
       ])
 
-    const embed_ping = new Discord.MessageEmbed() // Aqui vai ser a terceira embed que o bot irá mostrar
+    const embed_ping = new MessageEmbed() // Aqui vai ser a terceira embed que o bot irá mostrar
       .setTitle(message.author.username)
       .setColor(colors.default)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
