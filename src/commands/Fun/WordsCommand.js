@@ -1,5 +1,4 @@
-const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js');
+const { Command } = require('../../utils')
 const Jimp = require('jimp');
 
 module.exports = class palavra extends Command {
@@ -11,7 +10,7 @@ module.exports = class palavra extends Command {
     this.category = 'Fun'
   }
 
-  async run(message, args) {
+  async run(message) {
     if (message.content.split(' ').slice(1).join(' ').length < 1) {
       message.reply('`Você não escreveu nada junto ao comando \n Modo de uso: -palavras Alguma coisa aqui`')
     } else {
@@ -26,7 +25,6 @@ module.exports = class palavra extends Command {
               Jimp.loadFont(Jimp.FONT_SANS_32_BLACK).then(function (font) {
                 image.print(font, 11, 13, authorMessage.content.split(' ').slice(1).join(' ')[0] + '... ' + authorMessage.content.split(' ').slice(1).join(' ')[0] + '...', 400)
                 image.print(font, 19, 290, authorMessage.content.split(' ').slice(1).join(' '), 320)
-                const aguardeMessage = message
                 image.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
                   message.channel.send({
                     files: [{

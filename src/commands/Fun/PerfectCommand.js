@@ -1,4 +1,4 @@
-const { Command, colors } = require('../../utils')
+const { Command } = require('../../utils')
 const { createCanvas, loadImage } = require('canvas');
 const { MessageAttachment } = require('discord.js');
 
@@ -11,7 +11,7 @@ module.exports = class perfeito extends Command {
     this.category = 'Fun'
   }
 
-  async run(message, args) {
+  async run(message) {
 
     const width = 467;
     const height = 400;

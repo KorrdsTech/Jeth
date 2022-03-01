@@ -10,7 +10,7 @@ module.exports = class RenameChannel extends Command {
     this.category = 'Mod'
   }
 
-  async run(message, args, server) {
+  async run(message, args) {
     const embedA = new MessageEmbed()
 
       .setTimestamp()

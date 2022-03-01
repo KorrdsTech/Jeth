@@ -54,7 +54,6 @@ module.exports = class retcargo extends Command {
         // }
 
     if (!cargo_nome) return message.reply('`Você não colocou um cargo valido!`');
-    const cargo = message.guild.roles.cache.find(role => role.name === `${cargo_nome}`)
 
     const embed = new MessageEmbed()
       .setTimestamp()

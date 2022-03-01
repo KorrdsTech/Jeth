@@ -10,7 +10,7 @@ module.exports = class flip extends Command {
     this.category = 'Fun'
   }
 
-  async run(message, args) {
+  async run(message) {
     const msg = ['coroa', 'cara'];
     const moeda = msg[Math.floor(Math.random() * 2)];
 

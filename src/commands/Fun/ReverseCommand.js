@@ -1,5 +1,4 @@
-const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js');
+const { Command } = require('../../utils')
 
 module.exports = class reverse extends Command {
   constructor(name, client) {

@@ -11,7 +11,7 @@ module.exports = class emoji extends Command {
     this.subcommandsOnly = false
   }
 
-  async run(message, args) {
+  async run(message) {
     let Emojis = '';
     let EmojisAnimated = '';
     let EmojiCount = 0;
@@ -30,16 +30,16 @@ module.exports = class emoji extends Command {
         Emojis += Emoji(emoji.id)
       }
     })
-    const Embed = new MessageEmbed()
+    const embed = new MessageEmbed()
       .setTitle(`Emojis em ${message.guild.name}.`)
       .setDescription(`**Animado [${Animated}]**:\n${EmojisAnimated}`)
       .setColor(colors.default)
 
-    const EmbedB = new MessageEmbed()
+    const embedB = new MessageEmbed()
       .setDescription(`**Normais [${EmojiCount}]**:\n${Emojis}\n\n**Total de emojis [${OverallEmojis}]**`)
       .setColor(colors.default)
 
     message.channel.send({ embeds: [embed] })
-    await message.channel.send({ embeds: [embedA] })
+    await message.channel.send({ embeds: [embedB] })
   }
 }

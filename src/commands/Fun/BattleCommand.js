@@ -10,7 +10,7 @@ module.exports = class battle extends Command {
     this.category = 'Fun'
   }
 
-  async run(message, args) {
+  async run(message) {
     const user = message.mentions.users.first();
     if (!user) return message.reply('`Você não mencionou o usuario que você quer batalhar!`').catch(console.error);
     if (message.author.id == user.id)
@@ -51,6 +51,6 @@ module.exports = class battle extends Command {
       .setTimestamp()
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    message.channel.send({ embeds: [embedA] })
+    message.channel.send({ embeds: [embedB] })
   }
 }

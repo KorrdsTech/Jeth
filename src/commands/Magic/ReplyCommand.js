@@ -39,7 +39,7 @@ module.exports = class reply extends Command {
       .addField('<:b_information:742270909259317278> Resposta:', razao13, true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-    usuario.send({ embeds: [embedA] })
+    usuario.send({ embeds: [embedB] })
     if (!Error) {
       return message.channel.send('<:rejected:739831089543118890> Erro, usuário com Direct Message Bloqueada!');
     } else

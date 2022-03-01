@@ -35,9 +35,9 @@ module.exports = class unban extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date());
 
-    message.guild.members.unban(args[0]).then(msg => {
+    message.guild.members.unban(args[0]).then(() => {
       message.channel.send({ embeds: [embed] })
-    }).catch(err => {
+    }).catch(() => {
       message.channel.send(`**${message.author}** Este usuário não está banido!`)
 
     })

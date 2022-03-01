@@ -1,5 +1,4 @@
-const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { Command } = require('../../utils')
 
 module.exports = class Revall extends Command {
   constructor(name, client) {
@@ -10,7 +9,7 @@ module.exports = class Revall extends Command {
     this.category = 'Magic'
   }
 
-  async run(message, args) {
+  async run(message) {
 
     if (!message.member.permissions.has('ADMINISTRATOR', false, true, true)) {
       return message.reply('Voce nao tem permissao para isso <:noswift:529635602292015134>').catch(() => { });
@@ -39,7 +38,7 @@ module.exports = class Revall extends Command {
   }
 }
 
-var f = async (membros, i = 0, role, message) => {
+const f = async (membros, i = 0, role, message) => {
   if (i % 20 === 0) {
     await message.edit(`${i}/${message.guild.memberCount} **Removendo o cargo ${role} de todos os usuários do servidor**`).catch(() => { });
   }

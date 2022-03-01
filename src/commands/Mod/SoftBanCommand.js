@@ -1,4 +1,4 @@
-const { Command, colors } = require('../../utils')
+const { Command } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
 module.exports = class softban extends Command {

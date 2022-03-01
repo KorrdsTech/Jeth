@@ -10,7 +10,7 @@ module.exports = class presente extends Command {
     this.category = 'Fun'
   }
 
-  async run(message, args) {
+  async run(message) {
     const user = message.mentions.users.first();
         // if(message.author.includes("`")) return message.channel.send('<:a_blurpleintegration:856174395801468989> Seu username causa problemas em nosso sistema! caracteres indevidos!')
     if (!user) return message.channel.send('`Você precisa mencionar alguém para presentear!`');

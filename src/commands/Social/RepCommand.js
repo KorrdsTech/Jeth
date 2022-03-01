@@ -1,4 +1,4 @@
-const { Command, colors } = require('../../utils')
+const { Command } = require('../../utils')
 const moment = require('moment')
 moment.locale('pt-br')
 

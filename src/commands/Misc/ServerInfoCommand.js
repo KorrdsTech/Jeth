@@ -11,7 +11,7 @@ module.exports = class serverinfo extends Command {
     this.subcommandsOnly = false
   }
 
-  async run(message, args) {
+  async run(message) {
     if (!message.guild.me.permissions.has('SEND_MESSAGES')) return console.log('DISCORD: Estou sem permissão em um servidor.')
     const embed = new MessageEmbed()
 

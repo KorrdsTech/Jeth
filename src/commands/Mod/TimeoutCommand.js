@@ -1,6 +1,5 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
-const ms = require('ms')
 
 module.exports = class Timeout extends Command {
   constructor(name, client) {

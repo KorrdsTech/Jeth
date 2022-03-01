@@ -1,5 +1,5 @@
-const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js');
+const { Command } = require('../../utils')
+const { error } = require('console');
 
 module.exports = class correr extends Command {
   constructor(name, client) {
@@ -10,7 +10,7 @@ module.exports = class correr extends Command {
     this.category = 'Fun'
   }
 
-  async run(message, args) {
+  async run(message) {
     const user = message.mentions.users.first();
     if (!user) return message.reply('`Você não mencionou o usuario que você quer correr!`').catch(console.error);
     const Corrida = '<@' + message.author.id + '>'
@@ -30,7 +30,7 @@ module.exports = class correr extends Command {
         ]
       }
     })
-    console.log(err);
-    message.channel.send(err);
+    console.log(error);
+    message.channel.send(error);
   }
 }
