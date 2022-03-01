@@ -61,13 +61,13 @@ module.exports = async function onReady() {
   // this.api.applications(this.user.id).commands.post({
   //     data: {
   //         name: 'ping',
-  //         description: '[ 🌐 • Miscellaneous ] Mostra a latência da API.'
+  //         description: '[ 🌐 • Fun ] Mostra a latência da API.'
   //     }
   // })
   // this.api.applications(this.user.id).commands.post({
   //     data: {
   //         name: 'ajuda',
-  //         description: '[ 📝 • Miscellaneous ] Exibe a lista de comandos da aplicação.'
+  //         description: '[ 📝 • Fun ] Exibe a lista de comandos da aplicação.'
   //     }
   // })
 
