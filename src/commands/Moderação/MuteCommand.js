@@ -39,7 +39,7 @@ module.exports = class mute extends Command {
     let muteRole = message.guild.roles.cache.find(r => r.name === 'Muted');
 
     if (!message.member.hasPermission('KICK_MEMBERS'))
-      return message.channel.send(erroDePermissão)
+      return message.channel.send({ embeds: [erroDePermissão] })
 
     if (!member) return message.reply(`Mencione o usuario a ser punido por favor.`)
 
@@ -76,7 +76,7 @@ module.exports = class mute extends Command {
     })
 
     Mutado.save().then(() => {
-      message.channel.send(confirmaçãoMutado)
+      message.channel.send({ embeds: [confirmaçãoMutado] })
       member.roles.add(muteRole.id)
     })
   }
