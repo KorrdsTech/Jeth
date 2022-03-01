@@ -11,7 +11,7 @@ module.exports = class Ajuda extends Command {
     this.subcommandsOnly = false
   }
 
-  async run(message, args) {
+  async run(message) {
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
     const prefix = documento.prefix
 

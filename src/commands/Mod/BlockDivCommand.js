@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { Discord } = require('discord.js')
 
 module.exports = class blockdiv extends Command {
   constructor(name, client) {
@@ -11,6 +11,15 @@ module.exports = class blockdiv extends Command {
   }
 
   async run(message, args) {
+    const erroDePermissão = new Discord.MessageEmbed()
+      .setTimestamp()
+      .setColor(colors.mod)
+      .setTitle('**Err:**', true)
+      .setDescription('Missing Permissions') // inline false
+      .addField('*Verifique se você possui a permissão:*', '`ADMINISTRATOR`', true)
+      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+
+    if (!message.member.permissions.has('ADMINISTRATOR')) return message.channel.send({ embeds: [erroDePermissão] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     if (args[0] === 'canal') {
       const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
@@ -21,7 +30,7 @@ module.exports = class blockdiv extends Command {
         await message.channel.send(`Canal definido: ${channel}`)
       })
     } else if (args[0] === 'desativar') {
-      if (!guildDocument.antInvite) return message.channel.send(`Este servidor não possui um Counter ativado!`)
+      if (!guildDocument.antInvite) return message.channel.send(`O Módulo de ant-invite já está desativado OU seu módulo não possui um canal definido.`)
       guildDocument.antInvite = false
       guildDocument.infoantinv = ''
       guildDocument.save()
@@ -32,7 +41,7 @@ module.exports = class blockdiv extends Command {
       guildDocument.save()
       message.channel.send('Okay o módulo de Anti-Convite foi Ativado.')
     } else {
-      const embed = new MessageEmbed()
+      const embed = new Discord.MessageEmbed()
       embed.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       embed.setColor(colors.default)
       embed.setDescription(`Dúvidas de como usar o Counter?\nAqui vai algumas dicas...`)
@@ -42,7 +51,7 @@ module.exports = class blockdiv extends Command {
         `\`${guildDocument.prefix}div desativar\` - Caso haja algum Anti-Invite ligado/definido, ele será removido e o sistema desligado.`,
       ].join('\n'), false)
 
-      const embed2 = new MessageEmbed()
+      const embed2 = new Discord.MessageEmbed()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como esta o Anti-Invite?\nAqui vai o seu painel...`)
         .setColor(colors.default)

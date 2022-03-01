@@ -72,7 +72,7 @@ module.exports = async function onMessage(message) {
     message.reply('> Você está na blacklist,e não pode executar nenhum comando do bot.').then(msg => msg.delete({ timeout: 5000 }))
     return
   }
-  const args = message.content.slice(prefix.length).trim().split(' ')
+  const args = message.content.slice(prefix.lenght, prefix.length).trim().split(' ')
   const name = args.shift()
   const command = this.commands.find(command => command.name === name || command.aliases.includes(name))
   if (command?.permissions && !message.member.permissions.has(command.permissions)) {
