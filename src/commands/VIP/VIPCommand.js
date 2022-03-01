@@ -54,110 +54,108 @@ module.exports = class vip extends Command {
             .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
           message.channel.send({ embed: teste })
         } else if (args[0] === 'canal') {
-          this.client.database.Cargo.findOne({ _id: message.author.id }, (e, det) => {
-            if (!det) {
-              message.channel.send('Você não criou seu cargo próprio!')
-            } else {
-              this.client.database.Canal.findOne({ _id: message.author.id }, (e, doc) => {
-                if (doc) {
-                  message.channel.send('Você já possui um canal próprio!')
-                }
-                if (!doc) {
-                  const args = message.content.slice(11)
-                  const category = message.guild.channels.cache.get('938180754049990786');
-                  message.guild.channels.create(args, {
-                    type: 'voice',
-                    parent: category.id
-                  }).then(async c => {
-                    c.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
+          const det = await this.client.database.cargo.getOrCreate(message.author.id)
+          if (!det) {
+            message.channel.send('Você não criou seu cargo próprio!')
+          } else {
+            const doc = await this.client.database.canal.getOrCreate(message.author.id)
+            if (doc) {
+              message.channel.send('Você já possui um canal próprio!')
+            }
+            if (!doc) {
+              const args = message.content.slice(11)
+              const category = message.guild.channels.cache.get('938180754049990786');
+              message.guild.channels.create(args, {
+                type: 'voice',
+                parent: category.id
+              }).then(async c => {
+                c.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
+                  VIEW_CHANNEL: false,
+                  CONNECT: false,
+                  MANAGE_CHANNELS: false,
+                  DEAFEN_MEMBERS: false,
+                  MUTE_MEMBERS: false,
+                  PRIORITY_SPEAKER: false
+                })
+                c.updateOverwrite(message.member.user, {
+                  VIEW_CHANNEL: true,
+                  CONNECT: true,
+                  MANAGE_CHANNELS: true,
+                  DEAFEN_MEMBERS: true,
+                  MUTE_MEMBERS: true,
+                  PRIORITY_SPEAKER: true
+                })
+                c.updateOverwrite(message.guild.roles.cache.get(role.roleID), {
+                  VIEW_CHANNEL: true,
+                  CONNECT: true,
+                  MANAGE_CHANNELS: false,
+                  DEAFEN_MEMBERS: true,
+                  MUTE_MEMBERS: true,
+                  PRIORITY_SPEAKER: true
+                })
+                message.channel.send('Canal criado com sucesso!')
+                const canal = this.client.database.Canal({ _id: message.author.id })
+                canal.save().then(() => {
+                  const categoria = message.guild.channels.cache.get('878494223798779964');
+                  const name = `VIP verification request: ${message.author}`;
+                  const lerole = message.guild.roles.cache.get('838650358342352927')
+                  message.guild.channels.create(name, {
+                    type: 'text',
+                    parent: categoria.id
+                  }).then(async d => {
+                    d.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
                       VIEW_CHANNEL: false,
-                      CONNECT: false,
+                      SEND_MESSAGES: false,
                       MANAGE_CHANNELS: false,
-                      DEAFEN_MEMBERS: false,
-                      MUTE_MEMBERS: false,
-                      PRIORITY_SPEAKER: false
                     })
-                    c.updateOverwrite(message.member.user, {
+                    d.updateOverwrite(message.member.user, {
                       VIEW_CHANNEL: true,
-                      CONNECT: true,
+                      SEND_MESSAGES: true,
+                      MANAGE_CHANNELS: false,
+                    })
+                    d.updateOverwrite(message.guild.roles.cache.get('838650358342352927'), {
+                      VIEW_CHANNEL: true,
+                      SEND_MESSAGES: true,
                       MANAGE_CHANNELS: true,
-                      DEAFEN_MEMBERS: true,
-                      MUTE_MEMBERS: true,
-                      PRIORITY_SPEAKER: true
-                    })
-                    c.updateOverwrite(message.guild.roles.cache.get(role.roleID), {
-                      VIEW_CHANNEL: true,
-                      CONNECT: true,
-                      MANAGE_CHANNELS: false,
-                      DEAFEN_MEMBERS: true,
-                      MUTE_MEMBERS: true,
-                      PRIORITY_SPEAKER: true
-                    })
-                    message.channel.send('Canal criado com sucesso!')
-                    const canal = this.client.database.Canal({ _id: message.author.id })
-                    canal.save().then(() => {
-                      const categoria = message.guild.channels.cache.get('878494223798779964');
-                      const name = `VIP verification request: ${message.author}`;
-                      const lerole = message.guild.roles.cache.get('838650358342352927')
-                      message.guild.channels.create(name, {
-                        type: 'text',
-                        parent: categoria.id
-                      }).then(async d => {
-                        d.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
-                          VIEW_CHANNEL: false,
-                          SEND_MESSAGES: false,
-                          MANAGE_CHANNELS: false,
-                        })
-                        d.updateOverwrite(message.member.user, {
-                          VIEW_CHANNEL: true,
-                          SEND_MESSAGES: true,
-                          MANAGE_CHANNELS: false,
-                        })
-                        d.updateOverwrite(message.guild.roles.cache.get('838650358342352927'), {
-                          VIEW_CHANNEL: true,
-                          SEND_MESSAGES: true,
-                          MANAGE_CHANNELS: true,
-                        }).then(channel => channel.send(`${lerole}, ${message.author} requer aprovação para sua call, caso a mesma seja aprovada reaja abaixo, nome da call: ${args}`).then(msg => {
-                          setTimeout(() => {
-                            msg.react('856174396372680714')
-                          }, 500)
-                          setTimeout(() => {
-                            msg.react('856174396232957962')
-                          }, 1000)
-                          const solaris = message.guild.members.cache.get('442774319819522059')
-                          const filter = msg.createReactionfilter((r, u) => (r.emoji.id === '856174396372680714', '856174396232957962') && (u.id !== this.client.user.id && u.id === solaris.id))
-                          const col = msg.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
-                          col.on('collect', async (r) => {
-                            switch (r.emoji.id) {
-                              case '856174396372680714':
-                                c.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
-                                  VIEW_CHANNEL: true,
-                                  CONNECT: false,
-                                  MANAGE_CHANNELS: false,
-                                  DEAFEN_MEMBERS: false,
-                                  MUTE_MEMBERS: false,
-                                  PRIORITY_SPEAKER: false
-                                })
-                                message.reply(`Criação aprovada`)
-                                d.delete()
-                                break;
-                              case '856174396232957962':
-                                message.reply(`Criação Recusada`)
-                                c.delete()
-                                d.delete()
-                                break;
-                            }
-                          })
-                        })
-                        )
-                        message.channel.send('Usuário salvo na database')
+                    }).then(channel => channel.send(`${lerole}, ${message.author} requer aprovação para sua call, caso a mesma seja aprovada reaja abaixo, nome da call: ${args}`).then(msg => {
+                      setTimeout(() => {
+                        msg.react('856174396372680714')
+                      }, 500)
+                      setTimeout(() => {
+                        msg.react('856174396232957962')
+                      }, 1000)
+                      const solaris = message.guild.members.cache.get('442774319819522059')
+                      const filter = msg.createReactionfilter((r, u) => (r.emoji.id === '856174396372680714', '856174396232957962') && (u.id !== this.client.user.id && u.id === solaris.id))
+                      const col = msg.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+                      col.on('collect', async (r) => {
+                        switch (r.emoji.id) {
+                          case '856174396372680714':
+                            c.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
+                              VIEW_CHANNEL: true,
+                              CONNECT: false,
+                              MANAGE_CHANNELS: false,
+                              DEAFEN_MEMBERS: false,
+                              MUTE_MEMBERS: false,
+                              PRIORITY_SPEAKER: false
+                            })
+                            message.reply(`Criação aprovada`)
+                            d.delete()
+                            break;
+                          case '856174396232957962':
+                            message.reply(`Criação Recusada`)
+                            c.delete()
+                            d.delete()
+                            break;
+                        }
                       })
                     })
+                    )
+                    message.channel.send('Usuário salvo na database')
                   })
-                }
+                })
               })
             }
-          })
+          }
         } else if (args[0] === 'cor') {
           const doc = await this.client.database.user.getOrCreate(message.author.id)
           if (!message.content.includes('#')) {
@@ -226,7 +224,7 @@ module.exports = class vip extends Command {
 
           message.channel.send({ embed }).then(async m => {
             await m.react('666762183249494027')// ir para frente
-            const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027'|| e.emoji.id == '665721366514892839')
+            const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
             const col = m.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
             col.on('collect', async (e) => {
               if (embedCount != 2 && e.emoji.id == '666762183249494027') { // ir para frente

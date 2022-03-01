@@ -64,16 +64,15 @@ module.exports = async function onMessage(message) {
   }
 
   const Users = await this.database.user.getOrCreate(message.author.id)
-  const guildPrefix = (guildDocument && guildDocument.prefix)
-  const botMention = message.guild ? message.guild.me.toString() : this.user.toString()
-  const prefix = message.content.startsWith(botMention) ? `${botMention} ` : (message.content.startsWith(guildPrefix) ? guildPrefix : null)
-  if (prefix) return
+  const prefix = guildDocument.prefix
+  if (!prefix) return
   if (Users.blacklist) {
     message.reply('> Você está na blacklist,e não pode executar nenhum comando do bot.').then(msg => msg.delete({ timeout: 5000 }))
     return
   }
-  const args = message.content.slice(prefix.lenght).trim().split(' ')
-  const name = args.shift()
+  const args = message.content.slice(prefix.length).trim().split(' ')
+  const name = args.shift().toLowerCase()
+  console.log(name)
   const command = this.commands.find(command => command.name === name || command.aliases.includes(name))
   if (command?.permissions && !message.member.permissions.has(command.permissions)) {
     const embed = new MessageEmbed()

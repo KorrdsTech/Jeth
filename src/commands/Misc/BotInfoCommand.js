@@ -13,11 +13,12 @@ module.exports = class info extends Command {
     this.subcommandsOnly = false
   }
 
-  async run(message, client) {
+  // eslint-disable-next-line no-unused-vars
+  async run(message, args) {
     moment.locale('pt-br')
     const embed = new Discord.MessageEmbed()
       .setDescription('<:info:695503582342152273> **Informações:**')
-      .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+      .setThumbnail(this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTimestamp()
       .setColor(colors.default)
       .setImage('https://media.giphy.com/media/3NnnS6Q8hVPZC/giphy.gif')

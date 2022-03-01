@@ -11,7 +11,8 @@ module.exports = class Ping extends Command {
     this.subcommandsOnly = false
   }
 
-  async run(message, client, args) {
+  // eslint-disable-next-line no-unused-vars
+  async run(message, args) {
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
     const prefix = documento.prefix
     const embed = new Discord.MessageEmbed() // Aqui vai ser a primeira embed que o bot irá mostrar
@@ -19,9 +20,7 @@ module.exports = class Ping extends Command {
       .setColor(colors.default)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setDescription(`Calculando...`)
-      .addField(`<:9605discordslashcommand:832746852667490334> ⇝ Ajuda`, [
-        `Use \`${prefix}ajuda\` para saber mais comandos!`
-      ])
+      .addField(`<:9605discordslashcommand:832746852667490334> ⇝ Ajuda`, `Use \`${prefix}ajuda\` para saber mais comandos!`)
 
     const embed2 = new Discord.MessageEmbed() // Aqui vai ser a segunda embed que o bot irá mostrar
       .setTitle(message.author.username)
