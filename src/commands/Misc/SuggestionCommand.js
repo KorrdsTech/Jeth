@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { Discord, MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 
 module.exports = class suggestion extends Command {
   constructor(name, client) {

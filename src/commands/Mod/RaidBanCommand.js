@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { Discord, MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { error } = require('console')
 
 module.exports = class Raidban extends Command {

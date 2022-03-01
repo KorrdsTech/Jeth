@@ -1,4 +1,4 @@
-const { Discord, MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { Command, colors } = require('../../utils')
 const axios = require('axios');
 

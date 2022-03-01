@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { Discord, MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const ms = require('ms')
 
 module.exports = class Timeout extends Command {

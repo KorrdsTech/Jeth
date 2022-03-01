@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { Discord, MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const steam = require('steam-provider') //npm i steam-provider
 const provider = new steam.SteamProvider();
 
