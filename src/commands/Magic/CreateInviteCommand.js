@@ -1,4 +1,4 @@
-const { Command, colors } = require('../../utils')
+const { Command } = require('../../utils')
 
 module.exports = class createInvite extends Command {
   constructor(name, client) {

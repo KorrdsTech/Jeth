@@ -53,8 +53,6 @@ module.exports = class setcargo extends Command {
         //     return 0;
         // }
 
-    const cargo = message.guild.roles.cache.find(role => role.name === `${cargo_nome}`)
-
     const embed = new MessageEmbed()
       .setTimestamp()
       .setColor(colors.default)
