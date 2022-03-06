@@ -117,16 +117,12 @@ module.exports = class vip extends Command {
                       VIEW_CHANNEL: true,
                       SEND_MESSAGES: true,
                       MANAGE_CHANNELS: true,
-                    }).then(channel => channel.send(`${lerole}, ${message.author} requer aprovação para sua call, caso a mesma seja aprovada reaja abaixo, nome da call: ${args}`).then(msg => {
-                      setTimeout(() => {
-                        msg.react('856174396372680714')
-                      }, 500)
-                      setTimeout(() => {
-                        msg.react('856174396232957962')
-                      }, 1000)
+                    }).then(channel => channel.send(`${lerole}, ${message.author} requer aprovação para sua call, caso a mesma seja aprovada reaja abaixo, nome da call: ${args}`).then(async msg => {
+                      await msg.react('856174396372680714')
+                      await msg.react('856174396232957962')
                       const solaris = message.guild.members.cache.get('442774319819522059')
-                      const filter = msg.createReactionfilter((r, u) => (r.emoji.id === '856174396372680714', '856174396232957962') && (u.id !== this.client.user.id && u.id === solaris.id))
-                      const col = msg.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+                      const filter = (r, u) => (r.emoji.id === '856174396372680714', '856174396232957962') && (u.id !== this.client.user.id && u.id === solaris.id)
+                      const col = msg.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
                       col.on('collect', async (r) => {
                         switch (r.emoji.id) {
                           case '856174396372680714':
@@ -225,7 +221,7 @@ module.exports = class vip extends Command {
           message.channel.send({ embeds: [embed] }).then(async m => {
             await m.react('666762183249494027')// ir para frente
             const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
-            const col = m.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+            const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
             col.on('collect', async (e) => {
               if (embedCount != 2 && e.emoji.id == '666762183249494027') { // ir para frente
 

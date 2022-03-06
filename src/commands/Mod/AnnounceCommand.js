@@ -82,18 +82,12 @@ module.exports = class anuncio extends Command {
         .setDescription(`**Você está preste a mandar um anúncio no ${chat}, confirme com os emojis abaixo.** \n \n<a:number1:667590654200774656> Para mencionar \`@everyone\` .\n<a:number2:667590655744147521> Para mencionar \`@here\` .\n<a:number3:667590655698141197> Para não mencionar ninguém.`)
         .setFooter('Não apareceu? seu link deve estar inválido', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-      message.reply(embedreply).then(msg => {
-        setTimeout(() => {
-          msg.react('667590654200774656')
-        }, 500)
-        setTimeout(() => {
-          msg.react('667590655744147521')
-        }, 1000)
-        setTimeout(() => {
-          msg.react('667590655698141197')
-        }, 1500)
-        const filter = msg.createReactionfilter((r, u) => (r.emoji.id === '667590654200774656', '667590655744147521', '667590655698141197') && (u.id !== this.client.user.id && u.id === message.author.id))
-        const col = msg.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+      message.reply(embedreply).then(async msg => {
+        await msg.react('667590654200774656')
+        await msg.react('667590655744147521')
+        await msg.react('667590655698141197')
+        const filter = ((r, u) => (r.emoji.id === '667590654200774656', '667590655744147521', '667590655698141197') && (u.id !== this.client.user.id && u.id === message.author.id))
+        const col = msg.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
         col.on('collect', async (r) => {
           switch (r.emoji.id) {
             case '667590654200774656':

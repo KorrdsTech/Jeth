@@ -35,10 +35,7 @@ module.exports = class chat extends Command {
       await ell.react(emojis[i]);
     }
 
-    const filter = ell.createReactionfilter(
-      ((_, u) => _ && u.id === message.author.id),
-      { time: 60000 }
-    )
+    const filter = (_, u) => (_ && u.id === message.author.id)
 
     const embedlockado = new MessageEmbed()
       .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi bloqueado com sucesso!`)
@@ -48,7 +45,7 @@ module.exports = class chat extends Command {
       .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi desbloqueado com sucesso!`)
       .setColor(colors.default)
 
-    const col = ell.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+    const col = ell.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
     col.on('collect', async (reaction) => {
       console.log(reaction.emoji.id)
       switch (reaction.emoji.id) {

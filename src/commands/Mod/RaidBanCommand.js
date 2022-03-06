@@ -108,22 +108,18 @@ module.exports = class Raidban extends Command {
         membro14.send(warnembed18)
       } catch { error }
     } else {
-      message.channel.send(escolha).then(m => {
+      message.channel.send(escolha).then(async m => {
+        await m.react('739977300564639835')
+        await m.react('739977300921024522')
+        await m.react('739977300895858708')
+        await m.react('739977300472234078')
+        await m.react('739977300719697941')
+        await m.react('739977300795457687').then(() => {
+          setTimeout(() => m.delete(), 15000)
+        })
 
-        m.react('739977300564639835')
-        m.react('739977300921024522')
-        m.react('739977300895858708')
-        m.react('739977300472234078')
-        m.react('739977300719697941')
-        m.react('739977300795457687').then(() =>
-          m.delete({ timeout: 15000 })
-        )
-
-        const filter = m.createReactionfilter(
-          ((_, u) => _ && u.id === message.author.id),
-          { time: 60000 }
-        )
-        const col = m.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+        const filter = (_, u) => (_ && u.id === message.author.id)
+        const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
         col.on('collect', async (reaction) => {
 
           console.log(reaction.emoji.name)

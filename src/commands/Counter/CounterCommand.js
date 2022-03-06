@@ -37,7 +37,7 @@ module.exports = class Counter extends Command {
         return message.channel.send(`Coloque qual será a mensagem do Counter, lembre-se "{cor - tipo}" será o tipo/cor do Counter...`)
       }
 
-            // agora é preciso separar estes includes, código por código, pois todos juntos não é aceito e da erro, burlando todo o sistema.
+      // agora é preciso separar estes includes, código por código, pois todos juntos não é aceito e da erro, burlando todo o sistema.
       if (mensagem.includes('{pinky}') && !guildDocument.partner) {
         return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
@@ -78,7 +78,7 @@ module.exports = class Counter extends Command {
       const defaultChannel = await message.guild.channels.cache.get(guildDocument.countChannel)
       if (!defaultChannel) return message.channel.send(`Este servidor não possui um canal definido no Counter...\nUse: \`${message.prefix}Counter canal #canal\` para definir um e use o comando novamente!`)
       setTimeout(async () => {
-                //ja volto ai
+        //ja volto ai
         await message.channel.send(`Mensagem definida como \`${guildDocument.countMessage}\`\nCounter ativado...`)
         await defaultChannel.setTopic(guildDocument.countMessage.replace('{azul}', TranslateFunctions.azul(message.guild.memberCount))
           .replace('{pinky}', TranslateFunctions.pinky(message.guild.memberCount))
@@ -170,8 +170,8 @@ module.exports = class Counter extends Command {
 
       message.channel.send({ embeds: [embed] }).then(async m => {
         await m.react('666762183249494027')// ir para frente
-        const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027'|| e.emoji.id == '665721366514892839')
-        const col = m.createReactionfilter({ filter, time: 180_000, errors: ['time'] })
+        const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
+        const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
         col.on('collect', async (e) => {
           if (embedCount != 2 && e.emoji.id == '666762183249494027') { // ir para frente
 
