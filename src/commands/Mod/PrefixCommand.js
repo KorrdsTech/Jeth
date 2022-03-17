@@ -7,7 +7,7 @@ module.exports = class Prefix extends Command {
 
     this.name = 'prefix'
     this.aliases = ['prefix', 'prefixo', 'setprefix', 'set.prefix', 'prefix.set']
-    this.category = 'Fun'
+    this.category = 'Mod'
     this.subcommandsOnly = false
   }
 
