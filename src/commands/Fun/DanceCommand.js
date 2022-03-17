@@ -11,9 +11,9 @@ module.exports = class dancar extends Command {
   }
 
   async run(message) {
-
     const defineduser = message.mentions.users.first();
     const gifs = ['https://media.giphy.com/media/Lpjf6bdEAOrQVopADX/giphy.gif', 'https://media.tenor.com/images/fe3826b59f80f5e6c7cc04eb474fb44d/tenor.gif', 'https://i.pinimg.com/originals/74/cc/f2/74ccf241f106391981c4f8794523cadf.gif', 'http://bestanimations.com/Music/Dancers/anime-dancing-girls/anime-kawaii-cute-dance-animated-gif-image-7.gif', 'https://i.kym-cdn.com/photos/images/newsfeed/001/115/816/936.gif']
+
     if (!defineduser) {
       const embed = new MessageEmbed()
         .setColor('#a900ff')
@@ -35,6 +35,7 @@ module.exports = class dancar extends Command {
         .setDescription(`💃🏻 🕺🏻 ${message.author} Convidou ${defineduser} para dançar e a resposta foi **SIM**`)
         .setImage(gifs1[Math.floor(Math.random() * gifs1.length)])
         .setFooter(`Pedido por ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 })).setTimestamp()
+
       message.channel.send(embed1)
     }
   }
