@@ -24,6 +24,7 @@ module.exports = class abracar extends Command {
 
     if (message.mentions.users.size < 1) return message.channel.send({ embeds: [embed] })
     if (user.id == message.author.id) message.channel.send({ embeds: [embed] })// return message.reply("Você não pode abraçar a si mesmo.")
+
     const HugEmbed = new MessageEmbed()
       .setColor(colors.default)
       .setTitle(`:blush: ${message.author.username} **deu um abraço no(a)** ${user.username}`)
