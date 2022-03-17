@@ -11,10 +11,9 @@ module.exports = class Eightball extends Command {
   }
 
   async run(message, args) {
-
     if (!args[2]) return message.reply('`Por favor, faça a pergunta completa`')
-    const replies = ['Sim.', 'Não.', 'Eu não sei.', 'talvez.', 'Depende.']
 
+    const replies = ['Sim.', 'Não.', 'Eu não sei.', 'talvez.', 'Depende.']
     const result = Math.floor(Math.random() * replies.length);
     const question = args.join(' ');
 
