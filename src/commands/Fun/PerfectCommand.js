@@ -12,7 +12,6 @@ module.exports = class perfeito extends Command {
   }
 
   async run(message) {
-
     const width = 467;
     const height = 400;
     const posX = 30;
