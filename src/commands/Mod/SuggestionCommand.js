@@ -7,7 +7,7 @@ module.exports = class suggestion extends Command {
 
     this.name = 'suggestion'
     this.aliases = ['suggestion', 'sugestão']
-    this.category = 'Fun'
+    this.category = 'Mod'
     this.subcommandsOnly = false
   }
 
