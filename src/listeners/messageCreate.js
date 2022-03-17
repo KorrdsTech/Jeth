@@ -4,15 +4,20 @@ const { Permissions } = require('discord.js');
 
 module.exports = async function onMessage(message) {
   const guildDocument = await this.database.guild.getOrCreate(message.guild.id)
+
   if (message.channel.type === 'DM') return
   if (message.author.bot) {
     if (message.author.discriminator !== '0000') return
     if (message.author.username !== 'Haku') return
     if (message.channel.id !== '879568042433085490') return
+
     const member = message.mentions.users.first()
     const Users = await this.database.user.getOrCreate(member?.id)
+
     if (!Users) return
+
     const vipRole = message.guild.roles.cache.find((role) => role.id === '839754099573522452');
+
     if (!message.guild.members.cache.get(member.id)?.roles?.cache?.has(vipRole.id)) {
       Users.rep += 1
       Users.save()
@@ -24,12 +29,6 @@ module.exports = async function onMessage(message) {
     }
   }
 
-  // const hearty = '671437180669001763'
-  // if (message.channel.id === '718178715657568364') {
-
-  //     message.react(hearty);
-  // }
-
   const thumbsup = '👍';
   const thumbsdown = '👎';
   if (message.channel.id === '718178715657568359') {
@@ -37,17 +36,6 @@ module.exports = async function onMessage(message) {
     message.react(thumbsup);
     await message.react(thumbsdown);
   }
-
-  // message Delete Module
-  // this.client.on('messageDelete', message => {
-  // let delEmbed = new MessageEmbed()
-  // .setThumbnail('https://cdn.discordapp.com/emojis/903453782388670524.png?size=96')
-  // .setColor(colors['mod'])
-  // .setDescription(`**Conteúdo da Mensagem:** ${message.cleanContent}\n**Horário:** ${new Date()}\n**Canal da Mensagem:** ${message.channel.name}`)
-  // .setTimestamp();
-
-  // message.guild.channels.cache.get('831041533469655070').send(del{ embeds: [Hugembed] })
-  // })    // end of it finnaly :3
 
   if (guildDocument?.sugesModule) {
     const suggestionChannel = message.guild.channels.cache.get(guildDocument?.sugesChannel)
@@ -67,9 +55,10 @@ module.exports = async function onMessage(message) {
   const prefix = guildDocument.prefix
   if (!prefix) return
   if (Users.blacklist) {
-    message.reply('> Você está na blacklist,e não pode executar nenhum comando do bot.').then(msg => msg.delete({ timeout: 5000 }))
+    message.reply('> Você está na blacklist e não pode executar nenhum comando do bot.').then(msg => msg.delete({ timeout: 5000 }))
     return
   }
+
   const args = message.content.slice(prefix.length).trim().split(' ')
   const name = args.shift().toLowerCase()
   const command = this.commands.find(command => command.name === name || command.aliases.includes(name))
@@ -123,14 +112,13 @@ module.exports = async function onMessage(message) {
 
         const canal = message.guild.channels.cache.get(guildDocument.infoantinv)
         if (!canal) return;
-        await message.channel.send(`Anti-invite ativado,membro: ${message.author} foi mutado automaticamente!`)
+        await message.channel.send(`Anti-invite ativado, membro: ${message.author} foi mutado automaticamente!`)
         const embedmute = new MessageEmbed()
           .setAuthor(message.member.user.username, message.member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setColor('BLACK')
           .setDescription(`O usuário: ${message.member},enviou convite no ${message.channel} e foi mutado automaticamente com a role: ${muteRole}`)
         await message.member.roles.add(muteRole).catch(() => { })
-        await canal.send(embedmute).catch(() => { })
-
+        await canal.send({ embeds: [embedmute] }).catch(() => { })
       }
     }
   }
