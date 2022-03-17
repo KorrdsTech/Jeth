@@ -35,7 +35,6 @@ module.exports = class unmute extends Command {
       reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
     }).catch(console.error)
 
-    await message.member.roles.add(muteRole).catch(() => { })
     await message.guild.channels.cache.forEach(channel => {
       channel.updateOverwrite(muteRole, {
         SEND_MESSAGES: false
