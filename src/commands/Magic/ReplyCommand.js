@@ -7,7 +7,7 @@ module.exports = class reply extends Command {
 
     this.name = 'reply'
     this.aliases = ['reply']
-    this.category = 'Fun'
+    this.category = 'Magic'
     this.subcommandsOnly = false
   }
 

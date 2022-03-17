@@ -7,7 +7,7 @@ module.exports = class vote extends Command {
 
     this.name = 'vote'
     this.aliases = ['vote', 'votar']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

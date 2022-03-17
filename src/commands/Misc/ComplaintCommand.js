@@ -7,7 +7,7 @@ module.exports = class complaint extends Command {
 
     this.name = 'complaint'
     this.aliases = ['complaint', 'report', 'denounce', 'watchdogsreport']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

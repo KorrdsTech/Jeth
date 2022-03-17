@@ -7,7 +7,7 @@ module.exports = class topico extends Command {
 
     this.name = 'topic'
     this.aliases = ['topico', 'tp', 'st', 'topic']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

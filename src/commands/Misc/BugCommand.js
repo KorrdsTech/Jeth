@@ -7,7 +7,7 @@ module.exports = class bug extends Command {
 
     this.name = 'bug'
     this.aliases = ['bug', 'reportar', 'bugreport', 'report', 'reportbug']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

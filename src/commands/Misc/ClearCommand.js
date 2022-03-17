@@ -7,7 +7,7 @@ module.exports = class apagar extends Command {
 
     this.name = 'clear'
     this.aliases = ['apagar', 'clear', 'limpar', 'clean']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

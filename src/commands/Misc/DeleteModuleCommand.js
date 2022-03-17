@@ -6,7 +6,7 @@ module.exports = class deleteModule extends Command {
 
     this.name = 'deletemodule'
     this.aliases = ['deletemodule', 'delete']
-    this.category = 'Fun'
+    this.category = 'Misc'
   }
 
   // eslint-disable-next-line no-unused-vars

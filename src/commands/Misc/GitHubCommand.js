@@ -8,7 +8,7 @@ module.exports = class github extends Command {
 
     this.name = 'github'
     this.aliases = ['github', 'git', 'hub']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

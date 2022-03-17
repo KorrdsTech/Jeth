@@ -16,7 +16,7 @@ module.exports = class Embed extends Command {
 
     this.name = 'embed'
     this.aliases = ['embed', 'embed-visualizer']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

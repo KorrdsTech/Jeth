@@ -9,7 +9,7 @@ module.exports = class steam extends Command {
 
     this.name = 'steam'
     this.aliases = ['steam', 'game', 'gameinfo']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

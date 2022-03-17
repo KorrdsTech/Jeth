@@ -7,7 +7,7 @@ module.exports = class convite extends Command {
 
     this.name = 'invite'
     this.aliases = ['convite', 'invite']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

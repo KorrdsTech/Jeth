@@ -7,7 +7,7 @@ module.exports = class cry extends Command {
 
     this.name = 'cry'
     this.aliases = ['cry']
-    this.category = 'diversão'
+    this.category = 'Fun'
   }
 
   async run(message) {

@@ -7,7 +7,7 @@ module.exports = class emoji extends Command {
 
     this.name = 'emoji'
     this.aliases = ['emojis', 'emoji']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

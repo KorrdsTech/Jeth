@@ -7,7 +7,7 @@ module.exports = class serverinfo extends Command {
 
     this.name = 'serverinfo'
     this.aliases = ['serverinfo', 'server', 'infoserver']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

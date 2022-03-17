@@ -7,7 +7,7 @@ module.exports = class curiosidades extends Command {
 
     this.name = 'curiosities'
     this.aliases = ['curiosidades', 'curiosities']
-    this.category = 'Fun'
+    this.category = 'Misc'
   }
 
   async run(message) {

@@ -7,7 +7,7 @@ module.exports = class Ping extends Command {
 
     this.name = 'ping'
     this.aliases = ['latencia', 'ms', 'ping']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

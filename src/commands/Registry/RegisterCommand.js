@@ -79,7 +79,7 @@ module.exports = class Registrar extends Command {
             const memberArr = registradores[u].membrosRegistrados;
             for (let i = 0; i < memberArr.length; ++i) {
               if (memberArr[i]._id === member.id) {
-                const timestamp = 0;
+                let timestamp = 0;
                 registradorID = registradores[u]._id;
                 timestamp = memberArr[i].timestamp;
                 u = registradores.length;
@@ -104,13 +104,17 @@ module.exports = class Registrar extends Command {
             const { MessageEmbed } = require('discord.js');
             let canal = message.guild.channels.cache.get(guildTable.channelRegister)
             if (!canal) canal = message.channel;
+
             const embedSv = new MessageEmbed()
               .setAuthor(`Registrador(a): ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
               .setDescription(`${message.author} você Registryu o usuário(a) ${member} com sucesso.`)
               .setFooter('Depois desse Registry cairia bem um bolo né? 🍰')
               .setColor(colors.default);
+
             canal.send({ embeds: [embedSv] }).catch(() => { });
+
             message.reply('<:concludo:739830713792331817> **|** Usuário registrado com sucesso.').then(msg => { msg.delete({ timeout: 5000 }) })
+
             const embedDM1 = new MessageEmbed()
               .setTitle(`${message.guild.name} | Notificação Registry`)
               .setDescription(`<:Registryeyey:739837234097684582> **Você foi registrado(a) por ${message.author}, no Servidor: __${member.guild.name}__.\n` + `Caso não tenha se registrado por essa pessoa, entre em contato com <@${message.guild.owner.id}>.**`)
@@ -119,9 +123,11 @@ module.exports = class Registrar extends Command {
               .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
               .setFooter('Depois desse Registry cairia bem um bolo né? 🍰')
               .setColor(colors.default)
+
             const embedDM2 = new MessageEmbed()
               .setDescription(`<:a_blurplepartner:856174395869626399> **Olá! Gostou da Jeth? quer saber de novidades diárias , sempre está atualizado sobre novos comandos! entre no [suporte](https://discord.gg/VnYbWUz3ZZ)**`)
               .setColor(colors.default)
+
             member.send(embedDM1).catch(() => { });
             member.send(embedDM2).catch(() => { });
 

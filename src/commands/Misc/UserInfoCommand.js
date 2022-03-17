@@ -9,7 +9,7 @@ module.exports = class userinfo extends Command {
 
     this.name = 'userinfo'
     this.aliases = ['userinfo', 'infomember', 'member']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 

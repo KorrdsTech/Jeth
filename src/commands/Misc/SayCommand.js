@@ -7,7 +7,7 @@ module.exports = class Say extends Command {
 
     this.name = 'say'
     this.aliases = ['say']
-    this.category = 'Fun'
+    this.category = 'Misc'
     this.subcommandsOnly = false
   }
 
