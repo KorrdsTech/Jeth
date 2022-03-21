@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js')
 const { colors } = require('../utils')
-const { Permissions } = require('discord.js');
+const parse = require('parse-duration')
 
 module.exports = async function onMessage(message) {
   const guildDocument = await this.database.guild.getOrCreate(message.guild.id)
@@ -29,6 +29,7 @@ module.exports = async function onMessage(message) {
     }
   }
 
+  const Users = await this.database.user.getOrCreate(message.author.id)
   const thumbsup = '👍';
   const thumbsdown = '👎';
   if (message.channel.id === '718178715657568359') {
@@ -51,7 +52,20 @@ module.exports = async function onMessage(message) {
     }
   }
 
-  const Users = await this.database.user.getOrCreate(message.author.id)
+  if (guildDocument.antInvite && !message.member.permissions.has('ADMINISTRATOR')) {
+    if ((/((?:discord\.gg|discordapp\.com\/invite|discord\.com\/invite|discord\.me|discord\.io))/g).test(message.content)) {
+      message.delete()
+      this.api.guilds(message.guild.id).members(message.author.id).patch({
+        data: {
+          communication_disabled_until: new Date(new Date(Date.now() + Number(parse('1d'))).toUTCString()).toISOString()
+        },
+        reason: 'Divulgação de convites não são toleradas aqui.'
+      }).then(() => {
+        message.reply('<:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!')
+      })
+    }
+  }
+
   const prefix = guildDocument.prefix
   if (!prefix) return
   if (Users.blacklist) {
@@ -84,42 +98,6 @@ module.exports = async function onMessage(message) {
     } else {
       guildDocument.delete = false
       command.process(message, args)
-    }
-  }
-  if (guildDocument.antInvite && !message.member.permissions.has('ADMINISTRATOR', false, true, true)) {
-    if (message.channel.id === '842588427170086974') {
-      return;
-    } else {
-      if (message.content.includes('https://discord.gg/') || message.content.includes('discord.gg/')) {
-        message.delete()
-        await message.reply('<:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!')
-        let muteRole = message.guild.roles.cache.find(r => r.name === 'Muted');
-        if (!muteRole) muteRole = await message.guild.roles.create({
-          data: {
-            name: 'Muted',
-            color: '#080808',
-            permissions: [Permissions.READ_MESSAGES]
-          },
-          reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
-        }).catch(console.error)
-
-        await message.member.roles.add(muteRole).catch(() => { })
-        await message.guild.channels.cache.forEach(channel => {
-          channel.updateOverwrite(muteRole, {
-            SEND_MESSAGES: false
-          })
-        });
-
-        const canal = message.guild.channels.cache.get(guildDocument.infoantinv)
-        if (!canal) return;
-        await message.channel.send(`Anti-invite ativado, membro: ${message.author} foi mutado automaticamente!`)
-        const embedmute = new MessageEmbed()
-          .setAuthor(message.member.user.username, message.member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-          .setColor('BLACK')
-          .setDescription(`O usuário: ${message.member},enviou convite no ${message.channel} e foi mutado automaticamente com a role: ${muteRole}`)
-        await message.member.roles.add(muteRole).catch(() => { })
-        await canal.send({ embeds: [embedmute] }).catch(() => { })
-      }
     }
   }
 
