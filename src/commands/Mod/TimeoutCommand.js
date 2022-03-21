@@ -14,18 +14,43 @@ module.exports = class Timeout extends Command {
   async run(message, args) {
             // Embed erro de permissões:
     const embedA = new MessageEmbed()
-
-      .setTimestamp()
       .setColor(colors.mod)
-      .setTitle('**Err:**', `${message.author.username}`, true)
+      .setTitle('**Timeout:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERS`', true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
+    const permErr = new MessageEmbed()
+      .setColor(colors.mod)
+      .setTitle('**Timeout:**', `${message.author.username}`, true)
+      .setDescription('Missing Permissions') // inline false
+      .addField('*Verifique se eu possuo a permissão:*', '`MODERATE_MEMBERS`', true)
+
+    const emptyMessage = new MessageEmbed()
+      .setColor(colors.mod)
+      .setTitle('<:plus:955577453441597550> **Timeout:**', `${message.author.username}`, true)
+      .setDescription('Criado para subistituir o antigo comando mute, um timeout irá remover o usuário temporariamente dos canais do seu servidor o impedindo de enviar mensagens e se comunicar por voz, esta funcionalidade foi implementada pelo Discord em um release anterior.') // inline false
+      .addField('*Uso do comando:*', '`timeout <@user> <tempo> <motivo>`', true)
+      .addField('*Exemplo:*', '`timeout @Solaris#0006 1d Mute manager has spoken!`', true)
+
+    const rolesHighest = new MessageEmbed()
+      .setColor(colors.mod)
+      .setTitle('<:reinterjection:955577574304657508> **Timeout:**', `${message.author.username}`, true)
+      .setDescription('Você não pode executar um timeout neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
+
+            // verifica se o conteúdo da mensagem é nulo
+    if (!args[1]) return message.reply({ embeds: [emptyMessage] });
             // verifica se user autor da mensagem tem permissão de moderar os membros.
-    if (!message.member.permissions.has('MODERATE_MEMBERS')) return message.channel.send({ embeds: [embedA] });
+    if (!message.member.permissions.has('MODERATE_MEMBERS')) return message.reply({ embeds: [embedA] });
+            // verifica se user bot da mensagem tem permissão de moderar os membros.
+    if (!message.guild.me.permissions.has('MODERATE_MEMBERS')) return message.reply({ embeds: [permErr] });
             // define o que é user, neste caso user é o primeiro usuário que o autor colocar o ID ou mencionar no chat
-    const user = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
+    const user = await message.guild.members.fetch(args[0].replace(/[<@!>]/g, ''))
+            // checa se o usuário tem o mesmo cargo ou superior ao executor da mensagem.
+    const executorRole = message.member.roles.highest;
+    const targetRole = user.roles.highest;
+    if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
+      return message.reply({ embeds: [rolesHighest] });
+    }
             // define qual vai ser o motivo do timeout.
     const reason = args.slice(2).join(' ')
             // define o temporizados do timeout.
@@ -43,17 +68,13 @@ module.exports = class Timeout extends Command {
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Timeout')
       .setColor('#ff112b')
-      .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Usuário:** ${user.username} \n**ID:** ${user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}` + `\n<:KaelMutado:673592196972412949> **Tempo:** ${timer}`)
+      .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Usuário:** ${user.user.username} \n**ID:** ${user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}` + `\n<:KaelMutado:673592196972412949> **Tempo:** ${timer}`)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date());
 
             // executa o corte de comunicação ou timeout.
-    this.client.api.guilds(message.guild.id).members(user.id).patch({
-      data: {
-        communication_disabled_until: new Date(new Date(Date.now() + Number(parse(timer))).toUTCString()).toISOString()
-      },
-      reason: reason
-    })
+    user.timeout(parse(timer)).then(
+      message.reply({ embeds: [embed] }))
             // envia a mensagem de confirmação
     message.channel.send({ embeds: [embed] })
 

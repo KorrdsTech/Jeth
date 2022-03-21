@@ -12,6 +12,17 @@ module.exports = class Ban extends Command {
   }
 
   async run(message, args) {
+    const emptyMessage = new MessageEmbed()
+      .setColor(colors.mod)
+      .setTitle('<:plus:955577453441597550> **Ban:**', `${message.author.username}`, true)
+      .setDescription('Criado para facilitar o gerenciamento de banimentos de um servidor, desta forma criando uma log confirmando permanentemente que o usuário foi banido daquele servidor e o motivo especificado.') // inline false
+      .addField('*Uso do comando:*', '`ban <@user> <motivo>`', true)
+      .addField('*Exemplo:*', '`ban @Solaris#0006 Ban hammer has spoken!`', true)
+
+    const rolesHighest = new MessageEmbed()
+      .setColor(colors.mod)
+      .setTitle('<:reinterjection:955577574304657508> **Ban:**', `${message.author.username}`, true)
+      .setDescription('Você não pode executar um banimento neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
 
     const escolha = new MessageEmbed()
       .setColor(colors.default)
@@ -32,16 +43,16 @@ module.exports = class Ban extends Command {
     const quinto = 'Ações que comprometem o servidor ou os usuários'
     const sexto = 'Divulgação inapropriada'
 
-    if (!args[0]) return message.reply(link)
+    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
     const membro17 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro17) {
-      message.channel.send(link)
+      message.channel.send({ embeds: [link] })
     }
 
     const membro14 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro14) {
-      message.channel.send(link)
+      message.channel.send({ embeds: [link] })
     }
     const guildDocument1 = await this.client.database.user.getOrCreate(membro14.id)
 
@@ -56,10 +67,10 @@ module.exports = class Ban extends Command {
     if (!message.member.permissions.has('BAN_MEMBERS')) return message.channel.send({ embeds: [embedA] })
     const userDocuent = await this.client.database.user.getOrCreate(message.author.id)
     // ban padrão 17
-    const bannable = message.guild.member(membro17, membro14)
+    const bannable = [membro17, membro14]
     if (bannable) {
-      if (!bannable.bannable) return message.reply('eu não posso banir este usuário, o cargo dele é maior que o meu.')
-      if (bannable.roles.highest.position > message.member.roles.highest.position) return message.reply(`você não pode banir esse usuário, pois o cargo dele é maior ou igual ao seu.`)
+      if (!bannable.bannable) return message.reply({ embeds: [rolesHighest] })
+      if (bannable.roles.highest.position > message.member.roles.highest.position) return message.reply({ embeds: [rolesHighest] })
     }
 
     const warnembed17 = new MessageEmbed()

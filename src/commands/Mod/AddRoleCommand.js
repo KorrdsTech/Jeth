@@ -12,15 +12,38 @@ module.exports = class setcargo extends Command {
 
   async run(message, args) {
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-    const cargo_nome = message.mentions.roles.first() || message.mentions.roles.array([1])
+    const cargo_nome = message.mentions.roles.first()
+
     const embedA = new MessageEmbed()
       .setTimestamp()
       .setColor(colors.mod)
-      .setTitle('**Err:**', `${usuario}`, true)
+      .setTitle('**AddRole:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
+    const rolesHighest = new MessageEmbed()
+      .setTimestamp()
+      .setColor(colors.mod)
+      .setTitle('<:reinterjection:955577574304657508> **AddRole:**', `${message.author.username}`, true)
+      .setDescription('Você não pode adicionar uma role neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
+
+    const permErr = new MessageEmbed()
+      .setTimestamp()
+      .setColor(colors.mod)
+      .setTitle('**AddRole:**', `${message.author.username}`, true)
+      .setDescription('Missing Permissions') // inline false
+      .addField('*Verifique se eu possuo a permissão:*', '`MANAGE_ROLES`', true)
+
+    const emptyMessage = new MessageEmbed()
+      .setTimestamp()
+      .setColor(colors.mod)
+      .setTitle('<:plus:955577453441597550> **AddRole:**', `${message.author.username}`, true)
+      .setDescription('Criado para facilitar a distribuição de cargos dentro de um servidor.') // inline false
+      .addField('*Uso do comando:*', '`AddRole <@user> <cargo>`', true)
+      .addField('*Exemplo:*', '`AddRole @Solaris#0006 @Admin`', true)
+
+    if (!args[1]) return message.reply({ embeds: [emptyMessage] });
+    if (!message.guild.me.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [permErr] });
     if (!message.member.permissions.has('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
     if (!usuario) return message.reply('Você não mencionou o usuário!');
     if (!cargo_nome) return message.reply('Você não colocou um cargo valido!');
@@ -35,23 +58,9 @@ module.exports = class setcargo extends Command {
     const executorRole = message.member.roles.highest;
     const targetRole = usuario.roles.highest;
     if (executorRole.comparePositionTo(targetRole) <= 0 && message.author.id !== message.guild.ownerID) {
-      message.reply('Você não tem permissão para setar role neste usuário');
+      message.reply({ embeds: [rolesHighest] });
       return 0;
     }
-
-        // const embedC = new MessageEmbed()
-        // .setTimestamp()
-        // .setColor(colors.mod)
-        // .setTitle('**Err:**', true)
-        // .setDescription('Missing Permissions') // inline false
-        // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
-        // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
-
-        // let clientRole = message.guild.me.roles.highest;
-        // if (clientRole.comparePositionTo(targetMember) <= 0) {
-        //     message.reply({ embeds: [embedA] });
-        //     return 0;
-        // }
 
     const embed = new MessageEmbed()
       .setTimestamp()
