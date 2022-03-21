@@ -35,20 +35,32 @@ module.exports = async function onGuildMemberAdd(member) {
       if (guildDocument.welcomeModule) {
         const channel = member.guild.channels.cache.get(guildDocument.channelWelcome)
         if (!channel) return
-        let message = guildDocument.welcomeMessage;
+        let message = guildDocument.welcomeMessage
         if (!message.length) return 0;
-        message = message.replace(/\$\{USER\}/g, member);
-        message = message.replace(/\$\{SERVER\}/g, member.guild.name);
-        message = message.replace(/\$\{AVATAR\}/g, member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-        message = message.replace(/\$\{USER-ID\}/g, member.id)
-        message = message.replace(/\$\{CONTA-CRIADA\}/g, moment(member.user.createdTimestamp).format('LL'))
-        message = message.replace(/\$\{USER-NAME\}/g, member.user.username)
+        message = (typeof message === 'string' ? message : JSON.stringify(message))
+          .replace(/\{USER\}/g, member)
+          .replace(/\{SERVER\}/g, member.guild.name)
+          .replace(/\{AVATAR\}/g, member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+          .replace(/\{USER-ID\}/g, member.id)
+          .replace(/\{CONTA-CRIADA\}/g, moment(member.user.createdTimestamp).format('LL'))
+          .replace(/\{USER-NAME\}/g, member.user.username)
         try {
-          const messageEmbed = JSON.parse(message)
+          const messageEmbed =  JSON.parse(message)
           channel.send(`${member}`)
-          channel.send({ content: message.toString(), embeds: [messageEmbed] }).then((msg) => msg.delete({ timeout: 5000 }))
+          channel.send({
+            content: messageEmbed['content'] ? messageEmbed.content : (typeof messageEmbed === 'string') ? messageEmbed : '',
+            embeds: [messageEmbed['embed'] ? messageEmbed.embed : (typeof messageEmbed === 'object') ? messageEmbed : {}]
+          }).then((msg) => {
+            setTimeout(() => {
+              msg.delete()
+            }, 5000)
+          })
         } catch (err) {
-          channel.send(message).then((msg) => msg.delete({ timeout: 5000 }))
+          channel.send(message).then((msg) => {
+            setTimeout(() => {
+              msg.delete()
+            }, 5000)
+          })
         }
 
         if (guildDocument.novato.length) {

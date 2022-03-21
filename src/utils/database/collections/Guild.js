@@ -33,6 +33,7 @@ const Guild = new Schema({
   feminino: { type: String, default: '' },
   registrado: { type: String, default: '' },
   nbinario: { type: String, default: '' },
+  autorole: { type: String, default: '' },
   novato: { type: String, default: '' },
   registradores: [RegistradorSchema],
 })
