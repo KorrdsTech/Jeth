@@ -1,5 +1,6 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
+const parse = require('parse-duration')
 
 module.exports = class Timeout extends Command {
   constructor(name, client) {
@@ -49,7 +50,7 @@ module.exports = class Timeout extends Command {
             // executa o corte de comunicação ou timeout.
     this.client.api.guilds(message.guild.id).members(user.id).patch({
       data: {
-        communication_disabled_until: new Date(new Date(Date.now() + Number(timer)).toUTCString()).toISOString()
+        communication_disabled_until: new Date(new Date(Date.now() + Number(parse(timer))).toUTCString()).toISOString()
       },
       reason: reason
     })
