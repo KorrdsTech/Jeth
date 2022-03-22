@@ -1,12 +1,12 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class blockdiv extends Command {
+module.exports = class security extends Command {
   constructor(name, client) {
     super(name, client)
 
-    this.name = 'blockdiv'
-    this.aliases = ['div', 'antidiv', 'anticonvite']
+    this.name = 'security'
+    this.aliases = ['div', 'antidiv', 'anticonvite', 'anti-spam', 'bsf']
     this.category = 'Mod'
   }
 
@@ -40,30 +40,67 @@ module.exports = class blockdiv extends Command {
       guildDocument.antInvite = true
       guildDocument.save()
       message.reply('Okay o módulo de Anti-Convite foi Ativado.')
+    } else if (args[0] === 'ligar') {
+      if (!guildDocument.infoantspam) return message.reply('O módulo não está configurado, verifique a mensagem definida.')
+      guildDocument.antInvite = true
+      guildDocument.save()
+    } else if (args[0] === 'desligar') {
+      if (!guildDocument.antSpam) return message.reply(`O Módulo de ant-invite já está desativado OU seu módulo não possui um canal definido.`)
+      guildDocument.antSpam = false
+      guildDocument.infoantinv = ''
+      guildDocument.save()
+    } else if (args[0] === 'reason') {
+      const mensagem = args[1];
+      if (!mensagem) return message.reply('Exemplo de uso: *-bsf mensagem* isto é um teste')
+      guildDocument.infoantspam = mensagem
+      guildDocument.save().then(async () => {
+        await message.reply(`Mensagem definida: ${mensagem}`)
+      })
+    } else if (args[0] === 'timer') {
+      const tempo = args[1];
+      if (!tempo) return message.reply('Exemplo de uso: *-bsf timer* 1d')
+      guildDocument.timerSpam = tempo
+      guildDocument.save().then(async () => {
+        await message.reply(`Mensagem definida: ${tempo}`)
+      })
     } else {
       const embed = new MessageEmbed()
       embed.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       embed.setColor(colors.default)
-      embed.setDescription(`Dúvidas de como usar o Anti-Invite?\nAqui vai algumas dicas...`)
+      embed.setDescription(`Dúvidas de como usar o Módulo de Segurança?\nAqui vai algumas dicas...`)
       embed.addField('Modos de usar', [
-        `\`${guildDocument.prefix}div canal #canal\` - Define o canal onde será definido o log de Anti-Invite.`,
+        `**BLOQUEAR DIVULGAÇÃO DE SERVIDORES**`,
+        `\`${guildDocument.prefix}div canal <#CANAL>\` - Define o canal onde será definido o log de Anti-Invite.`,
         `\`${guildDocument.prefix}div ativar \` - Para ligar o sistema de Anti-Invite.`,
         `\`${guildDocument.prefix}div desativar\` - Caso haja algum Anti-Invite ligado/definido, ele será removido e o sistema desligado.`,
+        `**BLOQUEAR SPAM/FLOOD**`,
+        `\`${guildDocument.prefix}bsf reason <MENSAGEM>\` - Altera a mensagem padrão que irá para as logs, razão pela qual o usuário foi punido por spam. (caso deixe vazio será subistituida por um padrão DEFAULT)`,
+        `\`${guildDocument.prefix}bsf timer <VALOR>\` - Altera o tempo em que o usuário permanecerá bloqueado das ativades do servidor por spam/flood. (caso deixe vazio será subistituida por um padrão DEFAULT)`,
+        `\`${guildDocument.prefix}bsf ligar \` - Para ligar o sistema de Anti-Spam.`,
+        `\`${guildDocument.prefix}bsf desligar\` - Caso haja algum Anti-Spam ligado/definido, ele será removido e o sistema desligado.`,
       ].join('\n'), false)
 
       const embed2 = new MessageEmbed()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-        .setDescription(`Dúvidas de como esta o Anti-Invite?\nAqui vai o seu painel...`)
+        .setDescription(`Dúvidas de como está o Anti-Invite/BlockSpamFlood-BSF? \nAqui vai o seu painel...`)
         .setColor(colors.default)
       let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
       if (guildDocument.infoantinv.length) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.infoantinv}>`;
       }
+      if (guildDocument.infoantspam.length) {
+        canalBemVindo = `<:concludo:739830713792331817> Ativo | Mensagem: <#${guildDocument.infoantspam}>`;
+      }
       embed2.addField('Anti-Invite | Define o canal de logs anti-invite:', canalBemVindo);
+      embed2.addField('BlockSpamFlood-BSF | Mensagem definida de logs:', canalBemVindo);
       const msgWelcome = guildDocument.antInvite ?
         `<:concludo:739830713792331817> Ativo` :
         `<:rejected:739831089543118890> Desativado`
       embed2.addField('Anti-Invite está:', msgWelcome);
+      const msgSpam = guildDocument.antSpam ?
+        `<:concludo:739830713792331817> Ativo` :
+        `<:rejected:739831089543118890> Desativado`
+      embed2.addField('BlockSpamFlood-BSF está:', msgSpam);
 
       let embedCount = 1
       message.reply({ embeds: [embed] }).then(async m => {

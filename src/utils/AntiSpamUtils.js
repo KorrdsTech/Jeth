@@ -3,7 +3,7 @@ const LIMIT = 7
 const DIFF = 7 * 1000
 const parse = require('parse-duration')
 module.exports = class AntiSpamUtils {
-  static verify(message) {
+  static async verify(message) {
     if (usersMap.has(message.author.id)) {
       const userData = usersMap.get(message.author.id)
       const { lastMessage, timer } = userData
@@ -30,9 +30,9 @@ module.exports = class AntiSpamUtils {
               msg.delete().catch((err) => {})
             }
           })
-
+          const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
           if (this.checkPossibly(message)) {
-            message.member.timeout(parse('10m'), `[AUTOMOD] Fazer spam no canal #${message.channel.name}`).then(() => {
+            message.member.timeout(parse(guildDocument.timerSpam), `${guildDocument.infoantspam}`).then(() => {
               message.channel.send(`Calma lá ${message.author}, acho melhor você parar! Eu acabei de apagar ${msgList.length} mensagens sua que você spammou.`)
             })
           } else {

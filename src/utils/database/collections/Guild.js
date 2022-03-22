@@ -3,6 +3,7 @@ const RegistradorSchema = require('./RegistradorSchema')
 const Guild = new Schema({
   _id: { type: String },
   //extras
+  timerSpam: { type: String, default: '10m' },
   linkanuncio: { type: String, default: ' ' },
   prefix: { type: String, default: '-' },
   partner: { type: Boolean, default: false },
@@ -14,8 +15,10 @@ const Guild = new Schema({
   vip: { type: Boolean, default: false },
   count: { type: Boolean, default: false },
   antInvite: { type: Boolean, default: false },
+  antSpam: { type: Boolean, default: false },
   sugesModule: { type: Boolean, default: false },
   //messagem dos módulos
+  infoantspam: { type: String, default: 'Calma lá, acho melhor você parar! Eu acabei de apagar mensagens suas que você spammou.' },
   welcomeMessage: { type: String, default: '' },
   countMessage: { type: String, default: '{azul}' },
   leaveMessage: { type: String, default: '' },

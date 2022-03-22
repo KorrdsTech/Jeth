@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const canal = require('./collections/Canal')
 const cargo = require('./collections/Cargo')
 const guild = require('./collections/Guild')
-const mutados = require('./collections/Mutado')
 const user = require('./collections/User')
 module.exports = class Database {
   constructor() {
@@ -15,7 +14,6 @@ module.exports = class Database {
     this.canal = new Collection(canal)
     this.cargo = new Collection(cargo)
     this.guild = new Collection(guild)
-    this.mutado = new Collection(mutados)
     this.user = new Collection(user)
   }
 }
