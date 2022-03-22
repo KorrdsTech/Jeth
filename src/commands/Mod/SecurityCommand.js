@@ -39,10 +39,10 @@ module.exports = class security extends Command {
       if (!guildDocument.infoantinv) return message.reply('Este servidor não tem um canal de log de invite setado. utilize' + guildDocument.prefix + 'antiinvite #canal')
       guildDocument.antInvite = true
       guildDocument.save()
-      message.reply('Okay o módulo de Anti-Convite foi Ativado.')
+      message.reply('Okay o módulo de Anti-Invite foi Ativado.')
     } else if (args[0] === 'ligar') {
       if (!guildDocument.infoantspam) return message.reply('O módulo não está configurado, verifique a mensagem definida.')
-      guildDocument.antInvite = true
+      guildDocument.antSpam = true
       guildDocument.save()
       message.reply('Okay o módulo de BSF foi ativado.')
     } else if (args[0] === 'desligar') {
@@ -52,7 +52,7 @@ module.exports = class security extends Command {
       guildDocument.save()
       message.reply('Okay o módulo de BSF foi desativado.')
     } else if (args[0] === 'reason') {
-      const mensagem = args[1];
+      const mensagem = args.join(' ').slice(7);
       if (!mensagem) return message.reply('Exemplo de uso: *-bsf mensagem* isto é um teste')
       guildDocument.infoantspam = mensagem
       guildDocument.save().then(async () => {
@@ -63,7 +63,7 @@ module.exports = class security extends Command {
       if (!tempo) return message.reply('Exemplo de uso: *-bsf timer* 1d')
       guildDocument.timerSpam = tempo
       guildDocument.save().then(async () => {
-        await message.reply(`Mensagem definida: ${tempo}`)
+        await message.reply(`Timer definido: ${tempo}`)
       })
     } else {
       const embed = new MessageEmbed()
