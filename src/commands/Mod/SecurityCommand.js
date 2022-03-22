@@ -45,7 +45,7 @@ module.exports = class security extends Command {
       guildDocument.antInvite = true
       guildDocument.save()
     } else if (args[0] === 'desligar') {
-      if (!guildDocument.antSpam) return message.reply(`O Módulo de ant-invite já está desativado OU seu módulo não possui um canal definido.`)
+      if (!guildDocument.antSpam) return message.reply(`O Módulo BlockSpamFlood já está desativado OU seu módulo não possui um canal definido.`)
       guildDocument.antSpam = false
       guildDocument.infoantinv = ''
       guildDocument.save()
