@@ -44,11 +44,13 @@ module.exports = class security extends Command {
       if (!guildDocument.infoantspam) return message.reply('O módulo não está configurado, verifique a mensagem definida.')
       guildDocument.antInvite = true
       guildDocument.save()
+      message.reply('Okay o módulo de BSF foi ativado.')
     } else if (args[0] === 'desligar') {
       if (!guildDocument.antSpam) return message.reply(`O Módulo BlockSpamFlood já está desativado OU seu módulo não possui um canal definido.`)
       guildDocument.antSpam = false
       guildDocument.infoantinv = ''
       guildDocument.save()
+      message.reply('Okay o módulo de BSF foi desativado.')
     } else if (args[0] === 'reason') {
       const mensagem = args[1];
       if (!mensagem) return message.reply('Exemplo de uso: *-bsf mensagem* isto é um teste')
