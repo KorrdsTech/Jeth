@@ -23,7 +23,7 @@ module.exports = class GifBan extends Command {
 
       doc.gifban = args[0]
       doc.save()
-      message.reply(`${message.author}, você alterou a sua ilustração de banimento!,Utilize **${guildDocument.prefix}vip**.`)
+      message.reply(`${message.author}, você alterou a sua ilustração de banimento!, Utilize **${guildDocument.prefix}vip**.`)
     }
   }
 }
