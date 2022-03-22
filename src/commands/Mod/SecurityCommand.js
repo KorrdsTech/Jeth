@@ -34,7 +34,7 @@ module.exports = class security extends Command {
       guildDocument.antInvite = false
       guildDocument.infoantinv = ''
       guildDocument.save()
-      message.reply('Okay o módulo de Anti-Convite foi desativado.')
+      message.reply('Okay o módulo de Anti-Invite foi desativado.')
     } else if (args[0] === 'ativar') {
       if (!guildDocument.infoantinv) return message.reply('Este servidor não tem um canal de log de invite setado. utilize' + guildDocument.prefix + 'antiinvite #canal')
       guildDocument.antInvite = true
@@ -43,27 +43,28 @@ module.exports = class security extends Command {
     } else if (args[0] === 'ligar') {
       if (!guildDocument.infoantspam) return message.reply('O módulo não está configurado, verifique a mensagem definida.')
       guildDocument.antSpam = true
-      guildDocument.save()
-      message.reply('Okay o módulo de BSF foi ativado.')
+      guildDocument.save().then(
+        message.reply('Okay o módulo de BSF foi ativado.'))
     } else if (args[0] === 'desligar') {
       if (!guildDocument.antSpam) return message.reply(`O Módulo BlockSpamFlood já está desativado OU seu módulo não possui um canal definido.`)
       guildDocument.antSpam = false
-      guildDocument.infoantinv = ''
-      guildDocument.save()
-      message.reply('Okay o módulo de BSF foi desativado.')
+      guildDocument.infoantspam = '[AUTOMOD] Spam/Flood em canais de texto.'
+      guildDocument.timerSpam = '10m'
+      guildDocument.save().then(
+        message.reply('Okay o módulo de BSF foi desativado.'))
     } else if (args[0] === 'reason') {
       const mensagem = args.join(' ').slice(7);
       if (!mensagem) return message.reply('Exemplo de uso: *-bsf mensagem* isto é um teste')
       guildDocument.infoantspam = mensagem
       guildDocument.save().then(async () => {
-        await message.reply(`Mensagem definida: ${mensagem}`)
+        message.reply(`Mensagem definida: ${mensagem}`)
       })
     } else if (args[0] === 'timer') {
       const tempo = args[1];
       if (!tempo) return message.reply('Exemplo de uso: *-bsf timer* 1d')
       guildDocument.timerSpam = tempo
       guildDocument.save().then(async () => {
-        await message.reply(`Timer definido: ${tempo}`)
+        message.reply(`Timer definido: ${tempo}`)
       })
     } else {
       const embed = new MessageEmbed()

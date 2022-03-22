@@ -18,7 +18,7 @@ const Guild = new Schema({
   antSpam: { type: Boolean, default: false },
   sugesModule: { type: Boolean, default: false },
   //messagem dos módulos
-  infoantspam: { type: String, default: 'Calma lá, acho melhor você parar! Eu acabei de apagar mensagens suas que você spammou.' },
+  infoantspam: { type: String, default: '[AUTOMOD] Spam/Flood em canais de texto.' },
   welcomeMessage: { type: String, default: '' },
   countMessage: { type: String, default: '{azul}' },
   leaveMessage: { type: String, default: '' },

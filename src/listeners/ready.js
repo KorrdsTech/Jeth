@@ -1,5 +1,3 @@
-const { MessageEmbed } = require('discord.js');
-
 module.exports = async function onReady() {
   console.log(`Logado.`);
   const s = [
