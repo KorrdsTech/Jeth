@@ -22,7 +22,7 @@ module.exports = class anuncio extends Command {
     const server = await this.client.database.guild.getOrCreate(message.guild.id)
 
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
-      return message.channel.send(perm)
+      return message.reply(perm)
 
     const embedajuda = new MessageEmbed()
       .setTitle('Anuncio | Ajuda', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
@@ -31,21 +31,21 @@ module.exports = class anuncio extends Command {
       .setColor(colors.default)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    if (!args[0]) return message.channel.send(embedajuda)
+    if (!args[0]) return message.reply(embedajuda)
 
     if (message.content.startsWith(server.prefix + 'anuncio resetar')) {
       server.linkanuncio = ''
       server.save()
-      return message.channel.send(`**|** ${message.author}, você resetou a ilustração de seu anuncio personalizado.`)
+      return message.reply(`**|** ${message.author}, você resetou a ilustração de seu anuncio personalizado.`)
     }
     if (message.content.startsWith(server.prefix + 'anuncio set')) {
       const imagem = args[1]
       if (!imagem) {
-        return message.channel.send(link)
+        return message.reply(link)
       }
       server.linkanuncio = args[1]
       server.save()
-      message.channel.send(`> **|** ${message.author}, você alterou a sua ilustração de anuncio!`).then(msg => msg.delete(5000))
+      message.reply(`> **|** ${message.author}, você alterou a sua ilustração de anuncio!`).then(msg => msg.delete(5000))
     }
     if (message.content.startsWith(server.prefix + 'anuncio ver')) {
       const embedver = new MessageEmbed()
@@ -56,7 +56,7 @@ module.exports = class anuncio extends Command {
         .setImage(`${server.linkanuncio || ''}`)
         .setFooter('Não apareceu? seu link deve estar inválido', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       if (server.linkanuncio) {
-        message.channel.send(embedver)
+        message.reply(embedver)
       }
       if (!server.linkanuncio)
         message.reply('Não há nenhuma Imagem para ser exibida!')

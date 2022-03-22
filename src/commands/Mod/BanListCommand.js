@@ -12,12 +12,12 @@ module.exports = class Banlist extends Command {
   async run(message) {
 
     if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply('❌ Não tens permissão para ver a lista de membros banidos!'); //Verifica se quem enviou o comando tem permissão para ver os membros banidos
-    if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.channel.send('❌ Não tenho permissão para ver a lista de membros banidos!'); //Verifica se o bot tem permissão para ver os membros banidos
+    if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply('❌ Não tenho permissão para ver a lista de membros banidos!'); //Verifica se o bot tem permissão para ver os membros banidos
 
-    const bans = await message.guild.fetchBans(); //Obtém a lista de membros banidos do servidor
+    const bans = await message.guild.bans.fetch(); //Obtém a lista de membros banidos do servidor
 
     if (!bans.first()) //Se a lista estiver vazia retorna
-      return message.channel.send('❌ Este servidor não tem membros banidos!');
+      return message.reply('❌ Este servidor não tem membros banidos!');
 
     let msg = '';
 
@@ -27,6 +27,6 @@ module.exports = class Banlist extends Command {
     });
 
 //Por fim envia a mensagem com todas as tags dos membros banidos, com split no caso de o servidor ter muitos membros banidos e a lista for grande
-    message.channel.send('📑 Lista de membros banidos:\n' + msg, { split: true });
+    message.reply('📑 Lista de membros banidos:\n' + msg, { split: true });
   }
 }

@@ -36,12 +36,12 @@ module.exports = class Raidban extends Command {
 
     const membro17 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro17) {
-      message.channel.send(link)
+      message.reply(link)
     }
 
     const membro14 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro14) {
-      message.channel.send(link)
+      message.reply(link)
     }
     const guildDocument1 = await this.client.database.user.getOrCreate(membro14.id)
 
@@ -54,7 +54,7 @@ module.exports = class Raidban extends Command {
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    if (!message.member.permissions.has('BAN_MEMBERS')) return message.channel.send({ embeds: [embedA] })
+    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
     const userDocuent = await this.client.database.user.getOrCreate(message.author.id)
     // ban padrão 17
     const bannable = message.guild.member(membro17, membro14)
@@ -103,12 +103,12 @@ module.exports = class Raidban extends Command {
       warnembed18.fields[1].value = argumentos
       warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
       warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
-      message.channel.send(warnembed14)
+      message.reply(warnembed14)
       try {
         membro14.send(warnembed18)
       } catch { error }
     } else {
-      message.channel.send(escolha).then(async m => {
+      message.reply(escolha).then(async m => {
         await m.react('739977300564639835')
         await m.react('739977300921024522')
         await m.react('739977300895858708')
@@ -135,7 +135,7 @@ module.exports = class Raidban extends Command {
               guildDocument1.id.ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.channel.send(warnembed14)
+                message.reply(warnembed14)
                 try {
                   guildDocument1.send(warnembed18)
                 } catch { error }
@@ -150,7 +150,7 @@ module.exports = class Raidban extends Command {
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.channel.send(warnembed14)
+                message.reply(warnembed14)
                 try {
                   guildDocument1.send(warnembed18)
                 } catch { error }
@@ -165,7 +165,7 @@ module.exports = class Raidban extends Command {
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.channel.send(warnembed14)
+                message.reply(warnembed14)
                 try {
                   guildDocument1.send(warnembed18)
                 } catch { error }
@@ -180,7 +180,7 @@ module.exports = class Raidban extends Command {
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.channel.send(warnembed14)
+                message.reply(warnembed14)
                 try {
                   guildDocument1.send(warnembed18)
                 } catch { error }
@@ -195,7 +195,7 @@ module.exports = class Raidban extends Command {
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.channel.send(warnembed14)
+                message.reply(warnembed14)
                 try {
                   guildDocument1.send(warnembed18)
                 } catch { error }
@@ -210,7 +210,7 @@ module.exports = class Raidban extends Command {
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.channel.send(warnembed14)
+                message.reply(warnembed14)
                 try {
                   guildDocument1.send(warnembed18)
                 } catch { error }

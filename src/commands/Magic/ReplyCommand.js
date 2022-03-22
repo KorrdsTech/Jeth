@@ -26,7 +26,7 @@ module.exports = class reply extends Command {
 
     if (!ids.includes(message.author.id))
 
-      return message.channel.send({ embeds: [embedA] });
+      return message.reply({ embeds: [embedA] });
 
     const razao13 = args.slice(1).join(' ');
     if (!razao13) return message.reply('Faltando argumentos')
@@ -41,8 +41,8 @@ module.exports = class reply extends Command {
 
     usuario.send({ embeds: [embedB] })
     if (!Error) {
-      return message.channel.send('<:rejected:739831089543118890> Erro, usuário com Direct Message Bloqueada!');
+      return message.reply('<:rejected:739831089543118890> Erro, usuário com Direct Message Bloqueada!');
     } else
-      message.channel.send('<:concludo:739830713792331817> Reply enviado com sucesso! 🗳')
+      message.reply('<:concludo:739830713792331817> Reply enviado com sucesso! 🗳')
   }
 }

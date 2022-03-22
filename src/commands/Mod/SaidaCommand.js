@@ -20,39 +20,39 @@ module.exports = class saida extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
     if (!message.member.permissions.has('MANAGE_GUILD'))
-      return message.channel.send({ embeds: [embedA] })
+      return message.reply({ embeds: [embedA] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     if (args[0] === 'canal') {
       const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
-      if (!channel || channel.type === 'category') return message.channel.send('Coloque um canal válido!')
+      if (!channel || channel.type === 'category') return message.reply('Coloque um canal válido!')
 
       guildDocument.channelsaida = channel.id
       guildDocument.save().then(async () => {
-        await message.channel.send(`Canal definido: ${channel}`)
+        await message.reply(`Canal definido: ${channel}`)
       })
     } else if (args[0] === 'mensagem') {
       const mensagem = args.slice(1).join(' ')
 
-      if (!mensagem) return message.channel.send(`Coloque qual será a mensagem do saida, lembre-se nósso sistema aceita embed...`)
+      if (!mensagem) return message.reply(`Coloque qual será a mensagem do saida, lembre-se nósso sistema aceita embed...`)
 
       guildDocument.saidaMessage = mensagem
       guildDocument.save().then(async () => {
         guildDocument.saidaModule = true
         guildDocument.save().then(async () => {
           const defaultChannel = await message.guild.channels.cache.get(guildDocument.channelsaida)
-          if (!defaultChannel) return message.channel.send(`Este servidor não possui um canal definido no saida...\nUse: \`${message.prefix}saida canal #canal\` para definir um e use o comando novamente!`)
-          await message.channel.send(`Mensagem definida\nsaida Ativado...`)
+          if (!defaultChannel) return message.reply(`Este servidor não possui um canal definido no saida...\nUse: \`${message.prefix}saida canal #canal\` para definir um e use o comando novamente!`)
+          await message.reply(`Mensagem definida\nsaida Ativado...`)
         })
       })
     } else if (args[0] === 'desativar') {
-      if (!guildDocument.saidaModule) return message.channel.send(`Este servidor não possui um saida ativado!`)
+      if (!guildDocument.saidaModule) return message.reply(`Este servidor não possui um saida ativado!`)
       const lastChannel = message.guild.channels.cache.get(guildDocument.channelsaida)
       guildDocument.saidaModule = false
       guildDocument.channelsaida = ''
       guildDocument.saidaMessage = ''
 
       guildDocument.save().then(async () => {
-        await message.channel.send(`O saida foi removido do canal ${lastChannel} e desativado`)
+        await message.reply(`O saida foi removido do canal ${lastChannel} e desativado`)
       })
     } else {
       const embed = new MessageEmbed()
@@ -98,7 +98,7 @@ module.exports = class saida extends Command {
       embed2.addField('saida está:', msgsaida)
 
       let embedCount = 1
-      message.channel.send({ embeds: [embed] }).then(async m => {
+      message.reply({ embeds: [embed] }).then(async m => {
         await m.react('666762183249494027')// ir para frente
         const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
         const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })

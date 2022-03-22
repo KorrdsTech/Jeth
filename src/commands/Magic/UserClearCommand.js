@@ -14,7 +14,7 @@ module.exports = class userclear extends Command {
   async run(message) {
     this.client.users.forEach(u => {
       this.client.database.user.getAndDelete(u.id).then(async () => {
-        message.channel.send(`${u.tag} deletado...`)
+        message.reply(`${u.tag} deletado...`)
       })
     })
   }

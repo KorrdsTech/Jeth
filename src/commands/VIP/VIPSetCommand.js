@@ -22,7 +22,7 @@ module.exports = class vipset extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
     const role = await this.client.database.Cargo.findOne({ _id: message.author.id })
-    if (!role) return message.channel.send(embedVIP)
+    if (!role) return message.reply(embedVIP)
 
     const embedA = new MessageEmbed()
       .setTimestamp()
@@ -32,7 +32,7 @@ module.exports = class vipset extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    if (!message.member.permissions.has('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
+    if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
     if (!usuario) return message.reply('Você não mencionou o usuário!');
     if (usuario.id === message.guild.ownerID) {
       message.reply('Você não tem permissão para setar role neste usuário');
@@ -66,7 +66,7 @@ module.exports = class vipset extends Command {
 
     if (usuario.roles.cache.has(role.roleID)) return message.reply('o membro mencionado já possui esse vip.')
     usuario.roles.add(message.guild.roles.cache.get(role.roleID))
-    message.channel.send({ embeds: [embed] })
+    message.reply({ embeds: [embed] })
 
   }
 }

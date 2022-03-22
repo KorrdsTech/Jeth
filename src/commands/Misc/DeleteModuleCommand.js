@@ -15,12 +15,12 @@ module.exports = class deleteModule extends Command {
     if (guildDocument.delete) {
       guildDocument.delete = false
       guildDocument.save().then(async () => {
-        message.channel.send('Módulo de auto-delete desativado!')
+        message.reply('Módulo de auto-delete desativado!')
       })
     } else {
       guildDocument.delete = true
       guildDocument.save().then(async () => {
-        message.channel.send('Módulo de auto-delete ativado!')
+        message.reply('Módulo de auto-delete ativado!')
       })
     }
   }

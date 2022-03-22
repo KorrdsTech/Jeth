@@ -39,7 +39,7 @@ module.exports = class emoji extends Command {
       .setDescription(`**Normais [${EmojiCount}]**:\n${Emojis}\n\n**Total de emojis [${OverallEmojis}]**`)
       .setColor(colors.default)
 
-    message.channel.send({ embeds: [embed] })
-    await message.channel.send({ embeds: [embedB] })
+    message.reply({ embeds: [embed] })
+    await message.reply({ embeds: [embedB] })
   }
 }

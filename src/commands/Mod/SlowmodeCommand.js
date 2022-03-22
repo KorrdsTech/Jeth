@@ -20,7 +20,7 @@ module.exports = class SlowMode extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
     if (!message.member.permissions.has('MANAGE_GUILD'))
-      return message.channel.send({ embeds: [embedA] })
+      return message.reply({ embeds: [embedA] })
     const time = args[0]
     if (!time) return message.reply(`Indique um numero válido.`)
     if (time > 600) return message.reply(`Você não pode colocar 600 segundos de slowmode burrinho.`)

@@ -34,7 +34,7 @@ module.exports = async function onReady() {
         try {
           const role = server.roles.cache.find(r => r.name == 'Muted')
           if (!role) {
-            Message.channel.send('erro no cargo')
+            message.reply('erro no cargo')
           }
           server.members.fetch()
           if (!server.members.cache.get(userId)?.roles?.cache?.get(role.id)) return

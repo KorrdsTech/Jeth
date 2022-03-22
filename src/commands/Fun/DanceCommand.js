@@ -22,10 +22,10 @@ module.exports = class dancar extends Command {
         .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
         .setTimestamp()
       try {
-        message.channel.send({ embeds: [embed] })
+        message.reply({ embeds: [embed] })
       } catch (error) {
         console.log(error);
-        message.channel.send(error);
+        message.reply(error);
       }
     }
     else {
@@ -36,7 +36,7 @@ module.exports = class dancar extends Command {
         .setImage(gifs1[Math.floor(Math.random() * gifs1.length)])
         .setFooter(`Pedido por ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 })).setTimestamp()
 
-      message.channel.send(embed1)
+      message.reply(embed1)
     }
   }
 }

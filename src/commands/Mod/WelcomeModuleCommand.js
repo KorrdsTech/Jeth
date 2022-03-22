@@ -19,33 +19,33 @@ module.exports = class welcomeModule extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
     if (!message.member.permissions.has('MANAGE_GUILD'))
-      return message.channel.send({ embeds: [embedA] })
+      return message.reply({ embeds: [embedA] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     if (args[0] === 'canal') {
       const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
-      if (!channel || channel.type === 'category') return message.channel.send('Coloque um canal válido!')
+      if (!channel || channel.type === 'category') return message.reply('Coloque um canal válido!')
 
       guildDocument.channelWelcome = channel.id
       guildDocument.save().then(async () => {
-        await message.channel.send(`Canal definido: ${channel}`)
+        await message.reply(`Canal definido: ${channel}`)
       })
     } else if (args[0] === 'mensagem') {
       const mensagem = args.slice(1).join(' ')
 
-      if (!mensagem) return message.channel.send(`Coloque qual será a mensagem do welcome, lembre-se nósso sistema aceita embed...`)
+      if (!mensagem) return message.reply(`Coloque qual será a mensagem do welcome, lembre-se nósso sistema aceita embed...`)
 
       guildDocument.welcomeMessage = mensagem
       guildDocument.save().then(async () => {
         guildDocument.welcomeModule = true
         guildDocument.save().then(async () => {
           const defaultChannel = await message.guild.channels.cache.get(guildDocument.channelWelcome)
-          if (!defaultChannel) return message.channel.send(`Este servidor não possui um canal definido no welcome...\nUse: \`${message.prefix}welcome canal #canal\` para definir um e use o comando novamente!`)
-          await message.channel.send(`Mensagem definida\nWelcome Ativado...`)
+          if (!defaultChannel) return message.reply(`Este servidor não possui um canal definido no welcome...\nUse: \`${message.prefix}welcome canal #canal\` para definir um e use o comando novamente!`)
+          await message.reply(`Mensagem definida\nWelcome Ativado...`)
         })
       })
     } else if (args[0] === 'autorole') {
       const role = message.mentions.roles.first();
-      if (!role) return message.channel.send(`${message.author},por favor mencione o cargo.`)
+      if (!role) return message.reply(`${message.author},por favor mencione o cargo.`)
       guildDocument.autorole = role.id;
       guildDocument.save().then(() => {
         const embed = new MessageEmbed()
@@ -54,7 +54,7 @@ module.exports = class welcomeModule extends Command {
           .setColor(colors.default)
           .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
           .setTimestamp();
-        message.channel.send({ embeds: [embed] })
+        message.reply({ embeds: [embed] })
       })
     } else if (args[0] === 'delrole') {
       const role = message.mentions.roles.first();
@@ -66,17 +66,17 @@ module.exports = class welcomeModule extends Command {
           .setColor(colors.default)
           .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
           .setTimestamp();
-        message.channel.send({ embeds: [embed] })
+        message.reply({ embeds: [embed] })
       })
     } else if (args[0] === 'desativar') {
-      if (!guildDocument.welcomeModule) return message.channel.send(`Este servidor não possui um welcome ativado!`)
+      if (!guildDocument.welcomeModule) return message.reply(`Este servidor não possui um welcome ativado!`)
       const lastChannel = message.guild.channels.cache.get(guildDocument.channelWelcome)
       guildDocument.welcomeModule = false
       guildDocument.channelWelcome = ''
       guildDocument.welcomeMessage = ''
 
       guildDocument.save().then(async () => {
-        await message.channel.send(`O welcome foi removido do canal ${lastChannel} e desativado`)
+        await message.reply(`O welcome foi removido do canal ${lastChannel} e desativado`)
       })
     } else {
       const embed = new MessageEmbed()
@@ -130,7 +130,7 @@ module.exports = class welcomeModule extends Command {
       embed2.addField('Welcome está:', msgWelcome)
 
       let embedCount = 1
-      message.channel.send({ embeds: [embed] }).then(async m => {
+      message.reply({ embeds: [embed] }).then(async m => {
         await m.react('666762183249494027')// ir para frente
         const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
         const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })

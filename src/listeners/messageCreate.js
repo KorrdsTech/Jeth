@@ -83,7 +83,7 @@ module.exports = async function onMessage(message) {
     embed.setAuthor('Você não tem permissão', message.author.displayAvatarURL({ dynamic: true }))
     embed.setDescription(`**Você precisa verificar se possui essas permissiões:** ${command.permissions.map(perms => `\`${perms}\``).join(', ')}`)
 
-    return message.channel.send({ embeds: [embed] })
+    return message.reply({ embeds: [embed] })
   }
 
   Object.defineProperties(message, {
@@ -105,7 +105,7 @@ module.exports = async function onMessage(message) {
     if (message.mentions.members.size > 0) {
       const mention = message.content.split(/ +/g)[0];
       if (mention === `<@${this.user.id}>` || mention === `<@!${this.user.id}>`) {
-        message.channel.send(`<a:dshype:683501891493167163> **Olá! **${message.author}, prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <a:dshype:683501891493167163>`)
+        message.reply(`<a:dshype:683501891493167163> **Olá! **${message.author}, prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <a:dshype:683501891493167163>`)
       }
     }
   }

@@ -22,7 +22,7 @@ module.exports = class highfive extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp();
 
-    if (!user) return message.channel.send('Ninguém foi mencionado!')
+    if (!user) return message.reply('Ninguém foi mencionado!')
     else
       message.reply({ embeds: [embed] });
   }

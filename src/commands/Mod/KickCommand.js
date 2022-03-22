@@ -45,7 +45,7 @@ module.exports = class kick extends Command {
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());
 
-    if (!message.member.permissions.has('KICK_MEMBERS')) return message.channel.send({ embeds: [embedA] })
+    if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply({ embeds: [embedA] })
     const membro18 = await message.guild.members.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro18) return message.reply('eu procurei, procurei, e não achei este usuário')
     if (razao13.length < 1) return message.reply('`Adicione um motivo válido!`')
@@ -65,7 +65,7 @@ module.exports = class kick extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date());
 
-    message.channel.send(warnembed13);
+    message.reply(warnembed13);
     membro18.send(warnembed18);
     await message.guild.member(membro18).kick(razao13)
   }

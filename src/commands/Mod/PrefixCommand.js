@@ -22,15 +22,15 @@ module.exports = class Prefix extends Command {
       .addField('*Verifique se você possui a permissão:*', '`ADMINISTRATOR`', true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-    if (!args[0]) { return message.channel.send(`${message.author}, defina um novo prefixo! **${documento.prefix}prefix <novo prefix>**`) } // Tell them if they didn't supply any arguments.
+    if (!args[0]) { return message.reply(`${message.author}, defina um novo prefixo! **${documento.prefix}prefix <novo prefix>**`) } // Tell them if they didn't supply any arguments.
 
-    if (!message.member.permissions.has('ADMINISTRATOR')) return message.channel.send({ embeds: [erroDePermissão] })
+    if (!message.member.permissions.has('ADMINISTRATOR')) return message.reply({ embeds: [erroDePermissão] })
 
-    if (args.join(' ').length > 2) return message.channel.send(`${message.author}, eu possuo um limite máximo de 2 caracteres em meu prefix, tente novamente amiguinho(a).`)
+    if (args.join(' ').length > 2) return message.reply(`${message.author}, eu possuo um limite máximo de 2 caracteres em meu prefix, tente novamente amiguinho(a).`)
 
     documento.prefix = args.join(' ')
     documento.save()
 
-    message.channel.send(`<:concludo:739830713792331817> ${message.author}, meu prefix foi alterado para **${documento.prefix}**`)
+    message.reply(`<:concludo:739830713792331817> ${message.author}, meu prefix foi alterado para **${documento.prefix}**`)
   }
 }

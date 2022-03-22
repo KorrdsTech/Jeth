@@ -21,13 +21,13 @@ module.exports = class Partner extends Command {
     if (server.partner) {
       server.partner = false
       server.save().then(async () => {
-        await message.channel.send(`${message.author},\`${servidor.name}\`,não é mais **partner**.. <:sadd:663813684103086091>`)
+        await message.reply(`${message.author},\`${servidor.name}\`,não é mais **partner**.. <:sadd:663813684103086091>`)
       })
 
     } else {
       server.partner = true
       server.save().then(async () => {
-        await message.channel.send(`${message.author},\`${servidor.name}\`, Agora é **partner** <a:neon:663575128088641576>`).then(sent => sent.delete(5000))
+        await message.reply(`${message.author},\`${servidor.name}\`, Agora é **partner** <a:neon:663575128088641576>`).then(sent => sent.delete(5000))
         const embedpartner = new MessageEmbed()
           .setColor(colors.default)
           .addField('Partner | Informações:', `Servidor adicionado: \n\`\`${servidor.name}\`\``, true)

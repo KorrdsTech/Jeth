@@ -25,7 +25,7 @@ module.exports = class Warn extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    if (!message.member.permissions.has('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
+    if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
     if (!member) return message.reply('Mencione o member que deseja dar warn!')
     if (!razao.length) {
       razao = 'Sem motivos.'
@@ -114,7 +114,7 @@ module.exports = class Warn extends Command {
       member.kick(razao1)
       member.send(embed1)
     }
-    message.channel.send({ embeds: [warnembed] })
+    message.reply({ embeds: [warnembed] })
     member.send(warnembed18)
     message.guild.member(member).roles.add(adv1);
   }

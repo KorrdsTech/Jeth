@@ -24,10 +24,10 @@ module.exports = class cry extends Command {
         .setTimestamp()
       try {
         message.delete({ timeout: 100 }).catch(() => { })
-        message.channel.send({ embeds: [embed] })
+        message.reply({ embeds: [embed] })
       } catch (error) {
         console.log(error);
-        message.channel.send(error);
+        message.reply(error);
       }
     } else {
 
@@ -39,10 +39,10 @@ module.exports = class cry extends Command {
 
       try {
         message.delete({ timeout: 100 }).catch(() => { })
-        message.channel.send({ embeds: [embed] })
+        message.reply({ embeds: [embed] })
       } catch (error) {
         console.log(error);
-        message.channel.send(error);
+        message.reply(error);
       }
     }
   }

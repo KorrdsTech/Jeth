@@ -52,6 +52,6 @@ module.exports = class battle extends Command {
       .setTimestamp()
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    message.channel.send({ embeds: [embedB] })
+    message.reply({ embeds: [embedB] })
   }
 }

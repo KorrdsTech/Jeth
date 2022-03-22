@@ -20,66 +20,66 @@ module.exports = class Counter extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
     if (!message.member.permissions.has('MANAGE_GUILD'))
-      return message.channel.send({ embeds: [embedA] })
+      return message.reply({ embeds: [embedA] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     if (args[0] === 'canal') {
       const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
-      if (!channel || channel.type === 'category') return message.channel.send('Coloque um canal válido!')
+      if (!channel || channel.type === 'category') return message.reply('Coloque um canal válido!')
 
       guildDocument.countChannel = channel.id
       guildDocument.save().then(async () => {
-        await message.channel.send(`Canal definido: ${channel}`)
+        await message.reply(`Canal definido: ${channel}`)
       })
     } else if (args[0] === 'mensagem') {
       const mensagem = args.slice(1).join(' ')
 
       if (!mensagem) {
-        return message.channel.send(`Coloque qual será a mensagem do Counter, lembre-se "{cor - tipo}" será o tipo/cor do Counter...`)
+        return message.reply(`Coloque qual será a mensagem do Counter, lembre-se "{cor - tipo}" será o tipo/cor do Counter...`)
       }
 
       // agora é preciso separar estes includes, código por código, pois todos juntos não é aceito e da erro, burlando todo o sistema.
       if (mensagem.includes('{pinky}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
       if (mensagem.includes('{green}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
       if (mensagem.includes('{gold}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
       if (mensagem.includes('{amarelo}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
       if (mensagem.includes('{redblue}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
       if (mensagem.includes('{natal}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
       if (mensagem.includes('{bouncepink}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
       if (mensagem.includes('{roxo}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
       if (mensagem.includes('{rainbow}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
       if (mensagem.includes('{bouncepurple}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
       if (mensagem.includes('{exa-new}') && !guildDocument.partner) {
-        return message.channel.send('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
+        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
       }
 
       guildDocument.countMessage = mensagem
       guildDocument.count = true
       guildDocument.save()
       const defaultChannel = await message.guild.channels.cache.get(guildDocument.countChannel)
-      if (!defaultChannel) return message.channel.send(`Este servidor não possui um canal definido no Counter...\nUse: \`${message.prefix}Counter canal #canal\` para definir um e use o comando novamente!`)
+      if (!defaultChannel) return message.reply(`Este servidor não possui um canal definido no Counter...\nUse: \`${message.prefix}Counter canal #canal\` para definir um e use o comando novamente!`)
       setTimeout(async () => {
         //ja volto ai
-        await message.channel.send(`Mensagem definida como \`${guildDocument.countMessage}\`\nCounter ativado...`)
+        await message.reply(`Mensagem definida como \`${guildDocument.countMessage}\`\nCounter ativado...`)
         await defaultChannel.setTopic(guildDocument.countMessage.replace('{azul}', TranslateFunctions.azul(message.guild.memberCount))
           .replace('{pinky}', TranslateFunctions.pinky(message.guild.memberCount))
           .replace('{gold}', TranslateFunctions.gold(message.guild.memberCount))
@@ -102,7 +102,7 @@ module.exports = class Counter extends Command {
           .replace('{bouncepink}', TranslateFunctions.bouncepink(message.guild.memberCount)))
       }, 5000)
     } else if (args[0] === 'remover') {
-      if (!guildDocument.count) return message.channel.send(`Este servidor não possui um Counter ativado!`)
+      if (!guildDocument.count) return message.reply(`Este servidor não possui um Counter ativado!`)
       const lastChannel = message.guild.channels.cache.get(guildDocument.countChannel)
       guildDocument.count = false
       guildDocument.countChannel = ''
@@ -110,7 +110,7 @@ module.exports = class Counter extends Command {
 
       guildDocument.save().then(async () => {
         await lastChannel.setTopic('')
-        await message.channel.send(`O Counter foi removido do canal ${lastChannel} e desativado`)
+        await message.reply(`O Counter foi removido do canal ${lastChannel} e desativado`)
       })
     } else {
       const embed = new MessageEmbed()
@@ -168,7 +168,7 @@ module.exports = class Counter extends Command {
 
       let embedCount = 1
 
-      message.channel.send({ embeds: [embed] }).then(async m => {
+      message.reply({ embeds: [embed] }).then(async m => {
         await m.react('666762183249494027')// ir para frente
         const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
         const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })

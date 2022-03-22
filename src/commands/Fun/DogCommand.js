@@ -20,6 +20,6 @@ module.exports = class dog extends Command {
       .setTimestamp(new Date())
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    message.channel.send({ embeds: [embed] });
+    message.reply({ embeds: [embed] });
   }
 }

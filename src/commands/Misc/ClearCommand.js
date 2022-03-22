@@ -22,13 +22,13 @@ module.exports = class apagar extends Command {
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
-      return message.channel.send({ embeds: [embedA] })
+      return message.reply({ embeds: [embedA] })
     const deleteCount = parseInt(args[0], 10);
     try {
       message.delete();
     } catch (error) {
       console.log(error);
-      message.channel.send(error);
+      message.reply(error);
     }
     if (!deleteCount || deleteCount < 2 || deleteCount > 100)
       return message.reply('`Por favor, forneça um número entre 2 e 100 para o número de mensagens a serem excluídas`');

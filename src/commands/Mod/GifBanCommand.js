@@ -18,12 +18,12 @@ module.exports = class GifBan extends Command {
       message.reply(`Você não está setado como vip do bot e não pode setar seu gif de banimento.`)
     } else { // faz por else talvez resolva
       if (!args[0]) {
-        return message.channel.send(`${message.author}, você deve enviar uma imagem ou especificar um link válido.`)
+        return message.reply(`${message.author}, você deve enviar uma imagem ou especificar um link válido.`)
       }
 
       doc.gifban = args[0]
       doc.save()
-      message.channel.send(`${message.author}, você alterou a sua ilustração de banimento!,Utilize **${guildDocument.prefix}vip**.`)
+      message.reply(`${message.author}, você alterou a sua ilustração de banimento!,Utilize **${guildDocument.prefix}vip**.`)
     }
   }
 }

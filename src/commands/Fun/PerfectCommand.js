@@ -33,6 +33,6 @@ module.exports = class perfeito extends Command {
     ctx.drawImage(image2, height - 177, posX+20, height - 178, height -179)//posiciona o redondo
 
     const attachment = new MessageAttachment(canvas.toBuffer(), 'pf.png'); // img.png eo nome
-    await message.channel.send(attachment); // envia o atach
+    await message.reply(attachment); // envia o atach
   }
 }

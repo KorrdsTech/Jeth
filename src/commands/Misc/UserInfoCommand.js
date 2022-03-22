@@ -108,6 +108,6 @@ module.exports = class userinfo extends Command {
       .setThumbnail(pUser.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setFooter(`${message.guild.name} - ${moment().format('LL')}`, message.guild.iconURL({ dynamic: true, size: 1024 }));
 
-    message.channel.send(normalUser)
+    message.reply(normalUser)
   }
 }

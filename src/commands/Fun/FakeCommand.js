@@ -20,16 +20,16 @@ module.exports = class fake extends Command {
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
-      return message.channel.send({ embeds: [embedA] })
+      return message.reply({ embeds: [embedA] })
 
     const user = message.mentions.users.first();
     const botmessage = args.slice(1).join(' ')
 
     if (user == null) {
-      message.channel.send('`Faltou você mencionar o usuario`')
+      message.reply('`Faltou você mencionar o usuario`')
     }
     if (botmessage == null) {
-      message.channel.send('`Ops parace que você esqueceu de colocar a mensagem`')
+      message.reply('`Ops parace que você esqueceu de colocar a mensagem`')
     }
     message.channel.createWebhook(user.username, { avatar: user.displayAvatarURL({ format: 'png' }) }).then(async w => {
       w.send(botmessage);

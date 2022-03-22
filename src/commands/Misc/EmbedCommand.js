@@ -28,7 +28,7 @@ module.exports = class Embed extends Command {
       .addField(`Embed Visualizer`, `Que tal testar sua embed antes de colocar na Jeth? Assim você saberá se há erros ou não. Acesse ao site do [Embed Visualizer](https://leovoel.github.io/embed-visualizer/) e teste.`)
       .setFooter(`Requisitado por ${message.author.tag} - ID ${message.author.id}`)
       .setColor(colors.default)
-    if (!args.join(' ')) return message.channel.send({ embed: ajuda })
+    if (!args.join(' ')) return message.reply({ embed: ajuda })
 
     try {
       const a = JSON.parse(args.join(' ').replaceAll('{guild-name}', message.guild.name).replaceAll('{user-icon}', message.author.displayAvatarURL({ dynamic: true, size: 1024 })).replaceAll('{guild-icon}', message.guild.iconURL({ dynamic: true, size: 1024 })).replaceAll('{mention}', `${message.author}`).replace('{user}', message.member.nickname ? message.member.nickname : message.author))
@@ -39,14 +39,14 @@ module.exports = class Embed extends Command {
       if (a.embed.fields) a.embed.fields = a.embed.fields.slice(0, 1024)
       if (a.embed.footer) a.embed.footer.text = a.embed.footer.text.slice(0, 1024)
       if (a.embed.author) a.embed.author.name = a.embed.author.name.slice(0, 1024)
-      if (a.content) message.channel.send(a.content, { embed: a.embed })
+      if (a.content) message.reply(a.content, { embed: a.embed })
       else {
-        message.channel.send({ embed: a.embed })
+        message.reply({ embed: a.embed })
           .catch(e => console.log(e))
       }
       console.log(({ embeds: [ajuda] }))
     } catch (e) {
-      message.channel.send(args.join(' '), { disableEveryone: true })
+      message.reply(args.join(' '), { disableEveryone: true })
         .catch(e => console.log(e))
     }
   }

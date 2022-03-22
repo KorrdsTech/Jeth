@@ -12,7 +12,7 @@ module.exports = class beijar extends Command {
 
   async run(message) {
     const user = message.mentions.users.first();
-    if (!user) return message.channel.send('`Você precisa mencionar alguém para beijar!`');
+    if (!user) return message.reply('`Você precisa mencionar alguém para beijar!`');
     const gifs = ['https://media1.giphy.com/media/FqBTvSNjNzeZG/source.gif', 'https://thumbs.gfycat.com/FondEvergreenIcterinewarbler-size_restricted.gif', 'https://media1.tenor.com/images/3c167989c5623e40ef517ded7e3c44e2/tenor.gif?itemid=9227861']
 
     const embed = new MessageEmbed()
@@ -24,6 +24,6 @@ module.exports = class beijar extends Command {
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }));
 
-    message.channel.send({ embeds: [embed] })
+    message.reply({ embeds: [embed] })
   }
 }

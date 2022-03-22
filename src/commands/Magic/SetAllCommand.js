@@ -17,15 +17,15 @@ module.exports = class setall extends Command {
     if (!message.guild.me.permissions.has('ADMINISTRATOR', false, true)) {
       return message.reply('nao tenho permissao para isso <:noswift:529635602292015134>').catch(() => { });
     }
-    if (message.mentions.roles.size < 1) return message.channel.send('Marque um cargo').catch(() => { });
+    if (message.mentions.roles.size < 1) return message.reply('Marque um cargo').catch(() => { });
 
     const role = message.mentions.roles.first();
 
     if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
-      return message.channel.send('Eu preciso estar acima do cargo mencionado <:noswift:529635602292015134>').catch(() => { });
+      return message.reply('Eu preciso estar acima do cargo mencionado <:noswift:529635602292015134>').catch(() => { });
     }
 
-    await message.channel.send(`Começando | 0/${message.guild.memberCount}`)
+    await message.reply(`Começando | 0/${message.guild.memberCount}`)
       .then(m => {
         message.guild.members.cache.fetch()
           .then(async guilda => {

@@ -20,6 +20,6 @@ module.exports = class roleta extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp();
 
-    message.channel.send({ embeds: [embed] })
+    message.reply({ embeds: [embed] })
   }
 }

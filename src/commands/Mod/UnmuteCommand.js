@@ -22,7 +22,7 @@ module.exports = class unmute extends Command {
       .addField('*Verifique se você possui a permissão:*', '`KICK_MEMBERS`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
     if (!message.member.permissions.has('KICK_MEMBERS'))
-      return message.channel.send({ embeds: [embedA] })
+      return message.reply({ embeds: [embedA] })
 
     if (!member) return message.reply(`Mencione alguém por favor.`)
     let muteRole = message.guild.roles.cache.find(r => r.name === 'Muted');
@@ -47,7 +47,7 @@ module.exports = class unmute extends Command {
     }
 
     message.guild.member(member).roles.remove(muteRole.id).then(async () => {
-      message.channel.send(`${member} foi **desmutado** por ${message.author}`)
+      message.reply(`${member} foi **desmutado** por ${message.author}`)
       await this.client.database.mutado.getAndDelete(member.id)
     })
       .catch(err => console.log('Algo deu errado: '+ err))

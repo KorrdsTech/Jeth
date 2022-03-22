@@ -22,13 +22,13 @@ module.exports = class chat extends Command {
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
-      return message.channel.send({ embeds: [embedA] })
+      return message.reply({ embeds: [embedA] })
 
     const embedlock = new MessageEmbed()
       .setColor(colors.default)
       .setDescription(`<a:sireneRoxa:739828671400902697> ${message.author} realmente deseja lockar o chat <#${message.channel.id}>?`)
 
-    const ell = await message.channel.send(embedlock),
+    const ell = await message.reply(embedlock),
       emojis = ['739830713792331817', '739831089543118890'];//array de emojis
 
     for (const i in emojis) {//loop de reações na msg que defini acima

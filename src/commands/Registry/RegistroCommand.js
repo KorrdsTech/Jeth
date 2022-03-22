@@ -17,7 +17,7 @@ module.exports = class Registry extends Command {
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     if (args[0] === 'masculino') {
       const role = message.mentions.roles.first();
-      if (!role) return message.channel.send(`${message.author},por favor mencione o cargo.`)
+      if (!role) return message.reply(`${message.author},por favor mencione o cargo.`)
       guildDocument.masculino = role.id;
       guildDocument.save().then(() => {
         const embed = new MessageEmbed()
@@ -26,11 +26,11 @@ module.exports = class Registry extends Command {
           .setColor(colors.default)
           .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
           .setTimestamp();
-        message.channel.send({ embeds: [embed] })
+        message.reply({ embeds: [embed] })
       })
     } else if (args[0] === 'feminino') {
       const role = message.mentions.roles.first();
-      if (!role) return message.channel.send(`${message.author},por favor mencione o cargo.`)
+      if (!role) return message.reply(`${message.author},por favor mencione o cargo.`)
       guildDocument.feminino = role.id;
       guildDocument.save().then(() => {
         const embed = new MessageEmbed()
@@ -39,11 +39,11 @@ module.exports = class Registry extends Command {
           .setColor(colors.default)
           .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
           .setTimestamp();
-        message.channel.send({ embeds: [embed] })
+        message.reply({ embeds: [embed] })
       })
     } else if (args[0] === 'nbinario') {
       const role = message.mentions.roles.first();
-      if (!role) return message.channel.send(`${message.author},por favor mencione o cargo.`)
+      if (!role) return message.reply(`${message.author},por favor mencione o cargo.`)
       guildDocument.nbinario = role.id;
       guildDocument.save().then(() => {
         const embed = new MessageEmbed()
@@ -52,11 +52,11 @@ module.exports = class Registry extends Command {
           .setColor(colors.default)
           .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
           .setTimestamp();
-        message.channel.send({ embeds: [embed] })
+        message.reply({ embeds: [embed] })
       })
     } else if (args[0] === 'registrado') {
       const role = message.mentions.roles.first();
-      if (!role) return message.channel.send(`${message.author},por favor mencione o cargo.`)
+      if (!role) return message.reply(`${message.author},por favor mencione o cargo.`)
       guildDocument.registrado = role.id;
       guildDocument.save().then(() => {
         const embed = new MessageEmbed()
@@ -65,11 +65,11 @@ module.exports = class Registry extends Command {
           .setColor(colors.default)
           .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
           .setTimestamp();
-        message.channel.send({ embeds: [embed] })
+        message.reply({ embeds: [embed] })
       })
     } else if (args[0] === 'novato') {
       const role = message.mentions.roles.first();
-      if (!role) return message.channel.send(`${message.author},por favor mencione o cargo.`)
+      if (!role) return message.reply(`${message.author},por favor mencione o cargo.`)
       guildDocument.novato = role.id;
       guildDocument.save().then(() => {
         const embed = new MessageEmbed()
@@ -78,15 +78,15 @@ module.exports = class Registry extends Command {
           .setColor(colors.default)
           .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
           .setTimestamp();
-        message.channel.send({ embeds: [embed] })
+        message.reply({ embeds: [embed] })
       })
     } else if (args[0] === 'canal') {
       const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
-      if (!channel || channel.type === 'category') return message.channel.send('Coloque um canal válido!')
+      if (!channel || channel.type === 'category') return message.reply('Coloque um canal válido!')
 
       guildDocument.channelRegister = channel.id
       guildDocument.save().then(async () => {
-        await message.channel.send(`Canal definido: ${channel}`)
+        await message.reply(`Canal definido: ${channel}`)
       })
     } else if (args[0] === 'reset') {
       guildDocument.registradores = [];
@@ -153,7 +153,7 @@ module.exports = class Registry extends Command {
       }
       let embedCount = 1
 
-      message.channel.send({ embeds: [embed] }).then(async m => {
+      message.reply({ embeds: [embed] }).then(async m => {
         await m.react('666762183249494027')// ir para frente
         const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
         const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })

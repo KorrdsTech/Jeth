@@ -22,7 +22,7 @@ module.exports = class retcargo extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
     if (!message.member.permissions.has('MANAGE_ROLES'))
-      return message.channel.send({ embeds: [embedA] })
+      return message.reply({ embeds: [embedA] })
     if (!usuario) return message.reply('`Você não mencionou o usuário!`');
     if (usuario.id === message.guild.ownerID) {
       message.reply('Você não tem permissão para remover role deste usuário');
@@ -65,6 +65,6 @@ module.exports = class retcargo extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
     usuario.roles.remove(cargo_nome)
-    message.channel.send({ embeds: [embed] })
+    message.reply({ embeds: [embed] })
   }
 }

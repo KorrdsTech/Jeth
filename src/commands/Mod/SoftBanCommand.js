@@ -38,6 +38,6 @@ module.exports = class softban extends Command {
     const embed = new MessageEmbed()
       .setDescription(`${usuario.username} foi **Suavemente Banido** do servidor por ${message.author}\nMotivo: ${razao} `)
       .setColor(cor)
-    message.channel.send({ embeds: [embed] })
+    message.reply({ embeds: [embed] })
   }
 }

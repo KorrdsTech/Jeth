@@ -45,14 +45,14 @@ module.exports = class Ban extends Command {
 
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
-    const membro17 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
+    const membro17 = await message.guild.members.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro17) {
-      message.channel.send({ embeds: [link] })
+      message.reply({ embeds: [link] })
     }
 
-    const membro14 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
+    const membro14 = await message.guild.members.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro14) {
-      message.channel.send({ embeds: [link] })
+      message.reply({ embeds: [link] })
     }
     const guildDocument1 = await this.client.database.user.getOrCreate(membro14.id)
 
@@ -64,13 +64,17 @@ module.exports = class Ban extends Command {
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    if (!message.member.permissions.has('BAN_MEMBERS')) return message.channel.send({ embeds: [embedA] })
+    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
     const userDocuent = await this.client.database.user.getOrCreate(message.author.id)
     // ban padrão 17
-    const bannable = [membro17, membro14]
-    if (bannable) {
-      if (!bannable.bannable) return message.reply({ embeds: [rolesHighest] })
-      if (bannable.roles.highest.position > message.member.roles.highest.position) return message.reply({ embeds: [rolesHighest] })
+    const executorRole = message.member.roles.highest;
+    const targetRole = membro17.roles.highest;
+    const targetRole1 = membro14.roles.highest;
+    if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
+      return message.reply({ embeds: [rolesHighest] });
+    }
+    if (executorRole.comparePositionTo(targetRole1) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
+      return message.reply({ embeds: [rolesHighest] });
     }
 
     const warnembed17 = new MessageEmbed()
@@ -83,7 +87,7 @@ module.exports = class Ban extends Command {
       .setTimestamp(new Date());
 
     // banimento private
-    const bans = await message.guild.fetchBans('753778869013577739');
+    const bans = await message.guild.bans.fetch();
     let reason = args.slice(1).join(' ') || 'Nenhum motivo especificado';
 
     const warnembed14 = new MessageEmbed()
@@ -113,12 +117,12 @@ module.exports = class Ban extends Command {
       warnembed18.fields[1].value = argumentos
       warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
       warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
-      message.channel.send(warnembed14)
+      message.reply({ embeds: [warnembed14] })
       try {
         membro14.send(warnembed18)
       } catch { error }
     } else {
-      message.channel.send(escolha).then(async m => {
+      message.reply({ embeds: [escolha] }).then(async m => {
 
         await m.react('739977300564639835')
         await m.react('739977300921024522')
@@ -146,9 +150,9 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(guildDocument1.id, {
                 reason: reason
               }).then(() => {
-                message.channel.send(warnembed14)
+                message.reply({ embeds: [warnembed14] })
                 try {
-                  guildDocument1.send(warnembed18)
+                  guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
               }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
               break
@@ -161,9 +165,9 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(membro14, {
                 reason: reason
               }).then(() => {
-                message.channel.send(warnembed14)
+                message.reply({ embeds: [warnembed14] })
                 try {
-                  guildDocument1.send(warnembed18)
+                  guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
               }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
               break
@@ -176,9 +180,9 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(membro14, {
                 reason: reason
               }).then(() => {
-                message.channel.send(warnembed14)
+                message.reply({ embeds: [warnembed14] })
                 try {
-                  guildDocument1.send(warnembed18)
+                  guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
               }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
               break
@@ -191,9 +195,9 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(membro14, {
                 reason: reason
               }).then(() => {
-                message.channel.send(warnembed14)
+                message.reply({ embeds: [warnembed14] })
                 try {
-                  guildDocument1.send(warnembed18)
+                  guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
               }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
               break
@@ -206,9 +210,9 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(membro14, {
                 reason: reason
               }).then(() => {
-                message.channel.send(warnembed14)
+                message.reply({ embeds: [warnembed14] })
                 try {
-                  guildDocument1.send(warnembed18)
+                  guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
               }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
               break
@@ -221,9 +225,9 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(membro14, {
                 reason: reason
               }).then(() => {
-                message.channel.send(warnembed14)
+                message.reply({ embeds: [warnembed14] })
                 try {
-                  guildDocument1.send(warnembed18)
+                  guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
               }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
               break

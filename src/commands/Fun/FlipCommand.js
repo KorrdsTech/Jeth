@@ -21,7 +21,7 @@ module.exports = class flip extends Command {
       .setTitle('A face da moeda está virada para...')
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    message.channel.send(moedaembed1);
+    message.reply(moedaembed1);
 
   }
 }

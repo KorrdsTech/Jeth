@@ -13,7 +13,7 @@ module.exports = class vip extends Command {
   async run(message, args) {
     const role = await this.client.database.Cargo.findOne({ _id: message.author.id })
     if (message.guild.id !== '804575416098488380') {
-      return message.channel.send('<:CancelarK:673592197341249559> Este comando só pode ser executado no servidor oficial da **Jeth!**');
+      return message.reply('<:CancelarK:673592197341249559> Este comando só pode ser executado no servidor oficial da **Jeth!**');
     } else {
       const vipao = new MessageEmbed()
 
@@ -29,11 +29,11 @@ module.exports = class vip extends Command {
       const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
       const doc = await this.client.database.user.getOrCreate(message.author.id)
       if (!doc.vip) {
-        message.channel.send(vipao)
+        message.reply(vipao)
       } else {
         if (args[0] === 'gifban') {
           const mensagem = args.slice(1).join(' ')
-          if (!mensagem) return message.channel.send(`Coloque qual será o link de banimento.`)
+          if (!mensagem) return message.reply(`Coloque qual será o link de banimento.`)
           doc.gifban = mensagem
           doc.save()
           message.reply(`Você mudou o gif de banimento,utilize **${guildDocument.prefix}vip gif-teste**,para testar seu gif!`)
@@ -52,15 +52,15 @@ module.exports = class vip extends Command {
             .addField('Motivo:', `Banido por ${message.author.tag} — Não relatou um motivo.`, false)
             .setColor(colors.default)
             .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
-          message.channel.send({ embed: teste })
+          message.reply({ embed: teste })
         } else if (args[0] === 'canal') {
           const det = await this.client.database.cargo.getOrCreate(message.author.id)
           if (!det) {
-            message.channel.send('Você não criou seu cargo próprio!')
+            message.reply('Você não criou seu cargo próprio!')
           } else {
             const doc = await this.client.database.canal.getOrCreate(message.author.id)
             if (doc) {
-              message.channel.send('Você já possui um canal próprio!')
+              message.reply('Você já possui um canal próprio!')
             }
             if (!doc) {
               const args = message.content.slice(11)
@@ -93,7 +93,7 @@ module.exports = class vip extends Command {
                   MUTE_MEMBERS: true,
                   PRIORITY_SPEAKER: true
                 })
-                message.channel.send('Canal criado com sucesso!')
+                message.reply('Canal criado com sucesso!')
                 const canal = this.client.database.Canal({ _id: message.author.id })
                 canal.save().then(() => {
                   const categoria = message.guild.channels.cache.get('878494223798779964');
@@ -146,7 +146,7 @@ module.exports = class vip extends Command {
                       })
                     })
                     )
-                    message.channel.send('Usuário salvo na database')
+                    message.reply('Usuário salvo na database')
                   })
                 })
               })
@@ -179,18 +179,18 @@ module.exports = class vip extends Command {
             return
           }
           const reas = args.slice(1).join(' ')
-          if (!reas) message.channel.send('<:CancelarK:673592197341249559> Erro! você não colocou nenhum nome para a role')
+          if (!reas) message.reply('<:CancelarK:673592197341249559> Erro! você não colocou nenhum nome para a role')
           message.guild.roles.create({
             data: {
               name: `${reas}`,
               color: `${cargo.cor}`
             }
           }).then(rolec => {
-            message.channel.send('Cargo criado com sucesso!')
+            message.reply('Cargo criado com sucesso!')
             message.member.roles.add(rolec.id)
             const cargo2 = this.client.database.Cargo({ _id: message.author.id, roleID: rolec.id })
             cargo2.save().then(() => {
-              message.channel.send('Usuário salvo na database')
+              message.reply('Usuário salvo na database')
             })
           })
         } else if (args[0] === 'help') {
@@ -218,7 +218,7 @@ module.exports = class vip extends Command {
 
           let embedCount = 1
 
-          message.channel.send({ embeds: [embed] }).then(async m => {
+          message.reply({ embeds: [embed] }).then(async m => {
             await m.react('666762183249494027')// ir para frente
             const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
             const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })

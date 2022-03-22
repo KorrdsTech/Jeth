@@ -22,8 +22,8 @@ module.exports = class abracar extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp()
 
-    if (message.mentions.users.size < 1) return message.channel.send({ embeds: [embed] })
-    if (user.id == message.author.id) message.channel.send({ embeds: [embed] })// return message.reply("Você não pode abraçar a si mesmo.")
+    if (message.mentions.users.size < 1) return message.reply({ embeds: [embed] })
+    if (user.id == message.author.id) message.reply({ embeds: [embed] })// return message.reply("Você não pode abraçar a si mesmo.")
 
     const HugEmbed = new MessageEmbed()
       .setColor(colors.default)
@@ -32,6 +32,6 @@ module.exports = class abracar extends Command {
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp()
 
-    message.channel.send({ embeds: [HugEmbed] })
+    message.reply({ embeds: [HugEmbed] })
   }
 }

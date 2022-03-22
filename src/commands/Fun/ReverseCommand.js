@@ -12,9 +12,9 @@ module.exports = class reverse extends Command {
   async run(message, args) {
     const reason = args.slice(0).join(' ');
 
-    if (reason.length < 1) return message.channel.send('**' + message.author.tag + '** <:a_blurpletextchannel:856174396095594536> Diga uma **mensagem**!');
+    if (reason.length < 1) return message.reply('**' + message.author.tag + '** <:a_blurpletextchannel:856174396095594536> Diga uma **mensagem**!');
 
-    message.channel.send(`:pencil: Reverse by: **${message.author}** \n \n **` + args.join(' ').split('').reverse().join('') + '**');
+    message.reply(`:pencil: Reverse by: **${message.author}** \n \n **` + args.join(' ').split('').reverse().join('') + '**');
 
   }
 }

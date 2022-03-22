@@ -14,14 +14,14 @@ module.exports = class blacklist extends Command {
   async run(message, args) {
     const staff = await this.client.database.user.getOrCreate(message.author.id)
     if (!staff.staff) {
-      return message.channel.send('Você não pode utilizar este comando, somente os membros confiados da equipe <@&718178715426619489>')
+      return message.reply('Você não pode utilizar este comando, somente os membros confiados da equipe <@&718178715426619489>')
     }
     if (!args[0]) {
-      return message.channel.send('Você tem que falar o id do usuario para que eu póssa adicionar na blacklist...').then(sent => sent.delete({ timeout: 5000 }))
+      return message.reply('Você tem que falar o id do usuario para que eu póssa adicionar na blacklist...').then(sent => sent.delete({ timeout: 5000 }))
     }
     const usuario = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!usuario) {
-      message.channel.send('Mencione um membro valido.')
+      message.reply('Mencione um membro valido.')
     }
     const guildDocument = await this.client.database.user.getOrCreate(usuario.id)
     let reason = args.slice(1).join(' ')
@@ -54,7 +54,7 @@ module.exports = class blacklist extends Command {
       guildDocument.save().then(async () => {
         this.client.guilds.cache.map(gd => gd.members.unban(usuario))
         usuario.send('<:a_blurpleintegration:856174395801468989> Você foi removido da blacklist, e sua infração foi perdoada.')
-        await message.channel.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
+        await message.reply(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
 
       })
     } else {
@@ -62,8 +62,8 @@ module.exports = class blacklist extends Command {
       guildDocument.save().then(async () => {
         this.client.guilds.cache.map(gd => gd.members.ban(usuario, { reason: `Blacklisted: Quebra dos termos de serviço do discord` }))
         usuario.send(warnembed18)
-        message.channel.send(`${message.author},\`${usuario.tag}\`,está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
-        message.channel.send(warnembed14);
+        message.reply(`${message.author},\`${usuario.tag}\`,está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
+        message.reply(warnembed14);
       })
     }
   }

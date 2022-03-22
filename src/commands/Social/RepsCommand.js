@@ -15,7 +15,7 @@ module.exports = class Reps extends Command {
 
   async run(message, args) {
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.author;
-    if (!member) return message.channel.send('Algum erro terrível aconteceu, entre em contato com skedaddle via /bug')
+    if (!member) return message.reply('Algum erro terrível aconteceu, entre em contato com skedaddle via /bug')
     const user = await this.client.database.user.getOrCreate(member.id)
     const embed = new MessageEmbed()
       .setColor(colors.default)
@@ -25,6 +25,6 @@ module.exports = class Reps extends Command {
       .addField('Usuário:', `${member}`)
       .addField('Reps:', `${user.rep}`)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
-    message.channel.send({ embeds: [embed] })
+    message.reply({ embeds: [embed] })
   }
 }

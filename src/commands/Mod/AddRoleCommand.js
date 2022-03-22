@@ -44,7 +44,7 @@ module.exports = class setcargo extends Command {
 
     if (!args[1]) return message.reply({ embeds: [emptyMessage] });
     if (!message.guild.me.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [permErr] });
-    if (!message.member.permissions.has('MANAGE_ROLES')) return message.channel.send({ embeds: [embedA] })
+    if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
     if (!usuario) return message.reply('Você não mencionou o usuário!');
     if (!cargo_nome) return message.reply('Você não colocou um cargo valido!');
     if (usuario.id === message.guild.ownerID) {
@@ -73,7 +73,7 @@ module.exports = class setcargo extends Command {
 
     if (usuario.roles.cache.has(cargo_nome)) return message.reply('o membro mencionado já possui esse cargo.')
     usuario.roles.add(cargo_nome)
-    message.channel.send({ embeds: [embed] })
+    message.reply({ embeds: [embed] })
 
   }
 }

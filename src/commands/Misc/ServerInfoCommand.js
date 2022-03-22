@@ -36,7 +36,7 @@ module.exports = class serverinfo extends Command {
       .setDescription(`🙋🏻 **| Nome:** \n${message.guild.name} \n \n  🤹🏼‍♂️ **| Membros:** \n ${message.guild.memberCount} \n \n ⌛️ **| Criado:** \n ${message.guild.createdAt} \n \n🔐 ** | Nível de verificação:** ${verificationLevels[message.guild.verificationLevel]} \n \n🔞 ** | Filtro de conteúdo explícito:** ${filterLevels[message.guild.explicitContentFilter]}`) // inline false
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-    message.channel.send({ embeds: [embed] })
+    message.reply({ embeds: [embed] })
   }
 }
 

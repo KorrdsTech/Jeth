@@ -25,7 +25,7 @@ module.exports = class evalcmd extends Command {
         str = str.substr(0, 1800)
         str = str + '...'
       }
-      message.channel.send(str, { code: 'js' })
+      message.reply(str, { code: 'js' })
 
     } catch (err) {
       if (err.stack.length > 1800) {
@@ -37,7 +37,7 @@ module.exports = class evalcmd extends Command {
         .setTitle(`Oh no... An error occurred while doing this action, I'm sorry for what happened. :sob:`)
         .setDescription(`\`\`\`${err.stack}\`\`\``)
 
-      message.channel.send({ embeds: [embed] })
+      message.reply({ embeds: [embed] })
     }
   }
 }

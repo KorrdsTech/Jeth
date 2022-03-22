@@ -76,7 +76,7 @@ module.exports = class Timeout extends Command {
     user.timeout(parse(timer)).then(
       message.reply({ embeds: [embed] }))
             // envia a mensagem de confirmação
-    message.channel.send({ embeds: [embed] })
+    message.reply({ embeds: [embed] })
 
   }
 }
