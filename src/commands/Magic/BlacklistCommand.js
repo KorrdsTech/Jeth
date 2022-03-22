@@ -61,9 +61,9 @@ module.exports = class blacklist extends Command {
       guildDocument.blacklist = true
       guildDocument.save().then(async () => {
         this.client.guilds.cache.map(gd => gd.members.ban(usuario, { reason: `Blacklisted: Quebra dos termos de serviço do discord` }))
-        usuario.send(warnembed18)
+        usuario.send({ embeds: [warnembed18] })
         message.reply(`${message.author},\`${usuario.tag}\`,está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
-        message.reply(warnembed14);
+        message.reply({ embeds: [warnembed14] });
       })
     }
   }

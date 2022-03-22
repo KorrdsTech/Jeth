@@ -66,7 +66,7 @@ module.exports = class kick extends Command {
       .setTimestamp(new Date());
 
     message.reply(warnembed13);
-    membro18.send(warnembed18);
+    membro18.send({ embeds: [warnembed18] });
     await message.guild.member(membro18).kick(razao13)
   }
 };

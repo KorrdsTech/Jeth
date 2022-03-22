@@ -119,7 +119,7 @@ module.exports = class Ban extends Command {
       warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
       message.reply({ embeds: [warnembed14] })
       try {
-        membro14.send(warnembed18)
+        membro14.send({ embeds: [warnembed18] })
       } catch { error }
     } else {
       message.reply({ embeds: [escolha] }).then(async m => {

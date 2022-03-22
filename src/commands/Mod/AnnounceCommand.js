@@ -41,7 +41,7 @@ module.exports = class anuncio extends Command {
     if (message.content.startsWith(server.prefix + 'anuncio set')) {
       const imagem = args[1]
       if (!imagem) {
-        return message.reply(link)
+        return message.reply({ embeds: [link] })
       }
       server.linkanuncio = args[1]
       server.save()
