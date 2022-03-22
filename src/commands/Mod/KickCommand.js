@@ -11,11 +11,16 @@ module.exports = class kick extends Command {
   }
 
   async run(message, args) {
+    const emptyMessage = new MessageEmbed()
+      .setColor(colors.mod)
+      .setTitle('<:plus:955577453441597550> **Kick:**', `${message.author.username}`, true)
+      .setDescription('Como o próprio nome já diz a função deste comando é de chutar um usuário do seu servidor em alto estilo.') // inline false
+      .addField('*Uso do comando:*', '`kick <@user> <motivo>`', true)
+      .addField('*Exemplo:*', '`kick @Solaris#0006 Get a kick in the ... !`', true)
 
+    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     const usuario = message.author;
-      // code erro de perm
     const embedA = new MessageEmbed()
-
       .setTimestamp()
       .setColor(colors.mod)
       .setTitle('**Err:**', `${usuario}`, true)
@@ -40,21 +45,6 @@ module.exports = class kick extends Command {
     const membro18 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro18) return message.reply('eu procurei, procurei, e não achei este usuário')
     if (razao13.length < 1) return message.reply('`Adicione um motivo válido!`')
-
-      // const embedC = new MessageEmbed()
-      // .setTimestamp()
-      // .setColor(colors.mod)
-      // .setTitle('**Err:**', true)
-      // .setDescription('Missing Permissions') // inline false
-      // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
-      // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
-
-      // let target18 = membro18.roles.highest;
-      // let clientRole = message.guild.me.roles.highest;
-      // if (clientRole.comparePositionTo(target18) <= 0) {
-      //     message.reply({ embeds: [embedA] });
-      //     return 0;
-      // }
 
     const warnembed13 = new MessageEmbed()
 

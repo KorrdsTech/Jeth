@@ -44,7 +44,7 @@ module.exports = class blockdiv extends Command {
       const embed = new MessageEmbed()
       embed.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       embed.setColor(colors.default)
-      embed.setDescription(`Dúvidas de como usar o Counter?\nAqui vai algumas dicas...`)
+      embed.setDescription(`Dúvidas de como usar o Anti-Invite?\nAqui vai algumas dicas...`)
       embed.addField('Modos de usar', [
         `\`${guildDocument.prefix}div canal #canal\` - Define o canal onde será definido o log de Anti-Invite.`,
         `\`${guildDocument.prefix}div ativar \` - Para ligar o sistema de Anti-Invite.`,
@@ -63,7 +63,7 @@ module.exports = class blockdiv extends Command {
       const msgWelcome = guildDocument.antInvite ?
         `<:concludo:739830713792331817> Ativo` :
         `<:rejected:739831089543118890> Desativado`
-      embed2.addField('Anti-Invite está:', msgWelcome)
+      embed2.addField('Anti-Invite está:', msgWelcome);
 
       let embedCount = 1
       message.channel.send({ embeds: [embed] }).then(async m => {
