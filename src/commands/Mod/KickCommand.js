@@ -18,12 +18,16 @@ module.exports = class kick extends Command {
       .addField('*Uso do comando:*', '`kick <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`kick @Solaris#0006 Get a kick in the ... !`', true)
 
+    const rolesHighest = new MessageEmbed()
+      .setColor(colors.mod)
+      .setTitle('<:reinterjection:955577574304657508> **Kick:**', `${message.author.username}`, true)
+      .setDescription('Você não pode executar um timeout neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
+
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
-    const usuario = message.author;
     const embedA = new MessageEmbed()
       .setTimestamp()
       .setColor(colors.mod)
-      .setTitle('**Err:**', `${usuario}`, true)
+      .setTitle('**Err:**', `${message.author}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`KICK_MEMBERS`', true)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
@@ -42,13 +46,19 @@ module.exports = class kick extends Command {
       .setTimestamp(new Date());
 
     if (!message.member.permissions.has('KICK_MEMBERS')) return message.channel.send({ embeds: [embedA] })
-    const membro18 = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
+    const membro18 = await message.guild.members.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!membro18) return message.reply('eu procurei, procurei, e não achei este usuário')
     if (razao13.length < 1) return message.reply('`Adicione um motivo válido!`')
 
+    const executorRole = message.member.roles.highest;
+    const targetRole = membro18.roles.highest;
+    if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
+      return message.reply({ embeds: [rolesHighest] });
+    }
+
     const warnembed13 = new MessageEmbed()
 
-      .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
+      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Kick')
       .setColor('#ff112b')
       .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Kickado:** ${membro18.username} \n**ID:** ${membro18.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${razao13}`)
