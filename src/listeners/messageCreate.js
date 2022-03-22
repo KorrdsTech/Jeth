@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js')
-const { colors } = require('../utils')
+const { colors, AntiSpamUtils } = require('../utils')
 const parse = require('parse-duration')
 
 module.exports = async function onMessage(message) {
@@ -30,6 +30,7 @@ module.exports = async function onMessage(message) {
   }
 
   const Users = await this.database.user.getOrCreate(message.author.id)
+  AntiSpamUtils.verify(message)
   const thumbsup = '👍';
   const thumbsdown = '👎';
   if (message.channel.id === '718178715657568359') {
@@ -55,12 +56,7 @@ module.exports = async function onMessage(message) {
   if (guildDocument.antInvite && !message.member.permissions.has('ADMINISTRATOR')) {
     if ((/((?:discord\.gg|discordapp\.com\/invite|discord\.com\/invite|discord\.me|discord\.io))/g).test(message.content)) {
       message.delete()
-      this.api.guilds(message.guild.id).members(message.author.id).patch({
-        data: {
-          communication_disabled_until: new Date(new Date(Date.now() + Number(parse('1d'))).toUTCString()).toISOString()
-        },
-        reason: 'Divulgação de convites não são toleradas aqui.'
-      }).then(() => {
+      message.member.timeout(parse('1d'), '[AUTOMOD] Divulgação de convites não são toleradas aqui.').then(() => {
         message.reply('<:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!')
       })
     }
