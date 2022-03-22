@@ -63,7 +63,7 @@ module.exports = async function onMessage(message) {
   }
 
   const prefix = guildDocument.prefix
-  if (!prefix) return
+  if (!message.content.startsWith(prefix)) return
   if (Users.blacklist) {
     message.reply('> Você está na blacklist e não pode executar nenhum comando do bot.').then(msg => msg.delete({ timeout: 5000 }))
     return
