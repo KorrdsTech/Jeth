@@ -12,6 +12,17 @@ module.exports = class Raidban extends Command {
   }
 
   async run(message, args) {
+    const emptyMessage = new MessageEmbed()
+      .setColor(colors.mod)
+      .setTitle('<:plus:955577453441597550> **Ban:**', `${message.author.username}`, true)
+      .setDescription('Criado para facilitar o gerenciamento de banimentos de um servidor, desta forma criando uma log confirmando permanentemente que o usuário foi banido daquele servidor e o motivo especificado.') // inline false
+      .addField('*Uso do comando:*', '`ban <@user> <motivo>`', true)
+      .addField('*Exemplo:*', '`ban @Solaris#0006 Ban hammer has spoken!`', true)
+
+    const rolesHighest = new MessageEmbed()
+      .setColor(colors.mod)
+      .setTitle('<:reinterjection:955577574304657508> **Ban:**', `${message.author.username}`, true)
+      .setDescription('Você não pode executar um banimento neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
 
     const escolha = new MessageEmbed()
       .setColor(colors.default)
@@ -31,6 +42,8 @@ module.exports = class Raidban extends Command {
     const quarto = 'Apologia ao Nazismo e/ou pornografia infântil'
     const quinto = 'Ações que comprometem o servidor ou os usuários'
     const sexto = 'Divulgação inapropriada'
+
+    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
     if (!args[0]) return message.reply(link)
 
@@ -57,10 +70,14 @@ module.exports = class Raidban extends Command {
     if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
     const userDocuent = await this.client.database.user.getOrCreate(message.author.id)
     // ban padrão 17
-    const bannable = message.guild.member(membro17, membro14)
-    if (bannable) {
-      if (!bannable.bannable) return message.reply('eu não posso banir este usuário, o cargo dele é maior que o meu.')
-      if (bannable.roles.highest.position > message.member.roles.highest.position) return message.reply(`você não pode banir esse usuário, pois o cargo dele é maior ou igual ao seu.`)
+    const executorRole = message.member.roles.highest;
+    const targetRole = membro17.roles.highest;
+    const targetRole1 = membro14.roles.highest;
+    if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
+      return message.reply({ embeds: [rolesHighest] });
+    }
+    if (executorRole.comparePositionTo(targetRole1) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
+      return message.reply({ embeds: [rolesHighest] });
     }
 
     const warnembed17 = new MessageEmbed()
@@ -73,7 +90,7 @@ module.exports = class Raidban extends Command {
       .setTimestamp(new Date());
 
     // banimento private
-    const bans = await message.guild.fetchBans('753778869013577739');
+    const bans = await message.guild.bans.fetch();
     let reason = args.slice(1).join(' ') || 'Nenhum motivo especificado';
 
     const warnembed14 = new MessageEmbed()
