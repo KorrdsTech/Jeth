@@ -21,9 +21,9 @@ module.exports = class Rep extends Command {
       .addField('*Uso do comando:*', '`rep <@user>`', true)
       .addField('*Exemplo:*', '`rep @Solaris#0006`', true)
 
+    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     const member = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!member) return message.reply('eu procurei, procurei, e não achei este usuário')
-    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     // verificação de se o usuário tem o mesmo id do autor da mensagem.
     if (member.id === message.author.id) return message.reply(`Você não pode dar rep para si mesmo.`)
     // ...
