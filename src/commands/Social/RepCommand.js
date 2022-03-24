@@ -23,7 +23,7 @@ module.exports = class Rep extends Command {
 
     const member = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!member) return message.reply('eu procurei, procurei, e não achei este usuário')
-    if (!args) return message.reply({ embeds: [emptyMessage] })
+    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     // verificação de se o usuário tem o mesmo id do autor da mensagem.
     if (member.id === message.author.id) return message.reply(`Você não pode dar rep para si mesmo.`)
     // ...
