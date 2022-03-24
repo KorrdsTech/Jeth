@@ -23,9 +23,7 @@
     "parse-duration": "^1.0.2",
     "steam-provider": "^0.3.2",
     "transform-props": "^1.0.1",
-    "dotenv": "^15.0.1"
-  },
-  "devDependencies": {
+    "dotenv": "^15.0.1",
     "@types/node": "^17.0.23",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
