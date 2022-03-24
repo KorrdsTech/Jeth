@@ -10,7 +10,7 @@ Atualmente as versões exibidas nesta caixa contam com nosso suporte.
 | 2.0.x | ❌ |
 | 3.0.x | ❌ |
 | 4.0.x | ❌ |
-| 5.0.x | ❌ |
+| 5.0.x | ✅ |
 | 6.0.0-beta | ✅ |
 | ------- | ------------------ |
 
