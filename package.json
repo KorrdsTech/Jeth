@@ -22,13 +22,13 @@
     "mongoose": "^6.2.8",
     "parse-duration": "^1.0.2",
     "steam-provider": "^0.3.2",
-    "transform-props": "^1.0.1"
+    "transform-props": "^1.0.1",
+    "dotenv": "^15.0.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
-    "dotenv": "^15.0.1",
     "eslint": "^8.11.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-sort-class-members": "^1.14.1",
