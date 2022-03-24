@@ -1,4 +1,5 @@
-const { Command } = require('../../utils')
+const { Command, colors } = require('../../utils')
+const { MessageEmbed } = require('discord.js')
 const moment = require('moment')
 moment.locale('pt-br')
 
@@ -13,9 +14,16 @@ module.exports = class Rep extends Command {
   }
 
   async run(message, args) {
+    const emptyMessage = new MessageEmbed()
+      .setColor(colors.mod)
+      .setTitle('<:plus:955577453441597550> **Ban:**', `${message.author.username}`, true)
+      .setDescription('Criado para adicionar pontos de reputação a conta de um usuário, se um user recebe bastante pontos de reputação significa que ele ajuda bastante em nosso desenvolvimento do projeto, seja com suporte ou outros.') // inline false
+      .addField('*Uso do comando:*', '`rep <@user>`', true)
+      .addField('*Exemplo:*', '`rep @Solaris#0006`', true)
+
     const member = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
     if (!member) return message.reply('eu procurei, procurei, e não achei este usuário')
-
+    if (!args) return message.reply({ embeds: [emptyMessage] })
     // verificação de se o usuário tem o mesmo id do autor da mensagem.
     if (member.id === message.author.id) return message.reply(`Você não pode dar rep para si mesmo.`)
     // ...
