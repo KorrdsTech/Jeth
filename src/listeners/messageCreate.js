@@ -31,7 +31,7 @@ module.exports = async function onMessage(message) {
 
   const Users = await this.database.user.getOrCreate(message.author.id)
   if (guildDocument.antSpam) {
-    AntiSpamUtils.verify(message)
+    AntiSpamUtils.verify(this, message)
   }
   const thumbsup = '👍';
   const thumbsdown = '👎';
