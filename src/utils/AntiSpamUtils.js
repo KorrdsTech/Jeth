@@ -33,7 +33,7 @@ module.exports = class AntiSpamUtils {
           if (this.checkPossibly(message)) {
             const guildDocument = await client.database.guild.getOrCreate(message.guild.id)
             message.member.timeout(parse(guildDocument.timerSpam), `${guildDocument.infoantspam}`).then(() => {
-              message.channel.send(`Calma lá ${message.author}, acho melhor você parar! Eu acabei de apagar ${msgList.length} mensagens sua que você spammou.`)
+              message.channel.send(`<:reinterjection:955577574304657508> Calma lá ${message.author}, acho melhor você parar! Eu acabei de apagar ${msgList.length} mensagens sua que você spammou.`)
             })
           } else {
             message.channel.send(`Calma lá ${message.author}, acho melhor você parar! Eu acabei de apagar ${msgList.length} mensagens sua que você spammou.`)
