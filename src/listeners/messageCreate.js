@@ -30,7 +30,9 @@ module.exports = async function onMessage(message) {
   }
 
   const Users = await this.database.user.getOrCreate(message.author.id)
-  AntiSpamUtils.verify(message)
+  if (guildDocument.antSpam) {
+    AntiSpamUtils.verify(message)
+  }
   const thumbsup = '👍';
   const thumbsdown = '👎';
   if (message.channel.id === '718178715657568359') {
