@@ -1,15 +1,23 @@
-# Security Policy
+# Política de segurança
 
-## Supported Versions
+### Versões Suportadas
 
-Currently those versions displayed in this box have our support.
+Atualmente as versões exibidas nesta caixa contam com nosso suporte.
 
-| Version | Supported          |
+| Versão | Suportado |
 | ------- | ------------------ |
-| 1.0.x   | :white_check_mark: |
+| 1.0.x | ❌ |
+| 2.0.x | ❌ |
+| 3.0.x | ❌ |
+| 4.0.x | ❌ |
+| 5.0.x | ❌ |
+| 6.0.0-beta | ✅ |
 | ------- | ------------------ |
 
-## Reporting a Vulnerability
+## Como relatar uma vulnerabilidade
 
-If you find any vulnerability at our project please feel free to report to us in our main discord server or even here at our repository issues sections.
-We will verify the issue and work out a solution as soon as possible.
+  Caso tenha encontrado uma vulnerabilidade de segurança, algo que acredite que irá prejudicar nossa disponibilidade de serviço pago ou gratuito, nós pedimos que reporte imediatamente dentro de nosso servidor de suporte.
+  
+- Abra um ticket dentro de nosso robô de suporte no servidor.
+  - Explique detalhadamente para nossa equipe qual o problema.
+    - Iremos investigar/resolver o problema e recompensar sua ajuda devidamente.
