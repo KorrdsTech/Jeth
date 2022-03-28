@@ -14,119 +14,109 @@ module.exports = class Warn extends Command {
   async run(message, args) {
 
     const emptyMessage = new MessageEmbed()
-      .setColor(colors['mod'])
-      .setTitle('<:plus:955577453441597550> **Warn:**', `${message.author.username}`, true)
-      .setDescription('Com este comando você facilmente pode emitir uma advertência em um usuário, registrando ela de forma que só será apagada de seu histórico caso você a remove via Unwarn.') // inline false
-      .addField('*Uso do comando:*', '`warn <@user> <motivo>`', true)
-      .addField('*Exemplo:*', '`warn @Solaris#0006 Not listen to the rules of this academy!`', true)
+      .setColor(colors['maintenance'])
+      .setTitle('<:9204adminbadge:938280523388842014> **Warn:**', `${message.author.username}`, true)
+      .setDescription('Este comando foi desabilitado e está inutilizável até fim da manutenção.')
 
-    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
+    message.reply({ embeds: [emptyMessage] })
+//     const emptyMessage = new MessageEmbed()
+//       .setColor(colors['mod'])
+//       .setTitle('<:plus:955577453441597550> **Warn:**', `${message.author.username}`, true)
+//       .setDescription('Com este comando você facilmente pode emitir uma advertência em um usuário, registrando ela de forma que só será apagada de seu histórico caso você a remove via Unwarn.') // inline false
+//       .addField('*Uso do comando:*', '`warn <@user> <motivo>`', true)
+//       .addField('*Exemplo:*', '`warn @Solaris#0006 Not listen to the rules of this academy!`', true)
 
-    let razao = args.slice(1).join(' ')
-    const razao1 = 'Possuir muitos avisos dentro de um servidor'
-    const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
+//     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
-    const embedA = new MessageEmbed()
-      .setTimestamp()
-      .setColor(colors['mod'])
-      .setTitle('**Err:**', `${member}`, true)
-      .setDescription('Missing Permissions')
-      .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+//     let razao = args.slice(1).join(' ')
+//     const razao1 = 'Possuir muitos avisos dentro de um servidor'
+//     const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
 
-    if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
-    if (!member) return message.reply('Mencione o member que deseja dar warn!')
-    if (!razao.length) {
-      razao = 'Sem motivos.'
-    }
-    // const embedC = new MessageEmbed()
-    // .setTimestamp()
-    // .setColor(colors['mod'])
-    // .setTitle('**Err:**', true)
-    // .setDescription('Missing Permissions') // inline false
-    // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
-    // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+//     const embedA = new MessageEmbed()
+//       .setTimestamp()
+//       .setColor(colors['mod'])
+//       .setTitle('**Err:**', `${member}`, true)
+//       .setDescription('Missing Permissions')
+//       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
+//       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    // let targetMember = member.roles.highest;
-    // let clientRole = message.guild.me.roles.highest;
-    // if (clientRole.comparePositionTo(targetMember) <= 0) {
-    //     message.reply({ embeds: [embedA] });
-    //     return 0;
-    // }
+//     if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
+//     if (!member) return message.reply('Mencione o member que deseja dar warn!')
+//     if (!razao.length) {
+//       razao = 'Sem motivos.'
+//     }
 
-    const warnembed = new MessageEmbed()
+//     const warnembed = new MessageEmbed()
 
-      .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
-      .setTitle('Ação | Aviso')
-      .setColor('#ff004c')
-      .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Advertido:** ${member.user.username} \n**ID:** ${member.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${razao}`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
-      .setTimestamp();
+//       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
+//       .setTitle('Ação | Aviso')
+//       .setColor('#ff004c')
+//       .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Advertido:** ${member.user.username} \n**ID:** ${member.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${razao}`)
+//       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+//       .setTimestamp();
 
-    let adv1 = message.guild.roles.cache.find(r => r.name === 'Advertência 1');
-    if (!adv1) adv1 = await message.guild.roles.create({
-      data: {
-        name: 'Advertência 1',
-        color: '#ff8355',
-      },
-      reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
-    }).catch(console.error)
+//     let adv1 = message.guild.roles.cache.find(r => r.name === 'Advertência 1');
+//     if (!adv1) adv1 = await message.guild.roles.create({
+//       data: {
+//         name: 'Advertência 1',
+//         color: '#ff8355',
+//       },
+//       reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
+//     }).catch(console.error)
 
-    //end of create role 1
+//     //end of create role 1
 
-    let adv2 = message.guild.roles.cache.find(r => r.name === 'Advertência 2');
-    if (!adv2) adv2 = await message.guild.roles.create({
-      data: {
-        name: 'Advertência 2',
-        color: '#ff3100',
-      },
-      reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
-    }).catch(console.error)
+//     let adv2 = message.guild.roles.cache.find(r => r.name === 'Advertência 2');
+//     if (!adv2) adv2 = await message.guild.roles.create({
+//       data: {
+//         name: 'Advertência 2',
+//         color: '#ff3100',
+//       },
+//       reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
+//     }).catch(console.error)
 
-    //end of create role 2
+//     //end of create role 2
 
-    let adv3 = message.guild.roles.cache.find(r => r.name === 'Advertência 3');
-    if (!adv3) adv3 = await message.guild.roles.create({
-      data: {
-        name: 'Advertência 3',
-        color: '#ff0003',
-      },
-      reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
-    }).catch(console.error)
+//     let adv3 = message.guild.roles.cache.find(r => r.name === 'Advertência 3');
+//     if (!adv3) adv3 = await message.guild.roles.create({
+//       data: {
+//         name: 'Advertência 3',
+//         color: '#ff0003',
+//       },
+//       reason: 'Encontrou problemas na configuração do cargo? Reporte o bug imediatamente!',
+//     }).catch(console.error)
 
-    const embed1 = new MessageEmbed()
-      .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-      .setTitle(`${message.author.username}`)
-      .setDescription(`:do_not_litter: **Você foi removido do servidor ${message.guild.name} <:pepoEZ:651528973729398882>**`)
-      .setColor('#ff0000')
-      .addField('<:FeelsCoffeeMan:651528973385465867> Motivo:', `${razao1}`)
-      .setFooter('Auto Mod - :police_officer:')
-      .setTimestamp(new Date());
+//     const embed1 = new MessageEmbed()
+//       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
+//       .setTitle(`${message.author.username}`)
+//       .setDescription(`:do_not_litter: **Você foi removido do servidor ${message.guild.name} <:pepoEZ:651528973729398882>**`)
+//       .setColor('#ff0000')
+//       .addField('<:FeelsCoffeeMan:651528973385465867> Motivo:', `${razao1}`)
+//       .setFooter('Auto Mod - :police_officer:')
+//       .setTimestamp(new Date());
 
-    const warnembed18 = new MessageEmbed()
-      .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-      .setTitle(`${message.author.username}`)
-      .setDescription(`:do_not_litter: **Você recebeu uma advertência no servidor ${message.guild.name} :no_entry_sign:**`)
-      .setColor('#ff0000')
-      .addField('<:pepe:651487933148299291> Advertência dada por:', `${message.author}`)
-      .addField('📝 Motivo:', `${razao}`)
-      .setFooter('Se você acha que a punição foi aplicada incorretamente, recorra ao staffer! 🥶')
-      .setTimestamp(new Date());
+//     const warnembed18 = new MessageEmbed()
+//       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
+//       .setTitle(`${message.author.username}`)
+//       .setDescription(`:do_not_litter: **Você recebeu uma advertência no servidor ${message.guild.name} :no_entry_sign:**`)
+//       .setColor('#ff0000')
+//       .addField('<:pepe:651487933148299291> Advertência dada por:', `${message.author}`)
+//       .addField('📝 Motivo:', `${razao}`)
+//       .setFooter('Se você acha que a punição foi aplicada incorretamente, recorra ao staffer! 🥶')
+//       .setTimestamp(new Date());
 
-    if (member.roles.cache.has(adv1.id)) {
-      await member.roles.add(adv2)
-    } else
-    if (member.roles.cache.has(adv2.id)) {
-      member.roles.add(adv3)
-    } else
-    if (member.roles.cache.has(adv3.id)) {
-      member.kick(razao1)
-      member.send(embed1)
-    }
-    message.reply({ embeds: [warnembed] })
-    member.send({ embeds: [warnembed18] })
-    message.guild.members(member).roles.add(adv1);
+//     if (member.roles.cache.has(adv1.id)) {
+//       await member.roles.add(adv2)
+//     } else
+//     if (member.roles.cache.has(adv2.id)) {
+//       member.roles.add(adv3)
+//     } else
+//     if (member.roles.cache.has(adv3.id)) {
+//       member.kick(razao1)
+//       member.send(embed1)
+//     }
+//     message.reply({ embeds: [warnembed] })
+//     member.send({ embeds: [warnembed18] })
+//     member.roles.add(adv1);
   }
-
 }
-

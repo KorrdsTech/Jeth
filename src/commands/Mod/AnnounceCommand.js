@@ -31,7 +31,7 @@ module.exports = class anuncio extends Command {
       .setColor(colors['default'])
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    if (!args[0]) return message.reply(embedajuda)
+    if (!args[0]) return message.reply({ embeds: [embedajuda] })
 
     if (message.content.startsWith(server.prefix + 'anuncio resetar')) {
       server.linkanuncio = ''

@@ -28,7 +28,8 @@ module.exports = class Embed extends Command {
       .addField(`Embed Visualizer`, `Que tal testar sua embed antes de colocar na Jeth? Assim você saberá se há erros ou não. Acesse ao site do [Embed Visualizer](https://leovoel.github.io/embed-visualizer/) e teste.`)
       .setFooter({ text: `Requisitado por ${message.author.tag} - ID ${message.author.id}` })
       .setColor(colors['default'])
-    if (!args.join(' ')) return message.reply({ embed: ajuda })
+
+    if (!args[0]) return message.reply({ embeds: [ajuda] })
 
     try {
       const a = JSON.parse(args.join(' ').replaceAll('{guild-name}', message.guild.name).replaceAll('{user-icon}', message.author.displayAvatarURL({ dynamic: true, size: 1024 })).replaceAll('{guild-icon}', message.guild.iconURL({ dynamic: true, size: 1024 })).replaceAll('{mention}', `${message.author}`).replace('{user}', message.member.nickname ? message.member.nickname : message.author))

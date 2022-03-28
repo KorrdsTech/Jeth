@@ -15,7 +15,6 @@ module.exports = class setcargo extends Command {
     const cargo_nome = message.mentions.roles.first()
 
     const embedA = new MessageEmbed()
-      .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**AddRole:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false

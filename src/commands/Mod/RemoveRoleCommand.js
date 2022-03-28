@@ -11,6 +11,16 @@ module.exports = class retcargo extends Command {
   }
 
   async run(message, args) {
+
+    const emptyMessage = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **RemoveRole:**', `${message.author.username}`, true)
+      .setDescription('Criado para facilitar o modo em que os cargos são retirados de um usuário.') // inline false
+      .addField('*Uso do comando:*', '`removerole <@user> <@role>`', true)
+      .addField('*Exemplo:*', '`removerole @Solaris#0006 @Admin`', true)
+
+    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
+
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
     const cargo_nome = message.mentions.roles.first() || message.mentions.roles.cache.get(args[1])
     const embedA = new MessageEmbed()
