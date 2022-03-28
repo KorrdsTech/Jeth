@@ -36,7 +36,7 @@ module.exports = class Rep extends Command {
 
       user.rep += 1
 
-      if (message.author.id === this.process.env.OWNERS) {
+      if (message.author.id === process.env?.OWNERS) {
         author.repTime = 0 + Date.now()
         author.save()
         user.save()
