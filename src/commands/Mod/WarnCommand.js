@@ -107,13 +107,13 @@ module.exports = class Warn extends Command {
     if (member.roles.cache.has(adv1.id)) {
       await member.roles.add(adv2)
     } else
-      if (member.roles.cache.has(adv2.id)) {
-        member.roles.add(adv3)
-      } else
-        if (member.roles.cache.has(adv3.id)) {
-          member.kick(razao1)
-          member.send(embed1)
-        }
+    if (member.roles.cache.has(adv2.id)) {
+      member.roles.add(adv3)
+    } else
+    if (member.roles.cache.has(adv3.id)) {
+      member.kick(razao1)
+      member.send(embed1)
+    }
     message.reply({ embeds: [warnembed] })
     member.send({ embeds: [warnembed18] })
     message.guild.member(member).roles.add(adv1);
