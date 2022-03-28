@@ -13,6 +13,15 @@ module.exports = class Warn extends Command {
 
   async run(message, args) {
 
+    const emptyMessage = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Warn:**', `${message.author.username}`, true)
+      .setDescription('Com este comando você facilmente pode emitir uma advertência em um usuário, registrando ela de forma que só será apagada de seu histórico caso você a remove via Unwarn.') // inline false
+      .addField('*Uso do comando:*', '`warn <@user> <motivo>`', true)
+      .addField('*Exemplo:*', '`warn @Solaris#0006 Not listen to the rules of this academy!`', true)
+
+    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
+
     let razao = args.slice(1).join(' ')
     const razao1 = 'Possuir muitos avisos dentro de um servidor'
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);

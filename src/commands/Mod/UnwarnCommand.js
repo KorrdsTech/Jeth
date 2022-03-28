@@ -11,6 +11,15 @@ module.exports = class unwarn extends Command {
   }
 
   async run(message, args) {
+    const unwarn = message.mentions.members.first();
+    const emptyMessage = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Unwarn:**', `${message.author.username}`, true)
+      .setDescription('Este comando funciona em conjunto com o comando warn e irá remover todas as advertências prévias de um usuário.') // inline false
+      .addField('*Uso do comando:*', '`unwarn <@user>`', true)
+      .addField('*Exemplo:*', '`unwarn @Solaris#0006`', true)
+
+    if (!unwarn) return message.reply({ embeds: [emptyMessage] })
 
     const adv1 = message.guild.roles.cache.find(role => role.name === 'Advertência 1');
     const adv2 = message.guild.roles.cache.find(role => role.name === 'Advertência 2');
@@ -19,7 +28,6 @@ module.exports = class unwarn extends Command {
     if (!adv2) return message.reply('Não foi encontrado um cargo de `Advertência 2` no servidor.')
     if (!adv3) return message.reply('Não foi encontrado um cargo de `Advertência 3` no servidor.')
 
-    const unwarn = message.mentions.members.first();
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
     const embedA = new MessageEmbed()
@@ -32,7 +40,6 @@ module.exports = class unwarn extends Command {
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
-    if (!unwarn) return message.reply('Mencione o membro que deseja dar warn!')
 
     const unwarnembed = new MessageEmbed()
 
