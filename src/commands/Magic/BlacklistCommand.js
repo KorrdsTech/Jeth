@@ -19,7 +19,7 @@ module.exports = class blacklist extends Command {
     if (!args[0]) {
       return message.reply('Você tem que falar o id do usuario para que eu póssa adicionar na blacklist...').then(sent => sent.delete({ timeout: 5000 }))
     }
-    const usuario = await this.client.users.fetch(args[0].replace(/[<@!>]/g, ''))
+    const usuario = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!usuario) {
       message.reply('Mencione um membro valido.')
     }

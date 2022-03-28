@@ -47,12 +47,12 @@ module.exports = class Raidban extends Command {
 
     if (!args[0]) return message.reply({ embeds: [link] })
 
-    const membro17 = await message.guild.members.fetch(args[0].replace(/[<@!>]/g, ''))
+    const membro17 = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!membro17) {
       message.reply({ embeds: [link] })
     }
 
-    const membro14 = await message.guild.members.fetch(args[0].replace(/[<@!>]/g, ''))
+    const membro14 = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!membro14) {
       message.reply({ embeds: [link] })
     }

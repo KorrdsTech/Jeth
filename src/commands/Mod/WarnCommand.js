@@ -116,7 +116,7 @@ module.exports = class Warn extends Command {
     }
     message.reply({ embeds: [warnembed] })
     member.send({ embeds: [warnembed18] })
-    message.guild.member(member).roles.add(adv1);
+    message.guild.members(member).roles.add(adv1);
   }
 
 }

@@ -15,6 +15,9 @@ module.exports = class unwarn extends Command {
     const adv1 = message.guild.roles.cache.find(role => role.name === 'Advertência 1');
     const adv2 = message.guild.roles.cache.find(role => role.name === 'Advertência 2');
     const adv3 = message.guild.roles.cache.find(role => role.name === 'Advertência 3');
+    if (!adv1) return message.reply('Não foi encontrado um cargo de `Advertência 1` no servidor.')
+    if (!adv2) return message.reply('Não foi encontrado um cargo de `Advertência 2` no servidor.')
+    if (!adv3) return message.reply('Não foi encontrado um cargo de `Advertência 3` no servidor.')
 
     const unwarn = message.mentions.members.first();
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
@@ -42,13 +45,13 @@ module.exports = class unwarn extends Command {
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp();
 
-    if (unwarn.roles.cache.has(adv1.id))
+    if (unwarn.roles.cache.has(adv1?.id))
       unwarn.roles.remove(adv1)
 
-    if (unwarn.roles.cache.has(adv2.id))
+    if (unwarn.roles.cache.has(adv2?.id))
       unwarn.roles.remove(adv2)
 
-    if (unwarn.roles.cache.has(adv3.id))
+    if (unwarn.roles.cache.has(adv3?.id))
       unwarn.roles.remove(adv3)
     message.reply({ embeds: [unwarnembed] })
   }

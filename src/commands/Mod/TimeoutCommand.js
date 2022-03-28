@@ -44,7 +44,7 @@ module.exports = class Timeout extends Command {
                 // verifica se user bot da mensagem tem permissão de moderar os membros.
                 if (!message.guild.me.permissions.has('MODERATE_MEMBERS')) return message.reply({ embeds: [permErr] });
                 // define o que é user, neste caso user é o primeiro usuário que o autor colocar o ID ou mencionar no chat
-                const user = await message.guild.members.fetch(args[0].replace(/[<@!>]/g, ''))
+                const user = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
                 // checa se o usuário tem o mesmo cargo ou superior ao executor da mensagem.
                 const executorRole = message.member.roles.highest;
                 const targetRole = user.roles.highest;

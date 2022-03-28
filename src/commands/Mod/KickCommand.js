@@ -46,7 +46,7 @@ module.exports = class kick extends Command {
       .setTimestamp(new Date());
 
     if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply({ embeds: [embedA] })
-    const membro18 = await message.guild.members.fetch(args[0].replace(/[<@!>]/g, ''))
+    const membro18 = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!membro18) return message.reply('eu procurei, procurei, e não achei este usuário')
     if (razao13.length < 1) return message.reply('`Adicione um motivo válido!`')
 

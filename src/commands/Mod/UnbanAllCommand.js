@@ -19,16 +19,19 @@ module.exports = class allunban extends Command {
       .setColor(colors['default'])
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Todos os usuários desbanidos!** você com sucesso desbaniu todos os usuários do servidor.')
 
+    const embed3 = new MessageEmbed()
+      .setColor(colors['default'])
+      .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não posso desbanir este usuário!** tenha certeza de que eu tenho a permissão `BAN_MEMBERS` então eu poderei desbanir usuários.')
+
     if (!message.member.permissions.has('BAN_MEMBERS')) {
       return message.reply({ embeds: [embed] }).catch(() => { });
     }
-    if (message.member.permissions.has('BAN_MEMBERS')) {
-      message.guild.fetchBans().then(bans => {
-        if (bans.size == 0) { message.reply('There are no banned users.'); throw 'No members to unban.' }
-        bans.forEach(ban => {
-          message.guild.members.unban(ban.user.id);
-        });
-      }).then(() => message.reply(embed2)).catch(e => console.log(e))
-    } else { message.reply({ embeds: [embed] }) }
+    if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embed3] })
+    message.guild.bans.fetch().then(bans => {
+      if (bans.size == 0) { message.reply('There are no banned users.'); throw 'No members to unban.' }
+      bans.forEach(ban => {
+        message.guild.members.unban(ban.user.id);
+      });
+    }).then(() => message.reply(embed2)).catch(e => console.log(e))
   }
 };
