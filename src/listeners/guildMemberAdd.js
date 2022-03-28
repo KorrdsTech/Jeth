@@ -46,7 +46,6 @@ module.exports = async function onGuildMemberAdd(member) {
           .replace(/\{USER-NAME\}/g, member.user.username)
         try {
           const messageEmbed =  JSON.parse(message)
-          channel.send(`${member}`)
           channel.send({
             content: messageEmbed['content'] ? messageEmbed.content : (typeof messageEmbed === 'string') ? messageEmbed : '',
             embeds: [messageEmbed['embed'] ? messageEmbed.embed : (typeof messageEmbed === 'object') ? messageEmbed : {}]

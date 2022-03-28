@@ -23,9 +23,9 @@ module.exports = class github extends Command {
         const tipo = response.data.type
         const compania = response.data.company
         const link = response.data.html_url
-        message.reply(new MessageEmbed()
+        const embed = new MessageEmbed()
           .setTitle(`Github`)
-          .setColor(colors.default)
+          .setColor(colors['default'])
           .setThumbnail(avatar)
           .addField(`User`, `${usuario}`)
           .addField(`Nome Do Usuario`, `${nome}`, true)
@@ -33,9 +33,10 @@ module.exports = class github extends Command {
           .addField(`Tipo De Usuario`, `${tipo}`, true)
           .addField(`Bio`, `${bio}`, true)
           .addField(`Link Para O Perfil`, `${link}`, true)
-          .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+          .setFooter({ text: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
           .setTimestamp()
-        )
+
+        message.reply({ embeds: [embed] })
       })
   }
 };

@@ -33,11 +33,11 @@ module.exports = class emoji extends Command {
     const embed = new MessageEmbed()
       .setTitle(`Emojis em ${message.guild.name}.`)
       .setDescription(`**Animado [${Animated}]**:\n${EmojisAnimated}`)
-      .setColor(colors.default)
+      .setColor(colors['default'])
 
     const embedB = new MessageEmbed()
       .setDescription(`**Normais [${EmojiCount}]**:\n${Emojis}\n\n**Total de emojis [${OverallEmojis}]**`)
-      .setColor(colors.default)
+      .setColor(colors['default'])
 
     message.reply({ embeds: [embed] })
     await message.reply({ embeds: [embedB] })

@@ -23,8 +23,8 @@ module.exports = class Registry extends Command {
         const embed = new MessageEmbed()
           .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setDescription(`Você definiu o cargo ${role} como masculino Com sucesso.`)
-          .setColor(colors.default)
-          .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+          .setColor(colors['default'])
+          .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
           .setTimestamp();
         message.reply({ embeds: [embed] })
       })
@@ -36,8 +36,8 @@ module.exports = class Registry extends Command {
         const embed = new MessageEmbed()
           .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setDescription(`Você definiu o cargo ${role} como feminino Com sucesso.`)
-          .setColor(colors.default)
-          .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+          .setColor(colors['default'])
+          .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
           .setTimestamp();
         message.reply({ embeds: [embed] })
       })
@@ -49,8 +49,8 @@ module.exports = class Registry extends Command {
         const embed = new MessageEmbed()
           .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setDescription(`Você definiu o cargo ${role} como nbinario Com sucesso.`)
-          .setColor(colors.default)
-          .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+          .setColor(colors['default'])
+          .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
           .setTimestamp();
         message.reply({ embeds: [embed] })
       })
@@ -62,8 +62,8 @@ module.exports = class Registry extends Command {
         const embed = new MessageEmbed()
           .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setDescription(`Você definiu o cargo ${role} como registrado Com sucesso.`)
-          .setColor(colors.default)
-          .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+          .setColor(colors['default'])
+          .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
           .setTimestamp();
         message.reply({ embeds: [embed] })
       })
@@ -75,8 +75,8 @@ module.exports = class Registry extends Command {
         const embed = new MessageEmbed()
           .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setDescription(`Você definiu o cargo ${role} como novato Com sucesso.`)
-          .setColor(colors.default)
-          .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+          .setColor(colors['default'])
+          .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
           .setTimestamp();
         message.reply({ embeds: [embed] })
       })
@@ -104,7 +104,7 @@ module.exports = class Registry extends Command {
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setThumbnail('https://cdn.discordapp.com/emojis/722682133432500251.png?v=1')
         .setDescription(`Dúvidas de como usar o Registry?\nAqui vai algumas dicas...`)
-        .setColor(colors.default)
+        .setColor(colors['default'])
         .addField('Modos de usar', [
           `\`${guildDocument.prefix}Registry masculino @role\` - Define a role para masculino.`,
           `\`${guildDocument.prefix}Registry nbinario @role\` - Define a role para nbinario.`,
@@ -122,9 +122,9 @@ module.exports = class Registry extends Command {
 
       const embed2 = new MessageEmbed()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-        .setColor(colors.default)
+        .setColor(colors['default'])
         .setDescription(`Dúvidas de como esta o Registry do servidor?\nAqui vai o seu painel...`)
-        .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
         .setTimestamp();
       if (message.guild.roles.cache.get(guildDocument.masculino)) {
         embed2.addField(` Masculino`, `<:concludo:739830713792331817> Ativo | Cargo masculino: <@&${guildDocument.masculino}>`, true);

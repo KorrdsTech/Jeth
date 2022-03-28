@@ -5,7 +5,7 @@ module.exports = class createInvite extends Command {
     super(name, client)
 
     this.name = 'createinvite'
-    this.aliases = ['createinvite', 'invite']
+    this.aliases = ['createinvite']
     this.category = 'Magic'
     this.adminOnly = true
   }

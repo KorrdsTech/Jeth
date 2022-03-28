@@ -15,7 +15,7 @@ module.exports = class chat extends Command {
     const embedA = new MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_MESSAGES`', true)
@@ -25,7 +25,7 @@ module.exports = class chat extends Command {
       return message.reply({ embeds: [embedA] })
 
     const embedlock = new MessageEmbed()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setDescription(`<a:sireneRoxa:739828671400902697> ${message.author} realmente deseja lockar o chat <#${message.channel.id}>?`)
 
     const ell = await message.reply(embedlock),
@@ -39,11 +39,11 @@ module.exports = class chat extends Command {
 
     const embedlockado = new MessageEmbed()
       .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi bloqueado com sucesso!`)
-      .setColor(colors.default)
+      .setColor(colors['default'])
 
     const embeddeslockado = new MessageEmbed()
       .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi desbloqueado com sucesso!`)
-      .setColor(colors.default)
+      .setColor(colors['default'])
 
     const col = ell.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
     col.on('collect', async (reaction) => {

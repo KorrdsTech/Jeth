@@ -22,11 +22,11 @@ module.exports = class unwarn extends Command {
     const embedA = new MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
     if (!unwarn) return message.reply('Mencione o membro que deseja dar warn!')
@@ -39,7 +39,7 @@ module.exports = class unwarn extends Command {
       .addField('**Staff:**', `${message.author}`, true)
       .addField('**ID:**', `${message.author.id}`, true) //inline
       .addField('**Usuário**:', `${unwarn}`, true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp();
 
     if (unwarn.roles.cache.has(adv1.id))

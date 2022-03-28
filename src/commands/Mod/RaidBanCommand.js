@@ -13,26 +13,26 @@ module.exports = class Raidban extends Command {
 
   async run(message, args) {
     const emptyMessage = new MessageEmbed()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **RaidBan:**', `${message.author.username}`, true)
       .setDescription('Criado para facilitar o gerenciamento de banimentos de um servidor, desta forma criando uma log confirmando permanentemente que o usuário foi banido daquele servidor e o motivo especificado.') // inline false
       .addField('*Uso do comando:*', '`ban <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`ban @Solaris#0006 Ban hammer has spoken!`', true)
 
     const rolesHighest = new MessageEmbed()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('<:reinterjection:955577574304657508> **RaidBan:**', `${message.author.username}`, true)
       .setDescription('Você não pode executar um banimento neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
 
     const escolha = new MessageEmbed()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Sistema Trust & Safety')
       .setDescription('**Por favor, escolha um motivo válido abaixo para aplicar o banimento!** \n<a:JT1:739977300564639835> - Conteúdo pornográfico/Gore \n<a:JT2:739977300921024522> - Promover ou participar de Raids a outros servidores \n<a:JT3:739977300895858708> - Discurso de ódio ou Racismo e derivados \n<a:JT4:739977300472234078> - Apologia ao Nazismo e/ou pornografia infântil \n<a:JT5:739977300719697941> - Ações que comprometem o servidor ou os usuários \n<a:JT6:739977300795457687> - Divulgação inapropriada')
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     const link = new MessageEmbed()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Usuário inválido!** o usuário que você inseriu não existe ou não foi reconhecido, por favor tente novamente utilizando o ID')
 
     // motivo dos banimentos
@@ -61,7 +61,7 @@ module.exports = class Raidban extends Command {
     const embedA = new MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
@@ -86,7 +86,7 @@ module.exports = class Raidban extends Command {
       .setTitle('Ação | Ban Raid')
       .setColor('#ff112b')
       .setImage(`${userDocuent.gifban || ''}`)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
     // banimento private
@@ -99,7 +99,7 @@ module.exports = class Raidban extends Command {
       .setAuthor(`${message.author.username} Já baniu ${bans.size} usuários`, message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setColor('#ff112b')
       .setImage(`${userDocuent.gifban || ''}`)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
     const warnembed18 = new MessageEmbed()

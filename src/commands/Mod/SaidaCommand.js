@@ -14,11 +14,11 @@ module.exports = class saida extends Command {
     const embedA = new MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setTitle('**Err:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
     if (!message.member.permissions.has('MANAGE_GUILD'))
       return message.reply({ embeds: [embedA] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
@@ -58,7 +58,7 @@ module.exports = class saida extends Command {
       const embed = new MessageEmbed()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como usar a Saida?\nAqui vai algumas dicas...`)
-        .setColor(colors.default)
+        .setColor(colors['default'])
         .addField('Modos de usar', [
           `\`${guildDocument.prefix}saida canal #canal\` - Define o canal onde o saida será definido.`,
           `\`${guildDocument.prefix}saida mensagem <mensagem>\` - Define a mensagem que será exibida no saida.`,
@@ -81,7 +81,7 @@ module.exports = class saida extends Command {
       const embed2 = new MessageEmbed()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como esta a saida do servidor?\nAqui vai o seu painel...`)
-        .setColor(colors.default)
+        .setColor(colors['default'])
       let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
       if (guildDocument.channelsaida.length) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.channelsaida}>`;

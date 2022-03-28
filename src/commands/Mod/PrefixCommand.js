@@ -16,7 +16,7 @@ module.exports = class Prefix extends Command {
 
     const erroDePermissão = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${message.author}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`ADMINISTRATOR`', true)

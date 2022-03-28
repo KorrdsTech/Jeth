@@ -16,20 +16,20 @@ module.exports = class abracar extends Command {
     const user = message.mentions.users.first();
 
     const embed = new MessageEmbed()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setDescription(`:blush: ${message.author} **se deu um abraço**`)
       .setImage(self[Math.floor(Math.random() * self.length)])
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp()
 
     if (message.mentions.users.size < 1) return message.reply({ embeds: [embed] })
     if (user.id == message.author.id) message.reply({ embeds: [embed] })// return message.reply("Você não pode abraçar a si mesmo.")
 
     const HugEmbed = new MessageEmbed()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setTitle(`:blush: ${message.author.username} **deu um abraço no(a)** ${user.username}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp()
 
     message.reply({ embeds: [HugEmbed] })

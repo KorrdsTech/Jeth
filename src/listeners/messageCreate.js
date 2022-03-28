@@ -3,9 +3,8 @@ const { colors, AntiSpamUtils } = require('../utils')
 const parse = require('parse-duration')
 
 module.exports = async function onMessage(message) {
-  const guildDocument = await this.database.guild.getOrCreate(message.guild.id)
-
   if (message.channel.type === 'DM') return
+  const guildDocument = await this.database.guild.getOrCreate(message.guild.id)
   if (message.author.bot) {
     if (message.author.discriminator !== '0000') return
     if (message.author.username !== 'Haku') return
@@ -91,10 +90,9 @@ module.exports = async function onMessage(message) {
 
   if (command) {
     if (guildDocument.delete) {
-      guildDocument.delete = true
       command.process(message, args)
+      message.delete()
     } else {
-      guildDocument.delete = false
       command.process(message, args)
     }
   }

@@ -15,22 +15,22 @@ module.exports = class vipset extends Command {
 
     const embedVIP = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Action') // inline false
       .addField('*Verifique se você possui um cargo criado ou status de membro:*', '`VIP`', true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     const role = await this.client.database.Cargo.findOne({ _id: message.author.id })
     if (!role) return message.reply(embedVIP)
 
     const embedA = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
     if (!usuario) return message.reply('Você não mencionou o usuário!');
@@ -62,7 +62,7 @@ module.exports = class vipset extends Command {
       .setDescription(`${usuario} **RECEBEU O VIP DE** ${message.author}`)
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .addField('**Cargo Adicionado:**', `${roled}`, true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (usuario.roles.cache.has(role.roleID)) return message.reply('o membro mencionado já possui esse vip.')
     usuario.roles.add(message.guild.roles.cache.get(role.roleID))

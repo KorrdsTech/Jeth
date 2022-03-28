@@ -17,28 +17,26 @@ module.exports = class cry extends Command {
 
     if (!defineduser) {
       const embed = new MessageEmbed()
-        .setColor(colors.default)
+        .setColor(colors['default'])
         .setDescription(`${message.author} **chorou de tristeza (╥﹏╥)**`)
         .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-        .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
         .setTimestamp()
       try {
-        message.delete({ timeout: 100 }).catch(() => { })
         message.reply({ embeds: [embed] })
       } catch (error) {
         console.log(error);
         message.reply(error);
       }
     } else {
-
       const embed = new MessageEmbed()
-        .setColor(colors.default)
+        .setColor(colors['default'])
         .setDescription(`:sob: ${message.author} **lançou gritos de tristeza para** ${defineduser} (╥﹏╥)`)
         .setImage('https://i.pinimg.com/originals/83/05/c3/8305c3a012e448cb409d12e5db3ac179.gif')
-        .setFooter(`Pedido por ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 })).setTimestamp()
+        .setFooter({ text: `Pedido por ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
+        .setTimestamp()
 
       try {
-        message.delete({ timeout: 100 }).catch(() => { })
         message.reply({ embeds: [embed] })
       } catch (error) {
         console.log(error);

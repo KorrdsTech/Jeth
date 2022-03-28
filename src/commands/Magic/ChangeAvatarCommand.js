@@ -19,7 +19,7 @@ module.exports = class changeAvatar extends Command {
       const embed = new MessageEmbed()
         .setAuthor('Avatar trocado.', avatar)
         .setImage(avatar)
-        .setColor(colors.default)
+        .setColor(colors['default'])
 
       message.reply({ embeds: [embed] })
     }).catch(() => { message.reply('Deu erro!') })

@@ -16,8 +16,8 @@ module.exports = class cat extends Command {
     const embed = new MessageEmbed()
       .setTitle('Seu gatinho :3')
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setColor(colors.default)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setColor(colors['default'])
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp()
 
     message.reply({ embeds: [embed] });

@@ -19,7 +19,7 @@ module.exports = class dancar extends Command {
         .setColor('#a900ff')
         .addField(`${message.author.username}`, ' Se juntou a dança!')
         .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-        .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
         .setTimestamp()
       try {
         message.reply({ embeds: [embed] })
@@ -31,7 +31,7 @@ module.exports = class dancar extends Command {
     else {
       const gifs1 = ['https://i.pinimg.com/originals/7c/76/08/7c760844a176bfe76af5243a42bd6eab.gif', 'https://pa1.narvii.com/6575/8b572b4c00b85532f919c59f1b31d95e751ab8d6_hq.gif', 'https://i.pinimg.com/originals/1a/4e/7e/1a4e7e3d9fb7e1d5e8ccc2d3787bc39d.gif', 'https://i.pinimg.com/originals/e4/ce/34/e4ce34c84c4c708d3905fa50de684345.gif'];
       const embed1 = new MessageEmbed()
-        .setColor(colors.default)
+        .setColor(colors['default'])
         .setDescription(`💃🏻 🕺🏻 ${message.author} Convidou ${defineduser} para dançar e a resposta foi **SIM**`)
         .setImage(gifs1[Math.floor(Math.random() * gifs1.length)])
         .setFooter(`Pedido por ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 })).setTimestamp()

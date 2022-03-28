@@ -22,7 +22,7 @@ module.exports = class steam extends Command {
         const other = results.otherData //vai pegar os dados do jogo
         const embed = new MessageEmbed() //vai mostrar para o usuário todas as informações do jogo
           .setTitle(results.name)
-          .setColor(colors.default)
+          .setColor(colors['default'])
           .setDescription(`\n\n**__GÊNERO__**: ${results.genres.join(', ')} \n**__PLATAFORMA__**: ${other.platforms.join(', ')}\n**__CARACTERÍSTICAS__**: ${other.features.join(', ')}\n\n**__DEVELOPER__**: ${other.developer.join(', ')}`)
           .setThumbnail(other.imageUrl)
           .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))

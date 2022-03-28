@@ -15,7 +15,7 @@ module.exports = class topico extends Command {
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
     const embedA = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_CHANNELS`', true)

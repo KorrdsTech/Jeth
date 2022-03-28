@@ -13,9 +13,8 @@ module.exports = class suggestion extends Command {
 
   async run(message, args) {
     const erroDePermissão = new MessageEmbed()
-
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
@@ -28,15 +27,14 @@ module.exports = class suggestion extends Command {
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
     const prefix = documento.prefix
     const mododeuso = new MessageEmbed()
-
       .setTimestamp()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setTitle('**PAINEL DE AJUDA**')
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setDescription(`Para definir o canal de sugestão basta utilizar o comando\n **${prefix}suggestion canal <#canal>** \n\nAssim que o canal for definido, qualquer mensagem enviada nele, receberá a reação dos emojis Sim, não ou não especificado.\nCaso queira desativar o canal de sugestões basta utilizar \n**${prefix}suggestion remover**`) // inline false
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-    if (!args[0]) message.reply(mododeuso)
+    if (!args[0]) message.reply({ embeds: [mododeuso] })
     if (args[0] === 'canal') {
       const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
       if (!channel || channel.type === 'category') return message.reply('Coloque um canal válido!')

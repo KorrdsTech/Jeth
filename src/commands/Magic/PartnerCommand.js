@@ -29,7 +29,7 @@ module.exports = class Partner extends Command {
       server.save().then(async () => {
         await message.reply(`${message.author},\`${servidor.name}\`, Agora é **partner** <a:neon:663575128088641576>`).then(sent => sent.delete(5000))
         const embedpartner = new MessageEmbed()
-          .setColor(colors.default)
+          .setColor(colors['default'])
           .addField('Partner | Informações:', `Servidor adicionado: \n\`\`${servidor.name}\`\``, true)
           .addField(`Servidor | Informações:`, `Dono do servidor: \n${servidor.owner}`, true)
           .setFooter(`${servidor.name}`, `${this.client.user.displayAvatarURL({ dynamic: true, size: 1024 })}`)

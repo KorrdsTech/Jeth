@@ -18,9 +18,9 @@ module.exports = class cadastrar extends Command {
     if (!server.partner) return message.reply(`<a:Jeth_hype:665309103748284426> Este servidor não tem parceria com o bot então,você não pode usar o comando.`)
     const doc = await this.client.database.user.getOrCreate(membro.id)
     if (doc) {
-      if (doc.vip){
+      if (doc.vip) {
         doc.gifban = '',
-        doc.vip = false
+          doc.vip = false
       } else {
         doc.vip = true
       }
@@ -49,7 +49,7 @@ module.exports = class cadastrar extends Command {
 //         let cargo_nome = message.mentions.roles.first() || message.mentions.roles.array([1])
 //         const embedA = new MessageEmbed()
 //             .setTimestamp()
-//             .setColor(colors.mod)
+//             .setColor(colors['mod'])
 //             .setTitle('**Err:**', `${usuario}`, true)
 //             .setDescription('Missing Permissions') // inline false
 //             .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)

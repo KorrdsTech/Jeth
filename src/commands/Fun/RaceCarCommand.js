@@ -1,6 +1,5 @@
-const { Command } = require('../../utils')
-const { error } = require('console');
-
+const { Command, colors } = require('../../utils')
+const { MessageEmbed } = require('discord.js')
 module.exports = class correr extends Command {
   constructor(name, client) {
     super(name, client)
@@ -16,21 +15,11 @@ module.exports = class correr extends Command {
     const Corrida = '<@' + message.author.id + '>'
     const corrida2 = ' <@' + user.id + '>'
     const falas = [' fez **200** metros 🏎 .....', ' fez **500** metros 🏎 ...........', ' fez **800** metros 🏎 ..............', ' fez **1000** metros 🏎 .................', ' fez **1500** metros 🏎 ............................', 'Explodiu 🔥 ', 'Bateu e pegou fogo 🔥']
-    message.reply({
-      'embed': {
-        'title': '🏎 Corrida',
-        'description': ' O ' + Corrida + ' e' + corrida2 + ' **estao disputando uma corrida**',
-
-        'fields': [
-          {
-            'name': 'Sobre a corrida:',
-            'value': 'O ' + Corrida + '\n' + falas[Math.floor(Math.random() * falas.length)] + '\n' + 'O ' + corrida2 + '\n' + falas[Math.floor(Math.random() * falas.length)],
-            'inline': false
-          }
-        ]
-      }
-    })
-    console.log(error);
-    message.reply(error);
+    const embed = new MessageEmbed()
+    embed.setTitle('🏎 Corrida')
+    embed.setColor(colors['default'])
+    embed.setDescription(`${Corrida} e ${corrida2} **estão disputando uma corrida**`)
+    embed.addField('Sobre a corrida:', `${Corrida}\n${falas[Math.floor(Math.random() * falas.length)]}\n${corrida2}\n${falas[Math.floor(Math.random() * falas.length)]}`)
+    message.reply({ embeds: [embed] })
   }
 }

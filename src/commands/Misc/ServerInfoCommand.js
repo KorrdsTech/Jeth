@@ -30,7 +30,7 @@ module.exports = class serverinfo extends Command {
     const embed = new MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTitle('🧭 **Informações do Servidor:**')
       .setDescription(`🙋🏻 **| Nome:** \n${message.guild.name} \n \n  🤹🏼‍♂️ **| Membros:** \n ${message.guild.memberCount} \n \n ⌛️ **| Criado:** \n ${message.guild.createdAt} \n \n🔐 ** | Nível de verificação:** ${verificationLevels[message.guild.verificationLevel]} \n \n🔞 ** | Filtro de conteúdo explícito:** ${filterLevels[message.guild.explicitContentFilter]}`) // inline false

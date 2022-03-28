@@ -16,9 +16,9 @@ module.exports = class dog extends Command {
     const embed = new MessageEmbed()
       .setTitle(`Seu doguinho 😍`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setTimestamp(new Date())
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     message.reply({ embeds: [embed] });
   }

@@ -15,7 +15,7 @@ module.exports = class Familia extends Command {
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
     const embedA = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
@@ -47,13 +47,13 @@ module.exports = class Familia extends Command {
 
     const embed = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.vip)
+      .setColor(colors['vip'])
       .setDescription(`**👑💎 SEJA BEM VINDO A FAMÍLIA:** ${usuario.user.username}`)
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .addField('**Executor:**', `${message.author}`, true) // inline true
       .addField('**Cargo Recebido:**', `${role}`, true)
       .setImage('https://data.whicdn.com/images/273383424/original.gif')
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (usuario.roles.cache.has(role)) return message.reply('o membro mencionado já possui esse cargo.')
     usuario.roles.add(role)

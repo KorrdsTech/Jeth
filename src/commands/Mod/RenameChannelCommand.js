@@ -14,11 +14,11 @@ module.exports = class RenameChannel extends Command {
     const embedA = new MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_CHANNEL`', true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
     if (!message.member.permissions.has('MANAGE_CHANNEL')) message.reply({ embeds: [embedA] })
     const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0])
     if (!channel) return message.reply('Mencione o canal que deseja trocar o nome')

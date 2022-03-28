@@ -12,14 +12,14 @@ module.exports = class retcargo extends Command {
 
   async run(message, args) {
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-    const cargo_nome = message.mentions.roles.first() || message.mentions.roles.array([1])
+    const cargo_nome = message.mentions.roles.first() || message.mentions.roles.cache.get(args[1])
     const embedA = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MANAGE_ROLES'))
       return message.reply({ embeds: [embedA] })
@@ -39,30 +39,30 @@ module.exports = class retcargo extends Command {
       return 0;
     }
 
-        // const embedC = new MessageEmbed()
-        // .setTimestamp()
-        // .setColor(colors.mod)
-        // .setTitle('**Err:**', true)
-        // .setDescription('Missing Permissions') // inline false
-        // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
-        // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+    // const embedC = new MessageEmbed()
+    // .setTimestamp()
+    // .setColor(colors['mod'])
+    // .setTitle('**Err:**', true)
+    // .setDescription('Missing Permissions') // inline false
+    // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
+    // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-        // let clientRole = message.guild.me.roles.highest;
-        // if (clientRole.comparePositionTo(targetRole) <= 0) {
-        //     message.reply({ embeds: [embedA] });
-        //     return 0;
-        // }
+    // let clientRole = message.guild.me.roles.highest;
+    // if (clientRole.comparePositionTo(targetRole) <= 0) {
+    //     message.reply({ embeds: [embedA] });
+    //     return 0;
+    // }
 
     if (!cargo_nome) return message.reply('`Você não colocou um cargo valido!`');
 
     const embed = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setDescription(`**CARGO REMOVIDO DO USUÁRIO:** ${usuario.user.username}`)
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .addField('**Staffer:**', `${message.author}`, true) // inline true
       .addField('**Cargo Removido:**', `${cargo_nome}`, true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     usuario.roles.remove(cargo_nome)
     message.reply({ embeds: [embed] })

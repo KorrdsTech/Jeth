@@ -29,10 +29,10 @@ module.exports = class curiosidades extends Command {
     const curiosidadefinal = curiosidade[Math.floor(Math.random() * curiosidade.length)];
     const embedcuriosidade = new MessageEmbed()
       .setTitle('🤔 Curiosidades Aleatórias')
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setTimestamp()
       .addField('**Curiosidade selecionada:**', curiosidadefinal)
-    message.reply(embedcuriosidade)
+    message.reply({ embeds: [embedcuriosidade] })
   }
-//Caso queira, adicione mais curiosidades. Limitei a quantidade devido ao limite de 2000 caracteres
+  //Caso queira, adicione mais curiosidades. Limitei a quantidade devido ao limite de 2000 caracteres
 }

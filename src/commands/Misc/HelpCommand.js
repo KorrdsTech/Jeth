@@ -19,7 +19,7 @@ module.exports = class Ajuda extends Command {
     embed.setAuthor(`${this.client.user.username} | Ajuda`, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
     embed.setDescription(`**Criamos uma guia de ajuda para você: ${message.author}**`)
     embed.setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-    embed.setColor(colors.default)
+    embed.setColor(colors['default'])
     embed.addField(`${('Counter')} (${this.getCommmandSize('Counter')})`, this.getCategory('Counter', prefix))
     embed.addField(`${('Fun')} (${this.getCommmandSize('Fun')})`, this.getCategory('Fun', prefix))
     embed.addField(`${('Misc')} (${this.getCommmandSize('Misc')})`, this.getCategory('Misc', prefix))

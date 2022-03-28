@@ -14,7 +14,7 @@ module.exports = class Counter extends Command {
     const embedA = new MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
@@ -116,13 +116,13 @@ module.exports = class Counter extends Command {
       const embed = new MessageEmbed()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`**Seja bem vindo(a) ao painel de configuração !**`)
-        .setColor(colors.default)
+        .setColor(colors['default'])
         .setThumbnail('https://cdn.discordapp.com/emojis/742240408658247791.png')
         .addField('**COMANDOS:**', [
           `\`${guildDocument.prefix}Counter canal #canal\` - Define o canal onde o Counter será definido.`,
           `\`${guildDocument.prefix}Counter mensagem <mensagem>\` - Define a mensagem que será exibida no Counter.`,
           `\`${guildDocument.prefix}Counter remover\` - Caso haja algum Counter ligado/definido, ele será removido e o sistema desligado.`,
-          `\n**Clique na reação abaixo para ver os \`Placeholders\` digite-os corretamente!**\n`], false)
+          `**Clique na reação abaixo para ver os \`Placeholders\` digite-os corretamente!**\n`].join('\n'), false)
 
       const embed2 = new MessageEmbed()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
@@ -150,7 +150,7 @@ module.exports = class Counter extends Command {
         .addField('**{natal}**', '<a:v9:684833174983147520>', true)
         .addField('**{exa-new}**', '<a:0r:940889959563407370>', true)
         .addField('**{bouncepurple}**', '<a:0_:875581760262504468>', true)
-        .setColor(colors.default)
+        .setColor(colors['default'])
       let canalCounter = `<a:warnRoxo:664240941175144489> Desativado`;
       if (guildDocument.countChannel.length) {
         canalCounter = `<:JethVerificado:666762183249494027> Ativo | Canal: <#${guildDocument.countChannel}>`;

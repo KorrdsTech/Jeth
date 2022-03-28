@@ -32,17 +32,28 @@ module.exports = async function onGuildMemberRemove(member) {
         if (!channel) return
         let message = guildDocument.saidaMessage;
         if (!message.length) return 0;
-        message = message.replace(/\$\{USER\}/g, member);
-        message = message.replace(/\$\{SERVER\}/g, member.guild.name);
-        message = message.replace(/\$\{AVATAR\}/g, member.user.displayAvatarURL)
-        message = message.replace(/\$\{USER-ID\}/g, member.id)
-        message = message.replace(/\$\{USER-NAME\}/g, member.user.username)
+        message = (typeof message === 'string' ? message : JSON.stringify(message))
+          .replace(/\{USER\}/g, member)
+          .replace(/\{SERVER\}/g, member.guild.name)
+          .replace(/\{AVATAR\}/g, member.user.displayAvatarURL)
+          .replace(/\{USER-ID\}/g, member.id)
+          .replace(/\{USER-NAME\}/g, member.user.username)
         try {
           const messageEmbed = JSON.parse(message)
-          channel.send(`${member}`)
-          channel.send({ embeds: [messageEmbed] }).catch(er => { console.log(er) })
+          channel.send({
+            content: messageEmbed['content'] ? messageEmbed.content : (typeof messageEmbed === 'string') ? messageEmbed : '',
+            embeds: [messageEmbed['embed'] ? messageEmbed.embed : (typeof messageEmbed === 'object') ? messageEmbed : {}]
+          }).then((msg) => {
+            setTimeout(() => {
+              msg.delete()
+            }, 5000)
+          })
         } catch (err) {
-          channel.send(message).catch(err => { console.log(err) })
+          channel.send(message).then((msg) => {
+            setTimeout(() => {
+              msg.delete()
+            }, 5000)
+          })
         }
         const registradores = guildDocument.registradores;
         for (let i = 0; i < registradores.length; ++i) {

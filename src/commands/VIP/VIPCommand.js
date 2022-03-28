@@ -18,13 +18,13 @@ module.exports = class vip extends Command {
       const vipao = new MessageEmbed()
 
         .setTimestamp()
-        .setColor(colors.vip)
+        .setColor(colors['vip'])
         .setTitle('<:a_blurplesearch:856174396187344926> **Opa!**', `${message.author}`, true)
         .setThumbnail('https://cdn.discordapp.com/emojis/742242888838283324.gif?v=1')
         .setDescription('Aqui em nosso sistema consta que você não é um usuário vip! \n<:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627>') // inline false
         .addField('<:a_blurpleticket:856174396095332381> *Garanta já seu VIP para ter acesso a estes magnificos comandos!*', `**[[ADQUIRA AQUI]](https://pag.ae/7Wfg61Q9n)**`, true)
         .setImage('https://i.imgur.com/hoyGJTN.png')
-        .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
       const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
       const doc = await this.client.database.user.getOrCreate(message.author.id)
@@ -50,8 +50,8 @@ module.exports = class vip extends Command {
             .addField('Usuário:', `USER#0000`, true)
             .addField('ID:', `0000000000000000`, true)
             .addField('Motivo:', `Banido por ${message.author.tag} — Não relatou um motivo.`, false)
-            .setColor(colors.default)
-            .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+            .setColor(colors['default'])
+            .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
           message.reply({ embed: teste })
         } else if (args[0] === 'canal') {
           const det = await this.client.database.cargo.getOrCreate(message.author.id)
@@ -197,7 +197,7 @@ module.exports = class vip extends Command {
           const embed = new MessageEmbed()
             .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setDescription(`<a:dshype:683501891493167163> Olá querido(a) usuário(a) VIP !\nPrecisando de uma ajudinha? Aqui vai seus comandos desbloqueados:`)
-            .setColor(colors.default)
+            .setColor(colors['default'])
             .setThumbnail('https://cdn.discordapp.com/emojis/742242899156271205.gif?v=1')
             .addField('Modos de usar', [
               `\`${guildDocument.prefix}vip gifban <link>\` - Define o gif que sera definido na hora de banir um membro.`,
@@ -213,8 +213,8 @@ module.exports = class vip extends Command {
             .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
             .setDescription(`Olá !\n\nNós da equipe Jeth, temos o orgulho de ter você como nosso usuário(a) vip, esta pequena compra que você fez para receber suas recompensas nos ajuda e muito a melhorar nossa qualidade, contratar pessoas que consigam melhorar nossos sistemas e ficarmos cada vez mais perto do topo.\n\nMuito obrigado!\n<a:dshype:683501891493167163> Equipe Jeth. <a:dshype:683501891493167163>`)
             .setThumbnail('https://cdn.discordapp.com/emojis/742242899156271205.gif?v=1')
-            .setColor(colors.vip)
-            .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+            .setColor(colors['vip'])
+            .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
           let embedCount = 1
 

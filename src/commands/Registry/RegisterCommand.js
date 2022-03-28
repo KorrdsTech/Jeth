@@ -98,9 +98,9 @@ module.exports = class Registrar extends Command {
             if (registradoRole) {
               member.roles.add(registradoRole.id, 'Registry').catch(() => { });
             }//member.roles.map(role => role.name()).join(", ")
-                        //message.guild.member(message.author).roles.map(r => r.name).join(', ');
+            //message.guild.member(message.author).roles.map(r => r.name).join(', ');
             const cargos = message.guild.member(member.id).roles.cache.map(r => r.name).join(', ');
-                        //var cargos = message.guild.members.get(member.id).roles.map(role => role.name).join(', ');
+            //var cargos = message.guild.members.get(member.id).roles.map(role => role.name).join(', ');
             const { MessageEmbed } = require('discord.js');
             let canal = message.guild.channels.cache.get(guildTable.channelRegister)
             if (!canal) canal = message.channel;
@@ -109,7 +109,7 @@ module.exports = class Registrar extends Command {
               .setAuthor(`Registrador(a): ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
               .setDescription(`${message.author} você Registryu o usuário(a) ${member} com sucesso.`)
               .setFooter('Depois desse Registry cairia bem um bolo né? 🍰')
-              .setColor(colors.default);
+              .setColor(colors['default']);
 
             canal.send({ embeds: [embedSv] }).catch(() => { });
 
@@ -122,11 +122,11 @@ module.exports = class Registrar extends Command {
               .addField('Data do Registry:', `\`\`\`\n${moment(timestamp).format('LL')}\`\`\``, false)
               .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
               .setFooter('Depois desse Registry cairia bem um bolo né? 🍰')
-              .setColor(colors.default)
+              .setColor(colors['default'])
 
             const embedDM2 = new MessageEmbed()
               .setDescription(`<:a_blurplepartner:856174395869626399> **Olá! Gostou da Jeth? quer saber de novidades diárias , sempre está atualizado sobre novos comandos! entre no [suporte](https://discord.gg/VnYbWUz3ZZ)**`)
-              .setColor(colors.default)
+              .setColor(colors['default'])
 
             member.send(embedDM1).catch(() => { });
             member.send(embedDM2).catch(() => { });

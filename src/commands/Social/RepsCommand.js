@@ -18,13 +18,13 @@ module.exports = class Reps extends Command {
     if (!member) return message.reply('Algum erro terrível aconteceu, entre em contato com o suporte via /bug')
     const user = await this.client.database.user.getOrCreate(member.id)
     const embed = new MessageEmbed()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setTimestamp()
       .setThumbnail('https://cdn.discordapp.com/emojis/763532885935259688.png?v=1')
       .setDescription('**REPUTAÇÃO TOTAL:**')
       .addField('Usuário:', `${member}`)
       .addField('Reps:', `${user.rep}`)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
     message.reply({ embeds: [embed] })
   }
 }

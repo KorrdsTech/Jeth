@@ -15,7 +15,7 @@ module.exports = class apagar extends Command {
     const embedA = new MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_MESSAGES`', true)
@@ -37,7 +37,7 @@ module.exports = class apagar extends Command {
     message.channel.bulkDelete(fetched)
     const embedB = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setTitle(`<:ayaya:683491996790554629> ${message.author.username}`, true)
       .setDescription(`As mensagens requisitadas no servidor ${message.guild} foram **deletadas** com sucesso!`)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))

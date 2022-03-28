@@ -33,11 +33,11 @@ module.exports = class Registrador extends Command {
       .setTitle('Registrys do servidor:')
       .setDescription(
         `Masculino: ${obj.m}\nFeminino: ${obj.f}\nNão binário: ${obj.n}\n\n` +
-                    `Total de usuários registrados: ${obj.m + obj.f + obj.n}\n` +
-                    `Total de usuários sem Registrys: ${obj.memberCount - (obj.m + obj.f + obj.n)}`
+        `Total de usuários registrados: ${obj.m + obj.f + obj.n}\n` +
+        `Total de usuários sem Registrys: ${obj.memberCount - (obj.m + obj.f + obj.n)}`
       )
-      .setColor(colors.default)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setColor(colors['default'])
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp();
     message.reply({ embeds: [embed] }).catch(() => { });
   }

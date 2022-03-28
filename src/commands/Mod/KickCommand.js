@@ -12,26 +12,26 @@ module.exports = class kick extends Command {
 
   async run(message, args) {
     const emptyMessage = new MessageEmbed()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Kick:**', `${message.author.username}`, true)
       .setDescription('Como o próprio nome já diz a função deste comando é de chutar um usuário do seu servidor em alto estilo.') // inline false
       .addField('*Uso do comando:*', '`kick <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`kick @Solaris#0006 Get a kick in the ... !`', true)
 
     const rolesHighest = new MessageEmbed()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('<:reinterjection:955577574304657508> **Kick:**', `${message.author.username}`, true)
       .setDescription('Você não pode executar um timeout neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
 
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     const embedA = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${message.author}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`KICK_MEMBERS`', true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
-      // code dm do kickado
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+    // code dm do kickado
     const razao13 = args.slice(1).join(' ');
     const warnembed18 = new MessageEmbed()
 
@@ -62,7 +62,7 @@ module.exports = class kick extends Command {
       .setTitle('Ação | Kick')
       .setColor('#ff112b')
       .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Kickado:** ${membro18.username} \n**ID:** ${membro18.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${razao13}`)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
     message.reply(warnembed13);

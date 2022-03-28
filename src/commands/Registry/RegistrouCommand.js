@@ -45,9 +45,9 @@ module.exports = class Registryu extends Command {
           .addField('Dias no Discord:', `${moment().diff(usuario.createdTimestamp, 'days')} dias`, true)
           .addField('Entrou no Server:', moment(message.guild.member(usuario).joinedTimestamp).format('LL'), true)
           .addField('Dias no Servidor:', `${moment().diff(message.guild.member(usuario).joinedTimestamp, 'days')} dias`, true)
-          .setColor(colors.default)
+          .setColor(colors['default'])
           .setThumbnail('https://cdn.discordapp.com/emojis/722682133432500251.png?v=1')
-          .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+          .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
           .setTimestamp();
         return message.reply({ embeds: [embed] }).catch(() => { });
       }

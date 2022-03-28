@@ -19,11 +19,11 @@ module.exports = class Warn extends Command {
 
     const embedA = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', `${member}`, true)
       .setDescription('Missing Permissions')
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
     if (!member) return message.reply('Mencione o member que deseja dar warn!')
@@ -32,7 +32,7 @@ module.exports = class Warn extends Command {
     }
     // const embedC = new MessageEmbed()
     // .setTimestamp()
-    // .setColor(colors.mod)
+    // .setColor(colors['mod'])
     // .setTitle('**Err:**', true)
     // .setDescription('Missing Permissions') // inline false
     // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
@@ -51,7 +51,7 @@ module.exports = class Warn extends Command {
       .setTitle('Ação | Aviso')
       .setColor('#ff004c')
       .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Advertido:** ${member.user.username} \n**ID:** ${member.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${razao}`)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp();
 
     let adv1 = message.guild.roles.cache.find(r => r.name === 'Advertência 1');
@@ -107,13 +107,13 @@ module.exports = class Warn extends Command {
     if (member.roles.cache.has(adv1.id)) {
       await member.roles.add(adv2)
     } else
-    if (member.roles.cache.has(adv2.id)) {
-      member.roles.add(adv3)
-    } else
-    if (member.roles.cache.has(adv3.id)) {
-      member.kick(razao1)
-      member.send(embed1)
-    }
+      if (member.roles.cache.has(adv2.id)) {
+        member.roles.add(adv3)
+      } else
+        if (member.roles.cache.has(adv3.id)) {
+          member.kick(razao1)
+          member.send(embed1)
+        }
     message.reply({ embeds: [warnembed] })
     member.send({ embeds: [warnembed18] })
     message.guild.member(member).roles.add(adv1);

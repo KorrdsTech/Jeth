@@ -60,7 +60,7 @@ module.exports = class Registrys extends Command {
     }
     const embed = new MessageEmbed()
       .setTitle(`Rank dos registradores do: ${message.guild.name}`)
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setFooter(`Comando requisitado por: ${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }));
     const positionToEmoji = position => {
       const arr = [
@@ -83,9 +83,9 @@ module.exports = class Registrys extends Command {
       embed.addField(`**${positionToEmoji(pos)}__${top[i].username}__**`,
 
         ` **Masculino:** ${top[i].m}\n` +
-                    ` **Feminino:** ${top[i].f}\n` +
-                    ` **Não Binário:** ${top[i].n}\n` +
-                    `**Total: ${top[i].t}**`
+        ` **Feminino:** ${top[i].f}\n` +
+        ` **Não Binário:** ${top[i].n}\n` +
+        `**Total: ${top[i].t}**`
       );
     }
     message.reply({ embeds: [embed] }).catch(() => { });

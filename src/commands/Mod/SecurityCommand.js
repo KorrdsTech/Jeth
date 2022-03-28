@@ -13,11 +13,11 @@ module.exports = class security extends Command {
   async run(message, args) {
     const erroDePermissão = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`ADMINISTRATOR`', true)
-      .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('ADMINISTRATOR')) return message.reply({ embeds: [erroDePermissão] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
@@ -68,8 +68,8 @@ module.exports = class security extends Command {
       })
     } else {
       const embed = new MessageEmbed()
-      embed.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
-      embed.setColor(colors.default)
+      embed.setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
+      embed.setColor(colors['default'])
       embed.setDescription(`Dúvidas de como usar o Módulo de Segurança?\nAqui vai algumas dicas...`)
       embed.addField('Modos de usar', [
         `**BLOQUEAR DIVULGAÇÃO DE SERVIDORES**`,
@@ -86,7 +86,7 @@ module.exports = class security extends Command {
       const embed2 = new MessageEmbed()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como está o Anti-Invite/BlockSpamFlood-BSF? \nAqui vai o seu painel...`)
-        .setColor(colors.default)
+        .setColor(colors['default'])
       let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
       if (guildDocument.infoantinv.length) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.infoantinv}>`;

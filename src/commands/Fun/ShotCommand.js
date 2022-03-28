@@ -21,7 +21,7 @@ module.exports = class atirar extends Command {
     const aEmbed = new MessageEmbed()
 
       .setTimestamp()
-      .setColor(colors.default)
+      .setColor(colors['default'])
       .setDescription(`:scream: ${message.author} **atirou no(a)** ${user}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
       .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
