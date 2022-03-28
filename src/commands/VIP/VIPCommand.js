@@ -11,7 +11,7 @@ module.exports = class vip extends Command {
   }
 
   async run(message, args) {
-    const role = await this.client.database.Cargo.findOne({ _id: message.author.id })
+    const role = await this.client.database.cargo.getOrCreate(message.author.id)
     if (message.guild.id !== '804575416098488380') {
       return message.reply('<:CancelarK:673592197341249559> Este comando só pode ser executado no servidor oficial da **Jeth!**');
     } else {
