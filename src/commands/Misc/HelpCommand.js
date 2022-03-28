@@ -25,7 +25,6 @@ module.exports = class Ajuda extends Command {
     embed.addField(`${('Misc')} (${this.getCommmandSize('Misc')})`, this.getCategory('Misc', prefix))
     embed.addField(`${('Mod')} (${this.getCommmandSize('Mod')})`, this.getCategory('Mod', prefix))
     embed.addField(`${('Magic')} (${this.getCommmandSize('Magic')})`, this.getCategory('Magic', prefix))
-    embed.addField(`${('Registry')} (${this.getCommmandSize('Registry')})`, this.getCategory('Registry', prefix))
     embed.addField(`${('Social')} (${this.getCommmandSize('Social')})`, this.getCategory('Social', prefix))
     embed.addField(`${('VIP')} (${this.getCommmandSize('VIP')})`, this.getCategory('VIP', prefix))
 
