@@ -13,7 +13,8 @@ module.exports = class Registrar extends Command {
   }
 
   async run(message) {
-    const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
+    let timestamp = 0;
+    this.client.database.guild.getOrCreate(message.guild.id)
       .then(guildTable => {
         const member = message.mentions.members.first();
         if (!member) {
@@ -73,13 +74,12 @@ module.exports = class Registrar extends Command {
           }
         }
         if (guildTable.registradores.length) {
-          let registradorID = '';
+          let registradorID
           const registradores = guildTable.registradores;
           for (let u = 0; u < registradores.length; ++u) {
             const memberArr = registradores[u].membrosRegistrados;
             for (let i = 0; i < memberArr.length; ++i) {
               if (memberArr[i]._id === member.id) {
-                let timestamp = 0;
                 registradorID = registradores[u]._id;
                 timestamp = memberArr[i].timestamp;
                 u = registradores.length;

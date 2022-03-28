@@ -13,7 +13,9 @@ module.exports = class Partner extends Command {
 
   async run(message, args) {
     if (!args[0]) {
-      return message.reply('criador burro você tem que falar o id do servidor para que eu póssa adicionar como partner...').then(sent => sent.delete(5000))
+      return message.reply('criador burro você tem que falar o id do servidor para que eu póssa adicionar como partner...').then(sent => {
+        setTimeout(() => sent.delete(), 5000)
+      })
     }
     const server = await this.client.database.guild.getOrCreate(args[0])
     const servidor = this.client.guilds.cache.get(args[0])
@@ -27,7 +29,9 @@ module.exports = class Partner extends Command {
     } else {
       server.partner = true
       server.save().then(async () => {
-        await message.reply(`${message.author},\`${servidor.name}\`, Agora é **partner** <a:neon:663575128088641576>`).then(sent => sent.delete(5000))
+        await message.reply(`${message.author},\`${servidor.name}\`, Agora é **partner** <a:neon:663575128088641576>`).then(sent => {
+          setTimeout(() => sent.delete(), 5000)
+        })
         const embedpartner = new MessageEmbed()
           .setColor(colors['default'])
           .addField('Partner | Informações:', `Servidor adicionado: \n\`\`${servidor.name}\`\``, true)
