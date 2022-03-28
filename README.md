@@ -1,4 +1,4 @@
-# Modedrando em qualidade superior</h2>
+# Moderando em qualidade superior</h2>
 ### Introdução:
 
   A Jeth tem como objetivo melhorar a qualidade de moderação de seu servidor, desta forma implementando até mesmo comandos que não são nativos do Discord, dando uma cara mais bonita à seus canais de texto quando executados e facilitando o `logging`.
@@ -20,4 +20,5 @@ logging !=> Organização das informações da Jeth e outros dentro dos canais d
   Por fim, queremos agradecer todos que estão nos apoiando principalmente em momentos difíceis e deixando seu upvote juntamente à seu comentário, como prometido em nosso servidor comunidade oficial da Jeth, estamos dando VIP à pessoas que cumprem estes dois pequenos requisitos, gostaria de aproveitar para informar e pedir ajuda com os Boosts em nosso servidor comunidade, cada impulso que você der, cada level que subirmos dentro do `Discord Nitro` está nos ajudando a criar novas features para a Jeth e entreter você nosso querido(a) usuário(a)
 
 
-![image](https://i.imgur.com/WroGjIl.gif)
+![MOSHED-2022-2-6-22-6-42](https://user-images.githubusercontent.com/82925878/160325797-81164125-86b5-4f1d-856d-55cde88a047b.jpg)
+
