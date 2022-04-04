@@ -227,7 +227,7 @@ module.exports = class vip extends Command {
 
                 await m.react('665721366514892839')
                 e.users.cache.map(u => e.remove(u.id))
-                m.edit(embed2)
+                m.edit({ embeds: [embed2] })
                 embedCount = 2
                 await m.react('665721366514892839')// volta para trás
               } else if (e.emoji.id == '665721366514892839' && embedCount == 2) {
