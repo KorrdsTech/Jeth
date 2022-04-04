@@ -12,7 +12,7 @@ module.exports = async function onGuildMemberRemove(member) {
           .replace('{gold}', TranslateFunctions.gold(member.guild.memberCount))
           .replace('{green}', TranslateFunctions.green(member.guild.memberCount))
           .replace('{rosa}', TranslateFunctions.rosa(member.guild.memberCount))
-          .replace('{red}', TranslateFunctions.red(member.guild.memberCount))
+          .replace('{exa}', TranslateFunctions.exa(member.guild.memberCount))
           .replace('{ruby}', TranslateFunctions.ruby(member.guild.memberCount))
           .replace('{amarelo}', TranslateFunctions.amarelo(member.guild.memberCount))
           .replace('{violeta}', TranslateFunctions.violeta(member.guild.memberCount))
@@ -25,6 +25,7 @@ module.exports = async function onGuildMemberRemove(member) {
           .replace('{blk}', TranslateFunctions.blk(member.guild.memberCount))
           .replace('{natal}', TranslateFunctions.natal(member.guild.memberCount))
           .replace('{bouncepurple}', TranslateFunctions.bouncepurple(member.guild.memberCount))
+          .replace('{exa-new}', TranslateFunctions.exanew(member.guild.memberCount))
           .replace('{redblue}', TranslateFunctions.redblue(member.guild.memberCount)))
       }
       if (guildDocument.saidaModule) {
