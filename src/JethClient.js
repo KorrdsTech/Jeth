@@ -58,6 +58,6 @@ module.exports = class JethClient extends Client {
       .setAuthor(this.user.username, this.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .addDescription(error.message)
       .addField('Arquivo', `${error.fileName} ${error.lineNumber}`)
-    return this.channels.get('658890776935137290').send({ embeds: [embed] })
+    return this.channels.get('831041533469655070').send({ embeds: [embed] })
   }
 }

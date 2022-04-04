@@ -1,5 +1,5 @@
 const JethClient = require('./JethClient')
-const client = new JethClient({ intents: 14319, failIfNotExists: false })
+const client = new JethClient({ intents: 98303, failIfNotExists: false })
 const TopGG = require('dblapi.js')
 const top = new TopGG(process.env.TOPGG, client)
 top.on('error', (err) => console.log(err.name))
