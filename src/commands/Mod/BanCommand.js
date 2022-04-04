@@ -49,10 +49,21 @@ module.exports = class Ban extends Command {
     if (!membro17) {
       message.reply({ embeds: [link] })
     }
-
+    const guildDocument = await this.client.database.Users.findById(membro17.id)
+    if (!guildDocument) {
+      new this.client.database.Users({
+        _id: membro17.id
+      }).save()
+    }
     const membro14 = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!membro14) {
       message.reply({ embeds: [link] })
+    }
+    const Document = await this.client.database.Users.findById(membro14.id)
+    if (!Document) {
+      new this.client.database.Users({
+        _id: membro14.id
+      }).save()
     }
     const guildDocument1 = await this.client.database.user.getOrCreate(membro14.id)
 
