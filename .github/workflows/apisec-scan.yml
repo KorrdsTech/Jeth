@@ -32,9 +32,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the v13 branch
   # Customize trigger events based on your DevSecOps processes.
   push:
-    branches: [ v13, development ]
+    branches: [ v.13/6.0.0-beta, development ]
   pull_request:
-    branches: [ v13 ]
+    branches: [ v.13/6.0.0-beta ]
   schedule:
     - cron: '35 13 * * 2'
 
