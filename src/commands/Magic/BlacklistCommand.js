@@ -52,7 +52,7 @@ module.exports = class blacklist extends Command {
     if (guildDocument.blacklist) {
       guildDocument.blacklist = false
       guildDocument.save().then(async () => {
-        this.client.guilds.cache.forEach(gd => gd.members.unban(usuario))
+        this.client.guilds.cache.get(gd => gd.members.unban(usuario))
         usuario.send('<:a_blurpleintegration:856174395801468989> Você foi removido da blacklist, e sua infração foi perdoada.')
         await message.reply(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
 
@@ -60,7 +60,7 @@ module.exports = class blacklist extends Command {
     } else {
       guildDocument.blacklist = true
       guildDocument.save().then(async () => {
-        this.client.guilds.cache.forEach(gd => gd.members.ban(usuario, { reason: `Blacklisted: Quebra dos termos de serviço do discord` }))
+        this.client.guilds.cache.get(gd => gd.members.ban(usuario, { reason: `Blacklisted: Quebra dos termos de serviço do discord` }))
         usuario.send({ embeds: [warnembed18] })
         message.reply(`${message.author},\`${usuario.tag}\`,está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
         message.reply({ embeds: [warnembed14] });
