@@ -44,17 +44,9 @@ module.exports = async function onGuildMemberRemove(member) {
           channel.send({
             content: messageEmbed['content'] ? messageEmbed.content : (typeof messageEmbed === 'string') ? messageEmbed : '',
             embeds: [messageEmbed['embed'] ? messageEmbed.embed : (typeof messageEmbed === 'object') ? messageEmbed : {}]
-          }).then((msg) => {
-            setTimeout(() => {
-              msg.delete()
-            }, 5000)
           })
         } catch (err) {
-          channel.send(message).then((msg) => {
-            setTimeout(() => {
-              msg.delete()
-            }, 5000)
-          })
+          channel.send(message)
         }
         const registradores = guildDocument.registradores;
         for (let i = 0; i < registradores.length; ++i) {

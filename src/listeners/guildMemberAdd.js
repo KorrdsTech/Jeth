@@ -31,7 +31,7 @@ module.exports = async function onGuildMemberAdd(member) {
           .replace('{exa-new}', TranslateFunctions.exanew(member.guild.memberCount))
           .replace('{redblue}', TranslateFunctions.redblue(member.guild.memberCount)))
       }
-    } 5000;
+    }
     setTimeout(async () => {
       if (guildDocument.welcomeModule) {
         const channel = member.guild.channels.cache.get(guildDocument.channelWelcome)
@@ -50,17 +50,9 @@ module.exports = async function onGuildMemberAdd(member) {
           channel.send({
             content: messageEmbed['content'] ? messageEmbed.content : (typeof messageEmbed === 'string') ? messageEmbed : '',
             embeds: [messageEmbed['embed'] ? messageEmbed.embed : (typeof messageEmbed === 'object') ? messageEmbed : {}]
-          }).then((msg) => {
-            setTimeout(() => {
-              msg.delete()
-            }, 5000)
           })
         } catch (err) {
-          channel.send(message).then((msg) => {
-            setTimeout(() => {
-              msg.delete()
-            }, 5000)
-          })
+          channel.send(message)
         }
 
         if (guildDocument.novato.length) {
@@ -69,7 +61,7 @@ module.exports = async function onGuildMemberAdd(member) {
       } else {
         return;
       }
-    }, 5000);
+    });
     return 0;
   })
 }
