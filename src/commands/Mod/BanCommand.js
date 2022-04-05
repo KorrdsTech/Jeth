@@ -49,13 +49,11 @@ module.exports = class Ban extends Command {
     if (!membro17) {
       message.reply({ embeds: [link] })
     }
-    const guildDocument = await this.client.database.user.getOrCreate(membro17.id)
 
     const membro14 = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!membro14) {
       message.reply({ embeds: [link] })
     }
-    const Document = await this.client.database.user.getOrCreate(membro14.id)
 
     const guildDocument1 = await this.client.database.user.getOrCreate(membro14.id)
 
@@ -114,13 +112,16 @@ module.exports = class Ban extends Command {
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());
 
+    const channel = await this.client.database.guild.getOrCreate(message.guild.id)
+    const log = this.client.channels.cache.get(channel.punishChannel)
+    if (!log) return message.reply('Defina um canal de punições')
     const argumentos = args.slice(1).join(' ');
     if (argumentos) {
       message.guild.members.ban(membro17)
       warnembed18.fields[1].value = argumentos
       warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
       warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
-      message.reply({ embeds: [warnembed14] })
+      log.send({ embeds: [warnembed14] })
       try {
         membro14.send({ embeds: [warnembed18] })
       } catch { error }
@@ -138,9 +139,6 @@ module.exports = class Ban extends Command {
 
         const filter = (_, u) => (_ && u.id === message.author.id)
         const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
-        const channel = await this.client.database.Guild.findById(message.guild.id)
-        const log = channel.punishChannel
-        if (!log) return message.reply('Defina um canal de punições')
         col.on('collect', async (reaction) => {
 
           console.log(reaction.emoji.name)
