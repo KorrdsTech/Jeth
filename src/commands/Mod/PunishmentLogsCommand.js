@@ -25,11 +25,13 @@ module.exports = class PunishmentLogs extends Command {
     if (args[0] === 'set') {
       guildDocument.punishChannel = args[1]
       guildDocument.save()
+      message.reply('Canal definido com sucesso!')
       return (0);
     }
     else if (args[0] === 'remove') {
       guildDocument.punishChannel = ''
       guildDocument.save()
+      message.reply('Canal removido com sucesso!')
       return (0);
     }
   }
