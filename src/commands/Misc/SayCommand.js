@@ -20,7 +20,7 @@ module.exports = class Say extends Command {
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_MESSAGES`', true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
-    if (!message.member.permissions.has('MANAGE_MESSAGES'))
+    if (!message.member.permissions.cache.has('MANAGE_MESSAGES'))
       return message.reply({ embeds: [embedA] })
     const mensagem = args.join(' ')
     message.reply(`${mensagem} \n\n<:9461systemmessageuser:832746852633149460> *Mensagem executada por: ${message.author}*`)

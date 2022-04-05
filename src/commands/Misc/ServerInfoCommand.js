@@ -26,7 +26,7 @@ module.exports = class serverinfo extends Command {
       VERY_HIGH: '┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻'
     };
 
-    if (!message.guild.me.permissions.has('SEND_MESSAGES')) return console.log('DISCORD: Estou sem permissão em um servidor.')
+    if (!message.guild.me.permissions.cache.has('SEND_MESSAGES')) return console.log('DISCORD: Estou sem permissão em um servidor.')
     const embed = new MessageEmbed()
 
       .setTimestamp()

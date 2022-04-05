@@ -21,7 +21,7 @@ module.exports = class anuncio extends Command {
 
     const server = await this.client.database.guild.getOrCreate(message.guild.id)
 
-    if (!message.member.permissions.has('MANAGE_MESSAGES'))
+    if (!message.member.permissions.cache.has('MANAGE_MESSAGES'))
       return message.reply(perm)
 
     const embedajuda = new MessageEmbed()

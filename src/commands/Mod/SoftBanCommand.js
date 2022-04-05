@@ -24,7 +24,7 @@ module.exports = class softban extends Command {
 
     const cor = '#c635ff'
     const usuario = this.client.users.cache.get(args[0]) || message.mentions.users.first()
-    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply(':x: **|** Você não tem permissão para executar este comando!')
+    if (!message.member.permissions.cache.has('BAN_MEMBERS')) return message.reply(':x: **|** Você não tem permissão para executar este comando!')
     if (message.mentions.users.size < 1) return message.reply('Mencione algum membro')
     if (!usuario.bannable) return message.reply(`:x: **|** Eu não posso punir essa pessoa, talvez o cargo dela seja maior que o meu`)
     let razao = args.slice(1).join(' ')

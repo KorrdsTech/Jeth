@@ -3,7 +3,7 @@ const moment = require('moment')
 moment.locale('pt-br')
 
 module.exports = async function onGuildMemberAdd(member) {
-  // if(!this.client.user.me.permissions.has(andfabhsdfhabsdfjh))return vvtnc asdfjabdnsldbf
+  // if(!this.client.user.me.permissions.cache.has(andfabhsdfhabsdfjh))return vvtnc asdfjabdnsldbf
   const guildDocument = await this.database.guild.getOrCreate(member.guild.id)
   setTimeout(async () => {
     if (guildDocument) {
@@ -46,7 +46,7 @@ module.exports = async function onGuildMemberAdd(member) {
           .replace(/\{CONTA-CRIADA\}/g, moment(member.user.createdTimestamp).format('LL'))
           .replace(/\{USER-NAME\}/g, member.user.username)
         try {
-          const messageEmbed =  JSON.parse(message)
+          const messageEmbed = JSON.parse(message)
           channel.send({
             content: messageEmbed['content'] ? messageEmbed.content : (typeof messageEmbed === 'string') ? messageEmbed : '',
             embeds: [messageEmbed['embed'] ? messageEmbed.embed : (typeof messageEmbed === 'object') ? messageEmbed : {}]

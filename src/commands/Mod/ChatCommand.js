@@ -21,7 +21,7 @@ module.exports = class chat extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_MESSAGES`', true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
 
-    if (!message.member.permissions.has('MANAGE_MESSAGES'))
+    if (!message.member.permissions.cache.has('MANAGE_MESSAGES'))
       return message.reply({ embeds: [embedA] })
 
     const embedlock = new MessageEmbed()

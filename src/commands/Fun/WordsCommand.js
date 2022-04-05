@@ -17,7 +17,7 @@ module.exports = class palavra extends Command {
       if (message.content.split(' ').slice(1).join(' ').length > 50) {
         message.reply('❌ | `Você ultrapassou o limite de 50 caracteres.`')
       } else {
-        if (message.member.permissions.has('ATTACH_FILES')) {
+        if (message.member.permissions.cache.has('ATTACH_FILES')) {
           const authorMessage = message
           message.reply('🕛 | Aguarde...').then(message => {
             Jimp.read(`http://i.imgur.com/xXUtLqH.png`, function (err, image) {

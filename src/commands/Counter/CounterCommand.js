@@ -19,7 +19,7 @@ module.exports = class Counter extends Command {
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
       .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
-    if (!message.member.permissions.has('MANAGE_GUILD'))
+    if (!message.member.permissions.cache.has('MANAGE_GUILD'))
       return message.reply({ embeds: [embedA] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     if (args[0] === 'canal') {

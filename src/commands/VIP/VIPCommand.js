@@ -174,7 +174,7 @@ module.exports = class vip extends Command {
             return
           }
           const cargo = await this.client.database.cargo.getOrCreate(message.author.id)
-          if (message.member.roles.has(cargo._id)) {
+          if (message.member.roles.cache.has(cargo._id)) {
             message.reply('<:CancelarK:673592197341249559> Você já possui um cargo próprio!')
             return
           }
