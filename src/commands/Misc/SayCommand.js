@@ -23,6 +23,7 @@ module.exports = class Say extends Command {
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
       return message.reply({ embeds: [embedA] })
     const mensagem = args.join(' ')
+    if (!args[0]) message.reply('Insira algum conteúdo a ser enviado')
     message.reply(`${mensagem} \n\n<:9461systemmessageuser:832746852633149460> *Mensagem executada por: ${message.author}*`)
   }
 }
