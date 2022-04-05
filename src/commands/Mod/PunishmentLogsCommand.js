@@ -21,7 +21,7 @@ module.exports = class PunishmentLogs extends Command {
 
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
-    const guildDocument = await this.client.database.Guild.findById(message.guild)
+    const guildDocument = await this.client.database.Guild.findById(message.guild.id)
     if (args[0] === 'set') {
       guildDocument.punishChannel = args[1]
       guildDocument.save()

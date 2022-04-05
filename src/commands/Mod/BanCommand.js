@@ -146,7 +146,7 @@ module.exports = class Ban extends Command {
 
         const filter = (_, u) => (_ && u.id === message.author.id)
         const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
-        const channel = await this.client.database.Guild.findById(message.guild)
+        const channel = await this.client.database.Guild.findById(message.guild.id)
         const log = channel.punishChannel
         col.on('collect', async (reaction) => {
 
