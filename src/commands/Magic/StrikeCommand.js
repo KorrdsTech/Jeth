@@ -33,7 +33,7 @@ module.exports = class strike extends Command {
           .setFooter('https://discordapp.com/guidelines・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
           .setTimestamp(new Date());
         guildDocument.strike += 1
-        guildDocument.save().then(() => message.reply(strike))
+        guildDocument.save().then(() => message.reply({ embeds: [strike] }))
         if (guildDocument.strike >= 3) {
           guildDocument.blacklist = true
           guildDocument.blacklistReason = '[STRIKE EXCEDIDO] - Quebra dos termos de uso do Discord.'
