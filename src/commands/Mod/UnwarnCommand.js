@@ -39,7 +39,7 @@ module.exports = class unwarn extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    if (!message.member.permissions.cache.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
+    if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
 
     const unwarnembed = new MessageEmbed()
 

@@ -57,7 +57,7 @@ module.exports = class AntiSpamUtils {
   }
 
   static checkPossibly(message) {
-    const botrole = message.guild.me.roles.highest.rawPosition < message.member.roles.highest.rawPosition && !message.member.permissions.cache.has('ADMINISTRATOR') && message.guild.ownerId !== message.author.id
+    const botrole = message.guild.me.roles.highest.rawPosition < message.member.roles.highest.rawPosition && !message.member.permissions.has('ADMINISTRATOR') && message.guild.ownerId !== message.author.id
     if (botrole) {
       return true
     } else {

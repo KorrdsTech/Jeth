@@ -24,7 +24,7 @@ module.exports = class Prefix extends Command {
 
     if (!args[0]) { return message.reply(`${message.author}, defina um novo prefixo! **${documento.prefix}prefix <novo prefix>**`) } // Tell them if they didn't supply any arguments.
 
-    if (!message.member.permissions.cache.has('ADMINISTRATOR')) return message.reply({ embeds: [erroDePermissão] })
+    if (!message.member.permissions.has('ADMINISTRATOR')) return message.reply({ embeds: [erroDePermissão] })
 
     if (args.join(' ').length > 2) return message.reply(`${message.author}, eu possuo um limite máximo de 2 caracteres em meu prefix, tente novamente amiguinho(a).`)
 

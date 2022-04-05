@@ -22,7 +22,7 @@ module.exports = class unban extends Command {
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
-    if (!message.member.permissions.cache.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
+    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
 
     if (!args[0]) return message.reply(`**${message.author}**,Insira o id do membro para eu desbanir ele.`)
 

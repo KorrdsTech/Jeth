@@ -54,7 +54,7 @@ module.exports = async function onMessage(message) {
     }
   }
 
-  if (guildDocument.antInvite && !message.member.permissions.cache.has('ADMINISTRATOR') && process.env.OWNERS?.includes(message.author.id)) {
+  if (guildDocument.antInvite && !message.member.permissions.has('ADMINISTRATOR') && process.env.OWNERS?.includes(message.author.id)) {
     if ((/((?:discord\.gg|discordapp\.com\/invite|discord\.com\/invite|discord\.me|discord\.io))/g).test(message.content)) {
       message.delete()
       message.member.timeout(parse('1d'), '[AUTOMOD] Divulgação de convites não são toleradas aqui.').then(() => {
@@ -73,7 +73,7 @@ module.exports = async function onMessage(message) {
   const args = message.content.slice(prefix.length).trim().split(' ')
   const name = args.shift().toLowerCase()
   const command = this.commands.find(command => command.name === name || command.aliases.includes(name))
-  if (command?.permissions && !message.member.permissions.cache.has(command.permissions)) {
+  if (command?.permissions && !message.member.permissions.has(command.permissions)) {
     const embed = new MessageEmbed()
     embed.setTimestamp()
     embed.setColor(colors['mod'])
