@@ -22,7 +22,7 @@ module.exports = class vipset extends Command {
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     const role = await this.client.database.cargo.getOrCreate(message.author.id)
-    if (!role.roleID) return message.reply(embedVIP)
+    if (!role.roleID) return message.reply({ embeds: [embedVIP] })
 
     const embedA = new MessageEmbed()
       .setTimestamp()
