@@ -65,7 +65,7 @@ module.exports = class vipset extends Command {
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (usuario.roles.cache.has(role.roleID)) return message.reply('o membro mencionado já possui esse vip.')
-    usuario.roles.add(message.guild.roles.cache.get(role.roleID))
+    usuario.roles.add(role.roleID)
     message.reply({ embeds: [embed] })
 
   }
