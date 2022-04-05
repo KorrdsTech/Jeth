@@ -27,6 +27,7 @@ const Guild = new Schema({
   infoantinv: { type: String, default: '' },
   countChannel: { type: String, default: '' },
   sugesChannel: { type: String, default: '' },
+  punishChannel: { type: String, default: '' },
   channelWelcome: { type: String, default: '' },
   channelLeave: { type: String, default: '' },
   channelRegister: { type: String, default: '' },

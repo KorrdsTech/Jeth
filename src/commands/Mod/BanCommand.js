@@ -146,6 +146,8 @@ module.exports = class Ban extends Command {
 
         const filter = (_, u) => (_ && u.id === message.author.id)
         const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
+        const channel = await this.client.database.guilds.findById(message.guild)
+        const log = channel.punishChannel
         col.on('collect', async (reaction) => {
 
           console.log(reaction.emoji.name)
@@ -161,7 +163,7 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(guildDocument1.id, {
                 reason: reason
               }).then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
@@ -176,7 +178,7 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(membro14, {
                 reason: reason
               }).then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
@@ -191,7 +193,7 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(membro14, {
                 reason: reason
               }).then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
@@ -206,7 +208,7 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(membro14, {
                 reason: reason
               }).then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
@@ -221,7 +223,7 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(membro14, {
                 reason: reason
               }).then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
@@ -236,7 +238,7 @@ module.exports = class Ban extends Command {
               message.guild.members.ban(membro14, {
                 reason: reason
               }).then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
