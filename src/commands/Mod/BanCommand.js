@@ -49,7 +49,7 @@ module.exports = class Ban extends Command {
     if (!membro17) {
       message.reply({ embeds: [link] })
     }
-    const guildDocument = await this.client.database.Users.findById(membro17.id)
+    const guildDocument = await this.client.database.user.getOrCreate(membro17.id)
     if (!guildDocument) {
       new this.client.database.Users({
         _id: membro17.id
@@ -59,7 +59,7 @@ module.exports = class Ban extends Command {
     if (!membro14) {
       message.reply({ embeds: [link] })
     }
-    const Document = await this.client.database.Users.findById(membro14.id)
+    const Document = await this.client.database.user.getOrCreate(membro14.id)
     if (!Document) {
       new this.client.database.Users({
         _id: membro14.id
@@ -148,6 +148,7 @@ module.exports = class Ban extends Command {
         const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
         const channel = await this.client.database.Guild.findById(message.guild.id)
         const log = channel.punishChannel
+        if (!log) return message.reply('Defina um canal de punições')
         col.on('collect', async (reaction) => {
 
           console.log(reaction.emoji.name)
