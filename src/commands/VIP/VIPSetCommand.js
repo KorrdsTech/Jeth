@@ -21,7 +21,7 @@ module.exports = class vipset extends Command {
       .addField('*Verifique se você possui um cargo criado ou status de membro:*', '`VIP`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    const role = await this.client.database.cargo.findById(message.author.id)
+    const role = await this.client.database.cargo.getOrCreate(message.author.id)
     if (!role.roleID) return message.reply({ embeds: [embedVIP] })
 
     const embedA = new MessageEmbed()
