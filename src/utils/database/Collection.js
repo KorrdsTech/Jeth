@@ -10,7 +10,7 @@ module.exports = class Collection {
   async getOrCreate(_id, defaultValues) {
     const data = await this.findOneById(_id)
     if (!data) {
-      this.model({ _id, defaultValues }).save()
+      this.model({ _id, ...defaultValues }).save()
     }
 
     return data
