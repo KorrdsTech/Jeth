@@ -22,7 +22,7 @@ module.exports = class vipset extends Command {
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     const role = await this.client.database.cargo.getOrCreate(message.author.id)
-    if (!role) return message.reply(embedVIP)
+    if (!role.roleID) return message.reply(embedVIP)
 
     const embedA = new MessageEmbed()
       .setTimestamp()
@@ -55,6 +55,7 @@ module.exports = class vipset extends Command {
     }
 
     const roled = message.guild.roles.cache.get(role.roleID)
+    if (!roled) return message.reply('Este cargo não é válido ou não existe.')
 
     const embed = new MessageEmbed()
       .setTimestamp()
@@ -67,6 +68,5 @@ module.exports = class vipset extends Command {
     if (usuario.roles.cache.has(role.roleID)) return message.reply('o membro mencionado já possui esse vip.')
     usuario.roles.add(role.roleID)
     message.reply({ embeds: [embed] })
-
   }
 }
