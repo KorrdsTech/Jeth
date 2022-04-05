@@ -20,6 +20,16 @@ module.exports = class softban extends Command {
       .addField('*Uso do comando:*', '`softban <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`softban @Solaris#0006 Ban hammer has spoken!`', true)
 
+    const defina = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (SOFTBAN):**', `${message.author.username}`, true)
+      .setDescription('Configure da forma ensinada abaixo.') // inline false
+      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+
+    const channel = await this.client.database.guild.getOrCreate(message.guild.id)
+    const log = this.client.channels.cache.get(channel.punishChannel)
+    if (!log) message.reply({ embeds: [defina] })
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
     const cor = '#c635ff'
@@ -35,6 +45,6 @@ module.exports = class softban extends Command {
     const embed = new MessageEmbed()
       .setDescription(`${usuario.username} foi **Suavemente Banido** do servidor por ${message.author}\nMotivo: ${razao} `)
       .setColor(cor)
-    message.reply({ embeds: [embed] })
+    log.send({ embeds: [embed] })
   }
 }

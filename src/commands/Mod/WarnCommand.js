@@ -19,6 +19,16 @@ module.exports = class Warn extends Command {
       .addField('*Uso do comando:*', '`warn <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`warn @Solaris#0006 Not listen to the rules of this academy!`', true)
 
+    const defina = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (WARN):**', `${message.author.username}`, true)
+      .setDescription('Configure da forma ensinada abaixo.') // inline false
+      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+
+    const channel = await this.client.database.guild.getOrCreate(message.guild.id)
+    const log = this.client.channels.cache.get(channel.punishChannel)
+    if (!log) message.reply({ embeds: [defina] })
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
@@ -49,7 +59,7 @@ module.exports = class Warn extends Command {
 
     documento.warnreason = razao
     await documento.save().then(
-      message.reply({ embeds: [warnembed] })
+      log.send({ embeds: [warnembed] })
     )
   }
 }

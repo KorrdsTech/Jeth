@@ -12,6 +12,13 @@ module.exports = class Ban extends Command {
   }
 
   async run(message, args) {
+    const defina = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
+      .setDescription('Configure da forma ensinada abaixo.') // inline false
+      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+
     const emptyMessage = new MessageEmbed()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Ban:**', `${message.author.username}`, true)
@@ -114,7 +121,7 @@ module.exports = class Ban extends Command {
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)
-    if (!log) return message.reply('Defina um canal de punições')
+    if (!log) message.reply({ embeds: [defina] })
     const argumentos = args.slice(1).join(' ');
     if (argumentos) {
       message.guild.members.ban(membro17)

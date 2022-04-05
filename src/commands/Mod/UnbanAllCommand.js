@@ -23,6 +23,16 @@ module.exports = class allunban extends Command {
       .setColor(colors['default'])
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não posso desbanir este usuário!** tenha certeza de que eu tenho a permissão `BAN_MEMBERS` então eu poderei desbanir usuários.')
 
+    const defina = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (UNBANALL):**', `${message.author.username}`, true)
+      .setDescription('Configure da forma ensinada abaixo.') // inline false
+      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+
+    const channel = await this.client.database.guild.getOrCreate(message.guild.id)
+    const log = this.client.channels.cache.get(channel.punishChannel)
+    if (!log) message.reply({ embeds: [defina] })
     if (!message.member.permissions.has('BAN_MEMBERS')) {
       return message.reply({ embeds: [embed] }).catch(() => { });
     }
@@ -32,6 +42,6 @@ module.exports = class allunban extends Command {
       bans.forEach(ban => {
         message.guild.members.unban(ban.user.id);
       });
-    }).then(() => message.reply(embed2)).catch(e => console.log(e))
+    }).then(() => log.send({ embeds: [embed2] })).catch(e => console.log(e))
   }
 };

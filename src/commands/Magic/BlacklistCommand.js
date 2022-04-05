@@ -1,4 +1,4 @@
-const { Command } = require('../../utils')
+const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
 module.exports = class blacklist extends Command {
@@ -49,12 +49,22 @@ module.exports = class blacklist extends Command {
       .setFooter('☕️・https://discordapp.com/guidelines', message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTimestamp(new Date());
 
+    const defina = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
+      .setDescription('Configure da forma ensinada abaixo.') // inline false
+      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+
+    const channel = await this.client.database.guild.getOrCreate(message.guild.id)
+    const log = this.client.channels.cache.get(channel.punishChannel)
+    if (!log) message.reply({ embeds: [defina] })
     if (guildDocument.blacklist) {
       guildDocument.blacklist = false
       guildDocument.save().then(async () => {
         this.client.guilds.cache.get(gd => gd.members.unban(usuario))
         usuario.send('<:a_blurpleintegration:856174395801468989> Você foi removido da blacklist, e sua infração foi perdoada.')
-        await message.reply(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
+        await log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
 
       })
     } else {
@@ -62,8 +72,8 @@ module.exports = class blacklist extends Command {
       guildDocument.save().then(async () => {
         this.client.guilds.cache.get(gd => gd.members.ban(usuario, { reason: `Blacklisted: Quebra dos termos de serviço do discord` }))
         usuario.send({ embeds: [warnembed18] })
-        message.reply(`${message.author},\`${usuario.tag}\`,está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
-        message.reply({ embeds: [warnembed14] });
+        log.send(`${message.author},\`${usuario.tag}\`,está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
+        log.send({ embeds: [warnembed14] });
       })
     }
   }

@@ -35,6 +35,16 @@ module.exports = class Raidban extends Command {
       .setColor(colors['default'])
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Usuário inválido!** o usuário que você inseriu não existe ou não foi reconhecido, por favor tente novamente utilizando o ID')
 
+    const defina = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (RAIDBAN):**', `${message.author.username}`, true)
+      .setDescription('Configure da forma ensinada abaixo.') // inline false
+      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+
+    const channel = await this.client.database.guild.getOrCreate(message.guild.id)
+    const log = this.client.channels.cache.get(channel.punishChannel)
+    if (!log) message.reply({ embeds: [defina] })
     // motivo dos banimentos
     const primeiro = 'Conteúdo pornográfico/Gore'
     const segundo = 'Promover ou participar de Raids a outros servidores'
@@ -120,7 +130,7 @@ module.exports = class Raidban extends Command {
       warnembed18.fields[1].value = argumentos
       warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
       warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
-      message.reply({ embeds: [warnembed14] })
+      log.send({ embeds: [warnembed14] })
       try {
         membro14.send({ embeds: [warnembed18] })
       } catch { error }
@@ -152,7 +162,7 @@ module.exports = class Raidban extends Command {
               guildDocument1.id.ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
@@ -167,7 +177,7 @@ module.exports = class Raidban extends Command {
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
@@ -182,7 +192,7 @@ module.exports = class Raidban extends Command {
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
@@ -197,7 +207,7 @@ module.exports = class Raidban extends Command {
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
@@ -212,7 +222,7 @@ module.exports = class Raidban extends Command {
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }
@@ -227,7 +237,7 @@ module.exports = class Raidban extends Command {
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
               }.then(() => {
-                message.reply({ embeds: [warnembed14] })
+                log.send({ embeds: [warnembed14] })
                 try {
                   guildDocument1.send({ embeds: [warnembed18] })
                 } catch { error }

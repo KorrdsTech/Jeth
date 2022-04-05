@@ -45,6 +45,16 @@ module.exports = class kick extends Command {
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());
 
+    const defina = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (KICK):**', `${message.author.username}`, true)
+      .setDescription('Configure da forma ensinada abaixo.') // inline false
+      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+
+    const channel = await this.client.database.guild.getOrCreate(message.guild.id)
+    const log = this.client.channels.cache.get(channel.punishChannel)
+    if (!log) message.reply({ embeds: [defina] })
     if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply({ embeds: [embedA] })
     const membro18 = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!membro18) return message.reply('eu procurei, procurei, e não achei este usuário')
@@ -65,7 +75,7 @@ module.exports = class kick extends Command {
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
-    message.reply(warnembed13);
+    log.send(warnembed13);
     membro18.send({ embeds: [warnembed18] });
     await message.guild.member(membro18).kick(razao13)
   }

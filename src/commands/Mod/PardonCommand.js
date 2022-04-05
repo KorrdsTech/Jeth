@@ -19,6 +19,16 @@ module.exports = class Pardon extends Command {
       .addField('*Uso do comando:*', '`pardon <@user>`', true)
       .addField('*Exemplo:*', '`pardon @Solaris#0006`', true)
 
+    const defina = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (PARDON):**', `${message.author.username}`, true)
+      .setDescription('Configure da forma ensinada abaixo.') // inline false
+      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+
+    const channel = await this.client.database.guild.getOrCreate(message.guild.id)
+    const log = this.client.channels.cache.get(channel.punishChannel)
+    if (!log) message.reply({ embeds: [defina] })
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
@@ -34,6 +44,6 @@ module.exports = class Pardon extends Command {
 
     documento.warnreason = ' '
     await documento.save().then(
-      message.reply({ embeds: [pardon] }))
+      log.reply({ embeds: [pardon] }))
   }
 }

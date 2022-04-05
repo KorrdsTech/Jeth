@@ -37,6 +37,16 @@ module.exports = class Timeout extends Command {
       .setTitle('<:reinterjection:955577574304657508> **Timeout:**', `${message.author.username}`, true)
       .setDescription('Você não pode executar um timeout neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
 
+    const defina = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
+      .setDescription('Configure da forma ensinada abaixo.') // inline false
+      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+
+    const channel = await this.client.database.guild.getOrCreate(message.guild.id)
+    const log = this.client.channels.cache.get(channel.punishChannel)
+    if (!log) message.reply({ embeds: [defina] })
                 // verifica se o conteúdo da mensagem é nulo
     if (!args[1]) return message.reply({ embeds: [emptyMessage] });
                 // verifica se user autor da mensagem tem permissão de moderar os membros.
@@ -74,6 +84,6 @@ module.exports = class Timeout extends Command {
 
                 // executa o corte de comunicação ou timeout.
     user.timeout(parse(timer)).then(
-      message.reply({ embeds: [embed] }))
+      log.send({ embeds: [embed] }))
   }
 }
