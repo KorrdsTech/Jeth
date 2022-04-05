@@ -188,9 +188,8 @@ module.exports = class vip extends Command {
           }).then(rolec => {
             message.reply('Cargo criado com sucesso!')
             message.member.roles.add(rolec.id)
-            const cargo2 = this.client.database.cargo.getOrCreate(message.author.id, { roleID: rolec.id }).then(() => {
-              message.reply('Usuário salvo na database')
-            })
+            this.client.database.cargo.getOrCreate(message.author.id, { roleID: rolec.id })
+            message.reply('Usuário salvo na database')
           })
         } else if (args[0] === 'help') {
           const embed = new MessageEmbed()
