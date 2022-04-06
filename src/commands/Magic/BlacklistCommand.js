@@ -57,12 +57,12 @@ module.exports = class blacklist extends Command {
       .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
-    const log = this.client.channels.cache.get(channel.punishChannel)
+    const log = this.client.channels.cache.getOrCreate(channel.punishChannel)
     if (!log) message.reply({ embeds: [defina] })
     if (guildDocument.blacklist) {
       guildDocument.blacklist = false
       guildDocument.save().then(async () => {
-        this.client.guilds.cache.get(gd => gd.members.unban(usuario))
+        this.client.guilds.cache.getOrCreate(gd => gd.members.unban(usuario))
         usuario.send('<:a_blurpleintegration:856174395801468989> Você foi removido da blacklist, e sua infração foi perdoada.')
         await log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
 
@@ -70,7 +70,7 @@ module.exports = class blacklist extends Command {
     } else {
       guildDocument.blacklist = true
       guildDocument.save().then(async () => {
-        this.client.guilds.cache.get(gd => gd.members.ban(usuario, { reason: `Blacklisted: Quebra dos termos de serviço do discord` }))
+        this.client.guilds.cache.getOrCreate(gd => gd.members.ban(usuario, { reason: `Blacklisted: Quebra dos termos de serviço do discord` }))
         usuario.send({ embeds: [warnembed18] })
         log.send(`${message.author},\`${usuario.tag}\`,está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
         log.send({ embeds: [warnembed14] });
