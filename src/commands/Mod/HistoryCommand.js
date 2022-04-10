@@ -34,7 +34,7 @@ module.exports = class History extends Command {
       .addField('`Punições:`', `**${user.warnreason} | Data: | Servidor:**`)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    if (documento.warnreason === ' ') return message.reply('Este usuário não possui avisos neste servidor.')
+    if (user.warnreason === ' ') return message.reply('Este usuário não possui avisos neste servidor.')
     else message.reply({ embeds: [warnlist] })
   }
 }
