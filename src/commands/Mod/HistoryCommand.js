@@ -22,8 +22,7 @@ module.exports = class History extends Command {
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
-    const documento = await this.client.database.guild.getOrCreate(message.guild)
-    const user = await documento.getOrCreate(member.id)
+    const documento = await this.client.database.guild.getOrCreate(message.guild).cache.get(member.id)
 
     const warnlist = new MessageEmbed()
       .setTimestamp()
@@ -31,10 +30,10 @@ module.exports = class History extends Command {
       .setThumbnail(member.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Lista de Punições')
       .setDescription(`O usuário ${member} possui as seguintes punições:`) // inline false
-      .addField('`Punições:`', `**${user.warnreason} | Data: | Servidor:**`)
+      .addField('`Punições:`', `**${documento.warnreason} | Data: | Servidor:**`)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    if (user.warnreason === ' ') return message.reply('Este usuário não possui avisos neste servidor.')
+    if (documento.warnreason === ' ') return message.reply('Este usuário não possui avisos neste servidor.')
     else message.reply({ embeds: [warnlist] })
   }
 }
