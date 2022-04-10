@@ -22,7 +22,7 @@ module.exports = class History extends Command {
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
-    const documento = await this.client.database.guild.getOrCreate(message.guild).cache.get(member.id)
+    const documento = await this.client.database.guild.getOrCreate(message.guild).get(member.id)
 
     const warnlist = new MessageEmbed()
       .setTimestamp()
