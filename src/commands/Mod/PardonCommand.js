@@ -44,6 +44,6 @@ module.exports = class Pardon extends Command {
 
     documento.warnreason = ' '
     await documento.save()
-    await log.reply({ embeds: [pardon] })
+    log.send({ embeds: [pardon] })
   }
 }
