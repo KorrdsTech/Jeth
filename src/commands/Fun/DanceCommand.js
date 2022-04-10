@@ -36,7 +36,7 @@ module.exports = class dancar extends Command {
         .setImage(gifs1[Math.floor(Math.random() * gifs1.length)])
         .setFooter(`Pedido por ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 })).setTimestamp()
 
-      message.reply({ ebeds: [embed1] })
+      message.reply({ embeds: [embed1] })
     }
   }
 }
