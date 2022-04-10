@@ -30,7 +30,7 @@ module.exports = class History extends Command {
       .setThumbnail(member.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Lista de Punições')
       .setDescription(`O usuário ${member} possui as seguintes punições:`) // inline false
-      .addField('`Punições:`', `**${documento.warnreason}**`)
+      .addField('`Punições:`', `**${message.guild.documento.warnreason} | Data: | Servidor:**`)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (documento.warnreason === ' ') return message.reply('Este usuário não possui avisos neste servidor.')
