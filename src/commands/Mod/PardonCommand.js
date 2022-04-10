@@ -43,7 +43,7 @@ module.exports = class Pardon extends Command {
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     documento.warnreason = ' '
-    await documento.save().then(
-      log.reply({ embeds: [pardon] }))
+    await documento.save()
+    await log.reply({ embeds: [pardon] })
   }
 }
