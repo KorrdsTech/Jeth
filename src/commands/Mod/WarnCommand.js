@@ -1,5 +1,8 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
+const modelWarn = require('../../utils/database/collections/Warn');
+const moment = require('moment')
+moment.locale('pt-br')
 
 module.exports = class Warn extends Command {
   constructor(name, client) {
@@ -12,6 +15,13 @@ module.exports = class Warn extends Command {
   }
 
   async run(message, args) {
+    const defina = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
+      .setDescription('Configure da forma ensinada abaixo.') // inline false
+      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+
     const emptyMessage = new MessageEmbed()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Warn:**', `${message.author.username}`, true)
@@ -19,47 +29,56 @@ module.exports = class Warn extends Command {
       .addField('*Uso do comando:*', '`warn <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`warn @Solaris#0006 Not listen to the rules of this academy!`', true)
 
-    const defina = new MessageEmbed()
-      .setColor(colors['mod'])
-      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (WARN):**', `${message.author.username}`, true)
-      .setDescription('Configure da forma ensinada abaixo.') // inline false
-      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
-      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
-
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)
     if (!log) message.reply({ embeds: [defina] })
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
-    const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
-    const documento = await this.client.database.user.getOrCreate(member.id)
+    const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
-    const razao = args.slice(1).join(' ')
-    if (!razao) message.reply('Por favor insira um motivo válido.')
+    if (!usuario) {
+      return message.reply(`<:reinterjection:955577574304657508> » Mencione um usuário valido.`)
+    }
 
-    const embedA = new MessageEmbed()
-      .setTimestamp()
-      .setColor(colors['mod'])
-      .setTitle('**Err:**', `${member}`, true)
-      .setDescription('Missing Permissions')
-      .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+    const motivo = args.slice(1).join(' ') || 'Não especificado.'
 
-    if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
-    if (!member) return message.reply('Mencione o member que deseja dar warn!')
+    let documentWarn = await modelWarn.findOne({
+      guildID: message.guild.id,
+      memberID: usuario.id,
+    }).catch(err => console.log(err))
+
+    if (!documentWarn) {
+      documentWarn = new modelWarn({
+        guildID: message.guild.id,
+        memberID: usuario.id,
+        warnings: [motivo],
+        staff: [message.member.id],
+        date: [Date.now()],
+      })
+
+      await documentWarn.save().catch(err => console.log(err))
+    }
+
+    else {
+      if (documentWarn.warnings.length >= 3) {
+        return message.reply(`<:reinterjection:955577574304657508> » Este usuário possui mais de 3 avisos recomendamos fortemente procurar outro método para lidar com esta situação específica.`)
+      }
+
+      documentWarn.warnings.push(motivo)
+      documentWarn.staff.push(message.member.id)
+      documentWarn.date.push(Date.now())
+
+      await documentWarn.save().catch(err => console.log(err))
+    }
 
     const warnembed = new MessageEmbed()
-
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Aviso')
       .setColor(colors['mod'])
-      .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Advertido:** ${member.user.username} \n**ID:** ${member.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${razao}`)
+      .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Advertido:** ${usuario.user.username} \n**ID:** ${usuario.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${motivo}`)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp();
 
-    documento.warnreason = razao
-    await documento.save().then(
-      log.send({ embeds: [warnembed] })
-    )
+    log.send({ embeds: [warnembed] })
   }
 }

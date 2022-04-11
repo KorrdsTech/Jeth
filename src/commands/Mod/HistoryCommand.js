@@ -1,5 +1,8 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
+const modelWarn = require('../../utils/database/collections/Warn');
+const moment = require('moment')
+moment.locale('pt-br')
 
 module.exports = class History extends Command {
   constructor(name, client) {
@@ -21,19 +24,38 @@ module.exports = class History extends Command {
 
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
-    const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
-    const documento = await this.client.database.guild.getOrCreate(message.guild).then(d => d.cache.get(member.id))
+    const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
-    const warnlist = new MessageEmbed()
-      .setTimestamp()
-      .setColor(colors['mod'])
-      .setThumbnail(member.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setTitle('Ação | Lista de Punições')
-      .setDescription(`O usuário ${member} possui as seguintes punições:`) // inline false
-      .addField('`Punições:`', `**${documento.warnreason} | Data: | Servidor:**`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+    if (!usuario) {
+      return message.reply(`<:reinterjection:955577574304657508> » Mencione um usuário valido.`)
+    }
 
-    if (documento.warnreason === ' ') return message.reply('Este usuário não possui avisos neste servidor.')
-    else message.reply({ embeds: [warnlist] })
+    const documentWarn = await modelWarn.findOne({
+      guildID: message.guild.id,
+      memberID: usuario.id,
+    }).catch(err => console.log(err))
+
+    if (!documentWarn || !documentWarn.warnings.length) {
+      return message.reply(`<:reinterjection:955577574304657508> » Esse usuário não possui warns nesse servidor.`)
+    }
+
+    const data = []
+
+    for (let i = 0; documentWarn.warnings.length > i; i++) {
+      data.push(`<:roles:963208373606682725> **Warn:** ${i + 1}`)
+      data.push(`<:servers:963208373707341824> **Motivo:** ${documentWarn.warnings[i]}`)
+      data.push(`<:members:963208373644447764> **Staff:** ${await message.client.users.fetch(documentWarn.staff[i]).catch(() => 'Deleted User')}`)
+      data.push(`<:clock:963208373363429428> **Data:** ${new Date(documentWarn.date[i]).toLocaleDateString()}\n`)
+    }
+
+    const warnembed = new MessageEmbed()
+      .setTitle(`${message.guild.name} | Avisos do usuário: ${usuario.user.username}`, this.client.user.avatarURL({ dynamic: true, size: 1024 }))
+      .setDescription(data.join('\n'))
+      .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true }))
+      .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+      .setColor(colors['default'])
+      .setTimestamp();
+
+    message.reply({ embeds: [warnembed] })
   }
 }
