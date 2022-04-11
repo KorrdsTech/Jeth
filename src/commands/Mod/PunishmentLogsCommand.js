@@ -19,6 +19,16 @@ module.exports = class PunishmentLogs extends Command {
       .addField('*Uso do comando:*', '`punishmentlogs remove <#canal>`', true)
       .addField('*Exemplo:*', '`punishmentlogs set #geral`', true)
 
+    const embedA = new MessageEmbed()
+      .setTimestamp()
+      .setColor(colors['mod'])
+      .setTitle('**Err:**', true)
+      .setDescription('Missing Permissions') // inline false
+      .addField('*Verifique se você possui a permissão:*', '`ADMINISTRATOR`', true)
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+
+    if (!message.member.permissions.has('ADMINISTRATOR')) return message.reply({ embeds: [embedA] })
+
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)

@@ -29,6 +29,16 @@ module.exports = class Warn extends Command {
       .addField('*Uso do comando:*', '`warn <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`warn @Solaris#0006 Not listen to the rules of this academy!`', true)
 
+    const embedA = new MessageEmbed()
+      .setTimestamp()
+      .setColor(colors['mod'])
+      .setTitle('**Err:**', true)
+      .setDescription('Missing Permissions') // inline false
+      .addField('*Verifique se você possui a permissão:*', '`MODERATE_MEMBER`', true)
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+
+    if (!message.member.permissions.has('MODERATE_MEMBER')) return message.reply({ embeds: [embedA] })
+
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)
     if (!log) message.reply({ embeds: [defina] })
