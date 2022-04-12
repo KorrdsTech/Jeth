@@ -1,24 +1,28 @@
-# Moderando em qualidade superior</h2>
-### Introdução:
+![JETH](https://i.imgur.com/NybGppe.png)
 
-  A Jeth tem como objetivo melhorar a qualidade de moderação de seu servidor, desta forma implementando até mesmo comandos que não são nativos do Discord, dando uma cara mais bonita à seus canais de texto quando executados e facilitando o `logging`.
+<h1 align="center">⭐ Jeth SaphireRuby ⭐</h1>
 
-```js
-logging !=> Organização das informações da Jeth e outros dentro dos canais de texto do Discord.
-```
+<p align="center">
+<a href="https://top.gg/bot/718210363014905866">
+  <img src="https://top.gg/api/widget/718210363014905866.svg">
+</a>
+</p>
 
-## Suporte
-### Jeth oferece suporte para os usuários do Discord:
+<p>Os servidores do Discord necessitam de uma moderação de qualidade, pois sofrem do mesmo problema, pessoas má intencionadas que querem lhe causar problemas, porém não queremos uma santa inquisição ou até mesmo que nossos servidores pareçam uma ditadura não é mesmo? pensando nisso foram criados os bots dentro do Discord, disponibilizando ferramentas para que seja feita uma moderação adequada e muito bem organizada, a Jeth é um deles, uma robô com Múltiplos Propósitos focada em Moderação de servidores, também contamos com diversos comandos de entretenimento e miscelânea.</p>
 
+## 💎 Features
 
-  Sabemos que o Discord enfrenta muitos problemas com pessoas que descumprem os termos de serviço do Discord, por este motivo separamos uma equipe nossa de extrema confiança que possa lidar com estas situações. ***Usuários que quebram os termos de serviço*** `são rapidamente eliminados pelo nosso Sistema de Blacklist`, *diferente de antes, não mais fazemos denúncias automáticas ao aplicar uma blacklist, esta função ainda precisa de manutenção e muita supervisão.*
-
-
-## Considerações finais:
-
+### 👮‍♀️ Trust & Safety
+- A Jeth conta agora com um sistema que foi muito utilizado pela Loritta um tempo atrás que se chama blacklist, esta função faz com que membros que estejam dentro desta categoria não possam usar os comandos da Jeth e sejam banidas de uma rede de servidores em que o módulo esteja ATIVO, este módulo é customizável, ou seja, você pode decidir se ele estará ativo ou não e pode alterar quando quiser.
+  Um usuário só será adicionado neste módulo caso ele descumpra os termos de serviço do Discord ou cometa alguma infração muito grave a nível superior de moderação básica de servidor.
   
-  Por fim, queremos agradecer todos que estão nos apoiando principalmente em momentos difíceis e deixando seu upvote juntamente à seu comentário, como prometido em nosso servidor comunidade oficial da Jeth, estamos dando VIP à pessoas que cumprem estes dois pequenos requisitos, gostaria de aproveitar para informar e pedir ajuda com os Boosts em nosso servidor comunidade, cada impulso que você der, cada level que subirmos dentro do `Discord Nitro` está nos ajudando a criar novas features para a Jeth e entreter você nosso querido(a) usuário(a)
+### ☃️ Buttons
+- Recentemente lançada nas últimas atualizações do Discord, com buttons fica muito mais fácil a interação do usuário com nossos comandos com ou sem o uso de SlashCommands, dando um olhar mais agradável e bem mais organizado.
 
+### 👮 Moderation
+- Contém diversos comandos que irão facilitar sua vida como moderador de um servidor privado ou público, comandos como: `-mute`, `-warn`, `-ban`, `-kick`; entre outros.
 
-![MOSHED-2022-2-6-22-6-42](https://user-images.githubusercontent.com/82925878/160325797-81164125-86b5-4f1d-856d-55cde88a047b.jpg)
+### 😘 Fun
+- Esta categoria contém comandos de diversão que irão lhe entreter e ajudar a entreter o público do seu servidor contando com comandos clássicos e conhecidos por diversos servidores como o caso do `-ship`
 
+> Também contemos muitos outros módulos e categorias, por favor venha conferir nossa linda robozinha adicionando-a em seu servidor do Discord!
