@@ -34,10 +34,10 @@ module.exports = class Pardon extends Command {
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MODERATE_MEMBER`', true)
+      .addField('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERS`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    if (!message.member.permissions.has('MODERATE_MEMBER')) return message.reply({ embeds: [embedA] })
+    if (!message.member.permissions.has('MODERATE_MEMBERS')) return message.reply({ embeds: [embedA] })
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)
