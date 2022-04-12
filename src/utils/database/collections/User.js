@@ -1,7 +1,6 @@
 const { model, Schema } = require('mongoose')
 const User = new Schema({
   _id: { type: String },
-  warnreason: { type: String, default: ' ' },
   blacklist: { type: Boolean, default: false },
   blacklistReason: { type: String, default: null },
   rep: { type: Number, default: 0 },
