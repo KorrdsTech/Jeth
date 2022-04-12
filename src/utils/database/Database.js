@@ -4,6 +4,8 @@ const canal = require('./collections/Canal')
 const cargo = require('./collections/Cargo')
 const guild = require('./collections/Guild')
 const user = require('./collections/User')
+const warn = require('./collections/Warn')
+
 module.exports = class Database {
   constructor() {
     mongoose.connect(process.env.MONG, {}, (err) => {
@@ -15,5 +17,6 @@ module.exports = class Database {
     this.cargo = new Collection(cargo)
     this.guild = new Collection(guild)
     this.user = new Collection(user)
+    this.warn = new Collection(warn)
   }
 }
