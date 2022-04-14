@@ -42,27 +42,13 @@ module.exports = class vipset extends Command {
       message.reply('Não posso me setar vip.');
       return 0;
     }
-    const executorRole = message.member.roles.highest;
-    const targetRole = usuario.roles.highest;
-    if (executorRole.comparePositionTo(targetRole) <= 0 && message.author.id !== message.guild.ownerID) {
-      message.reply('Você não tem permissão para setar vip neste usuário');
-      return 0;
-    }
-    const clientRole = message.guild.me.roles.highest;
-    if (clientRole.comparePositionTo(targetRole) <= 0) {
-      message.reply('Você não tem permissão para setar vip neste usuário');
-      return 0;
-    }
-
-    const roled = message.guild.roles.cache.get(role)
-    if (!roled) return message.reply('Este cargo não é válido ou não existe.')
 
     const embed = new MessageEmbed()
       .setTimestamp()
       .setColor('#ffbc00')
       .setDescription(`${usuario} **RECEBEU O VIP DE** ${message.author}`)
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .addField('**Cargo Adicionado:**', `${roled}`, true)
+      .addField('**Cargo Adicionado:**', `${role}`, true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (usuario.roles.cache.has(role)) return message.reply('o membro mencionado já possui esse vip.')
