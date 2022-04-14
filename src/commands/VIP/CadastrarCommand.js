@@ -20,7 +20,7 @@ module.exports = class cadastrar extends Command {
     if (doc) {
       if (doc.vip) {
         doc.gifban = '',
-          doc.vip = false
+        doc.vip = false
       } else {
         doc.vip = true
       }
