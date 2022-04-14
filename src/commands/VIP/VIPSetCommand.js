@@ -22,7 +22,9 @@ module.exports = class vipset extends Command {
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     const role = await this.client.database.cargo.getOrCreate(message.author.id)
-    if (!role) return message.reply({ embeds: [embedVIP] })
+    const jeth = this.client.guilds.cache.get('804575416098488380')
+    const roleID = jeth.roles.cache.get(role)
+    if (!roleID) return message.reply({ embeds: [embedVIP] })
 
     const embedA = new MessageEmbed()
       .setTimestamp()
@@ -48,11 +50,11 @@ module.exports = class vipset extends Command {
       .setColor('#ffbc00')
       .setDescription(`${usuario} **RECEBEU O VIP DE** ${message.author}`)
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .addField('**Cargo Adicionado:**', `${role}`, true)
+      .addField('**VIP Adicionado:**', `${roleID}`, true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    if (usuario.roles.cache.has(role)) return message.reply('o membro mencionado já possui esse vip.')
-    usuario.roles.add(role)
+    if (usuario.roles.cache.has(roleID)) return message.reply('O membro mencionado já possui esse VIP.')
+    usuario.roles.add(roleID)
     message.reply({ embeds: [embed] })
   }
 }
