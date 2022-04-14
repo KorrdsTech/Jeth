@@ -182,7 +182,7 @@ module.exports = class vip extends Command {
           if (!reas) message.reply('<:CancelarK:673592197341249559> Erro! você não colocou nenhum nome para a role')
           message.guild.roles.create({
             name: `${reas}`,
-            color: `${cargo.cor}`
+            color: parseInt(cargo.cor?.replace('#', ''), 16)
           }).then(rolec => {
             message.reply('Cargo criado com sucesso!')
             message.member.roles.add(rolec.id)
