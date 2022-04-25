@@ -8,6 +8,7 @@ const Guild = new Schema({
   prefix: { type: String, default: '-' },
   partner: { type: Boolean, default: false },
   delete: { type: Boolean, default: false },
+  blacklistModule: { type: Boolean, default: false },
   //módulos welcome,contador etc
   welcomeModule: { type: Boolean, default: false },
   saidaModule: { type: Boolean, default: false },
