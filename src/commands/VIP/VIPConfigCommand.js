@@ -7,7 +7,7 @@ module.exports = class VipConfig extends Command {
     super(name, client)
 
     this.name = 'VipConfig'
-    this.aliases = ['vipconfig', 'premiumconfig']
+    this.aliases = ['vc', 'vipconfig', 'premiumconfig']
     this.category = 'VIP'
     this.permissions = ['ADMINISTRATOR']
 
