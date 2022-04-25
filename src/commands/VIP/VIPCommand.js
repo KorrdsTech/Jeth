@@ -306,7 +306,7 @@ module.exports = class Vip extends Command {
             }
 
         }
-      })// Fim collecttor 4
+      }) // Fim collecttor 4
 
       RUser.on('collect', async (reaction, user) => {
         switch (reaction.emoji.id) {
