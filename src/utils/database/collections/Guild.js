@@ -12,7 +12,7 @@ const Guild = new Schema({
   welcomeModule: { type: Boolean, default: false },
   saidaModule: { type: Boolean, default: false },
   leaveModule: { type: Boolean, default: false },
-  vip: { type: Boolean, default: false },
+  vipGuild: { type: Boolean, default: false },
   count: { type: Boolean, default: false },
   antInvite: { type: Boolean, default: false },
   antSpam: { type: Boolean, default: false },

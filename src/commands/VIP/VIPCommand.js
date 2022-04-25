@@ -1,244 +1,352 @@
+/* eslint-disable no-unused-vars */
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
+const modelVip = require('../../utils/database/collections/Vip');
 
-module.exports = class vip extends Command {
+module.exports = class Vip extends Command {
   constructor(name, client) {
     super(name, client)
 
-    this.name = 'vip'
+    this.name = 'Vip'
     this.aliases = ['vip', 'premium']
     this.category = 'VIP'
+    this.bot_permissions = ['MANAGE_ROLES', 'MANAGE_CHANNELS']
   }
 
   async run(message, args) {
-    const role = await this.client.database.cargo.getOrCreate(message.author.id)
-    if (message.guild.id !== '804575416098488380') {
-      return message.reply('<:CancelarK:673592197341249559> Este comando só pode ser executado no servidor oficial da **Jeth!**');
-    } else {
-      const vipao = new MessageEmbed()
 
-        .setTimestamp()
-        .setColor(colors['vip'])
-        .setTitle('<:a_blurplesearch:856174396187344926> **Opa!**', `${message.author}`, true)
-        .setThumbnail('https://cdn.discordapp.com/emojis/742242888838283324.gif?v=1')
-        .setDescription('Aqui em nosso sistema consta que você não é um usuário vip! \n<:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627><:a_blurpleline:856174396041199627>') // inline false
-        .addField('<:a_blurpleticket:856174396095332381> *Garanta já seu VIP para ter acesso a estes magnificos comandos!*', `**[[ADQUIRA AQUI]](https://pag.ae/7Wfg61Q9n)**`, true)
-        .setImage('https://i.imgur.com/hoyGJTN.png')
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+    const documentVip = await modelVip.findOne({
+      guildID: message.guild.id,
+      userID: message.author.id,
+    }).catch(err => console.log(err))
 
-      const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
-      const doc = await this.client.database.user.getOrCreate(message.author.id)
-      if (!doc.vip) {
-        message.reply(vipao)
-      } else {
-        if (args[0] === 'gifban') {
-          const mensagem = args.slice(1).join(' ')
-          if (!mensagem) return message.reply(`Coloque qual será o link de banimento.`)
-          doc.gifban = mensagem
-          doc.save()
-          message.reply(`Você mudou o gif de banimento,utilize **${guildDocument.prefix}vip gif-teste**,para testar seu gif!`)
-        } else if (args[0] === 'gif-resetar') {
-          doc.gifban = ''
-          doc.save()
-          message.reply('Seu gif de banimento foi resetado.')
+    if (documentVip == null) {
+      return message.reply(`<:a_lori_moletom:963820678157594703> » Você não possui vip no servidor.`)
+    }
 
-        } else if (args[0] === 'gif-teste') {
-          const teste = new MessageEmbed()
-            .setAuthor('Jeth | Banimento Teste', this.client.user.avatarURL({ dynamic: true, size: 1024 }))
-            .setDescription(`${message.author} baniu @USER#0000!`)
-            .setImage(`${doc.gifban}`)
-            .addField('Usuário:', `USER#0000`, true)
-            .addField('ID:', `0000000000000000`, true)
-            .addField('Motivo:', `Banido por ${message.author.tag} — Não relatou um motivo.`, false)
-            .setColor(colors['default'])
-            .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
-          message.reply({ embed: teste })
-        } else if (args[0] === 'canal') {
-          const det = await this.client.database.cargo.getOrCreate(message.author.id)
-          if (!det) {
-            message.reply('Você não criou seu cargo próprio!')
-          } else {
-            const doc = await this.client.database.canal.getOrCreate(message.author.id)
-            if (doc) {
-              message.reply('Você já possui um canal próprio!')
+    const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
+
+    let CheckCall = 'Nenhuma.'
+    let CheckRole = 'Nenhum.'
+    let CheckRoleText = 'Criar'
+    let CheckCallText = 'Criar'
+
+    if (documentVip.roleID.length) {
+      CheckRoleText = `Editar`
+      CheckRole = `<@&${documentVip.roleID}>`
+    }
+    if (documentVip.callID.length) {
+      CheckCallText = `Editar`
+      CheckCall = `<#${documentVip.callID}>`
+    }
+
+    if (!guildDocument.vipGuild) {
+
+      return message.reply(`<:a_lori_moletom:963820678157594703> » Seu servidor não está setado como vip para usufruir das opções.`)
+
+    }
+
+    if (!documentVip.vip) {
+
+      return message.reply(`<:a_lori_moletom:963820678157594703> » Você não está setado como vip para usufruir das opções.`)
+
+    }
+
+    const dashboard = new MessageEmbed()
+      .setAuthor(`${message.guild.name} | Dashboard Vip`, this.client.user.avatarURL({ dynamic: true, size: 1024 }))
+      .setDescription(`<:a_lori_moletom:963820678157594703> » Configure seu vip no servidor.`)
+      .addFields({
+        name: `Informação do Sistema:`,
+        value: `> <:newmemberbadge:967660459878666331> » Seu cargo: **${CheckRole}**\n> <:squareannouncement:967660459794776064> » Sua call: **${CheckCall}**`
+      },
+      {
+        name: `Configuração do Sistema:`,
+        value: `> <a:1r:940889951615205376> **» ${CheckRoleText} cargo.**\n> <a:2r:940889962889494618> **» ${CheckCallText} call.**\n> <a:3r:940889962772045895> **» Cor do cargo.**\n> <a:4r:940889960800739328> **» Adicionar usuário ao seu cargo vip.**\n> <a:5r:940889962767855627> **» Remover seu cargo vip do usuário.**`
+      })
+      .setFooter({ text: `Dashboard Vip de ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+      .setThumbnail('https://media.discordapp.net/attachments/957238449558155304/964982682096390144/vip.png?width=461&height=461')
+      .setColor(colors['default'])
+      .setTimestamp();
+
+    message.reply({ embeds: [dashboard] }).then(msg => {
+      msg.react('<a:1r:940889951615205376>').then(r => {
+        msg.react('<a:2r:940889962889494618>').then(r => {
+          msg.react('<a:3r:940889962772045895>').then(r => {
+            msg.react('<a:4r:940889960800739328>').then(r => {
+              msg.react('<a:5r:940889962767855627>').then(r => {
+              })
+            })
+          })
+        })
+      })
+
+      const RoleFilter = (reaction, user) => reaction.emoji.id === `940889951615205376` && user.id === message.author.id;
+      const CallFilter = (reaction, user) => reaction.emoji.id === `940889962889494618` && user.id === message.author.id;
+      const ColorFilter = (reaction, user) => reaction.emoji.id === `940889962772045895` && user.id === message.author.id;
+      const AUserFilter = (reaction, user) => reaction.emoji.id === `940889960800739328` && user.id === message.author.id;
+      const RUserFilter = (reaction, user) => reaction.emoji.id === `940889962767855627` && user.id === message.author.id;
+
+      const CreateRole = msg.createReactionCollector({ filter: RoleFilter, max: 1 });
+      const CreateCall = msg.createReactionCollector({ filter: CallFilter, max: 1 });
+      const Color = msg.createReactionCollector({ filter: ColorFilter, max: 1 });
+      const AUser = msg.createReactionCollector({ filter: AUserFilter, max: 1 });
+      const RUser = msg.createReactionCollector({ filter: RUserFilter, max: 1 });
+
+      CreateRole.on('collect', async (reaction, user) => {
+        switch (reaction.emoji.id) {
+          case '940889951615205376':
+
+            if (documentVip.roleID) {
+
+              message.reply(`<:a_lori_moletom:963820678157594703> » Indique o nome do seu cargo vip.`).then(m => {
+                message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 60000, errors: ['time'], max: 1 }).on('collect', async message => {
+
+                  const newnamerole = message.content
+                  if (newnamerole.length > 100) return message.reply(`<:a_lori_moletom:963820678157594703> » Número máximo (100) de caracteres atingido.`)
+
+                  const roleedit = message.guild.roles.cache.find(r => r.id === documentVip.roleID);
+
+                  roleedit.edit({
+                    name: `${newnamerole}`,
+                  }).then(async () => {
+                    const msg = await message.reply(`<:a_lori_moletom:963820678157594703> » Estou editando seu cargo vip no banco de dados.`)
+                    setTimeout(() => {
+                      msg.edit({ content: `<:a_lori_moletom:963820678157594703> » Seu cargo vip foi editado no servidor com sucesso.` })
+                    }, 5000)
+                  })
+
+                })
+              })
+
+            } else {
+
+              message.reply(`<:a_lori_moletom:963820678157594703> » Indique o nome do seu cargo vip.`).then(m => {
+                message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 60000, errors: ['time'], max: 1 }).on('collect', async message => {
+
+                  const namerole = message.content
+                  if (namerole.length > 100) return message.reply(`<:a_lori_moletom:963820678157594703> » Número máximo (100) de caracteres atingido.`)
+
+                  message.guild.roles.create({
+                    name: `${namerole}`,
+                    color: parseInt(documentVip.colorVip?.replace('#', ''), 16)
+                  }).then(rolecr => {
+                    message.member.roles.add(rolecr.id)
+                    documentVip.roleID = rolecr.id
+                    documentVip.save().then(async () => {
+                      const msg = await message.reply(`<:a_lori_moletom:963820678157594703> » Estou salvando seu cargo vip no banco de dados.`)
+                      setTimeout(() => {
+                        msg.edit({ content: `<:a_lori_moletom:963820678157594703> » Seu cargo vip no servidor foi salvo com sucesso.` })
+                      }, 5000)
+                    })
+
+                  })
+
+                })
+              })
+
             }
-            if (!doc) {
-              const args = message.content.slice(11)
-              const category = message.guild.channels.cache.get('938180754049990786');
-              message.guild.channels.create(args, {
-                type: 'voice',
-                parent: category.id
-              }).then(async c => {
-                c.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
-                  VIEW_CHANNEL: false,
-                  CONNECT: false,
-                  MANAGE_CHANNELS: false,
-                  DEAFEN_MEMBERS: false,
-                  MUTE_MEMBERS: false,
-                  PRIORITY_SPEAKER: false
-                })
-                c.updateOverwrite(message.member.user, {
-                  VIEW_CHANNEL: true,
-                  CONNECT: true,
-                  MANAGE_CHANNELS: true,
-                  DEAFEN_MEMBERS: true,
-                  MUTE_MEMBERS: true,
-                  PRIORITY_SPEAKER: true
-                })
-                c.updateOverwrite(message.guild.roles.cache.get(role.roleID), {
-                  VIEW_CHANNEL: true,
-                  CONNECT: true,
-                  MANAGE_CHANNELS: false,
-                  DEAFEN_MEMBERS: true,
-                  MUTE_MEMBERS: true,
-                  PRIORITY_SPEAKER: true
-                })
-                message.reply('Canal criado com sucesso!')
-                const canal = this.client.database.Canal({ _id: message.author.id })
-                canal.save().then(() => {
-                  const categoria = message.guild.channels.cache.get('878494223798779964');
-                  const name = `VIP verification request: ${message.author}`;
-                  const lerole = message.guild.roles.cache.get('838650358342352927')
-                  message.guild.channels.create(name, {
-                    type: 'text',
-                    parent: categoria.id
-                  }).then(async d => {
-                    d.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
-                      VIEW_CHANNEL: false,
-                      SEND_MESSAGES: false,
-                      MANAGE_CHANNELS: false,
-                    })
-                    d.updateOverwrite(message.member.user, {
-                      VIEW_CHANNEL: true,
-                      SEND_MESSAGES: true,
-                      MANAGE_CHANNELS: false,
-                    })
-                    d.updateOverwrite(message.guild.roles.cache.get('838650358342352927'), {
-                      VIEW_CHANNEL: true,
-                      SEND_MESSAGES: true,
-                      MANAGE_CHANNELS: true,
-                    }).then(channel => channel.send(`${lerole}, ${message.author} requer aprovação para sua call, caso a mesma seja aprovada reaja abaixo, nome da call: ${args}`).then(async msg => {
-                      await msg.react('856174396372680714')
-                      await msg.react('856174396232957962')
-                      const solaris = message.guild.members.cache.get('442774319819522059')
-                      const filter = (r, u) => (r.emoji.id === '856174396372680714', '856174396232957962') && (u.id !== this.client.user.id && u.id === solaris.id)
-                      const col = msg.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
-                      col.on('collect', async (r) => {
-                        switch (r.emoji.id) {
-                          case '856174396372680714':
-                            c.updateOverwrite(message.guild.roles.cache.get(message.guild.id), {
-                              VIEW_CHANNEL: true,
-                              CONNECT: false,
-                              MANAGE_CHANNELS: false,
-                              DEAFEN_MEMBERS: false,
-                              MUTE_MEMBERS: false,
-                              PRIORITY_SPEAKER: false
-                            })
-                            message.reply(`Criação aprovada`)
-                            d.delete()
-                            break;
-                          case '856174396232957962':
-                            message.reply(`Criação Recusada`)
-                            c.delete()
-                            d.delete()
-                            break;
-                        }
-                      })
-                    })
-                    )
-                    message.reply('Usuário salvo na database')
+        }
+      }) // Fim collector 1
+
+      CreateCall.on('collect', async (reaction, user) => {
+        switch (reaction.emoji.id) {
+          case '940889962889494618':
+
+            if (documentVip.callID) {
+
+              message.reply(`<:a_lori_moletom:963820678157594703> » Indique o novo nome da sua call vip.`).then(m => {
+                message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 160000, errors: ['time'], max: 1 }).on('collect', async message => {
+
+                  const newnamecall = message.content
+                  if (newnamecall.length > 50) return message.reply(`<:a_lori_moletom:963820678157594703> » Número máximo (50) de caracteres atingido.`)
+
+                  const calledit = message.guild.channels.cache.find(c => c.id === documentVip.callID);
+
+                  calledit.edit({
+                    name: `${newnamecall}`,
+                  }).then(async () => {
+                    const msg = await message.reply(`<:a_lori_moletom:963820678157594703> » Estou editando sua call vip no banco de dados.`)
+                    setTimeout(() => {
+                      msg.edit({ content: `<:a_lori_moletom:963820678157594703> » Sua call vip foi editada no servidor com sucesso.` })
+                    }, 5000)
                   })
                 })
               })
             }
-          }
-        } else if (args[0] === 'cor') {
-          const doc = await this.client.database.user.getOrCreate(message.author.id)
-          if (!message.content.includes('#')) {
-            message.reply('<:CancelarK:673592197341249559> Tipo de cor inválida ! aceitamos apenas código HEX')
-            return
-          }
-          const reas = args.slice(1).join(' ')
-          if (!reas) {
-            message.reply('<:CancelarK:673592197341249559> Você não colocou nenhuma cor Hexadecimal')
-            return
-          }
-          const mensagem = args.slice(1).join(' ')
-          doc.cor = mensagem
-          doc.save()
-          message.reply('Você definiu sua cor com sucesso.')
-        } else if (args[0] === 'cargo') {
-          const doc = await this.client.database.user.getOrCreate(message.author.id)
-          if (!doc.cor) {
-            message.reply('<:CancelarK:673592197341249559> Não pode, você não definiu a cor para ser cargo!')
-            return
-          }
-          const cargo = await this.client.database.cargo.getOrCreate(message.author.id)
-          if (message.member.roles.cache.has(cargo._id)) {
-            message.reply('<:CancelarK:673592197341249559> Você já possui um cargo próprio!')
-            return
-          }
-          const reas = args.slice(1).join(' ')
-          if (!reas) message.reply('<:CancelarK:673592197341249559> Erro! você não colocou nenhum nome para a role')
-          message.guild.roles.create({
-            name: `${reas}`,
-            color: parseInt(cargo.cor?.replace('#', ''), 16)
-          }).then(rolec => {
-            message.reply('Cargo criado com sucesso!')
-            message.member.roles.add(rolec.id)
-            this.client.database.cargo.getOrCreate(message.author.id, { roleID: rolec.id })
-            message.reply('Usuário salvo na database')
-          })
-        } else if (args[0] === 'help') {
-          const embed = new MessageEmbed()
-            .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-            .setDescription(`<a:dshype:683501891493167163> Olá querido(a) usuário(a) VIP !\nPrecisando de uma ajudinha? Aqui vai seus comandos desbloqueados:`)
-            .setColor(colors['default'])
-            .setThumbnail('https://cdn.discordapp.com/emojis/742242899156271205.gif?v=1')
-            .addField('Modos de usar', [
-              `\`${guildDocument.prefix}vip gifban <link>\` - Define o gif que sera definido na hora de banir um membro.`,
-              `\`${guildDocument.prefix}vip gif-resetar\` - Reseta o link de banimento seu.`,
-              `\`${guildDocument.prefix}vip gif-teste\` - Testa o link de banimento seu.`,
-              `\`${guildDocument.prefix}vip canal <nome>\` - Cria seu próprio canal VIP.`,
-              `\`${guildDocument.prefix}vip cor <hex-code>\` - Define a cor para seu cargo hypado VIP.`,
-              `\`${guildDocument.prefix}vip cargo <nome>\` - Cria seu próprio cargo hypado VIP.`,
-              `\`${guildDocument.prefix}vip help\` - Veja a lista de ajuda sobre VIP.`
-            ].join('\n'), false)
-            .setImage('https://cl.buscafs.com/www.qore.com/public/uploads/images/78325_880x390.jpg')
-          const embed2 = new MessageEmbed()
-            .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-            .setDescription(`Olá !\n\nNós da equipe Jeth, temos o orgulho de ter você como nosso usuário(a) vip, esta pequena compra que você fez para receber suas recompensas nos ajuda e muito a melhorar nossa qualidade, contratar pessoas que consigam melhorar nossos sistemas e ficarmos cada vez mais perto do topo.\n\nMuito obrigado!\n<a:dshype:683501891493167163> Equipe Jeth. <a:dshype:683501891493167163>`)
-            .setThumbnail('https://cdn.discordapp.com/emojis/742242899156271205.gif?v=1')
-            .setColor(colors['vip'])
-            .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-          let embedCount = 1
+            else {
 
-          message.reply({ embeds: [embed] }).then(async m => {
-            await m.react('666762183249494027')// ir para frente
-            const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
-            const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
-            col.on('collect', async (e) => {
-              if (embedCount != 2 && e.emoji.id == '666762183249494027') { // ir para frente
+              if (documentVip.roleID) {
 
-                await m.react('665721366514892839')
-                e.users.cache.map(u => e.remove(u.id))
-                m.edit({ embeds: [embed2] })
-                embedCount = 2
-                await m.react('665721366514892839')// volta para trás
-              } else if (e.emoji.id == '665721366514892839' && embedCount == 2) {
+                message.reply(`<:a_lori_moletom:963820678157594703> » Indique o nome da sua call vip.`).then(m => {
+                  message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 160000, errors: ['time'], max: 1 }).on('collect', async message => {
 
-                await m.react('666762183249494027')
-                e.users.cache.map(u => e.remove(u.id))
+                    const namecall = message.content
+                    if (namecall.length > 50) return message.reply(`<:a_lori_moletom:963820678157594703> » Número máximo (50) de caracteres atingido.`)
 
-                m.edit({ embeds: [embed] })
-                embedCount = 1
+                    message.guild.channels.create(namecall, {
+                      type: 'GUILD_VOICE',
+                      permissionOverwrites: [
+                        {
+                          id: message.guild.roles.cache.get(message.guild.id),
+                          allow: ['VIEW_CHANNEL'],
+                          deny: ['CONNECT', 'MANAGE_CHANNELS', 'DEAFEN_MEMBERS', 'MUTE_MEMBERS', 'PRIORITY_SPEAKER']
+                        },
+                        {
+                          id: message.member.user,
+                          allow: ['VIEW_CHANNEL', 'CONNECT', 'MANAGE_CHANNELS', 'DEAFEN_MEMBERS', 'MUTE_MEMBERS', 'PRIORITY_SPEAKER']
+                        },
+                        {
+                          id: message.guild.roles.cache.get(documentVip.roleID),
+                          allow: ['VIEW_CHANNEL', 'CONNECT', 'PRIORITY_SPEAKER'],
+                          deny: ['MANAGE_CHANNELS', 'DEAFEN_MEMBERS', 'MUTE_MEMBERS']
+                        }
+                      ]
+
+                    }).then(callcr => {
+                      documentVip.callID = callcr.id
+                      documentVip.save().then(async () => {
+                        const msg = await message.reply(`<:a_lori_moletom:963820678157594703> » Estou salvando sua call vip no banco de dados.`)
+                        setTimeout(() => {
+                          msg.edit({ content: `<:a_lori_moletom:963820678157594703> » Sua call vip foi salva no servidor com sucesso.` })
+                        }, 5000)
+                      })
+
+                    })
+                  })
+                })
+
               }
-            })
-          })
-        }
-      }
 
-    }
+              else {
+
+                message.reply(`<:a_lori_moletom:963820678157594703> » Você precisa criar seu cargo vip para conseguir criar a call.`)
+
+              }
+
+            }
+
+        }
+      }) // Fim collector 2 // Save backup in git repository Nikii Dev.
+
+      Color.on('collect', async (reaction, user) => {
+        switch (reaction.emoji.id) {
+          case '940889962772045895':
+
+            if (documentVip.roleID) {
+
+              message.reply(`<:a_lori_moletom:963820678157594703> » Indique a cor do seu cargo vip.`).then(m => {
+                message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 60000, errors: ['time'], max: 1 }).on('collect', async message => {
+
+                  const roleedit = message.guild.roles.cache.find(r => r.id === documentVip.roleID);
+                  const newcolor = message.content
+
+                  if (!newcolor.includes('#')) {
+                    message.reply(`<:a_lori_moletom:963820678157594703> » Tipo de cor inválida! Lembre-se que só aceitamos cores Hexadecimal.`)
+                    return
+                  }
+
+                  if (newcolor.length > 7) return message.reply(`<:a_lori_moletom:963820678157594703> » Número máximo (7) de caracteres atingido.`)
+
+                  roleedit.edit({
+                    color: `${newcolor}`,
+                  }).then(async () => {
+                    const msg = await message.reply(`<:a_lori_moletom:963820678157594703> » Estou editando a cor do seu cargo vip no banco de dados.`)
+                    setTimeout(() => {
+                      msg.edit({ content: `<:a_lori_moletom:963820678157594703> » A cor do seu cargo vip foi editada no servidor com sucesso.` }) // NIKII... THIS IS FAKE.
+                    }, 5000)
+                  })
+
+                })
+              })
+
+            }
+
+            else {
+              message.reply(`<:a_lori_moletom:963820678157594703> » Você precisa criar seu cargo vip para conseguir editar a cor.`)
+            }
+
+        }
+      })// Fim collecttor 3
+
+      AUser.on('collect', async (reaction, user) => {
+        switch (reaction.emoji.id) {
+          case '940889960800739328':
+
+            if (documentVip.roleID) {
+
+              message.reply(`<:a_lori_moletom:963820678157594703> » Mencione o usuário que você deseja dar o cargo vip.`).then(m => {
+                message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 60000, errors: ['time'], max: 1 }).on('collect', async message => {
+
+                  const roleedit = message.guild.roles.cache.find(r => r.id === documentVip.roleID);
+
+                  const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+
+                  if (!usuario) {
+                    return message.reply(`<:a_lori_moletom:963820678157594703> » Mencione um usuário valido.`)
+                  }
+                  if (usuario.id === this.client.user.id) {
+                    return message.reply(`<:a_lori_moletom:963820678157594703> » Eu não posso me setar com o seu cargo vip.`)
+                  }
+                  if (usuario.roles.cache.has(documentVip.roleID)) return message.reply(`<:a_lori_moletom:963820678157594703> » Esse usuário já possui seu cargo vip neste servidor.`)
+
+                  usuario.roles.add(documentVip.roleID)
+
+                  const msg = await message.reply(`<:a_lori_moletom:963820678157594703> » Estou setando o usuário com seu cargo vip no banco de dados.`)
+                  setTimeout(() => {
+                    msg.edit({ content: `<:a_lori_moletom:963820678157594703> » O usuário foi setado com seu cargo vip no servidor com sucesso.` }) // NIKII... THIS IS FAKE.
+                  }, 5000)
+                })
+              })
+
+            }
+
+            else {
+              message.reply(`<:a_lori_moletom:963820678157594703> » Você precisa criar seu cargo vip para conseguir adiconar alguém.`)
+            }
+
+        }
+      })// Fim collecttor 4
+
+      RUser.on('collect', async (reaction, user) => {
+        switch (reaction.emoji.id) {
+          case '940889962767855627':
+
+            if (documentVip.roleID) {
+
+              message.reply(`<:a_lori_moletom:963820678157594703> » Mencione o usuário que você deseja tirar o cargo vip.`).then(m => {
+                message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 60000, errors: ['time'], max: 1 }).on('collect', async message => {
+
+                  const roleedit = message.guild.roles.cache.find(r => r.id === documentVip.roleID);
+
+                  const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+
+                  if (!usuario) {
+                    return message.reply(`<:a_lori_moletom:963820678157594703> » Mencione um usuário valido.`)
+                  }
+                  if (usuario.id === this.client.user.id) {
+                    return message.reply(`<:a_lori_moletom:963820678157594703> » Eu não posso me remover com o seu cargo vip.`)
+                  }
+
+                  usuario.roles.remove(documentVip.roleID)
+
+                  const msg = await message.reply(`<:a_lori_moletom:963820678157594703> » Estou tirando o usuário do seu cargo vip no banco de dados.`)
+                  setTimeout(() => {
+                    msg.edit({ content: `<:a_lori_moletom:963820678157594703> » O usuário teve o seu cargo vip removido no servidor com sucesso.` }) // NIKII... THIS IS FAKE.
+                  }, 5000)
+                })
+              })
+
+            }
+
+            else {
+              message.reply(`<:a_lori_moletom:963820678157594703> » Você precisa criar seu cargo vip para conseguir remover alguém.`)
+            }
+
+        }
+      })
+
+    })//
+
   }
-}
+} // Os comandos serão lançados em breve na aplicação Jeth. Versão aprimorada e melhorada dos comandos será lançada no Nikii Developements. | Disponivel em: https://discord.gg/wYd4rCYkrm
