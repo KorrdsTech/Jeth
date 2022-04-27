@@ -7,7 +7,7 @@ module.exports = class blacklistModule extends Command {
 
     this.name = 'blacklistModule'
     this.aliases = ['bmodule', 'blacklistmodule', 'bm']
-    this.category = 'Magic'
+    this.category = 'Mod'
     this.adminOnly = false
   }
 
