@@ -36,7 +36,8 @@
     "registry": "https://npm.pkg.github.com"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.x",
+    "npm": "6.x"
   },
   "keywords": [
     "jeth",
