@@ -1,6 +1,6 @@
 ![JETH](https://i.imgur.com/NybGppe.png)
 
-<h1 align="center">⭐ Jeth SaphireRuby ⭐</h1>
+<h1 align="center">⭐ Jethzinha ⭐</h1>
 
 <p align="center">
 <a href="https://top.gg/bot/718210363014905866">
