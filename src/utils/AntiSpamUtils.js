@@ -1,6 +1,6 @@
 const usersMap = new Map()
-const LIMIT = 3
-const DIFF = 7 * 1000
+const LIMIT = 2
+const DIFF = 2 * 1000
 const parse = require('parse-duration')
 module.exports = class AntiSpamUtils {
   static async verify(client, message) {
