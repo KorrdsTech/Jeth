@@ -1,6 +1,6 @@
 const { Command, colors } = require('../../utils')
 // const { createCanvas, loadImage } = require('canvas');
-const { MessageAttachment } = require('discord.js');
+const { MessageEmbed, MessageAttachment } = require('discord.js');
 
 module.exports = class perfeito extends Command {
   constructor(name, client) {
@@ -12,7 +12,7 @@ module.exports = class perfeito extends Command {
   }
 
   async run(message) {
-    const err = new MessageAttachment()
+    const err = new MessageEmbed()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
