@@ -89,10 +89,10 @@ module.exports = class security extends Command {
         .setColor(colors['default'])
       let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
       let canalteste = `<:rejected:739831089543118890> Desativado`;
-      if (guildDocument.infoantinv.lenght > 0) {
+      if (guildDocument.infoantinv.lenght) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.infoantinv}>`;
       }
-      if (guildDocument.infoantspam.lenght > 0) {
+      if (guildDocument.infoantspam.lenght) {
         canalteste = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.infoantspam}`;
       }
       embed2.addField('Anti-Invite | Define o canal de logs anti-invite:', canalBemVindo);
