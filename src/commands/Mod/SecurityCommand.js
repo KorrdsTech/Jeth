@@ -25,18 +25,18 @@ module.exports = class security extends Command {
       const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
       if (!channel || channel.type === 'category') return message.reply('Coloque um canal válido!')
 
-      guildDocument.infoantinv = channel.id
+      guildDocument.antInvite = channel.id
       guildDocument.save().then(async () => {
         await message.reply(`Canal definido: ${channel}`)
       })
     } else if (args[0] === 'desativar') {
       if (!guildDocument.antInvite) return message.reply(`O Módulo de ant-invite já está desativado OU seu módulo não possui um canal definido.`)
       guildDocument.antInvite = false
-      guildDocument.infoantinv = ''
+      guildDocument.antInvite = ''
       guildDocument.save()
       message.reply('Okay o módulo de Anti-Invite foi desativado.')
     } else if (args[0] === 'ativar') {
-      if (!guildDocument.infoantinv) return message.reply('Este servidor não tem um canal de log de invite setado. utilize' + guildDocument.prefix + 'antiinvite #canal')
+      if (!guildDocument.antInvite) return message.reply('Este servidor não tem um canal de log de invite setado. utilize' + guildDocument.prefix + 'antiinvite #canal')
       guildDocument.antInvite = true
       guildDocument.save()
       message.reply('Okay o módulo de Anti-Invite foi Ativado.')
@@ -88,8 +88,8 @@ module.exports = class security extends Command {
         .setDescription(`Dúvidas de como está o Anti-Invite/BlockSpamFlood-BSF? \nAqui vai o seu painel...`)
         .setColor(colors['default'])
       let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
-      if (guildDocument.infoantinv.length) {
-        canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.infoantinv}>`;
+      if (guildDocument.antInvite.length) {
+        canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.antInvite}>`;
       }
       if (guildDocument.infoantspam.length) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Mensagem: <#${guildDocument.infoantspam}>`;
