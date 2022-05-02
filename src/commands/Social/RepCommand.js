@@ -14,6 +14,9 @@ module.exports = class Rep extends Command {
   }
 
   async run(message, args) {
+    const errorReason = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setDescription(`Você precisa inserir um motivo para estar dando um ponto de reputação para este usuário!`)
     const emptyMessage = new MessageEmbed()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Rep:**', `${message.author.username}`, true)
@@ -21,7 +24,7 @@ module.exports = class Rep extends Command {
       .addField('*Uso do comando:*', '`rep <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`rep @Solaris#0006`', true)
     const reason = args.slice(1).join(' ')
-    if (!reason) return message.reply({ embeds: [emptyMessage] })
+    if (!reason) return message.reply({ embeds: [errorReason] })
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     const member = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!member) return message.reply('eu procurei, procurei, e não achei este usuário')
