@@ -90,9 +90,11 @@ module.exports = class security extends Command {
       let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
       if (guildDocument.infoantinv) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.infoantinv}>`;
+        return (0);
       }
-      else if (guildDocument.infoantspam) {
+      if (guildDocument.infoantspam) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.infoantspam}`;
+        return (0);
       }
       embed2.addField('Anti-Invite | Define o canal de logs anti-invite:', canalBemVindo);
       embed2.addField('BlockSpamFlood-BSF | Mensagem definida de logs:', canalBemVindo);
