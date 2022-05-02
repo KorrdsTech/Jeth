@@ -17,6 +17,9 @@ module.exports = class Rep extends Command {
     const errorReason = new MessageEmbed()
       .setColor(colors['mod'])
       .setDescription(`Você precisa inserir um motivo para estar dando um ponto de reputação para este usuário!`)
+    const errorSmall = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setDescription(`Motivo de reputação muito curto!`)
     const emptyMessage = new MessageEmbed()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Rep:**', `${message.author.username}`, true)
@@ -26,6 +29,7 @@ module.exports = class Rep extends Command {
     const reason = args.slice(1).join(' ')
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     if (!reason) return message.reply({ embeds: [errorReason] })
+    if (!reason[3]) return message.reply({ embeds: [errorSmall] })
     const member = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!member) return message.reply('eu procurei, procurei, e não achei este usuário')
     // verificação de se o usuário tem o mesmo id do autor da mensagem.
