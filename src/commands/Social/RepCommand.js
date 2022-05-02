@@ -35,7 +35,7 @@ module.exports = class Rep extends Command {
     const time = ((parseInt(author.repTime) - Date.now()) > 3600000) ? moment.utc(parseInt(author.repTime - Date.now())).format('hh:mm:ss') : moment.utc(parseInt(author.repTime - Date.now())).format('mm:ss')
     const confirmação = new MessageEmbed()
       .setColor(colors['default'])
-      .setDescription(`Você deu um ponto de reputação para o ${member}, agora esse usuario tem ${user.rep}`)
+      .setDescription(`<a:a_dancin:934175860930527313> Você deu um ponto de reputação para o ${member}\nAgora esse usuario tem ${user.rep} pontos de reputação\n**Motivo:** ${reason}`)
     const error = new MessageEmbed()
       .setColor(colors['mod'])
       .setDescription(`Você precisa esperar: ${time}`)
