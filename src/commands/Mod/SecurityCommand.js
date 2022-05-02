@@ -87,14 +87,13 @@ module.exports = class security extends Command {
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como está o Anti-Invite/BlockSpamFlood-BSF? \nAqui vai o seu painel...`)
         .setColor(colors['default'])
+      let canalteste = `<:rejected:739831089543118890> Desativado`
       let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
-      if (guildDocument.infoantinv) {
+      if (guildDocument.infoantinv.lenght > 0) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.infoantinv}>`;
-        return (0);
       }
-      if (guildDocument.infoantspam) {
-        canalBemVindo = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.infoantspam}`;
-        return (0);
+      if (guildDocument.infoantspam.lenght > 0) {
+        canalteste = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.infoantspam}`;
       }
       embed2.addField('Anti-Invite | Define o canal de logs anti-invite:', canalBemVindo);
       embed2.addField('BlockSpamFlood-BSF | Mensagem definida de logs:', canalBemVindo);
