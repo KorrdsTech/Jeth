@@ -91,7 +91,7 @@ module.exports = class security extends Command {
       if (guildDocument.infoantinv) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.infoantinv}>`;
       }
-      else if (guildDocument.infoantspam.length) {
+      else if (guildDocument.infoantspam) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.infoantspam}`;
       }
       embed2.addField('Anti-Invite | Define o canal de logs anti-invite:', canalBemVindo);
