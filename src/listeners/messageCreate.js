@@ -7,7 +7,7 @@ module.exports = async function onMessage(message) {
   const guildDocument = await this.database.guild.getOrCreate(message.guild.id)
   if (message.author.bot) {
     if (message.author.discriminator !== '0000') return
-    if (message.author.username !== 'Haku') return
+    if (message.author.username !== 'Discord-Chan') return
     if (message.channel.id !== '879568042433085490') return
 
     const member = message.mentions.users.first()
