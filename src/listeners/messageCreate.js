@@ -32,13 +32,6 @@ module.exports = async function onMessage(message) {
   if (guildDocument.antSpam) {
     AntiSpamUtils.verify(this, message)
   }
-  const thumbsup = '👍';
-  const thumbsdown = '👎';
-  if (message.channel.id === '718178715657568359') {
-
-    message.react(thumbsup);
-    await message.react(thumbsdown);
-  }
 
   if (guildDocument?.sugesModule) {
     const suggestionChannel = message.guild.channels.cache.get(guildDocument?.sugesChannel)
