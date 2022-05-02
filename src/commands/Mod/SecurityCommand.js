@@ -88,10 +88,10 @@ module.exports = class security extends Command {
         .setDescription(`Dúvidas de como está o Anti-Invite/BlockSpamFlood-BSF? \nAqui vai o seu painel...`)
         .setColor(colors['default'])
       let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
-      if (guildDocument.infoantinv.length) {
+      if (guildDocument.infoantinv) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.infoantinv}>`;
       }
-      if (guildDocument.infoantspam.length) {
+      else if (guildDocument.infoantspam.length) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.infoantspam}`;
       }
       embed2.addField('Anti-Invite | Define o canal de logs anti-invite:', canalBemVindo);
