@@ -18,9 +18,10 @@ module.exports = class Rep extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Rep:**', `${message.author.username}`, true)
       .setDescription('Criado para adicionar pontos de reputação a conta de um usuário, se um user recebe bastante pontos de reputação significa que ele ajuda bastante em nosso desenvolvimento do projeto, seja com suporte ou outros.') // inline false
-      .addField('*Uso do comando:*', '`rep <@user>`', true)
+      .addField('*Uso do comando:*', '`rep <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`rep @Solaris#0006`', true)
-
+    const reason = args.slice(1).join(' ')
+    if (!reason) return message.reply({ embeds: [emptyMessage] })
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     const member = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!member) return message.reply('eu procurei, procurei, e não achei este usuário')
@@ -32,6 +33,12 @@ module.exports = class Rep extends Command {
     const author = await this.client.database.user.getOrCreate(message.author.id)
     const user = await this.client.database.user.getOrCreate(member.id)
     const time = ((parseInt(author.repTime) - Date.now()) > 3600000) ? moment.utc(parseInt(author.repTime - Date.now())).format('hh:mm:ss') : moment.utc(parseInt(author.repTime - Date.now())).format('mm:ss')
+    const confirmação = new MessageEmbed()
+      .setColor(colors['default'])
+      .setDescription(`Você deu um ponto de reputação para o ${member}, agora esse usuario tem ${user.rep}`)
+    const error = new MessageEmbed()
+      .setColor(colors['mod'])
+      .setDescription(`Você precisa esperar: ${time}`)
     if (parseInt(author.repTime) < Date.now()) {
 
       user.rep += 1
@@ -45,10 +52,10 @@ module.exports = class Rep extends Command {
       author.save()
       user.save()
 
-      message.reply(`Você deu um ponto de reputação para o ${member}, agora esse usuario tem ${user.rep} pontos de reputação.`)
+      message.reply({ embeds: [confirmação] })
 
     } else {
-      message.reply(`Você precisa esperar: ${time} minutos.`)
+      message.reply({ embeds: [error] })
     }
   }
 }
