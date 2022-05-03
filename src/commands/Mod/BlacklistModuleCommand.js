@@ -14,7 +14,7 @@ module.exports = class blacklistModule extends Command {
   async run(message, args) {
     const emptyMessage = new MessageEmbed()
       .setColor(colors['mod'])
-      .setTitle('<:plus:955577453441597550> **PunishmentLogs:**', `${message.author.username}`, true)
+      .setTitle('<:plus:955577453441597550> **BlacklistModule:**', `${message.author.username}`, true)
       .setDescription('Com este comando você poderá ativar ou desativar a opção de banir um usuário que está na blacklist de seu servidor.') // inline false
       .addField('*Uso do comando:*', '`bModule on `', true)
       .addField('*Uso do comando:*', '`bModule off`', true)
