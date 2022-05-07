@@ -47,20 +47,19 @@ module.exports = class Rep extends Command {
       .setColor(colors['mod'])
       .setDescription(`Você precisa esperar: ${time}`)
     if (parseInt(author.repTime) < Date.now()) {
-
-      user.rep += 1
-
       if (process.env.OWNERS?.includes(message.author.id)) {
         author.repTime = 0 + Date.now()
         author.save()
+        user.rep += 1
         user.save()
-      } else
+        message.reply({ embeds: [confirmação] })
+      } else {
         author.repTime = 3600000 + Date.now()
-      author.save()
-      user.save()
-
-      message.reply({ embeds: [confirmação] })
-
+        author.save()
+        user.rep += 1
+        user.save()
+        message.reply({ embeds: [confirmação] })
+      }
     } else {
       message.reply({ embeds: [error] })
     }
