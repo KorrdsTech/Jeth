@@ -61,10 +61,12 @@ module.exports = class blacklist extends Command {
     if (!log) message.reply({ embeds: [defina] })
     if (userData.blacklist) {
       userData.blacklist = false
+      console.log(userData)
       userData.save().then(async () => {
         for (const gd of this.client.guilds.cache) {
+          if (!gd?.id) return
           const guildData = await this.client.database.guild.getOrCreate(gd.id)
-          if (guildData.blacklistModule) {
+          if (guildData?.blacklistModule) {
             gd.bans.remove(usuario.id)
             await log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
           }
@@ -75,10 +77,11 @@ module.exports = class blacklist extends Command {
       userData.blacklist = true
       userData.save().then(async () => {
         for (const gd of this.client.guilds.cache) {
+          if (!gd?.id) return
           const guildData = await this.client.database.guild.getOrCreate(gd.id)
-          if (guildData.blacklistModule) {
+          if (guildData?.blacklistModule) {
             gd.bans.create(usuario.id, { reason: `Blacklisted: ${reason}` })
-            log.send(`${message.author},\`${usuario.tag}\`,está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
+            log.send(`${message.author},\`${usuario.tag}\` está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
             log.send({ embeds: [warnembed14] });
           }
         }
