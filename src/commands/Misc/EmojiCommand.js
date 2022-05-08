@@ -39,8 +39,8 @@ module.exports = class emoji extends Command {
       .setDescription(`**Normais [${EmojiCount}]**:\n${Emojis}\n\n**Total de emojis [${OverallEmojis}]**`)
       .setColor(colors['default'])
 
-    message.reply({ embeds: [embed] })
+    message.reply('Esteja ciente de que caso alguma mensagem do emoji **NÃO** seja exibida, significa que ultrapassa os limites de caracteres do embed, isto é um bug comum gerado por parte do Discord e limitações da livraria JS, estamos buscando alternativas para este bug bobo.')
+    await message.reply({ embeds: [embed] })
     await message.reply({ embeds: [embedB] })
-    await message.reply('Esteja ciente de que caso alguma mensagem do emoji **NÃO** seja exibida, significa que ultrapassa os limites de caracteres do embed, isto é um bug comum gerado por parte do Discord e limitações da livraria JS, estamos buscando alternativas para este bug bobo.')
   }
 }
