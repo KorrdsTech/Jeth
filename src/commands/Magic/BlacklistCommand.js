@@ -61,7 +61,6 @@ module.exports = class blacklist extends Command {
     if (!log) message.reply({ embeds: [defina] })
     if (userData.blacklist) {
       userData.blacklist = false
-      console.log(userData)
       userData.save().then(async () => {
         for (const gd of this.client.guilds.cache) {
           if (!gd?.id) return
