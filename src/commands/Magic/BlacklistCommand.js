@@ -63,7 +63,6 @@ module.exports = class blacklist extends Command {
       userData.blacklist = false
       userData.save().then(async () => {
         for (const gd of this.client.guilds.cache) {
-          if (!gd?.id) return
           const guildData = await this.client.database.guild.getOrCreate(gd.id)
           if (guildData?.blacklistModule) {
             gd.bans.remove(userData)
@@ -76,7 +75,6 @@ module.exports = class blacklist extends Command {
       userData.blacklist = true
       userData.save().then(async () => {
         for (const gd of this.client.guilds.cache) {
-          if (!gd?.id) return
           const guildData = await this.client.database.guild.getOrCreate(gd.id)
           if (guildData?.blacklistModule) {
             gd.bans.create(userData, { reason: `Blacklisted: ${reason}` })
