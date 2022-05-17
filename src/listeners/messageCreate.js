@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js')
-const { colors, AntiSpamUtils } = require('../utils')
+const { colors, AntiSpamUtils, AntiInviteUtils } = require('../utils')
 const parse = require('parse-duration')
 
 module.exports = async function onMessage(message) {
@@ -47,8 +47,8 @@ module.exports = async function onMessage(message) {
     }
   }
 
-  if (guildDocument.antInvite && !message.member.permissions.has('ADMINISTRATOR') && process.env.OWNERS?.includes(message.author.id)) {
-    if ((/((?:discord\.gg|discordapp\.com\/invite|discord\.com\/invite|discord\.me|discord\.io))/g).test(message.content)) {
+  if ((guildDocument.antInvite && !message.member.permissions.has('ADMINISTRATOR'))) {
+    if (AntiInviteUtils.scanMessage(message.content)) {
       message.delete()
       message.member.timeout(parse('1d'), '[AUTOMOD] Divulgação de convites não são toleradas aqui.').then(() => {
         message.channel.send(`${message.author} <:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!`)
