@@ -55,7 +55,7 @@ module.exports = class History extends Command {
       data.push(`<:roles:963208373606682725> **Warn:** ${i + 1}`)
       data.push(`<:servers:963208373707341824> **Motivo:** ${documentWarn.warnings[i]}`)
       data.push(`<:members:963208373644447764> **Staff:** ${await message.client.users.fetch(documentWarn.staff[i]).catch(() => 'Deleted User')}`)
-      data.push(`<:clock:963208373363429428> **Data:** ${new Date(documentWarn.date[i]).toLocaleDateString()}\n`)
+      data.push(`<:clock:963208373363429428> **Data:** <t:${~~(documentWarn.date[i] / 1000)}:F> \n`)
     }
 
     const warnembed = new MessageEmbed()
