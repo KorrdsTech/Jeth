@@ -9,9 +9,9 @@ module.exports = class Collection {
 
   async getOrCreate(_id, defaultValues) {
     if (!_id) return undefined
-    const data = await this.findOneById(_id)
+    let data = await this.findOneById(_id)
     if (!data) {
-      this.model({ _id, ...defaultValues }).save()
+      data = await this.model({ _id, ...defaultValues }).save()
     }
 
     return data
