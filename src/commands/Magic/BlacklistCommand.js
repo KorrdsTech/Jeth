@@ -66,7 +66,7 @@ module.exports = class blacklist extends Command {
           const guildData = await this.client.database.guild.getOrCreate(gd.id)
           if (guildData?.blacklistModule) {
             gd.bans.remove(usuario.id)
-            await log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
+            log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
           }
         }
         usuario.send('<:a_blurpleintegration:856174395801468989> Você foi removido da blacklist, e sua infração foi perdoada.')
