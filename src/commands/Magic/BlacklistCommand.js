@@ -65,11 +65,12 @@ module.exports = class blacklist extends Command {
         for (const gd of this.client.guilds.cache) {
           const guildData = await this.client.database.guild.getOrCreate(gd.id)
           if (guildData?.blacklistModule) {
-            log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
-            gd.bans.remove(usuario.id)
+            gd.bans.remove(usuario.id).then(
+              log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)
+            )
           }
         }
-        usuario.send('<:a_blurpleintegration:856174395801468989> Você foi removido da blacklist, e sua infração foi perdoada.')
+        await usuario.send('<:a_blurpleintegration:856174395801468989> Você foi removido da blacklist, e sua infração foi perdoada.')
       })
     } else {
       userData.blacklist = true
@@ -77,12 +78,12 @@ module.exports = class blacklist extends Command {
         for (const gd of this.client.guilds.cache) {
           const guildData = await this.client.database.guild.getOrCreate(gd.id)
           if (guildData?.blacklistModule) {
-            log.send(`${message.author},\`${usuario.tag}\` está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
-            log.send({ embeds: [warnembed14] });
             gd.bans.create(usuario.id, { reason: `Blacklisted: ${reason}` })
+            log.send(`${message.author},\`${usuario.tag}\` está na blacklist.`).then(sent => sent.delete({ timeout: 5000 }))
+            await log.send({ embeds: [warnembed14] });
           }
         }
-        usuario.send({ embeds: [warnembed18] })
+        await usuario.send({ embeds: [warnembed18] })
       })
     }
   }
