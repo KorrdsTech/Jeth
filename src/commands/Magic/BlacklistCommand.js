@@ -69,7 +69,7 @@ module.exports = class blacklist extends Command {
           }
         }
         message.channel.send(`${message.author}, o usuário \`${usuario.tag}\` foi removido da blacklist.`)
-        usuario.send('<:a_blurpleintegration:856174395801468989> Você foi removido da blacklist, e sua infração foi perdoada.')
+        // usuario.send('<:a_blurpleintegration:856174395801468989> Você foi removido da blacklist, e sua infração foi perdoada.')
       })
     } else {
       userData.blacklist = true
@@ -82,7 +82,7 @@ module.exports = class blacklist extends Command {
           }
         }
         message.channel.send(`${message.author}, o usuário \`${usuario.tag}\` foi adicionado na blacklist.`)
-        usuario.send({ embeds: [warnembed18] })
+        // usuario.send({ embeds: [warnembed18] })
       })
     }
   }
