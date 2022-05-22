@@ -77,10 +77,8 @@ module.exports = class blacklist extends Command {
         for (const gd of this.client.guilds.cache) {
           const guildData = await this.client.database.guild.getOrCreate(gd.id)
           if (guildData?.blacklistModule) {
-            gd.bans.create(usuario.id, { reason: `Blacklisted: ${reason}` }).then(async () => {
-              log.send(`${message.author},\`${usuario.tag}\` está na blacklist.`).then(sent => setTimeout(() => sent.delete(), 5000))
-              await log.send({ embeds: [warnembed14] });
-            })
+            gd.bans.create(usuario.id, { reason: `Blacklisted: ${reason}` })
+            log.send({ embeds: [warnembed14] });
           }
         }
         message.channel.send(`${message.author}, o usuário \`${usuario.tag}\` foi adicionado na blacklist.`)
