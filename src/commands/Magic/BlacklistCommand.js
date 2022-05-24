@@ -41,13 +41,8 @@ module.exports = class blacklist extends Command {
       .setTimestamp(new Date());
 
     const warnembed14 = new MessageEmbed()
-
-      .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setAuthor({ name: `${message.author.username} Aplicou uma network blacklist`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
       .setColor('BLACK')
-      .setDescription(`**Blacklisted!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Infrator:** ${usuario.username} \n**ID:** ${usuario.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-      .setFooter({ text: '☕️・https://discordapp.com/guidelines', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
-      .setTimestamp(new Date());
+      .setDescription(`teste`)
 
     const defina = new MessageEmbed()
       .setColor(colors['mod'])
