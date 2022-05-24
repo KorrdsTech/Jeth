@@ -29,16 +29,17 @@ module.exports = class blacklist extends Command {
       reason = 'Qual o motivo da blacklist?'
     }
 
-    const warnembed18 = new MessageEmbed()
+    // recycling
+    // const warnembed18 = new MessageEmbed()
 
-      .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-      .setTitle(`${message.author.username}`)
-      .setDescription(`:do_not_litter: **Você foi blacklisted ${message.guild.name} :no_entry_sign:** \nO que isto significa ? você não poderá mais fazer parte dos servidores que apoiam a network da Jeth, por quebrar um dos termos de serviço do discord, este tipo de punição não oferece appeal e se você se encontra nesta situação provavelmente terá sua conta encerrada.`)
-      .setColor('BLACK')
-      .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
-      .addField('📝 Motivo:', `${reason}`)
-      .setFooter({ text: 'https://discordapp.com/guidelines・Discord da Jeth 🛠' })
-      .setTimestamp(new Date());
+    //   .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
+    //   .setTitle(`${message.author.username}`)
+    //   .setDescription(`:do_not_litter: **Você foi blacklisted ${message.guild.name} :no_entry_sign:** \nO que isto significa ? você não poderá mais fazer parte dos servidores que apoiam a network da Jeth, por quebrar um dos termos de serviço do discord, este tipo de punição não oferece appeal e se você se encontra nesta situação provavelmente terá sua conta encerrada.`)
+    //   .setColor('BLACK')
+    //   .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
+    //   .addField('📝 Motivo:', `${reason}`)
+    //   .setFooter({ text: 'https://discordapp.com/guidelines・Discord da Jeth 🛠' })
+    //   .setTimestamp(new Date());
 
     const warnembed14 = new MessageEmbed()
       .setColor('BLACK')
@@ -64,7 +65,6 @@ module.exports = class blacklist extends Command {
           }
         }
         message.channel.send(`${message.author}, o usuário \`${usuario.tag}\` foi removido da blacklist.`)
-        usuario.send('<:a_blurpleintegration:856174395801468989> Você foi removido da blacklist, e sua infração foi perdoada.')
       })
     } else {
       userData.blacklist = true
@@ -72,12 +72,11 @@ module.exports = class blacklist extends Command {
         for (const gd of this.client.guilds.cache) {
           const guildData = await this.client.database.guild.getOrCreate(gd.id)
           if (guildData?.blacklistModule) {
-            gd.bans.create(usuario.id, { reason: `Blacklisted: ${reason}` })
-            log.send({ embeds: [warnembed14] });
+            gd.bans.create(usuario.id, { reason: `Blacklisted: ${reason}` }).then(
+              log.send({ embeds: [warnembed14] }));
           }
         }
         message.channel.send(`${message.author}, o usuário \`${usuario.tag}\` foi adicionado na blacklist.`)
-        usuario.send({ embeds: [warnembed18] })
       })
     }
   }
