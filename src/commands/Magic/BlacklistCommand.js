@@ -17,7 +17,7 @@ module.exports = class blacklist extends Command {
       return message.reply('Você não pode utilizar este comando, somente os membros confiados da equipe <@&718178715426619489>')
     }
     if (!args[0]) {
-      return message.reply('Você tem que falar o id do usuario para que eu póssa adicionar na blacklist...').then(sent => sent.delete({ timeout: 5000 }))
+      return message.reply('Você tem que falar o id do usuario para que eu possa adicionar na blacklist...').then(sent => setTimeout(() => sent.delete(), 5000))
     }
     const usuario = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!usuario) {
@@ -38,16 +38,15 @@ module.exports = class blacklist extends Command {
     //   .setColor('BLACK')
     //   .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
     //   .addField('📝 Motivo:', `${reason}`)
-    //   .setFooter({ text: 'https://discordapp.com/guidelines・Discord da Jeth 🛠' })
+    //   .setFooter({ text: 'https://discord.com/guidelines・Discord da Jeth 🛠' })
     //   .setTimestamp(new Date());
 
     const warnembed14 = new MessageEmbed()
-
       .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setAuthor({ name: `${message.author.username} Aplicou uma network blacklist`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
       .setColor('BLACK')
       .setDescription(`**Blacklisted!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Infrator:** ${usuario.username} \n**ID:** ${usuario.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-      .setFooter({ text: '☕️・https://discordapp.com/guidelines', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: '☕️・https://discord.com/guidelines', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
     const defina = new MessageEmbed()
@@ -64,9 +63,10 @@ module.exports = class blacklist extends Command {
       userData.blacklist = false
       userData.save().then(async () => {
         for (const gd of this.client.guilds.cache) {
-          const guildData = await this.client.database.guild.getOrCreate(gd.id)
+          const guildData = await this.client.database.guild.getOrCreate(gd[1].id)
           if (guildData?.blacklistModule) {
-            gd.bans.remove(usuario.id).then(() => log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`))
+            // eslint-disable-next-line no-unused-vars
+            gd[1].bans.remove(usuario.id).then(() => log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)).catch((error) => {})
           }
         }
         message.channel.send(`${message.author}, o usuário \`${usuario.tag}\` foi removido da blacklist.`)
@@ -75,10 +75,9 @@ module.exports = class blacklist extends Command {
       userData.blacklist = true
       userData.save().then(async () => {
         for (const gd of this.client.guilds.cache) {
-          const guildData = await this.client.database.guild.getOrCreate(gd.id)
+          const guildData = await this.client.database.guild.getOrCreate(gd[1].id)
           if (guildData?.blacklistModule) {
-            gd.bans.create(usuario.id, { reason: `Blacklisted: ${reason}` }).then(
-              log.send({ embeds: [warnembed14] }));
+            gd[1].bans.create(usuario.id, { reason: `Blacklisted: ${reason}` }).then(() => log.send({ embeds: [warnembed14] }));
           }
         }
         message.channel.send(`${message.author}, o usuário \`${usuario.tag}\` foi adicionado na blacklist.`)
