@@ -53,16 +53,12 @@ module.exports = class Vip extends Command {
     }
 
     const dashboard = new MessageEmbed()
-      .setAuthor(`${message.guild.name} | Dashboard Vip`, this.client.user.avatarURL({ dynamic: true, size: 1024 }))
+      .setAuthor({ name: `${message.guild.name} | Dashboard Vip`, iconURL: this.client.user.avatarURL({ dynamic: true, size: 1024 }) })
       .setDescription(`<:a_lori_moletom:963820678157594703> » Configure seu vip no servidor.`)
-      .addFields({
-        name: `Informação do Sistema:`,
-        value: `> <:newmemberbadge:967660459878666331> » Seu cargo: **${CheckRole}**\n> <:squareannouncement:967660459794776064> » Sua call: **${CheckCall}**`
-      },
-      {
-        name: `Configuração do Sistema:`,
-        value: `> <a:1r:940889951615205376> **» ${CheckRoleText} cargo.**\n> <a:2r:940889962889494618> **» ${CheckCallText} call.**\n> <a:3r:940889962772045895> **» Cor do cargo.**\n> <a:4r:940889960800739328> **» Adicionar usuário ao seu cargo vip.**\n> <a:5r:940889962767855627> **» Remover seu cargo vip do usuário.**`
-      })
+      .addFields([
+        { name: `Informação do Sistema:`, value: `> <:newmemberbadge:967660459878666331> » Seu cargo: **${CheckRole}**\n> <:squareannouncement:967660459794776064> » Sua call: **${CheckCall}**` },
+        { name: `Configuração do Sistema:`, value: `> <a:1r:940889951615205376> **» ${CheckRoleText} cargo.**\n> <a:2r:940889962889494618> **» ${CheckCallText} call.**\n> <a:3r:940889962772045895> **» Cor do cargo.**\n> <a:4r:940889960800739328> **» Adicionar usuário ao seu cargo vip.**\n> <a:5r:940889962767855627> **» Remover seu cargo vip do usuário.**` }
+      ])
       .setFooter({ text: `Dashboard Vip de ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
       .setThumbnail('https://media.discordapp.net/attachments/957238449558155304/964982682096390144/vip.png?width=461&height=461')
       .setColor(colors['default'])

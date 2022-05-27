@@ -17,7 +17,7 @@ module.exports = class changeAvatar extends Command {
 
     this.client.user.setAvatar(avatar).then(() => {
       const embed = new MessageEmbed()
-        .setAuthor('Avatar trocado.', avatar)
+        .setAuthor({ name: 'Avatar trocado.', iconURL: avatar })
         .setImage(avatar)
         .setColor(colors['default'])
 

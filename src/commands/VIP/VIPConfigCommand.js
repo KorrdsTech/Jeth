@@ -77,12 +77,11 @@ module.exports = class VipConfig extends Command {
       else {
 
         const dashboard = new MessageEmbed()
-          .setAuthor(`${message.guild.name} | Dashboard VipConfig`, this.client.user.avatarURL({ dynamic: true, size: 1024 }))
+          .setAuthor({ name: `${message.guild.name} | Dashboard VipConfig`, iconURL: this.client.user.avatarURL({ dynamic: true, size: 1024 }) })
           .setDescription(`<:a_lori_moletom:963820678157594703> » Sistema para setar usuário como vip no servidor.`)
-          .addFields(
-            {
-              name: `Comandos do Sistema`,
-              value: `> **${guildDocument.prefix}vipconfig cadastrar <@user>** - Cadastra o usuário como vip no servidor.\n> **${guildDocument.prefix}vipconfig rewcadastro <@user>** - Remove o cadastro vip do usuário.` })
+          .addFields([
+            { name: `Comandos do Sistema`, value: `> **${guildDocument.prefix}vipconfig cadastrar <@user>** - Cadastra o usuário como vip no servidor.\n> **${guildDocument.prefix}vipconfig rewcadastro <@user>** - Remove o cadastro vip do usuário.` }
+          ])
           .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
           .setThumbnail('https://media.discordapp.net/attachments/957238449558155304/962048623284215828/config.png?width=410&height=410')
           .setColor(colors['default'])
