@@ -16,7 +16,7 @@ module.exports = class Ajuda extends Command {
     const prefix = documento.prefix
 
     const embed = new MessageEmbed()
-    embed.setAuthor(`${this.client.user.username} | Ajuda`, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+    embed.setAuthor({ name: `${this.client.user.username} | Ajuda`, iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }) })
     embed.setDescription(`**Criamos uma guia de ajuda para você: ${message.author}**`)
     embed.setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
     embed.setColor(colors['default'])

@@ -19,7 +19,7 @@ module.exports = class Familia extends Command {
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter('🧁・Discord da Jeth', message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
     if (!usuario) return message.reply('Você não mencionou o usuário!');

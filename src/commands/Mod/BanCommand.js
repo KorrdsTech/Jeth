@@ -99,9 +99,8 @@ module.exports = class Ban extends Command {
     let reason = args.slice(1).join(' ') || 'Nenhum motivo especificado';
 
     const warnembed14 = new MessageEmbed()
-
       .setThumbnail(membro14.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setAuthor(`${message.author.username} Já baniu ${bans.size} usuários`, message.author.avatarURL({ dynamic: true, size: 1024 }))
+      .setAuthor({ name: `${message.author.username} Já baniu ${bans.size} usuários`, iconURL: message.author.avatarURL({ dynamic: true, size: 1024 }) })
       .setColor('#ff112b')
       .setImage(`${userDocuent.gifban || ''}`)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
@@ -115,7 +114,7 @@ module.exports = class Ban extends Command {
       .setColor('#ffefad')
       .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
       .addField('📝 Motivo:', `${reason}`)
-      .setFooter('Banido do servidor da Jeth? neste caso você pode recorrer appeals@jeth.live 🥶')
+      .setFooter({ text: 'Banido do servidor da Jeth? neste caso você pode recorrer appeals@jeth.live 🥶' })
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());
 

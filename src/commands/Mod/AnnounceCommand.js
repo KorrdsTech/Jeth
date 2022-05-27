@@ -49,12 +49,12 @@ module.exports = class anuncio extends Command {
     }
     if (message.content.startsWith(server.prefix + 'anuncio ver')) {
       const embedver = new MessageEmbed()
-        .setAuthor('Anúncio | Imagem', message.guild.iconURL({ dynamic: true, size: 1024 }) && this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+        .setAuthor({ name: 'Anúncio | Imagem', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) || this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }) })
         .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
         .setColor(colors['default'])
         .setDescription('**Esta será a imagem que irá aparecer quando seu anuncio estiver finalizado:**')
         .setImage(`${server.linkanuncio || ''}`)
-        .setFooter('Não apareceu? seu link deve estar inválido', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+        .setFooter({ text: 'Não apareceu? seu link deve estar inválido', iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }) })
       if (server.linkanuncio) {
         message.reply(embedver)
       }
@@ -70,7 +70,7 @@ module.exports = class anuncio extends Command {
       const embed = new MessageEmbed()
         .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
         .setColor(colors['default'])
-        .setAuthor(`Anunciado por ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+        .setAuthor({ name: `Anunciado por ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
         .setDescription(announce)
         .setImage(`${server.linkanuncio || ''}`)
         .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
@@ -80,10 +80,7 @@ module.exports = class anuncio extends Command {
         .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
         .setColor(colors['default'])
         .setDescription(`**Você está preste a mandar um anúncio no ${chat}, confirme com os emojis abaixo.** \n \n<a:number1:667590654200774656> Para mencionar \`@everyone\` .\n<a:number2:667590655744147521> Para mencionar \`@here\` .\n<a:number3:667590655698141197> Para não mencionar ninguém.`)
-        .setFooter({
-          text: 'Não apareceu? seu link deve estar inválido',
-          iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 })
-        })
+        .setFooter({ text: 'Não apareceu? seu link deve estar inválido', iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }) })
 
       message.reply({ embeds: [embedreply] }).then(async msg => {
         await msg.react('667590654200774656')

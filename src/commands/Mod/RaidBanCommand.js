@@ -106,7 +106,7 @@ module.exports = class Raidban extends Command {
     const warnembed14 = new MessageEmbed()
 
       .setThumbnail(membro14.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setAuthor(`${message.author.username} Já baniu ${bans.size} usuários`, message.author.avatarURL({ dynamic: true, size: 1024 }))
+      .setAuthor({ name: `${message.author.username} Já baniu ${bans.size} usuários`, iconURL: message.author.avatarURL({ dynamic: true, size: 1024 }) })
       .setColor('#ff112b')
       .setImage(`${userDocuent.gifban || ''}`)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
@@ -120,7 +120,7 @@ module.exports = class Raidban extends Command {
       .setColor('#ffefad')
       .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
       .addField('📝 Motivo:', `${reason}`)
-      .setFooter('Se você acha que a punição foi aplicada incorretamente, recorra ao staffer! 🥶')
+      .setFooter({ text: 'Se você acha que a punição foi aplicada incorretamente, recorra ao staffer! 🥶' })
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());
 

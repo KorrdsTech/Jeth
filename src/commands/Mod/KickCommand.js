@@ -41,7 +41,7 @@ module.exports = class kick extends Command {
       .setColor('#ff0000')
       .addField('👮 **Staffer:**', `${message.author}`)
       .addField('✏️ Motivo:', `${razao13}`)
-      .setFooter('Se você acha que a punição foi aplicada incorretamente, recorra ao staffer! 🥶')
+      .setFooter({ text: 'Se você acha que a punição foi aplicada incorretamente, recorra ao staffer! 🥶' })
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());
 

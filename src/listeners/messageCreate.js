@@ -70,7 +70,7 @@ module.exports = async function onMessage(message) {
     const embed = new MessageEmbed()
     embed.setTimestamp()
     embed.setColor(colors['mod'])
-    embed.setAuthor('Você não tem permissão', message.author.displayAvatarURL({ dynamic: true }))
+    embed.setAuthor({ name: 'Você não tem permissão', iconURL: message.author.displayAvatarURL({ dynamic: true }) })
     embed.setDescription(`**Você precisa verificar se possui essas permissiões:** ${command.permissions.map(perms => `\`${perms}\``).join(', ')}`)
 
     return message.reply({ embeds: [embed] })
