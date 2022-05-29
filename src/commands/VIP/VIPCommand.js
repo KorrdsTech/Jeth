@@ -112,7 +112,7 @@ module.exports = class VipCommand extends Command {
 
         msg.delete()
         setTimeout(() => {
-          msg.edit({ content: `${emojis.check} » Dashboard [Vip] de ${message.author} foi fechado. (Automático)` })
+         message.reply({ content: `${emojis.check} » Dashboard [Vip] de ${message.author} foi fechado. (Automático)` })
         }, 1000)
       });
 
