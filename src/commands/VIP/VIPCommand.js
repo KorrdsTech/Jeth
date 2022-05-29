@@ -8,7 +8,7 @@ module.exports = class VipCommand extends Command {
 
     this.name = 'Vip'
     this.aliases = ['vip', 'premium']
-    this.category = 'Vip'
+    this.category = 'VIP'
     this.bot_permissions = ['MANAGE_ROLES', 'MANAGE_CHANNELS']
   }
 
@@ -70,7 +70,7 @@ module.exports = class VipCommand extends Command {
               emoji: `<:newmemberbadge:967660459878666331>`,
             },
             {
-              label: 'Adicionar usuário do seu cargo vip',
+              label: 'Remover usuário do seu cargo vip',
               description: 'Remove um usuário com o seu cargo vip no servidor.',
               value: '5',
               emoji: `<:ModMute:980288914914947113>`,
