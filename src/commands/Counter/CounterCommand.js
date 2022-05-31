@@ -6,7 +6,7 @@ module.exports = class Counter extends Command {
     super(name, client)
 
     this.name = 'Counter'
-    this.aliases = ['count', 'counter', 'Counter']
+    this.aliases = ['count', 'counter', 'contador']
     this.category = 'Counter'
   }
 
