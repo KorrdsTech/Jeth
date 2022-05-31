@@ -1,4 +1,4 @@
-const { Command, emojis } = require('../../utils')
+const { Command } = require('../../utils')
 const { MessageActionRow, MessageSelectMenu, MessageEmbed } = require('discord.js')
 const modelVip = require('../../utils/database/collections/Vip');
 
@@ -112,13 +112,13 @@ module.exports = class VipCommand extends Command {
 
         msg.delete()
         setTimeout(() => {
-          message.reply({ content: `${emojis.check} » Dashboard [Vip] de ${message.author} foi fechado. (Automático)` })
+          message.reply({ content: `<:9204adminbadge:938280523388842014> » Dashboard [Vip] de ${message.author} foi fechado. (Automático)` })
         }, 1000)
       });
 
       collector.on('collect', async (x) => {
         if (x.user.id != message.author.id)
-          return x.reply(`${emojis.warn} » ${x.user} você não pode acessar o dashboard, pois não foi você que abriu.`);
+          return x.reply(`<:ModMute:980288914914947113> » ${x.user} você não pode acessar o dashboard, pois não foi você que abriu.`);
 
         switch (x.values[0]) {
           case '1': {

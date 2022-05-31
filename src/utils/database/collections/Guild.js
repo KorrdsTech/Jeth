@@ -1,5 +1,4 @@
 const { model, Schema } = require('mongoose')
-const RegistradorSchema = require('./RegistradorSchema')
 const Guild = new Schema({
   _id: { type: String },
   //extras
@@ -34,9 +33,8 @@ const Guild = new Schema({
   channelRegister: { type: String, default: '' },
   channelsaida: { type: String, default: '' },
 
-  
 // NEW SYSTEM COUNTER!!!!
-    counterChannel: { type: String, default: '' },
+  counterChannel: { type: String, default: '' },
   counterMessage: { type: String, default: '{contador}' },
   counterType: { type: String, default: '{azul}' },
   counterStatus: { type: Boolean, default: false },

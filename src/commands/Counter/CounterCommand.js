@@ -1,195 +1,415 @@
-const { Command, TranslateFunctions, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+/* eslint-disable no-unused-vars */
+const { Command, TranslateFunctions, emojis } = require('../../utils')
+const { MessageActionRow, MessageSelectMenu, MessageEmbed } = require('discord.js')
 
-module.exports = class Counter extends Command {
+// NAO, NAO E NAO... ESSE COMANDO N ESTA ORGANIZADO :) MAS PELO MENOS FUNCIONA
+
+module.exports = class colorEmbed extends Command {
   constructor(name, client) {
     super(name, client)
 
     this.name = 'Counter'
-    this.aliases = ['count', 'counter', 'contador']
-    this.category = 'Counter'
+    this.aliases = ['counter', 'contador']
+    this.category = 'Configurações'
+    this.permissions = ['MANAGE_CHANNELS']
+    this.bot_permissions = ['MANAGE_CHANNELS']
   }
 
   async run(message, args) {
-    const embedA = new MessageEmbed()
 
-      .setTimestamp()
-      .setColor(colors['mod'])
-      .setTitle('**Err:**', `${message.author.username}`, true)
-      .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
-    if (!message.member.permissions.has('MANAGE_GUILD'))
-      return message.reply({ embeds: [embedA] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
-    if (args[0] === 'canal') {
-      const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
-      if (!channel || channel.type === 'category') return message.reply('Coloque um canal válido!')
+    const cordb = guildDocument.color_embed
 
-      guildDocument.countChannel = channel.id
-      guildDocument.save().then(async () => {
-        await message.reply(`Canal definido: ${channel}`)
-      })
-    } else if (args[0] === 'mensagem') {
-      const mensagem = args.slice(1).join(' ')
+    const rew = new MessageActionRow()
+      .addComponents(
+        new MessageSelectMenu()
+          .setCustomId('counter-menu')
+          .setPlaceholder('💾 Abrir dashboard do contador.')
+          .addOptions([
+            {
+              label: 'Definir Canal',//Nome da option
+              description: 'Definal o canal aonde o contador será ativado.',//description
+              value: '1',//Valor do emoji, o id dele no buttons
+              emoji: `<a:1r:940889951615205376>`, //emoji q vai ficar grandão do lado do texto
+            },
+            {
+              label: 'Tipo do Contador',
+              description: 'Altere o tipo do contador.',
+              value: '2',
+              emoji: `<a:2r:940889962889494618>`,
+            },
+            {
+              label: 'Definir Mensagem',
+              description: 'Defina a mensagem que será exibida no contador.',
+              value: '3',
+              emoji: `<a:3r:940889962772045895>`,
+            },
+            {
+              label: 'Resetar Definições',
+              description: 'Resete as configurações contador quando precisar.',
+              value: '4',
+              emoji: `<a:4r:940889960800739328>`,
+            },
+          ]),
+      )
 
-      if (!mensagem) {
-        return message.reply(`Coloque qual será a mensagem do Counter, lembre-se "{cor - tipo}" será o tipo/cor do Counter...`)
-      }
+    const tm = new MessageActionRow()
+      .addComponents(
+        new MessageSelectMenu()
+          .setCustomId('typec-menu')
+          .setPlaceholder('📋 Contadores público.')
+          .addOptions([
+            {
+              label: 'Azul',
+              value: 'azul',
+              emoji: `<a:set1:664306595391602698>`,
+            },
+            {
+              label: 'Aqua',
+              value: 'aqua',
+              emoji: `<a:fil2:735932752171630663>`,
+            },
+            {
+              label: 'Violeta',
+              value: 'violeta',
+              emoji: `<a:t3:683857609023160322>`,
+            },
+            {
+              label: 'Rosa',
+              value: 'rosa',
+              emoji: `<a:j_4:675774964997029918>`,
+            },
+            {
+              label: 'Ruby',
+              value: 'ruby',
+              emoji: `<a:k5:683064092793110558>`,
+            },
+            {
+              label: 'EXA',
+              value: 'exa',
+              emoji: `<a:5r:922390293557411840>`,
+            },
+            {
+              label: 'RedBlack',
+              value: 'redblack',
+              emoji: `<a:lo7:735367392703807560>`,
+            },
+            {
+              label: 'ICE',
+              value: 'ice',
+              emoji: `<a:8ice:737078967244423189>`,
+            },
+            {
+              label: 'BLK',
+              value: 'blk',
+              emoji: `<a:BLK9:770793783583309866>`,
+            },
 
-      // agora é preciso separar estes includes, código por código, pois todos juntos não é aceito e da erro, burlando todo o sistema.
-      if (mensagem.includes('{pinky}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
-      if (mensagem.includes('{green}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
-      if (mensagem.includes('{gold}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
-      if (mensagem.includes('{amarelo}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
-      if (mensagem.includes('{redblue}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
-      if (mensagem.includes('{natal}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
-      if (mensagem.includes('{bouncepink}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
-      if (mensagem.includes('{roxo}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
-      if (mensagem.includes('{rainbow}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
-      if (mensagem.includes('{bouncepurple}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
-      if (mensagem.includes('{exa-new}') && !guildDocument.partner) {
-        return message.reply('<a:warnRoxo:664240941175144489> Este tipo de Counter é apenas para servidores premium!')
-      }
+          ]),
+      )
 
-      guildDocument.countMessage = mensagem
-      guildDocument.count = true
-      guildDocument.save()
-      const defaultChannel = await message.guild.channels.cache.get(guildDocument.countChannel)
-      if (!defaultChannel) return message.reply(`Este servidor não possui um canal definido no Counter...\nUse: \`${message.prefix}Counter canal #canal\` para definir um e use o comando novamente!`)
-      setTimeout(async () => {
-        //ja volto ai
-        await message.reply(`Mensagem definida como \`${guildDocument.countMessage}\`\nCounter ativado...`)
-        await defaultChannel.setTopic(guildDocument.countMessage.replace('{azul}', TranslateFunctions.azul(message.guild.memberCount))
-          .replace('{pinky}', TranslateFunctions.pinky(message.guild.memberCount))
-          .replace('{gold}', TranslateFunctions.gold(message.guild.memberCount))
-          .replace('{green}', TranslateFunctions.green(message.guild.memberCount))
-          .replace('{rosa}', TranslateFunctions.rosa(message.guild.memberCount))
-          .replace('{exa}', TranslateFunctions.exa(message.guild.memberCount))
-          .replace('{ruby}', TranslateFunctions.ruby(message.guild.memberCount))
-          .replace('{amarelo}', TranslateFunctions.amarelo(message.guild.memberCount))
-          .replace('{violeta}', TranslateFunctions.violeta(message.guild.memberCount))
-          .replace('{natal}', TranslateFunctions.natal(message.guild.memberCount))
-          .replace('{redblue}', TranslateFunctions.redblue(message.guild.memberCount))
-          .replace('{redblack}', TranslateFunctions.redblack(message.guild.memberCount))
-          .replace('{aqua}', TranslateFunctions.aqua(message.guild.memberCount))
-          .replace('{ice}', TranslateFunctions.ice(message.guild.memberCount))
-          .replace('{roxo}', TranslateFunctions.roxo(message.guild.memberCount))
-          .replace('{rainbow}', TranslateFunctions.rainbow(message.guild.memberCount))
-          .replace('{blk}', TranslateFunctions.blk(message.guild.memberCount))
-          .replace('{bouncepurple}', TranslateFunctions.bouncepurple(message.guild.memberCount))
-          .replace('{exa-new}', TranslateFunctions.exanew(message.guild.memberCount))
-          .replace('{bouncepink}', TranslateFunctions.bouncepink(message.guild.memberCount)))
-      }, 5000)
-    } else if (args[0] === 'remover') {
-      if (!guildDocument.count) return message.reply(`Este servidor não possui um Counter ativado!`)
-      const lastChannel = message.guild.channels.cache.get(guildDocument.countChannel)
-      guildDocument.count = false
-      guildDocument.countChannel = ''
-      guildDocument.countMessage = ''
+    const statsC = guildDocument.counterStatus ?
+      `Ativado` :
+      `Desativado`
 
-      guildDocument.save().then(async () => {
-        await lastChannel.setTopic('')
-        await message.reply(`O Counter foi removido do canal ${lastChannel} e desativado`)
-      })
-    } else {
-      const embed = new MessageEmbed()
-        .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-        .setDescription(`**Seja bem vindo(a) ao painel de configuração !**`)
-        .setColor(colors['default'])
-        .setThumbnail('https://cdn.discordapp.com/emojis/742240408658247791.png')
-        .addField('**COMANDOS:**', [
-          `\`${guildDocument.prefix}Counter canal #canal\` - Define o canal onde o Counter será definido.`,
-          `\`${guildDocument.prefix}Counter mensagem <mensagem>\` - Define a mensagem que será exibida no Counter.`,
-          `\`${guildDocument.prefix}Counter remover\` - Caso haja algum Counter ligado/definido, ele será removido e o sistema desligado.`,
-          `**Clique na reação abaixo para ver os \`Placeholders\` digite-os corretamente!**\n`].join('\n'), false)
+    const channelC = guildDocument.counterChannel ?
+      `<#${guildDocument.counterChannel}>` :
+      `Nenhum`
 
-      const embed2 = new MessageEmbed()
-        .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-        .setThumbnail('https://cdn.discordapp.com/emojis/742240408658247791.png')
-        .setDescription(`**Seja bem vindo(a) ao painel de configuração !**\n**Estilos de Counter:**`)
-        .addField('**CounterES**', '**GERAIS** <:supporter:667149933480247297>', false)
-        .addField('**{azul}**', '<a:set1:664306595391602698>', true)
-        .addField('**{aqua}**', '<a:fil2:735932752171630663>', true)
-        .addField('**{violeta}**', '<a:t3:683857609023160322>', true)
-        .addField('**{rosa}**', '<a:j_4:675774964997029918>', true)
-        .addField('**{ruby}**', '<a:k5:683064092793110558>', true)
-        .addField('**{exa}**', '<a:6r:922390293771333672>', true)
-        .addField('**{redblack}**', '<a:lo7:735367392703807560>', true)
-        .addField('**{ice}**', '<a:8ice:737078967244423189>', true)
-        .addField('**{blk}**', '<a:BLK9:770793783583309866>', true)
-        .addField('**CounterES**', '**PARTNER** <:a_blurplepartner:856174395869626399>', false)
-        .addField('**{rainbow}**', '<a:rb_1:742627650803335209>', true)
-        .addField('**{roxo}**', '<a:JT2:739977300921024522>', true)
-        .addField('**{amarelo}**', '<a:j3:683858525641900103>', true)
-        .addField('**{pinky}**', '<a:purple4:669217839030468608>', true)
-        .addField('**{bouncepink}**', '<a:el5:735367916320587925>', true)
-        .addField('**{redblue}**', '<a:dr6:684473203191578664>', true)
-        .addField('**{green}**', '<a:g7:683859048638185487>', true)
-        .addField('**{gold}**', '<a:gold8:669218300655435776>', true)
-        .addField('**{natal}**', '<a:v9:684833174983147520>', true)
-        .addField('**{exa-new}**', '<a:0r:940889959563407370>', true)
-        .addField('**{bouncepurple}**', '<a:0_:875581760262504468>', true)
-        .setColor(colors['default'])
-      let canalCounter = `<a:warnRoxo:664240941175144489> Desativado`;
-      if (guildDocument.countChannel.length) {
-        canalCounter = `<:JethVerificado:666762183249494027> Ativo | Canal: <#${guildDocument.countChannel}>`;
-      }
-      embed2.addField('<:ligado:665056984021729320> | Canal do Counter:', canalCounter);
-      let MsgCount = `<:rejected:739831089543118890> Desativado`;
-      if (guildDocument.countMessage.length) {
-        MsgCount = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.countMessage.length > 800 ? `${guildDocument.countMessage.slice(0, 801)}[...]` : guildDocument.countMessage}`;
-      }
-      embed2.addField('<:ligado:665056984021729320> | Mensagem do Counter:', MsgCount);
-      const msgWelcome = guildDocument.count ?
-        `<:concludo:739830713792331817> Ativo` :
-        `<:rejected:739831089543118890> Desativado`
-      embed2.addField('Counter está:', msgWelcome)
+    const dashboard = new MessageEmbed()
+      .setAuthor({ name: `${message.guild.name} | Dashboard Contador`, iconURL: this.client.user.avatarURL({ dynamic: true, size: 1024 }) })
+      .setDescription(`<:servers:963208373707341824> » Configure o Sistema de Contador.`)
+      .addFields([
+        { name: `Informação do Sistema:`, value: `> <:roles:963208373606682725> » Canal: **${channelC}**\n> <:roles:963208373606682725> » Tipo: **${guildDocument.counterType}**\n> <:roles:963208373606682725> » Mensagem: \`${guildDocument.counterMessage}\`\n> <:roles:963208373606682725> » Status: **${statsC}**` },
+        { name: `Configuração do Sistema:`, value: `> <:ModMute:980288914914947113> **» Selecione qualquer opção na lista para continuar, após selecionada, siga as futuras informações.**` }
+      ])
+      .setFooter({ text: `Dashboard de ${message.author.tag} | Dashboard fecha em 3 minutos.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setThumbnail('https://cdn-icons.flaticon.com/png/512/3694/premium/3694290.png?token=exp=1653835711~hmac=be1fd43871e4498590084d1b61752139')
+      .setColor(cordb) // Troca isso dps
+      .setTimestamp();
 
-      let embedCount = 1
+    message.reply({ embeds: [dashboard], ephemeral: true, components: [rew] }).then(msg => {
 
-      message.reply({ embeds: [embed] }).then(async m => {
-        await m.react('666762183249494027')// ir para frente
-        const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '666762183249494027' || e.emoji.id == '665721366514892839')
-        const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
-        col.on('collect', async (e) => {
-          if (embedCount != 2 && e.emoji.id == '666762183249494027') { // ir para frente
+      const filter = (interaction) => {
+        return interaction.isSelectMenu() && interaction.message.id === msg.id;
+      };
 
-            await m.react('665721366514892839')
-            e.users.cache.map(u => e.remove(u.id))
-            m.edit({ embeds: [embed2] })
-            embedCount = 2
-            await m.react('665721366514892839')// volta para trás
-          } else if (e.emoji.id == '665721366514892839' && embedCount == 2) {
+      const collector = msg.createMessageComponentCollector({
+        filter: filter,
+        time: 180000,
+      });
 
-            await m.react('666762183249494027')
-            e.users.cache.map(u => e.remove(u.id))
+      collector.on('end', async (r, reason) => {
+        if (reason != 'time') return;
+        msg.delete()
+        setTimeout(() => {
+          message.reply({ content: `<:9204adminbadge:938280523388842014> » Dashboard [Contador] de ${message.author} foi fechado. (Automático)` })
+        }, 1000)
+      });
 
-            m.edit({ embeds: [embed] })
-            embedCount = 1
+      collector.on('collect', async (x) => {
+        if (x.user.id != message.author.id)
+          return
+        switch (x.values[0]) {
+
+          case '1': {
+
+            message.reply(`<:ModMute:980288914914947113> » Indique o canal aonde será setado o contador.`).then(() => {
+              message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 60000, errors: ['time'], max: 1 }).on('collect', async message => {
+
+                const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
+
+                if (!channel || channel.type === 'category') return message.reply(`<:ModMute:980288914914947113> » Mencione um canal válido.`)
+
+                if (channel.id == guildDocument.counterChannel)
+                  return message.reply(`<:ModMute:980288914914947113> » O canal inserido é o mesmo setado atualmente.`)
+
+                guildDocument.counterStatus = true
+                guildDocument.counterChannel = channel.id
+                guildDocument.save().then(async () => {
+
+                  const msg = await message.reply(`<:9204adminbadge:938280523388842014> » Estou salvando o canal no banco de dados.`)
+                  setTimeout(() => {
+                    msg.edit({ content: `<:9204adminbadge:938280523388842014> **»** O canal aonde o contador será exibido foi setado com sucesso.\n<:servers:963208373707341824> **»** Canal definido: **${channel}**` })
+                  }, 5000)
+                })
+
+                const contador = guildDocument.counterType
+                const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                if (contador == '{azul}') {
+                  await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.azul(message.guild.memberCount)))
+                }
+                if (contador == '{aqua}') {
+                  await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.aqua(message.guild.memberCount)))
+                }
+                if (contador == '{violeta}') {
+                  await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.violeta(message.guild.memberCount)))
+                }
+                if (contador == '{rosa}') {
+                  await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.rosa(message.guild.memberCount)))
+                }
+                if (contador == '{ruby}') {
+                  await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.ruby(message.guild.memberCount)))
+                }
+                if (contador == '{exa}') {
+                  await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.exa(message.guild.memberCount)))
+                }
+                if (contador == '{redblack}') {
+                  await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.redblack(message.guild.memberCount)))
+                }
+                if (contador == '{ice}') {
+                  await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.ice(message.guild.memberCount)))
+                }
+                if (contador == '{blk}') {
+                  await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.blk(message.guild.memberCount)))
+                }
+
+              })
+            })
+          } // End
+            break;
+
+          case '2': {
+
+            if (!guildDocument.counterChannel) return message.reply(`<:ModMute:980288914914947113> » Este servidor não setou o canal do contador.`)
+
+            message.reply({ content: `<:ModMute:980288914914947113> » Selecione o tipo de contador:`, ephemeral: true, components: [tm] }).then(msg => {
+
+              const filter = (interaction) => {
+                return interaction.isSelectMenu() && interaction.message.id === msg.id;
+              };
+
+              const collector = msg.createMessageComponentCollector({
+                filter: filter,
+                time: 180000,
+                max: 1,
+              });
+
+              collector.on('end', async (r, reason) => {
+                if (reason != 'time') return;
+              });
+
+              collector.on('collect', async (x) => {
+                if (x.user.id != message.author.id)
+                  return
+                switch (x.values[0]) {
+
+                  case 'azul': {
+                    guildDocument.counterType = '{azul}'
+                    guildDocument.save().then(async () => {
+                      message.reply(`<:9204adminbadge:938280523388842014> » Tipo do contador foi alterado para **Azul**.`)
+                    })
+                    const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                    const contador = guildDocument.counterType
+                    await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.azul(message.guild.memberCount)))
+                  }
+
+                    break;
+                  case 'aqua': {
+                    guildDocument.counterType = '{aqua}'
+                    guildDocument.save().then(async () => {
+                      message.reply(`<:9204adminbadge:938280523388842014> » Tipo do contador foi alterado para **Aqua**.`)
+                    })
+                    const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                    const contador = guildDocument.counterType
+                    await
+                    setTimeout(async () => {
+                      defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.aqua(message.guild.memberCount)))
+                    }, 5000)
+
+                  }
+                    break;
+                  case 'violeta': {
+                    guildDocument.counterType = '{violeta}'
+                    guildDocument.save().then(async () => {
+                      message.reply(`<:9204adminbadge:938280523388842014> » Tipo do contador foi alterado para **Violeta**.`)
+                      const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                      const contador = guildDocument.counterType
+                      await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.violeta(message.guild.memberCount)))
+                    })
+                  }
+                    break;
+                  case 'rosa': {
+                    guildDocument.counterType = '{rosa}'
+                    guildDocument.save().then(async () => {
+                      message.reply(`<:9204adminbadge:938280523388842014> » Tipo do contador foi alterado para **Rosa**.`)
+                      const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                      const contador = guildDocument.counterType
+                      await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.rosa(message.guild.memberCount)))
+                    })
+                  }
+                    break;
+                  case 'ruby': {
+                    guildDocument.counterType = '{ruby}'
+                    guildDocument.save().then(async () => {
+                      message.reply(`<:9204adminbadge:938280523388842014> » Tipo do contador foi alterado para **Ruby**.`)
+                      const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                      const contador = guildDocument.counterType
+                      await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.ruby(message.guild.memberCount)))
+                    })
+                  }
+                    break;
+                  case 'exa': {
+                    guildDocument.counterType = '{exa}'
+                    guildDocument.save().then(async () => {
+                      message.reply(`<:9204adminbadge:938280523388842014> » Tipo do contador foi alterado para **EXA**.`)
+                      const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                      const contador = guildDocument.counterType
+                      await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.exa(message.guild.memberCount)))
+                    })
+                  }
+                    break;
+                  case 'redblack': {
+                    guildDocument.counterType = '{redblack}'
+                    guildDocument.save().then(async () => {
+                      message.reply(`<:9204adminbadge:938280523388842014> » Tipo do contador foi alterado para **RedBlack**.`)
+                      const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                      const contador = guildDocument.counterType
+                      await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.redblack(message.guild.memberCount)))
+                    })
+                  }
+                    break;
+                  case 'ice': {
+                    guildDocument.counterType = '{ice}'
+                    guildDocument.save().then(async () => {
+                      message.reply(`<:9204adminbadge:938280523388842014> » Tipo do contador foi alterado para **ICE**.`)
+                      const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                      const contador = guildDocument.counterType
+                      await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.ice(message.guild.memberCount)))
+                    })
+                  }
+                    break;
+                  case 'blk': {
+                    guildDocument.counterType = '{blk}'
+                    guildDocument.save().then(async () => {
+                      message.reply(`<:9204adminbadge:938280523388842014> » Tipo do contador foi alterado para **BLK**.`)
+                      const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                      const contador = guildDocument.counterType
+                      await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.blk(message.guild.memberCount)))
+                    })
+                  }
+
+                }// END
+              })
+            })
+
+          } // END CASE 2 2 2 2  2 2 2 2
+            break;
+          case '3': {
+
+            if (!guildDocument.counterChannel) return message.reply(`<:ModMute:980288914914947113> » Este servidor não setou o canal do contador.`)
+
+            message.reply(`<:ModMute:980288914914947113> » Indique a mensagem que será exibida.\n<:servers:963208373707341824> » Utilize \`{contador}\` para o contador ser exibido.`).then(() => {
+              message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 60000, errors: ['time'], max: 1 }).on('collect', async message => {
+
+                const cmessage = message.content
+
+                guildDocument.counterMessage = cmessage
+                guildDocument.save().then(async () => {
+
+                  const msg = await message.reply(`<:9204adminbadge:938280523388842014> » Estou salvando a mensagem no banco de dados.`)
+                  setTimeout(() => {
+                    msg.edit({ content: `<:9204adminbadge:938280523388842014> **»** A mensagem do contador que será exibida foi setada com sucesso.` })
+                  }, 5000)
+                })
+
+                const contador = guildDocument.counterType
+                const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+                if (contador == '{azul}') {
+                  await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.azul(message.guild.memberCount)))
+                }
+                if (contador == '{aqua}') {
+                  await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.aqua(message.guild.memberCount)))
+                }
+                if (contador == '{violeta}') {
+                  await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.violeta(message.guild.memberCount)))
+                }
+                if (contador == '{rosa}') {
+                  await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.rosa(message.guild.memberCount)))
+                }
+                if (contador == '{ruby}') {
+                  await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.ruby(message.guild.memberCount)))
+                }
+                if (contador == '{exa}') {
+                  await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.exa(message.guild.memberCount)))
+                }
+                if (contador == '{redblack}') {
+                  await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.redblack(message.guild.memberCount)))
+                }
+                if (contador == '{ice}') {
+                  await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.ice(message.guild.memberCount)))
+                }
+                if (contador == '{blk}') {
+                  await defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.blk(message.guild.memberCount)))
+                }
+
+              })
+            })
+          } // End
+            break;
+          case '4': {
+
+            if (!guildDocument.counterChannel) return message.reply(`<:ModMute:980288914914947113> » Este servidor não setou o canal do contador.`)
+
+            guildDocument.counterChannel = ''
+            guildDocument.counterType = '{azul}'
+            guildDocument.counterMessage = '{contador}'
+            guildDocument.counterStatus = false
+
+            guildDocument.save().then(async () => {
+              const lastChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
+
+              const msg = await message.reply(`<:9204adminbadge:938280523388842014> » Estou resetando as configurações no banco de dados.`)
+              setTimeout(() => {
+                msg.edit({ content: `<:9204adminbadge:938280523388842014> **»** A configurações do contador foram resetadas com sucesso.` })
+              }, 5000)
+            })
+
           }
-        })
+
+        }
       })
-    }
+
+    })
+
   }
 }
