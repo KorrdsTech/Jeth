@@ -5,31 +5,32 @@ moment.locale('pt-br')
 module.exports = async function onGuildMemberAdd(member) {
   // if (!this.client.user.me.permissions.has(andfabhsdfhabsdfjh))return vvtnc asdfjabdnsldbf
   const guildDocument = await this.database.guild.getOrCreate(member.guild.id)
+    let contador = guildDocument.counterType
   setTimeout(async () => {
     if (guildDocument) {
-      if (guildDocument.count) {
-        const channel = member.guild.channels.cache.get(guildDocument.countChannel)
+      if (guildDocument.counterStatus) {
+        const channel = member.guild.channels.cache.get(guildDocument.counterChannel)
         if (!channel) return
-        await channel.setTopic(guildDocument.countMessage.replace('{azul}', TranslateFunctions.azul(member.guild.memberCount))
-          .replace('{pinky}', TranslateFunctions.pinky(member.guild.memberCount))
-          .replace('{gold}', TranslateFunctions.gold(member.guild.memberCount))
-          .replace('{green}', TranslateFunctions.green(member.guild.memberCount))
-          .replace('{rosa}', TranslateFunctions.rosa(member.guild.memberCount))
-          .replace('{exa}', TranslateFunctions.exa(member.guild.memberCount))
-          .replace('{ruby}', TranslateFunctions.ruby(member.guild.memberCount))
-          .replace('{amarelo}', TranslateFunctions.amarelo(member.guild.memberCount))
-          .replace('{violeta}', TranslateFunctions.violeta(member.guild.memberCount))
-          .replace('{bouncepink}', TranslateFunctions.bouncepink(member.guild.memberCount))
-          .replace('{redblack}', TranslateFunctions.redblack(member.guild.memberCount))
-          .replace('{aqua}', TranslateFunctions.aqua(member.guild.memberCount))
-          .replace('{ice}', TranslateFunctions.ice(member.guild.memberCount))
-          .replace('{roxo}', TranslateFunctions.roxo(member.guild.memberCount))
-          .replace('{rainbow}', TranslateFunctions.rainbow(member.guild.memberCount))
-          .replace('{blk}', TranslateFunctions.blk(member.guild.memberCount))
-          .replace('{natal}', TranslateFunctions.natal(member.guild.memberCount))
-          .replace('{bouncepurple}', TranslateFunctions.bouncepurple(member.guild.memberCount))
-          .replace('{exa-new}', TranslateFunctions.exanew(member.guild.memberCount))
-          .replace('{redblue}', TranslateFunctions.redblue(member.guild.memberCount)))
+        
+          
+  if (contador == '{azul}') { await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.azul(member.guild.memberCount)))
+           }
+  if (contador == '{aqua}') { await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.aqua(member.guild.memberCount)))
+           }
+                  if (contador == '{violeta}') { await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.violeta(member.guild.memberCount)))
+           }
+                  if (contador == '{rosa}') { await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.rosa(member.guild.memberCount)))
+           }
+                  if (contador == '{ruby}') { await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.ruby(member.guild.memberCount)))
+           }
+                  if (contador == '{exa}') { await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.exa(member.guild.memberCount)))
+           }
+                  if (contador == '{redblack}') { await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.redblack(member.guild.memberCount)))
+           }
+                  if (contador == '{ice}') { await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.ice(member.guild.memberCount)))
+           }
+                  if (contador == '{blk}') { await channel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.blk(member.guild.memberCount)))
+           }
       }
     }
     setTimeout(async () => {
