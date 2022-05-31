@@ -33,14 +33,13 @@ const Guild = new Schema({
   channelLeave: { type: String, default: '' },
   channelRegister: { type: String, default: '' },
   channelsaida: { type: String, default: '' },
-  //config de role para registro
-  masculino: { type: String, default: '' },
-  feminino: { type: String, default: '' },
-  registrado: { type: String, default: '' },
-  nbinario: { type: String, default: '' },
-  autorole: { type: String, default: '' },
-  novato: { type: String, default: '' },
-  registradores: [RegistradorSchema],
+
+  
+// NEW SYSTEM COUNTER!!!!
+    counterChannel: { type: String, default: '' },
+  counterMessage: { type: String, default: '{contador}' },
+  counterType: { type: String, default: '{azul}' },
+  counterStatus: { type: Boolean, default: false },
 })
 
 module.exports = model('Guilds', Guild)
