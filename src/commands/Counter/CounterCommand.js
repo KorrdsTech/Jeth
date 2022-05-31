@@ -10,7 +10,7 @@ module.exports = class colorEmbed extends Command {
 
     this.name = 'Counter'
     this.aliases = ['counter', 'contador']
-    this.category = 'Configurações'
+    this.category = 'Counter'
     this.permissions = ['MANAGE_CHANNELS']
     this.bot_permissions = ['MANAGE_CHANNELS']
   }
