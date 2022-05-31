@@ -33,6 +33,8 @@ const Guild = new Schema({
   channelRegister: { type: String, default: '' },
   channelsaida: { type: String, default: '' },
 
+  // Autorole :/
+    novato: { type: String, default: '' },
 // NEW SYSTEM COUNTER!!!!
   counterChannel: { type: String, default: '' },
   counterMessage: { type: String, default: '{contador}' },
