@@ -65,16 +65,60 @@ module.exports = async function onMessage(message) {
 
   const args = message.content.slice(prefix.length).trim().split(' ')
   const name = args.shift().toLowerCase()
-  const command = this.commands.find(command => command.name === name || command.aliases.includes(name))
-  if (command?.permissions && !message.member.permissions.has(command.permissions)) {
-    const embed = new MessageEmbed()
-    embed.setTimestamp()
-    embed.setColor(colors['mod'])
-    embed.setAuthor({ name: 'Você não tem permissão', iconURL: message.author.displayAvatarURL({ dynamic: true }) })
-    embed.setDescription(`**Você precisa verificar se possui essas permissiões:** ${command.permissions.map(perms => `\`${perms}\``).join(', ')}`)
-
-    return message.reply({ embeds: [embed] })
+  const command = this.commands.find(command => command.name === name || command.aliases.includes(name))  
+     if (command?.permissions && !message.member.permissions.has(command.permissions)) {
+    const embeduserp = new MessageEmbed()
+  .setTimestamp() 
+  .setColor(colors['mod']) 
+  .setTitle(`${emojis.warn} Err Missing Permissions!`, message.author.displayAvatarURL({ dynamic: true }))
+      .addFields(
+					{
+						name: `${message.author.tag} (\`${message.author.id}\`) Verifique-se você possui as seguintes permissões:`,
+						value: `${command.permissions.map(perms => `\`${perms}\``).join(', ')}`})
+.setThumbnail('https://cdn-icons-png.flaticon.com/512/2061/2061766.png')
+  .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+    
+    return message.reply({ embeds: [embeduserp] })
   }
+
+ if (command?.bot_permissions && !message.guild.me.permissions.has(command.bot_permissions)) {
+    const embedbotp = new MessageEmbed()
+  .setTimestamp() 
+  .setColor(colors['mod'])
+  .setTitle(`${emojis.warn} Err Missing Permissions!`, message.author.displayAvatarURL({ dynamic: true }))
+      .addFields(
+					{
+						name: `${message.author.tag} (\`${message.author.id}\`) Verifique-se eu possuo as seguintes permissões:`,
+						value: `${command.bot_permissions.map(perms => `\`${perms}\``).join(', ')}`})
+.setThumbnail('https://cdn-icons-png.flaticon.com/512/2061/2061766.png')
+  .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+    
+    return message.reply({ embeds: [embedbotp] })
+  }
+  
+  
+
+ const embeddevonly = new MessageEmbed()
+  .setTimestamp() 
+  .setColor(colors['mod']) 
+  .setTitle(`${emojis.warn} Err Missing Permissions!`, message.author.displayAvatarURL({ dynamic: true }))
+      .addFields(
+					{
+						name: `${message.author.tag} (\`${message.author.id}\`) Verifique-se você está setado no banco de dados como developer.`,
+						value: `${emojis.pin} **Seja quem for**, um alerta foi emitido a equipe da Jeth, caso seja um abuso de bug, o usuário será **blacklisted** do bot.`})
+.setThumbnail('https://cdn-icons-png.flaticon.com/512/2061/2061766.png')
+  .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+    
+  
+    if (command) {
+      if (message.author.id !== process.env.DEVELOPERS) {
+                  if (command.adminOnly)
+                    
+   
+    return message.reply({ embeds: [embeddevonly] })
+  }
+    }
+  
 
   Object.defineProperties(message, {
     'prefix': { value: prefix },
