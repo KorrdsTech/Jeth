@@ -132,12 +132,28 @@ module.exports = async function onMessage(message) {
     }
   }
 
-  if (message.content.indexOf(prefix) !== 0) {
-    if (message.mentions.members.size > 0) {
-      const mention = message.content.split(/ +/g)[0];
-      if (mention === `<@${this.user.id}>` || mention === `<@!${this.user.id}>`) {
-        message.reply(`<a:dshype:683501891493167163> **Olá! **${message.author}, prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <a:dshype:683501891493167163>`)
-      }
+      const mentionRegex = RegExp(`^<@!?${this.user.id}>$`);
+    if(message.content.match(mentionRegex)) {
+        let totalCommands = 0
+        this.commands.each((c) => totalCommands++)
+      
+let row = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setLabel("Me Convide!")
+        .setStyle("LINK")
+        .setEmoji('<a:a_heartlove:954636909668347914>')
+        .setURL('https://discord.com/oauth2/authorize?client_id=718210363014905866&scope=bot&permissions=8'),
+  
+      new MessageButton()
+        .setLabel("Suporte")
+        .setStyle("LINK")
+        .setEmoji('<:b_blurpleemployee:856174396423274516>')
+        .setURL('https://discord.gg/jeth')
+    );
+      
+        message.reply({content: `<a:b_hypesquadi:887899688634839042> **Olá, **${message.author}! Prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <a:a_dancin:934175860930527313> Atualmente possuo **${totalCommands}** comandos!`, components: [row] })
+
+      
     }
-  }
+
 }
