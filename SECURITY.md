@@ -10,8 +10,9 @@ Atualmente as versões exibidas nesta caixa contam com nosso suporte.
 | 2.0.x | ❌ |
 | 3.0.x | ❌ |
 | 4.0.x | ❌ |
-| 5.0.x | ✅ |
-| 6.0.0-beta | ✅ |
+| 5.0.x | ❌ |
+| 6.0.0-beta | ❌ |
+| 6.0.1-beta | ✅ |
 | ------- | ------------------ |
 
 ## Como relatar uma vulnerabilidade
