@@ -7,8 +7,8 @@ module.exports = class BanCommand extends Command {
     super(name, client)
 
     this.name = 'Ban'
-    this.aliases = ['ban', 'banir', 'javaiboltz']
-    this.category = 'Moderação'
+    this.aliases = ['ban', 'banir', 'vaza', 'some', 'javaiboltz']
+    this.category = 'Mod'
     this.permissions = ['BAN_MEMBERS']
     this.bot_permissions = ['BAN_MEMBERS']
   }
