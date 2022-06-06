@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton} = require("discord.js")
+const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
 const { colors, AntiSpamUtils, AntiInviteUtils } = require('../utils')
 const parse = require('parse-duration')
 
@@ -132,28 +132,27 @@ module.exports = async function onMessage(message) {
     }
   }
 
-      const mentionRegex = RegExp(`^<@!?${this.user.id}>$`);
-    if(message.content.match(mentionRegex)) {
-        let totalCommands = 0
-        this.commands.each((c) => totalCommands++)
-      
-let row = new MessageActionRow().addComponents(
+  const mentionRegex = RegExp(`^<@!?${this.user.id}>$`);
+  if (message.content.match(mentionRegex)) {
+    let totalCommands = 0
+    this.commands.each((c) => totalCommands++)
+
+    const row = new MessageActionRow().addComponents(
       new MessageButton()
-        .setLabel("Me Convide!")
-        .setStyle("LINK")
+        .setLabel('Me Convide!')
+        .setStyle('LINK')
         .setEmoji('<a:a_heartlove:954636909668347914>')
         .setURL('https://discord.com/oauth2/authorize?client_id=718210363014905866&scope=bot&permissions=8'),
-  
+
       new MessageButton()
-        .setLabel("Suporte")
-        .setStyle("LINK")
+        .setLabel('Suporte')
+        .setStyle('LINK')
         .setEmoji('<:b_blurpleemployee:856174396423274516>')
         .setURL('https://discord.gg/jeth')
     );
-      
-        message.reply({content: `<a:b_hypesquadi:887899688634839042> **Olá, **${message.author}! Prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <a:a_dancin:934175860930527313> Atualmente possuo **${totalCommands}** comandos!`, components: [row] })
 
-      
-    }
+    message.reply({ content: `<a:b_hypesquadi:887899688634839042> **Olá, **${message.author}! Prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <a:a_dancin:934175860930527313> Atualmente possuo **${totalCommands}** comandos!`, components: [row] })
+
+  }
 
 }

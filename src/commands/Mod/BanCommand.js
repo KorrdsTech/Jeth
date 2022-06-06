@@ -1,249 +1,236 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
-const { error } = require('console')
+const { MessageActionRow, MessageSelectMenu, MessageButton, MessageEmbed } = require('discord.js')
+const modelBan = require('../../utils/database/collections/Bans');
 
-module.exports = class Ban extends Command {
+module.exports = class BanCommand extends Command {
   constructor(name, client) {
     super(name, client)
 
-    this.name = 'ban'
-    this.aliases = ['ban', 'banir', 'vaza', 'some']
-    this.category = 'Mod'
+    this.name = 'Ban'
+    this.aliases = ['ban', 'banir', 'javaiboltz']
+    this.category = 'Moderação'
+    this.permissions = ['BAN_MEMBERS']
+    this.bot_permissions = ['BAN_MEMBERS']
   }
 
+        // Deu alguem erro? Agradeça e reporte para mim, q ngm aqui é de ferro | Suporte apenas nas 24hrs apos comando lançado, dps so quando eu tiver tempo :p
+
   async run(message, args) {
-    const defina = new MessageEmbed()
-      .setColor(colors['mod'])
-      .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
-      .setDescription('Configure da forma ensinada abaixo.') // inline false
-      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
-      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
-    const emptyMessage = new MessageEmbed()
-      .setColor(colors['mod'])
-      .setTitle('<:plus:955577453441597550> **Ban:**', `${message.author.username}`, true)
-      .setDescription('Criado para facilitar o gerenciamento de banimentos de um servidor, desta forma criando uma log confirmando permanentemente que o usuário foi banido daquele servidor e o motivo especificado.') // inline false
-      .addField('*Uso do comando:*', '`ban <@user> <motivo>`', true)
-      .addField('*Exemplo:*', '`ban @Solaris#0006 Ban hammer has spoken!`', true)
+    const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id) //Db
+    const log = this.client.channels.cache.get(guildDocument.punishChannel) // Com log
 
-    const rolesHighest = new MessageEmbed()
-      .setColor(colors['mod'])
-      .setTitle('<:reinterjection:955577574304657508> **Ban:**', `${message.author.username}`, true)
-      .setDescription('Você não pode executar um banimento neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
+    let documentBans = await modelBan.findOne({
+      guildID: message.guild.id,
+      userID: message.author.id,
+    }).catch(err => console.log(err))
 
-    const escolha = new MessageEmbed()
-      .setColor(colors['default'])
-      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setTitle('Sistema Trust & Safety')
-      .setDescription('**Por favor, escolha um motivo válido abaixo para aplicar o banimento!** \n<a:JT1:739977300564639835> - Conteúdo pornográfico/Gore \n<a:JT2:739977300921024522> - Promover ou participar de Raids a outros servidores \n<a:JT3:739977300895858708> - Discurso de ódio ou Racismo e derivados \n<a:JT4:739977300472234078> - Apologia ao Nazismo e/ou pornografia infântil \n<a:JT5:739977300719697941> - Ações que comprometem o servidor ou os usuários \n<a:JT6:739977300795457687> - Divulgação inapropriada')
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
-
-    const link = new MessageEmbed()
-      .setColor(colors['default'])
-      .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Usuário inválido!** o usuário que você inseriu não existe ou não foi reconhecido, por favor tente novamente utilizando o ID')
-
-    // motivo dos banimentos
-    const primeiro = 'Conteúdo pornográfico/Gore'
-    const segundo = 'Promover ou participar de Raids a outros servidores'
-    const terceiro = 'Discurso de ódio ou Racismo e derivados'
-    const quarto = 'Apologia ao Nazismo e/ou pornografia infântil'
-    const quinto = 'Ações que comprometem o servidor ou os usuários'
-    const sexto = 'Divulgação inapropriada'
-
-    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
-
-    const membro17 = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
-    if (!membro17) {
-      message.reply({ embeds: [link] })
-    }
-
-    const membro14 = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
-    if (!membro14) {
-      message.reply({ embeds: [link] })
-    }
-
-    const guildDocument1 = await this.client.database.user.getOrCreate(membro14.user.id)
-
-    const embedA = new MessageEmbed()
-      .setTimestamp()
-      .setColor(colors['mod'])
-      .setTitle('**Err:**', true)
-      .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
-
-    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
-    const userDocuent = await this.client.database.user.getOrCreate(message.author.id)
-    // ban padrão 17
-    const executorRole = message.member.roles.highest;
-    const targetRole = membro17.roles.highest;
-    const targetRole1 = membro14.roles.highest;
-    if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
-      return message.reply({ embeds: [rolesHighest] });
-    }
-    if (executorRole.comparePositionTo(targetRole1) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
-      return message.reply({ embeds: [rolesHighest] });
-    }
-
-    const warnembed17 = new MessageEmbed()
-
-      .setThumbnail(membro17.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setTitle('Ação | Ban')
-      .setColor('#ff112b')
-      .setImage(`${userDocuent.gifban || ''}`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
-      .setTimestamp(new Date());
-
-    // banimento private
-    const bans = await message.guild.bans.fetch();
-    let reason = args.slice(1).join(' ') || 'Nenhum motivo especificado';
-
-    const warnembed14 = new MessageEmbed()
-      .setThumbnail(membro14.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setAuthor({ name: `${message.author.username} Já baniu ${bans.size} usuários`, iconURL: message.author.avatarURL({ dynamic: true, size: 1024 }) })
-      .setColor('#ff112b')
-      .setImage(`${userDocuent.gifban || ''}`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
-      .setTimestamp(new Date());
-
-    const warnembed18 = new MessageEmbed()
-
-      .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-      .setTitle(`${message.author.username}`)
-      .setDescription(`:do_not_litter: **Você foi banido do servidor ${message.guild.name} :no_entry_sign:**`)
-      .setColor('#ffefad')
-      .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
-      .addField('📝 Motivo:', `${reason}`)
-      .setFooter({ text: 'Banido do servidor da Jeth? neste caso você pode recorrer appeals@jeth.live 🥶' })
-      .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
-      .setTimestamp(new Date());
-
-    const channel = await this.client.database.guild.getOrCreate(message.guild.id)
-    const log = this.client.channels.cache.get(channel.punishChannel)
-    if (!log) message.reply({ embeds: [defina] })
-    const argumentos = args.slice(1).join(' ');
-    if (argumentos) {
-      message.guild.members.ban(membro17)
-      warnembed18.fields[1].value = argumentos
-      warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
-      warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
-      log.send({ embeds: [warnembed14] })
-      try {
-        membro14.send({ embeds: [warnembed18] })
-      } catch { error }
-    } else {
-      message.reply({ embeds: [escolha] }).then(async m => {
-
-        await m.react('739977300564639835')
-        await m.react('739977300921024522')
-        await m.react('739977300895858708')
-        await m.react('739977300472234078')
-        await m.react('739977300719697941')
-        await m.react('739977300795457687').then(() => {
-          setTimeout(() => m.delete(), 15000)
-        })
-
-        const filter = (_, u) => (_ && u.id === message.author.id)
-        const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
-        col.on('collect', async (reaction) => {
-
-          console.log(reaction.emoji.name)
-
-          switch (reaction.emoji.name) {
-
-            case 'JT1':
-              reason = primeiro
-              warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              filter.stop()
-              message.guild.members.ban(guildDocument1.id, {
-                reason: reason
-              }).then(() => {
-                log.send({ embeds: [warnembed14] })
-                try {
-                  guildDocument1.send({ embeds: [warnembed18] })
-                } catch { error }
-              }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
-              break
-            case 'JT2':
-              reason = segundo
-              warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              filter.stop()
-              message.guild.members.ban(membro14, {
-                reason: reason
-              }).then(() => {
-                log.send({ embeds: [warnembed14] })
-                try {
-                  guildDocument1.send({ embeds: [warnembed18] })
-                } catch { error }
-              }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
-              break
-            case 'JT3':
-              reason = terceiro
-              warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              filter.stop()
-              message.guild.members.ban(membro14, {
-                reason: reason
-              }).then(() => {
-                log.send({ embeds: [warnembed14] })
-                try {
-                  guildDocument1.send({ embeds: [warnembed18] })
-                } catch { error }
-              }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
-              break
-            case 'JT4':
-              reason = quarto
-              warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              filter.stop()
-              message.guild.members.ban(membro14, {
-                reason: reason
-              }).then(() => {
-                log.send({ embeds: [warnembed14] })
-                try {
-                  guildDocument1.send({ embeds: [warnembed18] })
-                } catch { error }
-              }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
-              break
-            case 'JT5':
-              reason = quinto
-              warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              filter.stop()
-              message.guild.members.ban(membro14, {
-                reason: reason
-              }).then(() => {
-                log.send({ embeds: [warnembed14] })
-                try {
-                  guildDocument1.send({ embeds: [warnembed18] })
-                } catch { error }
-              }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
-              break
-            case 'JT6':
-              reason = sexto
-              warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.user.username} \n**ID:** ${membro17.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.user.username} \n**ID:** ${membro14.user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              filter.stop()
-              message.guild.members.ban(membro14, {
-                reason: reason
-              }).then(() => {
-                log.send({ embeds: [warnembed14] })
-                try {
-                  guildDocument1.send({ embeds: [warnembed18] })
-                } catch { error }
-              }).catch(() => message.reply(`Algum erro ocorreu ao tentar banir esse usuário.\nErro:\n\`\`\`erro\`\`\``))
-              break
-          }
-        })
+    if (!documentBans) {
+      documentBans = new modelBan({
+        guildID: message.guild.id,
+        userID: message.author.id,
       })
+
+      await documentBans.save().catch(err => console.log(err))
     }
+
+    if (!log) return message.reply(`<:ModMute:980288914914947113> » Este servidor não possui o canal de logs de ounições setado.\n<:reinterjection:955577574304657508> » Utilize \`${guildDocument.prefix}PunishmentLogs\` para saber mais.`)
+
+    if (!args[0]) return message.reply(`<:ModMute:980288914914947113> » Mencione um usuário valido.`)
+    const usuario = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, '')).catch(err => console.log()) // SIM, você consegue banir gente que n esta no seu servidor | Solução para o if funcionar, n tava conseguindo ness porr | Console n retorna nada pq da erro mas n da, sacou?
+
+    if (!usuario) return message.reply(`<:ModMute:980288914914947113> » Mencione um usuário valido.`)
+
+          // Motivos
+
+    const primeiro = 'Conteúdo pornográfico/Gore.'
+    const segundo = 'Promover ou participar de Raids a outros servidores.'
+    const terceiro = 'Discurso de ódio ou Racismo e derivados.'
+    const quarto = 'Apologia ao Nazismo e/ou pornografia infântil.'
+    const quinto = 'Ações que comprometem o servidor/usuários.'
+    const sexto = 'Divulgação inapropriada.'
+    const setimo = 'Roubo de contas digitais/scam.'
+
+    const bans = await message.guild.bans.fetch(); // Check ban
+
+    if (bans.get(usuario.id)) return message.reply(`<:ModMute:980288914914947113> » Este usuário já se encontra banido.`)
+
+    const mentionedMember = message.guild.members.cache.get(usuario.id)
+
+    if (mentionedMember) {
+      const mentionedPotision = mentionedMember.roles.highest.position
+      const memberPosition = message.member.roles.highest.position
+      const botPotision = message.guild.me.roles.highest.position
+
+      if (memberPosition <= mentionedPotision) return message.reply(`<:ModMute:980288914914947113> » Você não pode banir esse usuário, pois o seu cargo é menor/equivalente ao dele.`)
+
+      else if (botPotision <= mentionedPotision) return message.reply(`<:ModMute:980288914914947113> » Eu não posso banir esse usuário, pois o cargo dele é maior que o meu.`)
+    }
+
+    const dashboard = new MessageEmbed()
+      .setAuthor({ name: `${message.guild.name} | Dashboard Trust & Safety`, iconURL: this.client.user.avatarURL({ dynamic: true, size: 1024 }) })
+      .setDescription(`<:reinterjection:955577574304657508> » Aplique uma punição de banimento em um usuário.`)
+      .addFields([
+        { name: `Informação do Usuário:`, value: `> <:members:963208373644447764> **Usuário:** ${usuario}\n> <:plus:955577453441597550> **ID:** ${usuario.id}\n> <:roles:963208373606682725> **Conta criada em:** <t:${~~(usuario.createdTimestamp / 1000)}:F>` },
+        { name: `Configuração do Sistema:`, value: `> <:ModMute:980288914914947113> **» Selecione qualquer opção na lista para continuar.**` }
+      ])
+      .setFooter({ text: `${message.author.username}, você tem 3 minutos para interagir.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setThumbnail('https://cdn-icons.flaticon.com/png/512/3694/premium/3694290.png?token=exp=1653835711~hmac=be1fd43871e4498590084d1b61752139')
+      .setColor(colors.mod) // Troca isso dps
+      .setTimestamp();
+
+    const raw = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setCustomId('yes')
+        .setLabel('Confirmar')
+        .setStyle('SUCCESS')
+        .setDisabled(false),
+
+      new MessageButton()
+        .setCustomId('esc')
+        .setLabel('Cancelar')
+        .setStyle('DANGER')
+        .setDisabled(false)
+    );
+
+    const rew = new MessageActionRow()
+      .addComponents(
+        new MessageSelectMenu()
+          .setCustomId('ban-menu')
+          .setPlaceholder('🛡 Selecione o motivo(s) do banimento.')
+          .setMinValues(1)
+          .setMaxValues(7)
+          .addOptions([
+            {
+              label: primeiro,//Nome da option
+              value: primeiro,//Valor do emoji, o id dele no buttons
+              emoji: `<a:1r:940889951615205376>`, //emoji q vai ficar grandão do lado do texto
+            },
+            {
+              label: segundo,
+              value: segundo,
+              emoji: `<a:2r:940889962889494618>`,
+            },
+            {
+              label: terceiro,
+              value: terceiro,
+              emoji: `<a:3r:940889962772045895>`,
+            },
+            {
+              label: quarto,
+              value: quarto,
+              emoji: `<a:4r:940889960800739328>`,
+            },
+            {
+              label: quinto,
+              value: quinto,
+              emoji: `<a:5r:940889962767855627>`,
+            },
+            {
+              label: sexto,
+              value: sexto,
+              emoji: `<a:6r:940889963216650291>`,
+            },
+            {
+              label: setimo,
+              value: setimo,
+              emoji: `<a:7r:940889958749728779>`,
+            },
+          ]),
+      )
+
+    message.reply({ embeds: [dashboard], ephemeral: true, components: [rew] }).then(msg => {
+
+      const filter = (interaction) => {
+        return interaction.isSelectMenu() && interaction.message.id === msg.id;
+      };
+
+      const collector = msg.createMessageComponentCollector({
+        filter: filter,
+        time: 180000,
+        max: 1,
+      });
+
+      collector.on('end', async (r, reason) => {
+        if (reason != 'time') return;
+      });
+
+      collector.on('collect', async (x) => {
+        if (x.user.id != message.author.id)
+          return
+        switch (x.values) {
+
+          case x.values: {
+
+            message.reply({ content: `❓ » Você confirma o banimento de ${usuario} pelo(s) motivo(s) abaixo?\n\`\`\`diff\n- ${x.values.join('\n- ')}\`\`\``, components: [raw] })
+
+            const collector = message.channel.createMessageComponentCollector({
+              componentType: 'BUTTON',
+              time: 60000,
+              max: 1,
+            });
+
+            collector.on('collect', i => {
+
+              if (i.user.id != message.author.id)
+                return
+
+              switch (i.customId) {
+
+                case 'yes': { // no
+
+                  const puni = new MessageEmbed() // Trust e Safety Embed
+                    .setAuthor({ name: `${message.guild.name} | Trust & Safety - Banimento`, iconURL: this.client.user.avatarURL({ dynamic: true, size: 1024 }) })
+                    .addFields([
+                      {
+                        name: `<:author:982837926150963220> | Usuário banido:`,
+                        value: `<:members:963208373644447764> **Tag:** \`${usuario.tag}\`\n<:plus:955577453441597550> **ID:** \`${usuario.id}\``,
+                        inline: false
+                      },
+                      {
+                        name: `<:author:982837926150963220> | Staff:`,
+                        value: `<:staff:982837873919279114> **Tag:** \`${message.author.tag}\`\n<:plus:955577453441597550> **ID:** \`${message.author.id}\``,
+                        inline: false
+                      },
+                      {
+                        name: `<:clips:982837820823601173> | Motivo(s):`,
+                        value: `<:plus:955577453441597550> **${x.values.join(`\n<:plus:955577453441597550> `)}**`,
+                        inline: false
+                      },
+                      {
+                        name: `📅 | Data:`,
+                        value: `<:plus:955577453441597550> **<t:${~~(new Date() / 1000)}:F>**`,
+                        inline: false
+                      },
+                    ])
+                    .setFooter({ text: `${message.author.username} já baniu ${documentBans.bans} usuários.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setThumbnail('https://cdn-icons.flaticon.com/png/512/3694/premium/3694290.png?token=exp=1653835711~hmac=be1fd43871e4498590084d1b61752139')
+                    .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setColor(colors.mod) // Troca isso dps, se nunca troca neh solaris prr
+                    .setTimestamp();
+
+                  documentBans.bans += 1
+                  documentBans.save().catch(err => console.log(err))
+
+                  message.guild.bans.create(usuario.id, { reason: `${x.values.join(' | ')}` }) // Oxi?? ja foikk
+
+                  log.send({ embeds: [puni] }) // Log
+                  message.reply(`<:staff:982837873919279114> » Usuário banido com sucesso.`) // Check
+                  return usuario.send({ content: `<:ModMute:980288914914947113> » Olá ${usuario}! Venho avisar que você foi banido do servidor **${message.guild.name}**.\n🧾 » Segue abaixo a log do seu banimento:`, embeds: [puni] }).catch(err => console.log(`Não consegui mandar DM ao usuário: ${usuario.tag}`))
+
+                }
+                case 'esc': { // yes
+                  message.reply(`<:ModMute:980288914914947113> » Processo de banimento cancelado com sucesso.`) // Tchau
+                }
+
+              }
+            })
+
+          }
+
+        }
+
+      }) //
+
+    })
+
   }
 }
