@@ -10,33 +10,24 @@ module.exports = class chat extends Command {
     this.category = 'Mod'
     this.subcommandsOnly = false
   }
-
   async run(message) {
-    // buttons
-    const block = new MessageActionRow()
+    const actions = new MessageActionRow()
       .addComponents(
         new MessageButton()
-          .setCustomId('block')
+          .setCustomId('lock')
           .setLabel('Bloquear')
           .setStyle('DANGER'),
-      );
-    const unblock = new MessageActionRow()
-      .addComponents(
         new MessageButton()
-          .setCustomId('unblock')
+          .setCustomId('unlock')
           .setLabel('Desbloquear')
           .setStyle('SUCCESS'),
-      );
-    const cancel = new MessageActionRow()
-      .addComponents(
         new MessageButton()
           .setCustomId('cancel')
           .setLabel('Cancelar')
           .setStyle('SECONDARY'),
       );
 
-    const embedA = new MessageEmbed()
-
+    const embedNoPermission = new MessageEmbed()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
@@ -45,37 +36,57 @@ module.exports = class chat extends Command {
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
-      return message.reply({ embeds: [embedA] })
+      return message.reply({ embeds: [embedNoPermission] })
 
-    const embedlock = new MessageEmbed()
+    const embedToLock = new MessageEmbed()
       .setColor(colors['default'])
-      .setDescription(`<a:sireneRoxa:739828671400902697> ${message.author} realmente deseja lockar o chat <#${message.channel.id}>?`)
+      .setDescription(`<a:sireneRoxa:739828671400902697> ${message.author} qual acão você deseja fazer em <#${message.channel.id}>?`)
 
-    const ell = await message.reply({ embeds: [embedlock], ephemeral: true, components: [block, unblock, cancel] })
+    const ell = await message.reply({ embeds: [embedToLock], components: [actions] })
 
-    const embedlockado = new MessageEmbed()
+    const embedLocked = new MessageEmbed()
       .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi bloqueado com sucesso!`)
       .setColor(colors['default'])
 
-    const embeddeslockado = new MessageEmbed()
+    const embedUnlocked = new MessageEmbed()
       .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi desbloqueado com sucesso!`)
       .setColor(colors['default'])
-
-    // col.on('collect', async (reaction) => {
-    //   console.log(reaction.emoji.id)
-    //   switch (reaction.emoji.id) {
-    //     case '739830713792331817':
-    //       ell.edit({ embeds: [embedlockado] })
-    //       message.channel.updateOverwrite(message.guild.id,
-    //         { SEND_MESSAGES: false })
-    //       break
-    //     case '739831089543118890':
-    //       ell.edit({ embeds: [embeddeslockado] })
-    //       message.channel.updateOverwrite(message.guild.id,
-    //         { SEND_MESSAGES: true })
-    //       break
-    //   }
-    // })
-
+    
+    const collector = ell.createMessageComponentCollector({
+      filter: (i) => i.user.id === message.author.id && i.message.id === ell.id,
+      max: 1,
+    })
+    collector.on("collect", (interaction) => {
+      interaction.deferUpdate();
+      switch (interaction.customId) {
+        case "lock":
+          message.channel.edit({
+            permissionOverwrites: [
+              {
+                id: message.guildId,
+                type: "role",
+                deny: ["SEND_MESSAGES"]
+              }
+            ]
+          })
+          ell.edit({ embeds: [embedLocked], components: [] })
+          break;
+        case "unlock":
+          message.channel.edit({
+            permissionOverwrites: [
+              {
+                id: message.guildId,
+                type: "role",
+                allow: ["SEND_MESSAGES"]
+              }
+            ]
+          })
+          ell.edit({ embeds: [embedUnlocked], components: [] })
+          break;
+        case "cancel":
+          if (ell.deletable) ell.delete();
+          break;
+      }
+    });
   }
 }
