@@ -111,7 +111,7 @@ module.exports = async function onMessage(message) {
     .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
 
   if (command) {
-    if (message.author.id !== process.env.DEVELOPERS) {
+    if (message.author.id !== process.env.OWNERS) {
       if (command.adminOnly)
 
         return message.reply({ embeds: [embeddevonly] })
