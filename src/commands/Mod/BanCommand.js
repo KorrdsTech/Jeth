@@ -16,7 +16,7 @@ module.exports = class BanCommand extends Command {
         // Deu alguem erro? Agradeça e reporte para mim, q ngm aqui é de ferro | Suporte apenas nas 24hrs apos comando lançado, dps so quando eu tiver tempo :p
 
   async run(message, args) {
-
+    const userDocuent = await this.client.database.Users.findById(message.author.id)
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id) //Db
     const log = this.client.channels.cache.get(guildDocument.punishChannel) // Com log
 
@@ -204,6 +204,7 @@ module.exports = class BanCommand extends Command {
                     ])
                     .setFooter({ text: `${message.author.username} já baniu ${documentBans.bans} usuários.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setThumbnail('https://cdn-icons.flaticon.com/png/512/3694/premium/3694290.png?token=exp=1653835711~hmac=be1fd43871e4498590084d1b61752139')
                     .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setImage(`${userDocuent.gifban || ''}`)
                     .setColor(colors.mod) // Troca isso dps, se nunca troca neh solaris prr
                     .setTimestamp();
 
