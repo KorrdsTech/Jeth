@@ -6,7 +6,7 @@ module.exports = class roleta extends Command {
     super(name, client)
 
     this.name = 'russianroulette'
-    this.aliases = ['roleta']
+    this.aliases = ['roleta', 'roletarussa', 'rr']
     this.category = 'Fun'
   }
 
