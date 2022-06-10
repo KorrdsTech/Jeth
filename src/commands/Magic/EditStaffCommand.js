@@ -7,7 +7,7 @@ module.exports = class editstaff extends Command {
     this.name = 'editstaff'
     this.aliases = ['tes', 'whitelist']
     this.category = 'Magic'
-    this.adminOnly = true
+    this.adminOnly = false
   }
 
   async run(message, args) {
