@@ -63,7 +63,7 @@ module.exports = class VipConfig extends Command {
     collector.on('collect', i => {
 
       if (i.user.id != message.author.id)
-        return usuario.reply(`<:a_lori_moletom:963820678157594703> » ${usuario.user} você não pode acessar o dashboard, pois não foi você que abriu.`);
+        return i.reply(`<:a_lori_moletom:963820678157594703> » ${i.user} você não pode acessar o dashboard, pois não foi você que abriu.`);
 
       switch (i.customId) {
 
