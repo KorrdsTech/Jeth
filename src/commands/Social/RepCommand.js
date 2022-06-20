@@ -40,9 +40,6 @@ module.exports = class Rep extends Command {
     const author = await this.client.database.user.getOrCreate(message.author.id)
     const user = await this.client.database.user.getOrCreate(member.id)
     const time = ((parseInt(author.repTime) - Date.now()) > 3600000) ? moment.utc(parseInt(author.repTime - Date.now())).format('hh:mm:ss') : moment.utc(parseInt(author.repTime - Date.now())).format('mm:ss')
-    const confirmação = new MessageEmbed()
-      .setColor(colors['default'])
-      .setDescription(`<a:a_dancin:934175860930527313> Você deu um ponto de reputação para o ${member}\nAgora esse usuario tem ${user.rep} pontos de reputação\n**Motivo:** ${reason}`)
     const error = new MessageEmbed()
       .setColor(colors['mod'])
       .setDescription(`Você precisa esperar: ${time}`)
@@ -51,14 +48,22 @@ module.exports = class Rep extends Command {
         author.repTime = 0 + Date.now()
         author.save()
         user.rep += 1
-        user.save()
-        message.reply({ embeds: [confirmação] })
+        user.save().then(() => {
+          const confirmação = new MessageEmbed()
+            .setColor(colors['default'])
+            .setDescription(`<a:a_dancin:934175860930527313> Você deu um ponto de reputação para o ${member}\nAgora esse usuario tem ${user.rep} pontos de reputação\n**Motivo:** ${reason}`)
+          message.reply({ embeds: [confirmação] })
+        })
       } else {
         author.repTime = 3600000 + Date.now()
         author.save()
         user.rep += 1
-        user.save()
-        message.reply({ embeds: [confirmação] })
+        user.save().then(() => {
+          const confirmação = new MessageEmbed()
+            .setColor(colors['default'])
+            .setDescription(`<a:a_dancin:934175860930527313> Você deu um ponto de reputação para o ${member}\nAgora esse usuario tem ${user.rep} pontos de reputação\n**Motivo:** ${reason}`)
+          message.reply({ embeds: [confirmação] })
+        })
       }
     } else {
       message.reply({ embeds: [error] })
