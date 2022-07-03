@@ -1,17 +1,17 @@
 const { Command, colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = class GifBan extends Command {
+module.exports = class GifBanTeste extends Command {
   constructor(name, client) {
     super(name, client)
 
-    this.name = 'gifban'
-    this.aliases = ['gifban', 'banimentogif', 'bangif', 'gifbanimento']
+    this.name = 'gifbanteste'
+    this.aliases = ['gifban-test', 'gifban-teste']
     this.category = 'Mod'
     this.permissions = ['MANAGE_GUILD']
   }
 
-  async run(message, args) {
+  async run(message) {
     const doc = await this.client.database.user.getOrCreate(message.author.id)
 
     const teste = new MessageEmbed()
