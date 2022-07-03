@@ -1,4 +1,5 @@
-const { Command } = require('../../utils')
+const { Command, colors } = require('../../utils')
+const { MessageEmbed } = require('discord.js')
 
 module.exports = class GifBan extends Command {
   constructor(name, client) {
@@ -24,6 +25,17 @@ module.exports = class GifBan extends Command {
       doc.gifban = args[0]
       doc.save()
       message.reply(`${message.author}, você alterou a sua ilustração de banimento!, Utilize **${guildDocument.prefix}vip**.`)
+    } if (args[0] === 'teste') {
+      const teste = new MessageEmbed()
+        .setAuthor('Jeth | Banimento Teste', this.client.user.avatarURL({ dynamic: true, size: 1024 }))
+        .setDescription(`${message.author} baniu @USER#0000!`)
+        .setImage(`${doc.gifban}`)
+        .addField('Usuário:', `USER#0000`, true)
+        .addField('ID:', `0000000000000000`, true)
+        .addField('Motivo:', `Banido por ${message.author.tag} — Não relatou um motivo.`, false)
+        .setColor(colors.default)
+        .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
+      message.channel.send({ embed: teste })
     }
   }
 }
