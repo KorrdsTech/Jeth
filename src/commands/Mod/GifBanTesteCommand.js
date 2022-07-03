@@ -24,6 +24,6 @@ module.exports = class GifBanTeste extends Command {
       .setColor(colors.default)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
 
-    message.channel.send({ embeds: teste })
+    message.channel.send({ embeds: [teste] })
   }
 }
