@@ -15,7 +15,7 @@ module.exports = class GifBanTeste extends Command {
     const doc = await this.client.database.user.getOrCreate(message.author.id)
 
     const teste = new MessageEmbed()
-      .setAuthor('Jeth | Banimento Teste', this.client.user.avatarURL({ dynamic: true, size: 1024 }))
+      .setAuthor('Jeth | Banimento Teste', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setDescription(`${message.author} baniu @USER#0000!`)
       .setImage(`${doc.gifban}`)
       .addField('Usuário:', `USER#0000`, true)
