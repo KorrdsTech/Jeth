@@ -23,6 +23,7 @@ module.exports = class GifBanTeste extends Command {
       .addField('Motivo:', `Banido por ${message.author.tag} — Não relatou um motivo.`, false)
       .setColor(colors.default)
       .setFooter('🧁・Discord da Jeth', message.guild.iconURL({ dynamic: true, size: 1024 }))
-    message.channel.send({ embed: teste })
+
+    message.channel.send({ embeds: teste })
   }
 }
