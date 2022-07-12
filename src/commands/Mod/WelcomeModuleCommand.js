@@ -115,7 +115,7 @@ module.exports = class welcomeModule extends Command {
       }
       embed2.addField('Welcome | Canal:', canalBemVindo);
       let MsgAt = `<a:warnRoxo:664240941175144489> Desativado`;
-      if (guildDocument.autorole.length) {
+      if (guildDocument.autorole?.length) {
         MsgAt = `<:concludo:739830713792331817> Ativo: <@&${guildDocument.autorole}>`;
       }
       embed2.addField('Welcome | Auto-Role:', MsgAt);
