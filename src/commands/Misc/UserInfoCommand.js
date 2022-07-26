@@ -15,18 +15,18 @@ module.exports = class userinfo extends Command {
 
   async run(message, args) {
 
-    const jeth = this.client.guilds.cache.get('804575416098488380')
+    const jeth = this.client.guilds.cache.get('1001368891160805506')
     const pUser = message.guild.members.cache.get(args[0]?.replace(/[<@!>]/g, '') || message.author.id)
     const flags = []
     if (jeth) {
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('838581046881681419')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891248889962')) {
           flags.push('<:ThisUserIsCEO:938280523585957978>')
         }
       }
 
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('831041495326261278')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891240480781')) {
           flags.push('<:ThisUserIsJethStaff:938280523447566376>')
         }
       }
@@ -38,55 +38,55 @@ module.exports = class userinfo extends Command {
       }
 
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('839754099573522452')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891215323216')) {
           flags.push('<:ThisUserIsVIP:938280523468509245>')
         }
       }
 
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('838921340085731338')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891227914268')) {
           flags.push('<:ThisUserIsBugHunter:938280523426578534>')
         }
       }
 
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('838994687985451039')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891240480778')) {
           flags.push('<:ThisUserIsJethPartner:938282680028651600>')
         }
       }
 
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('927895349769687080')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891185975351')) {
           flags.push('<:Bravery:938280523153965097>')
         }
       }
 
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('927895430124159037')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891185975349')) {
           flags.push('<:Balance:938280523409817600>')
         }
       }
 
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('927895419466420254')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891185975350')) {
           flags.push('<:Brilliance:938280523426578533>')
         }
       }
 
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('838650358342352927')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891248889960')) {
           flags.push('<:ThisUserIsTrustSafety:938280523091025964>')
         }
       }
 
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('879143131667369985')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891248889961')) {
           flags.push('<:ThisUserIsJethDev:939896774267654264>')
         }
       }
 
       if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('832751943452590140')) {
+        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891240480779')) {
           flags.push('<a:ThisUserIsPatreon:940901127048814644>')
         }
       }
