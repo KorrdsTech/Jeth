@@ -5,28 +5,6 @@ const parse = require('parse-duration')
 module.exports = async function onMessage(message) {
   if (message.channel.type === 'DM') return
   const guildDocument = await this.database.guild.getOrCreate(message.guild.id)
-  if (message.author.bot) {
-    if (message.author.discriminator !== '0000') return
-    if (message.author.username !== 'Discord-Chan') return
-    if (message.channel.id !== '879568042433085490') return
-
-    const member = message.mentions.users.first()
-    const Users = await this.database.user.getOrCreate(member?.id)
-
-    if (!Users) return
-
-    const vipRole = message.guild.roles.cache.find((role) => role.id === '839754099573522452');
-
-    if (!message.guild.members.cache.get(member.id)?.roles?.cache?.has(vipRole.id)) {
-      Users.rep += 1
-      Users.save()
-      return
-    } else if (message.guild.members.cache.get(member.id)?.roles?.cache?.has(vipRole.id)) {
-      Users.rep += 2
-      Users.save()
-      return
-    }
-  }
 
   const Users = await this.database.user.getOrCreate(message.author.id)
   if (guildDocument.antSpam) {

@@ -37,7 +37,7 @@ module.exports = class complaint extends Command {
       .setTimestamp(new Date());
 
     message.author.send({ embeds: [reportembed] })
-    this.client.channels.cache.get('838234183566360636')
+    this.client.channels.cache.get('1001368892200988700')
       .send({ content: `Reported by: ${message.author.tag} (${message.author.id})`, embeds: [reportembed] })
     message.reply('<:a_blurplecertifiedmoderator:856174396225355776> Thank you for your complaint!')
   }
