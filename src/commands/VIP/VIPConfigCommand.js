@@ -44,7 +44,7 @@ module.exports = class VipConfig extends Command {
 
     const dashboard = new MessageEmbed()
       .setAuthor({ name: `${message.guild.name} | Dashboard VipConfig`, iconURL: this.client.user.avatarURL({ dynamic: true, size: 1024 }) })
-      .setDescription(`<:a_lori_moletom:963820678157594703> » Sistema para setar usuário como vip no servidor.`)
+      .setDescription(`<:a_lori_moletom:1003479428350873630> » Sistema para setar usuário como vip no servidor.`)
       .addFields([
         { name: `Comandos do Sistema`, value: `> **Cadastrar** » Cadastra o usuário como vip no servidor.\n> **RewCadastro** » Remove o cadastro vip do usuário.\n> **Membros Vips** » Possibilita ver membros que tem vip no seu servidor. [BETA]` }
       ])
@@ -63,22 +63,22 @@ module.exports = class VipConfig extends Command {
     collector.on('collect', i => {
 
       if (i.user.id != message.author.id)
-        return i.reply(`<:a_lori_moletom:963820678157594703> » ${i.user} você não pode acessar o dashboard, pois não foi você que abriu.`);
+        return i.reply(`<:a_lori_moletom:1003479428350873630> » ${i.user} você não pode acessar o dashboard, pois não foi você que abriu.`);
 
       switch (i.customId) {
 
         case 'c': {
 
-          message.reply(`<:a_lori_moletom:963820678157594703> » Mencione o usuário que você deseja fazer o cadastro vip.`).then(() => {
+          message.reply(`<:a_lori_moletom:1003479428350873630> » Mencione o usuário que você deseja fazer o cadastro vip.`).then(() => {
             message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 90000, errors: ['time'], max: 1 }).on('collect', async message => {
 
               const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
               if (!usuario) {
-                return message.reply(`<:a_lori_moletom:963820678157594703> » Mencione um usuário valido.`)
+                return message.reply(`<:a_lori_moletom:1003479428350873630> » Mencione um usuário valido.`)
               }
               if (usuario.id === this.client.user.id) {
-                return message.reply(`<:a_lori_moletom:963820678157594703> » Eu não posso ter vip.`)
+                return message.reply(`<:a_lori_moletom:1003479428350873630> » Eu não posso ter vip.`)
               }
 
               let documentVip = await modelVip.findOne({
@@ -94,9 +94,9 @@ module.exports = class VipConfig extends Command {
                 })
 
                 await documentVip.save().then(async () => {
-                  const msg = await message.reply(`<:a_lori_moletom:963820678157594703> » Estou setando o usuário como vip no banco de dados.`)
+                  const msg = await message.reply(`<:a_lori_moletom:1003479428350873630> » Estou setando o usuário como vip no banco de dados.`)
                   setTimeout(() => {
-                    msg.edit({ content: `<:a_lori_moletom:963820678157594703> » O usuário foi setado como vip com sucesso.` })
+                    msg.edit({ content: `<:a_lori_moletom:1003479428350873630> » O usuário foi setado como vip com sucesso.` })
                   }, 5000)
                 })
               }
@@ -104,7 +104,7 @@ module.exports = class VipConfig extends Command {
               else {
 
                 if (documentVip.vip) {
-                  return message.reply(`<:a_lori_moletom:963820678157594703> » Esse usuário já é vip neste servidor.`)
+                  return message.reply(`<:a_lori_moletom:1003479428350873630> » Esse usuário já é vip neste servidor.`)
                 }
               }
 
@@ -115,16 +115,16 @@ module.exports = class VipConfig extends Command {
           break;
         case 'rc': {
 
-          message.reply(`<:a_lori_moletom:963820678157594703> » Mencione o usuário que você deseja remover o cadastro vip.`).then(() => {
+          message.reply(`<:a_lori_moletom:1003479428350873630> » Mencione o usuário que você deseja remover o cadastro vip.`).then(() => {
             message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 90000, errors: ['time'], max: 1 }).on('collect', async message => {
 
               const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
               if (!usuario) {
-                return message.reply(`<:a_lori_moletom:963820678157594703> » Mencione um usuário valido.`)
+                return message.reply(`<:a_lori_moletom:1003479428350873630> » Mencione um usuário valido.`)
               }
               if (usuario.id === this.client.user.id) {
-                return message.reply(`<:a_lori_moletom:963820678157594703>} » Eu não possuo vip.`)
+                return message.reply(`<:a_lori_moletom:1003479428350873630>} » Eu não possuo vip.`)
               }
 
               const documentVip = await modelVip.findOne({
@@ -133,13 +133,13 @@ module.exports = class VipConfig extends Command {
               }).catch(err => console.log(err))
 
               if (documentVip == null) {
-                return message.reply(`<:a_lori_moletom:963820678157594703> » Esse usuário não possui vip neste servidor.`)
+                return message.reply(`<:a_lori_moletom:1003479428350873630> » Esse usuário não possui vip neste servidor.`)
               }
 
               await documentVip.delete().then(async () => {
-                const msg = await message.reply(`<:a_lori_moletom:963820678157594703> » Estou removendo o usuário como vip no banco de dados.`)
+                const msg = await message.reply(`<:a_lori_moletom:1003479428350873630> » Estou removendo o usuário como vip no banco de dados.`)
                 setTimeout(() => {
-                  msg.edit({ content: `<:a_lori_moletom:963820678157594703> » O usuário foi removido como vip do servidor com sucesso.` })
+                  msg.edit({ content: `<:a_lori_moletom:1003479428350873630> » O usuário foi removido como vip do servidor com sucesso.` })
                 }, 5000)
               })
 
@@ -156,7 +156,7 @@ module.exports = class VipConfig extends Command {
           }).catch(err => console.log(err))
 
           if (documentVip2 == null) {
-            return message.reply(`<:a_lori_moletom:963820678157594703> » Esse servidor não possui nenhum membro vip.`)
+            return message.reply(`<:a_lori_moletom:1003479428350873630> » Esse servidor não possui nenhum membro vip.`)
           }
 
           return message.reply(`deu errado neh`)
