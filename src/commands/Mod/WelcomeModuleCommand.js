@@ -68,6 +68,16 @@ module.exports = class welcomeModule extends Command {
           .setTimestamp();
         message.reply({ embeds: [embed] })
       })
+    } else if (args[0] === 'timer-on') {
+      guildDocument.welcomeTimer = true
+      guildDocument.save().then(async () => {
+        await message.reply(`Você ativou o timer com sucesso! agora todas as mensagens de boas vindas serão deletadas 5 segundos após terem sido enviadas!`)
+      })
+    } else if (args[0] === 'timer-off') {
+      guildDocument.welcomeTimer = false
+      guildDocument.save().then(async () => {
+        await message.reply(`Você desativou o timer com sucesso! WelcomeModule voltará a funcionar como sempre foi, sem restrições de tempo!`)
+      })
     } else if (args[0] === 'desativar') {
       if (!guildDocument.welcomeModule) return message.reply(`Este servidor não possui um welcome ativado!`)
       const lastChannel = message.guild.channels.cache.get(guildDocument.channelWelcome)
@@ -86,6 +96,8 @@ module.exports = class welcomeModule extends Command {
         .addField('Modos de usar', [
           `\`${guildDocument.prefix}welcome canal #canal\` - Define o canal onde o welcome será definido.`,
           `\`${guildDocument.prefix}welcome mensagem <mensagem>\` - Define a mensagem que será exibida no welcome.`,
+          `\`${guildDocument.prefix}welcome timer-on\` - Irá fazer com que as mensagens de boas vindas sejam apagadas após 5 segundos de serem enviadas.`,
+          `\`${guildDocument.prefix}welcome timer-off\` - Irá desabilitar o sistema acima.`,
           `\`${guildDocument.prefix}welcome desativar\` - Caso haja algum welcome ligado/definido, ele será removido e o sistema desligado.`,
           `\`${guildDocument.prefix}welcome autorole @role\` - Para setar uma role ao usuario entrar automatico.`,
           `\`${guildDocument.prefix}welcome delrole\` - Para remover uma role definida no comando acima.`,

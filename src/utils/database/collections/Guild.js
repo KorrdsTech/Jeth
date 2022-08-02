@@ -9,6 +9,7 @@ const Guild = new Schema({
   delete: { type: Boolean, default: false },
   blacklistModule: { type: Boolean, default: false },
   //módulos welcome,contador etc
+  welcomeTimer: { type: Boolean, default: false },
   welcomeModule: { type: Boolean, default: false },
   saidaModule: { type: Boolean, default: false },
   leaveModule: { type: Boolean, default: false },
