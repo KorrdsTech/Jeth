@@ -96,7 +96,7 @@ module.exports = class welcomeModule extends Command {
         .addField('Modos de usar', [
           `\`${guildDocument.prefix}welcome canal #canal\` - Define o canal onde o welcome será definido.`,
           `\`${guildDocument.prefix}welcome mensagem <mensagem>\` - Define a mensagem que será exibida no welcome.`,
-          `\`${guildDocument.prefix}welcome timer-on\` - Irá fazer com que as mensagens de boas vindas sejam apagadas após 5 segundos de serem enviadas.`,
+          `\`${guildDocument.prefix}welcome timer-on\` - Irá fazer com que as mensagens de boas vindas sejam apagadas após 15 segundos de serem enviadas.`,
           `\`${guildDocument.prefix}welcome timer-off\` - Irá desabilitar o sistema acima.`,
           `\`${guildDocument.prefix}welcome desativar\` - Caso haja algum welcome ligado/definido, ele será removido e o sistema desligado.`,
           `\`${guildDocument.prefix}welcome autorole @role\` - Para setar uma role ao usuario entrar automatico.`,

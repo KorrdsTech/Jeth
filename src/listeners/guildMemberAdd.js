@@ -71,12 +71,12 @@ module.exports = async function onGuildMemberAdd(member) {
               content: messageEmbed['content'] ? messageEmbed.content : (typeof messageEmbed === 'string') ? messageEmbed : '',
               embeds: [messageEmbed['embed'] ? messageEmbed.embed : (typeof messageEmbed === 'object') ? messageEmbed : {}]
             }).then(msg => {
-              setTimeout(() => msg.delete(), 5000)
+              setTimeout(() => msg.delete(), 15000)
             })
               .catch()
           } catch (err) {
             channel.send(message).then(msg => {
-              setTimeout(() => msg.delete(), 5000)
+              setTimeout(() => msg.delete(), 15000)
             })
               .catch()
           }
