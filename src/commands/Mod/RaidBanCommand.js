@@ -68,16 +68,6 @@ module.exports = class Raidban extends Command {
     }
     const guildDocument1 = await this.client.database.user.getOrCreate(membro14.id)
 
-    const embedA = new MessageEmbed()
-
-      .setTimestamp()
-      .setColor(colors['mod'])
-      .setTitle('**Err:**', true)
-      .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
-      .setFooter(({ text: '🧁・Discord da Jeth', iconURL: `${message.guild.iconURL({ dynamic: true, size: 1024 })}` }))
-
-    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
     const userDocuent = await this.client.database.user.getOrCreate(message.author.id)
     // ban padrão 17
     const executorRole = message.member.roles.highest;

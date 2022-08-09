@@ -24,13 +24,6 @@ module.exports = class kick extends Command {
       .setDescription('Você não pode executar um timeout neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
 
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
-    const embedA = new MessageEmbed()
-      .setTimestamp()
-      .setColor(colors['mod'])
-      .setTitle('**Err:**', `${message.author}`, true)
-      .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`KICK_MEMBERS`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
     // code dm do kickado
     const razao13 = args.slice(1).join(' ');
     const warnembed18 = new MessageEmbed()
@@ -55,7 +48,6 @@ module.exports = class kick extends Command {
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)
     if (!log) message.reply({ embeds: [defina] })
-    if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply({ embeds: [embedA] })
     const membro18 = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
     if (!membro18) return message.reply('eu procurei, procurei, e não achei este usuário')
     if (razao13.length < 1) return message.reply('`Adicione um motivo válido!`')
