@@ -6,7 +6,7 @@ module.exports = class VipCommand extends Command {
   constructor(name, client) {
     super(name, client)
 
-    this.name = 'Vip'
+    this.name = 'vip'
     this.aliases = ['vip', 'premium']
     this.category = 'VIP'
     this.bot_permissions = ['MANAGE_ROLES', 'MANAGE_CHANNELS']

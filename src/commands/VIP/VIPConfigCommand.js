@@ -2,11 +2,11 @@ const { Command } = require('../../utils')
 const modelVip = require('../../utils/database/collections/Vip');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js')
 
-module.exports = class VipConfig extends Command {
+module.exports = class vipconfig extends Command {
   constructor(name, client) {
     super(name, client)
 
-    this.name = 'VipConfig'
+    this.name = 'vipconfig'
     this.aliases = ['vc', 'vipconfig', 'premiumconfig']
     this.category = 'VIP'
     this.permissions = ['ADMINISTRATOR']
