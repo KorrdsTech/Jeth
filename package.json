@@ -1,6 +1,6 @@
 {
   "name": "jeth",
-  "version": "7.0-canary",
+  "version": "v.14/7.0-WIP",
   "main": "index.js",
   "scripts": {
     "start": "node .",
@@ -22,7 +22,7 @@
     "eslint": "^8.11.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-sort-class-members": "^1.14.1",
-    "jimp": "^0.16.0",
+    "jimp": "^0.16.1",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
     "mongoose": "^6.2.8",
@@ -35,7 +35,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.7.0"
   },
   "keywords": [
     "jeth",
