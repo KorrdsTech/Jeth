@@ -1,5 +1,5 @@
 const { EmbedBuilder, MessageActionRow, MessageButton } = require('discord.js')
-const { colors, AntiSpamUtils, AntiInviteUtils } = require('../utils')
+const { colors, AntiSpamUtils, AntiInviteUtils, PermissionsBitField } = require('../utils')
 const parse = require('parse-duration')
 
 module.exports = async function onMessage(message) {
@@ -60,7 +60,7 @@ module.exports = async function onMessage(message) {
     return message.reply({ embeds: [embeduserp] })
   }
 
-  if (command?.bot_permissions && !message.guild.me.permissions.has(command.bot_permissions)) {
+  if (PermissionsBitField?.Flags.use_application_commands && !message.guild.me.permissions.has(PermissionsBitField.Flags.use_application_commands)) {
     const embedbotp = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
