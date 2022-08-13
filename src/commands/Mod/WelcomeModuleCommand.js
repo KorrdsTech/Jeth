@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class welcomeModule extends Command {
   constructor(name, client) {
@@ -11,7 +11,7 @@ module.exports = class welcomeModule extends Command {
   }
 
   async run(message, args) {
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['default'])
       .setTitle('**Err:**', `${message.author.username}`, true)
@@ -48,7 +48,7 @@ module.exports = class welcomeModule extends Command {
       if (!role) return message.reply(`${message.author},por favor mencione o cargo.`)
       guildDocument.autorole = role.id;
       guildDocument.save().then(() => {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setDescription(`Você definiu o cargo ${role} como auto-role com sucesso.`)
           .setColor(colors['default'])
@@ -60,7 +60,7 @@ module.exports = class welcomeModule extends Command {
       const role = message.mentions.roles.first();
       guildDocument.autorole = '';
       guildDocument.save().then(() => {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setDescription(`Você removeu o cargo ${role} como auto-role com sucesso.`)
           .setColor(colors['default'])
@@ -89,7 +89,7 @@ module.exports = class welcomeModule extends Command {
         await message.reply(`O welcome foi removido do canal ${lastChannel} e desativado`)
       })
     } else {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como usar o welcome?\nAqui vai algumas dicas...`)
         .setColor(colors['default'])
@@ -117,7 +117,7 @@ module.exports = class welcomeModule extends Command {
           '**${USER-NAME}** - Para definir o nome do membro.',
         ].join('\n'), false)
 
-      const embed2 = new MessageEmbed()
+      const embed2 = new EmbedBuilder()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como esta o welcome?\nAqui vai o seu painel...`)
         .setColor(colors['default'])

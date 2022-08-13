@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class bug extends Command {
   constructor(name, client) {
@@ -17,7 +17,7 @@ module.exports = class bug extends Command {
     const logs = this.client.channels.cache.get('831041529825067038')
     if (!args[3]) return message.reply('<a:astaff:671435205302681603> `Err! Explique aqui detalhadamente o bug encontrado, ele será reportado diretamente para o coder do bot.`')
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setColor(colors['mod'])
       .setDescription('**BUG-REPORT**')
       .addField('Ticket criado por:', `${message.author.tag}`, true)

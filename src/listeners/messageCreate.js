@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
+const { EmbedBuilder, MessageActionRow, MessageButton } = require('discord.js')
 const { colors, AntiSpamUtils, AntiInviteUtils } = require('../utils')
 const parse = require('parse-duration')
 
@@ -45,7 +45,7 @@ module.exports = async function onMessage(message) {
   const name = args.shift().toLowerCase()
   const command = this.commands.find(command => command.name === name || command.aliases.includes(name))
   if (command?.permissions && !message.member.permissions.has(command.permissions)) {
-    const embeduserp = new MessageEmbed()
+    const embeduserp = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle(`<:ModMute:980288914914947113> Err Missing Permissions!`, message.author.displayAvatarURL({ dynamic: true }))
@@ -61,7 +61,7 @@ module.exports = async function onMessage(message) {
   }
 
   if (command?.bot_permissions && !message.guild.me.permissions.has(command.bot_permissions)) {
-    const embedbotp = new MessageEmbed()
+    const embedbotp = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle(`<:ModMute:980288914914947113> Err Missing Permissions!`, message.author.displayAvatarURL({ dynamic: true }))
@@ -76,7 +76,7 @@ module.exports = async function onMessage(message) {
     return message.reply({ embeds: [embedbotp] })
   }
 
-  const embeddevonly = new MessageEmbed()
+  const embeddevonly = new EmbedBuilder()
     .setTimestamp()
     .setColor(colors['mod'])
     .setTitle(`<:ModMute:980288914914947113> Err Missing Permissions!`, message.author.displayAvatarURL({ dynamic: true }))

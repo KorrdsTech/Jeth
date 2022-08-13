@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class softban extends Command {
   constructor(name, client) {
@@ -13,14 +13,14 @@ module.exports = class softban extends Command {
 
   async run(message, args) {
 
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **SoftBan:**', `${message.author.username}`, true)
       .setDescription('Este comando faz com que você aplique um banimento e remova-o em seguida, funcionando como um kick que limpa as mensagens dos últimos 7 dias deste usuário.') // inline false
       .addField('*Uso do comando:*', '`softban <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`softban @Solaris#0006 Ban hammer has spoken!`', true)
 
-    const defina = new MessageEmbed()
+    const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (SOFTBAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
@@ -42,7 +42,7 @@ module.exports = class softban extends Command {
 
     message.guild.member(usuario).ban({ days: 7 })
     message.guild.unban(usuario)
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setDescription(`${usuario.username} foi **Suavemente Banido** do servidor por ${message.author}\nMotivo: ${razao} `)
       .setColor(cor)
     log.send({ embeds: [embed] })

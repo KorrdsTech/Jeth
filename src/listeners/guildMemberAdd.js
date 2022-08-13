@@ -56,20 +56,20 @@ module.exports = async function onGuildMemberAdd(member) {
           .replace(/\{USER-NAME\}/g, member.user.username)
         if (!guildDocument.welcomeTimer) {
           try {
-            const messageEmbed = JSON.parse(message)
+            const EmbedBuilder = JSON.parse(message)
             channel.send({
-              content: messageEmbed['content'] ? messageEmbed.content : (typeof messageEmbed === 'string') ? messageEmbed : '',
-              embeds: [messageEmbed['embed'] ? messageEmbed.embed : (typeof messageEmbed === 'object') ? messageEmbed : {}]
+              content: EmbedBuilder['content'] ? EmbedBuilder.content : (typeof EmbedBuilder === 'string') ? EmbedBuilder : '',
+              embeds: [EmbedBuilder['embed'] ? EmbedBuilder.embed : (typeof EmbedBuilder === 'object') ? EmbedBuilder : {}]
             })
           } catch (err) {
             channel.send(message)
           }
         } else
           try {
-            const messageEmbed = JSON.parse(message)
+            const EmbedBuilder = JSON.parse(message)
             channel.send({
-              content: messageEmbed['content'] ? messageEmbed.content : (typeof messageEmbed === 'string') ? messageEmbed : '',
-              embeds: [messageEmbed['embed'] ? messageEmbed.embed : (typeof messageEmbed === 'object') ? messageEmbed : {}]
+              content: EmbedBuilder['content'] ? EmbedBuilder.content : (typeof EmbedBuilder === 'string') ? EmbedBuilder : '',
+              embeds: [EmbedBuilder['embed'] ? EmbedBuilder.embed : (typeof EmbedBuilder === 'object') ? EmbedBuilder : {}]
             }).then(msg => {
               setTimeout(() => msg.delete(), 15000)
             })

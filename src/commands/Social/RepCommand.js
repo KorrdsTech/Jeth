@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const moment = require('moment')
 moment.locale('pt-br')
 
@@ -14,13 +14,13 @@ module.exports = class Rep extends Command {
   }
 
   async run(message, args) {
-    const errorReason = new MessageEmbed()
+    const errorReason = new EmbedBuilder()
       .setColor(colors['mod'])
       .setDescription(`Você precisa inserir um motivo para estar dando um ponto de reputação para este usuário!`)
-    const errorSmall = new MessageEmbed()
+    const errorSmall = new EmbedBuilder()
       .setColor(colors['mod'])
       .setDescription(`Motivo de reputação muito curto!`)
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Rep:**', `${message.author.username}`, true)
       .setDescription('Criado para adicionar pontos de reputação a conta de um usuário, se um user recebe bastante pontos de reputação significa que ele ajuda bastante em nosso desenvolvimento do projeto, seja com suporte ou outros.') // inline false
@@ -40,7 +40,7 @@ module.exports = class Rep extends Command {
     const author = await this.client.database.user.getOrCreate(message.author.id)
     const user = await this.client.database.user.getOrCreate(member.id)
     const time = ((parseInt(author.repTime) - Date.now()) > 3600000) ? moment.utc(parseInt(author.repTime - Date.now())).format('hh:mm:ss') : moment.utc(parseInt(author.repTime - Date.now())).format('mm:ss')
-    const error = new MessageEmbed()
+    const error = new EmbedBuilder()
       .setColor(colors['mod'])
       .setDescription(`Você precisa esperar: ${time}`)
     if (parseInt(author.repTime) < Date.now()) {
@@ -49,7 +49,7 @@ module.exports = class Rep extends Command {
         author.save()
         user.rep += 1
         user.save().then(() => {
-          const confirmação = new MessageEmbed()
+          const confirmação = new EmbedBuilder()
             .setColor(colors['default'])
             .setDescription(`<a:a_dancin:934175860930527313> Você deu um ponto de reputação para o ${member}\nAgora esse usuario tem ${user.rep} pontos de reputação\n**Motivo:** ${reason}`)
           message.reply({ embeds: [confirmação] })
@@ -59,7 +59,7 @@ module.exports = class Rep extends Command {
         author.save()
         user.rep += 1
         user.save().then(() => {
-          const confirmação = new MessageEmbed()
+          const confirmação = new EmbedBuilder()
             .setColor(colors['default'])
             .setDescription(`<a:a_dancin:934175860930527313> Você deu um ponto de reputação para o ${member}\nAgora esse usuario tem ${user.rep} pontos de reputação\n**Motivo:** ${reason}`)
           message.reply({ embeds: [confirmação] })

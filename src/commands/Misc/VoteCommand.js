@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class vote extends Command {
   constructor(name, client) {
@@ -12,7 +12,7 @@ module.exports = class vote extends Command {
   }
 
   async run(message) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setThumbnail('https://cdn.discordapp.com/attachments/804599688728412171/873270109416857670/frame.png')
       .setTitle('<:a_blurplepartner:856174395869626399> **Jeth Analytic:**')
       .setColor(colors['default'])

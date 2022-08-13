@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class apagar extends Command {
   constructor(name, client) {
@@ -12,7 +12,7 @@ module.exports = class apagar extends Command {
   }
 
   async run(message, args) {
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
@@ -34,7 +34,7 @@ module.exports = class apagar extends Command {
 
     const fetched = await message.channel.messages.fetch({ limit: deleteCount });
     message.channel.bulkDelete(fetched)
-    const embedB = new MessageEmbed()
+    const embedB = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['default'])
       .setTitle(`<:ayaya:683491996790554629> ${message.author.username}`, true)

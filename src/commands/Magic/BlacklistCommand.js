@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class blacklist extends Command {
   constructor(name, client) {
@@ -30,7 +30,7 @@ module.exports = class blacklist extends Command {
     }
 
     // recycling
-    // const warnembed18 = new MessageEmbed()
+    // const warnembed18 = new EmbedBuilder()
 
     //   .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
     //   .setTitle(`${message.author.username}`)
@@ -41,7 +41,7 @@ module.exports = class blacklist extends Command {
     //   .setFooter({ text: 'https://discord.com/guidelines・Discord da Jeth 🛠' })
     //   .setTimestamp(new Date());
 
-    const warnembed14 = new MessageEmbed()
+    const warnembed14 = new EmbedBuilder()
       .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setAuthor({ name: `${message.author.username} Aplicou uma network blacklist`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
       .setColor('BLACK')
@@ -49,7 +49,7 @@ module.exports = class blacklist extends Command {
       .setFooter({ text: '☕️・https://discord.com/guidelines', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
-    const defina = new MessageEmbed()
+    const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
@@ -66,7 +66,7 @@ module.exports = class blacklist extends Command {
           const guildData = await this.client.database.guild.getOrCreate(gd[1].id)
           if (guildData?.blacklistModule) {
             // eslint-disable-next-line no-unused-vars
-            gd[1].bans.remove(usuario.id).then(() => log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)).catch((error) => {})
+            gd[1].bans.remove(usuario.id).then(() => log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)).catch((error) => { })
           }
         }
         message.channel.send(`${message.author}, o usuário \`${usuario.tag}\` foi removido da blacklist.`)

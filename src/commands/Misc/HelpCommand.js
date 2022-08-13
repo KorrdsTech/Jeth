@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = class Ajuda extends Command {
   constructor(name, client) {
@@ -15,7 +15,7 @@ module.exports = class Ajuda extends Command {
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
     const prefix = documento.prefix
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
     embed.setAuthor({ name: `${this.client.user.username} | Ajuda`, iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }) })
     embed.setDescription(`**Criamos uma guia de ajuda para você: ${message.author}**`)
     embed.setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))

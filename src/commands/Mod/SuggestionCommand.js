@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class suggestion extends Command {
   constructor(name, client) {
@@ -12,7 +12,7 @@ module.exports = class suggestion extends Command {
   }
 
   async run(message, args) {
-    const erroDePermissão = new MessageEmbed()
+    const erroDePermissão = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', `${message.author.username}`, true)
@@ -26,7 +26,7 @@ module.exports = class suggestion extends Command {
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
     const prefix = documento.prefix
-    const mododeuso = new MessageEmbed()
+    const mododeuso = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['default'])
       .setTitle('**PAINEL DE AJUDA**')

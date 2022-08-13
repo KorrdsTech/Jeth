@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class punishmentlogs extends Command {
   constructor(name, client) {
@@ -11,7 +11,7 @@ module.exports = class punishmentlogs extends Command {
   }
 
   async run(message, args) {
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **PunishmentLogs:**', `${message.author.username}`, true)
       .setDescription('Criado para facilitar o envio de logs dentro de seu servidor, desta forma facilitando o gerenciamento de auditoria de seu servidor.') // inline false
@@ -19,7 +19,7 @@ module.exports = class punishmentlogs extends Command {
       .addField('*Uso do comando:*', '`punishmentlogs remove <#canal>`', true)
       .addField('*Exemplo:*', '`punishmentlogs set #geral`', true)
 
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)

@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class unban extends Command {
   constructor(name, client) {
@@ -14,7 +14,7 @@ module.exports = class unban extends Command {
   async run(message, args) {
 
     const usuario = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, ''))
-    const defina = new MessageEmbed()
+    const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (UNBAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
@@ -27,7 +27,7 @@ module.exports = class unban extends Command {
 
     if (!args[0]) return message.reply(`**${message.author}**,Insira o id do membro para eu desbanir ele.`)
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
 
       .setColor('#030303')
       .setTitle('**Ação | Unban**')

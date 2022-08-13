@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class Familia extends Command {
   constructor(name, client) {
@@ -13,7 +13,7 @@ module.exports = class Familia extends Command {
 
   async run(message, args) {
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
@@ -45,7 +45,7 @@ module.exports = class Familia extends Command {
 
     const role = message.guild.roles.cache.find(r => r.id === '832814054623412225');
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['vip'])
       .setDescription(`**👑💎 SEJA BEM VINDO A FAMÍLIA:** ${usuario.user.username}`)

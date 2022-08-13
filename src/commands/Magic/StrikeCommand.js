@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class strike extends Command {
   constructor(name, client) {
@@ -16,7 +16,7 @@ module.exports = class strike extends Command {
     if (!staff.staff) {
       return message.reply('Você não pode utilizar este comando, somente os membros confiados da equipe <@&718178715426619489>')
     }
-    const defina = new MessageEmbed()
+    const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (STRIKE):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
@@ -33,7 +33,7 @@ module.exports = class strike extends Command {
           message.reply('Mencione um membro valido.')
         }
         const guildDocument = await this.client.database.user.getOrCreate(usuario.id)
-        const strike = new MessageEmbed()
+        const strike = new EmbedBuilder()
 
           .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setTitle('System | Trust & Safety')

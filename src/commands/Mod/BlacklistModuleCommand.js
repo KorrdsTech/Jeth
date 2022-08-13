@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class blacklistModule extends Command {
   constructor(name, client) {
@@ -12,7 +12,7 @@ module.exports = class blacklistModule extends Command {
   }
 
   async run(message, args) {
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **BlacklistModule:**', `${message.author.username}`, true)
       .setDescription('Com este comando você poderá ativar ou desativar a opção de banir um usuário que está na blacklist de seu servidor.') // inline false
@@ -20,7 +20,7 @@ module.exports = class blacklistModule extends Command {
       .addField('*Uso do comando:*', '`bModule off`', true)
       .addField('*Exemplo:*', '`bModule on/off`', true)
 
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)

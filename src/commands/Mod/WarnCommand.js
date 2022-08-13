@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const modelWarn = require('../../utils/database/collections/Warn');
 const moment = require('moment')
 moment.locale('pt-br')
@@ -15,21 +15,21 @@ module.exports = class Warn extends Command {
   }
 
   async run(message, args) {
-    const defina = new MessageEmbed()
+    const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
       .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
       .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Warn:**', `${message.author.username}`, true)
       .setDescription('Com este comando você irá emitir um aviso que ficará salvo para o usuário, caso o usuário já tenha um aviso prévio ele será subistituído pelo aviso mais recente, portanto certifique-se de verificar se o usuário já tem um aviso salvo utilizando o comando **history**.') // inline false
       .addField('*Uso do comando:*', '`warn <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`warn @Solaris#0006 Not listen to the rules of this academy!`', true)
 
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
@@ -81,7 +81,7 @@ module.exports = class Warn extends Command {
       await documentWarn.save().catch(err => console.log(err))
     }
 
-    const warnembed = new MessageEmbed()
+    const warnembed = new EmbedBuilder()
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Aviso')
       .setColor(colors['mod'])

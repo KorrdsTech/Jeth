@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = class emoji extends Command {
   constructor(name, client) {
@@ -30,12 +30,12 @@ module.exports = class emoji extends Command {
         Emojis += Emoji(emoji.id)
       }
     })
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(`Emojis em ${message.guild.name}.`)
       .setDescription(`**Animado [${Animated}]**:\n${EmojisAnimated}`)
       .setColor(colors['default'])
 
-    const embedB = new MessageEmbed()
+    const embedB = new EmbedBuilder()
       .setDescription(`**Normais [${EmojiCount}]**:\n${Emojis}\n\n**Total de emojis [${OverallEmojis}]**`)
       .setColor(colors['default'])
 

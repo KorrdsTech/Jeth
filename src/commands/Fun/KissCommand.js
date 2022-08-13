@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = class beijar extends Command {
   constructor(name, client) {
@@ -15,7 +15,7 @@ module.exports = class beijar extends Command {
     if (!user) return message.reply('`Você precisa mencionar alguém para beijar!`');
     const gifs = ['https://media1.giphy.com/media/FqBTvSNjNzeZG/source.gif', 'https://thumbs.gfycat.com/FondEvergreenIcterinewarbler-size_restricted.gif', 'https://media1.tenor.com/images/3c167989c5623e40ef517ded7e3c44e2/tenor.gif?itemid=9227861']
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setColor(colors['default'])
       .setTitle('Será que temos um novo casal no servidor ?')
       .setTimestamp()

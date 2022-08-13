@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class security extends Command {
   constructor(name, client) {
@@ -11,7 +11,7 @@ module.exports = class security extends Command {
   }
 
   async run(message, args) {
-    const erroDePermissão = new MessageEmbed()
+    const erroDePermissão = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
@@ -67,7 +67,7 @@ module.exports = class security extends Command {
         message.reply(`Timer definido: ${tempo}`)
       })
     } else {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
       embed.setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
       embed.setColor(colors['default'])
       embed.setDescription(`Dúvidas de como usar o Módulo de Segurança?\nAqui vai algumas dicas...`)
@@ -83,7 +83,7 @@ module.exports = class security extends Command {
         `\`${guildDocument.prefix}bsf desligar\` - Caso haja algum Anti-Spam ligado/definido, ele será removido e o sistema desligado.`,
       ].join('\n'), false)
 
-      const embed2 = new MessageEmbed()
+      const embed2 = new EmbedBuilder()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como está o Anti-Invite/BlockSpamFlood-BSF? \nAqui vai o seu painel...`)
         .setColor(colors['default'])

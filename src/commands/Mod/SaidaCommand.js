@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class saida extends Command {
   constructor(name, client) {
@@ -11,7 +11,7 @@ module.exports = class saida extends Command {
   }
 
   async run(message, args) {
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
 
       .setTimestamp()
       .setColor(colors['default'])
@@ -55,7 +55,7 @@ module.exports = class saida extends Command {
         await message.reply(`O saida foi removido do canal ${lastChannel} e desativado`)
       })
     } else {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como usar a Saida?\nAqui vai algumas dicas...`)
         .setColor(colors['default'])
@@ -78,7 +78,7 @@ module.exports = class saida extends Command {
           '**${USER-NAME}** - Para definir o nome do membro.',
         ].join('\n'), false)
 
-      const embed2 = new MessageEmbed()
+      const embed2 = new EmbedBuilder()
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como esta a saida do servidor?\nAqui vai o seu painel...`)
         .setColor(colors['default'])

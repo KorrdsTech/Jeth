@@ -1,5 +1,5 @@
 const { Command } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class evalcmd extends Command {
   constructor(name, client) {
@@ -32,7 +32,7 @@ module.exports = class evalcmd extends Command {
         err.stack = err.stack.substr(0, 1800)
         err.stack = `${err.stack}...`
       }
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setColor('#ff004c')
         .setTitle(`Oh no... An error occurred while doing this action, I'm sorry for what happened. :sob:`)
         .setDescription(`\`\`\`${err.stack}\`\`\``)

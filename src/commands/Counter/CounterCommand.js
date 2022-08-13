@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { Command, TranslateFunctions, emojis } = require('../../utils')
-const { MessageActionRow, MessageSelectMenu, MessageEmbed } = require('discord.js')
+const { MessageActionRow, MessageSelectMenu, EmbedBuilder } = require('discord.js')
 
 // NAO, NAO E NAO... ESSE COMANDO N ESTA ORGANIZADO :) MAS PELO MENOS FUNCIONA
 
@@ -116,7 +116,7 @@ module.exports = class colorEmbed extends Command {
       `<#${guildDocument.counterChannel}>` :
       `Nenhum`
 
-    const dashboard = new MessageEmbed()
+    const dashboard = new EmbedBuilder()
       .setAuthor({ name: `${message.guild.name} | Dashboard Contador`, iconURL: this.client.user.avatarURL({ dynamic: true, size: 1024 }) })
       .setDescription(`<:servers:963208373707341824> » Configure o Sistema de Contador.`)
       .addFields([
@@ -252,9 +252,9 @@ module.exports = class colorEmbed extends Command {
                     const defaultChannel = await message.guild.channels.cache.get(guildDocument.counterChannel)
                     const contador = guildDocument.counterType
                     await
-                    setTimeout(async () => {
-                      defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.aqua(message.guild.memberCount)))
-                    }, 5000)
+                      setTimeout(async () => {
+                        defaultChannel.setTopic(guildDocument.counterMessage.replace('{contador}', TranslateFunctions.aqua(message.guild.memberCount)))
+                      }, 5000)
 
                   }
                     break;

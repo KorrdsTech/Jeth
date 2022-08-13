@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const modelWarn = require('../../utils/database/collections/Warn');
 const moment = require('moment')
 moment.locale('pt-br')
@@ -15,21 +15,21 @@ module.exports = class Pardon extends Command {
   }
 
   async run(message, args) {
-    const defina = new MessageEmbed()
+    const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
       .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
       .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Pardon:**', `${message.author.username}`, true)
       .setDescription('Com este comando você poderá remover todos os avisos salvos de um usuário em específico.') // inline false
       .addField('*Uso do comando:*', '`pardon <@user>`', true)
       .addField('*Exemplo:*', '`pardon @Solaris#0006`', true)
 
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
@@ -65,7 +65,7 @@ module.exports = class Pardon extends Command {
 
     await documentWarn.save().catch(err => console.log(err))
 
-    const unwarnembed = new MessageEmbed()
+    const unwarnembed = new EmbedBuilder()
       .setTitle(`Ação | Perdoar`, this.client.user.avatarURL({ dynamic: true, size: 1024 }))
       .addField(`<:members:963208373644447764> **Usuário:**`, `${usuario}`)
       .addField(`<:roles:963208373606682725> **Descrição:**`, `O usuário teve seu aviso mais recente perdoado e removido do histórico pelo moderador: ${message.author}`)

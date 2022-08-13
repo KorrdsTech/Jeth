@@ -1,6 +1,6 @@
 const { Command } = require('../../utils')
 const modelVip = require('../../utils/database/collections/Vip');
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js')
+const { MessageActionRow, MessageButton, EmbedBuilder } = require('discord.js')
 
 module.exports = class vipconfig extends Command {
   constructor(name, client) {
@@ -42,7 +42,7 @@ module.exports = class vipconfig extends Command {
         .setDisabled(true)
     );
 
-    const dashboard = new MessageEmbed()
+    const dashboard = new EmbedBuilder()
       .setAuthor({ name: `${message.guild.name} | Dashboard VipConfig`, iconURL: this.client.user.avatarURL({ dynamic: true, size: 1024 }) })
       .setDescription(`<:a_lori_moletom:1003479428350873630> » Sistema para setar usuário como vip no servidor.`)
       .addFields([

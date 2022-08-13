@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = class cry extends Command {
   constructor(name, client) {
@@ -16,7 +16,7 @@ module.exports = class cry extends Command {
     const gifs = ['https://i.imgur.com/DAUCIHG.gif', 'https://media0.giphy.com/media/ROF8OQvDmxytW/giphy.gif', 'https://i.gifer.com/C1la.gif'];
 
     if (!defineduser) {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setColor(colors['default'])
         .setDescription(`${message.author} **chorou de tristeza (╥﹏╥)**`)
         .setImage(gifs[Math.floor(Math.random() * gifs.length)])
@@ -29,7 +29,7 @@ module.exports = class cry extends Command {
         message.reply(error);
       }
     } else {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setColor(colors['default'])
         .setDescription(`:sob: ${message.author} **lançou gritos de tristeza para** ${defineduser} (╥﹏╥)`)
         .setImage('https://i.pinimg.com/originals/83/05/c3/8305c3a012e448cb409d12e5db3ac179.gif')

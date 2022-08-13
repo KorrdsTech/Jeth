@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class SlowMode extends Command {
   constructor(name, client) {
@@ -11,7 +11,7 @@ module.exports = class SlowMode extends Command {
   }
 
   async run(message, args) {
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
 
       .setTimestamp()
       .setColor(colors['default'])

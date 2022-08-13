@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class allunban extends Command {
   constructor(name, client) {
@@ -11,19 +11,19 @@ module.exports = class allunban extends Command {
   }
 
   async run(message) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setColor(colors['default'])
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não pode desbanir este usuário!** tenha certeza de que você possui a permissão `BAN_MEMBERS` então você poderá desbanir usuários.')
 
-    const embed2 = new MessageEmbed()
+    const embed2 = new EmbedBuilder()
       .setColor(colors['default'])
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Todos os usuários desbanidos!** você com sucesso desbaniu todos os usuários do servidor.')
 
-    const embed3 = new MessageEmbed()
+    const embed3 = new EmbedBuilder()
       .setColor(colors['default'])
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não posso desbanir este usuário!** tenha certeza de que eu tenho a permissão `BAN_MEMBERS` então eu poderei desbanir usuários.')
 
-    const defina = new MessageEmbed()
+    const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (UNBANALL):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false

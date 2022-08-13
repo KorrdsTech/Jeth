@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class retcargo extends Command {
   constructor(name, client) {
@@ -12,7 +12,7 @@ module.exports = class retcargo extends Command {
 
   async run(message, args) {
 
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **RemoveRole:**', `${message.author.username}`, true)
       .setDescription('Criado para facilitar o modo em que os cargos são retirados de um usuário.') // inline false
@@ -23,7 +23,7 @@ module.exports = class retcargo extends Command {
 
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
     const cargo_nome = message.mentions.roles.first() || message.mentions.roles.cache.get(args[1])
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
@@ -31,7 +31,7 @@ module.exports = class retcargo extends Command {
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    const defina = new MessageEmbed()
+    const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
@@ -59,7 +59,7 @@ module.exports = class retcargo extends Command {
       return 0;
     }
 
-    // const embedC = new MessageEmbed()
+    // const embedC = new EmbedBuilder()
     // .setTimestamp()
     // .setColor(colors['mod'])
     // .setTitle('**Err:**', true)
@@ -75,7 +75,7 @@ module.exports = class retcargo extends Command {
 
     if (!cargo_nome) return message.reply('`Você não colocou um cargo valido!`');
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['default'])
       .setDescription(`**CARGO REMOVIDO DO USUÁRIO:** ${usuario.user.username}`)

@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class anuncio extends Command {
   constructor(name, client) {
@@ -11,11 +11,11 @@ module.exports = class anuncio extends Command {
   }
 
   async run(message, args) {
-    const perm = new MessageEmbed()
+    const perm = new EmbedBuilder()
       .setColor(colors['default'])
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não pode ser executado!** tenha certeza de que você possui a permissão `MANAGE_MESSAGES` então você poderá utilizar este comando.')
 
-    const link = new MessageEmbed()
+    const link = new EmbedBuilder()
       .setColor(colors['default'])
       .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **URL inválida!** o link que você inseriu está incorreto ou apresenta erros, tente utilizar um diferente')
 
@@ -24,7 +24,7 @@ module.exports = class anuncio extends Command {
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
       return message.reply(perm)
 
-    const embedajuda = new MessageEmbed()
+    const embedajuda = new EmbedBuilder()
       .setTitle('Anuncio | Ajuda', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setDescription(`<a:Jethhype:665057207196319744> Segue abaixo os comandos que podem ser utilizados na configuração do seu anúncio: <a:Jethhype:665057207196319744>\n \n<:nitro1:667835744903102494> **${server.prefix}anuncio enviar <#chat> <mensagem>** >> Utilizado para mandar o anuncio no canal definido. \n \n<:nitro2:667835748900405249> **${server.prefix}anuncio set <imagem>** >> Para setar um gif ou imagem no anuncio. \n \n<:nitro3:667835748828971018> **${server.prefix}anuncio resetar** >> Para resetar o link do gif ou imagem setado. \n \n<:premium:667149934025375764> **${server.prefix}anuncio ver** >> Para visualizar a sua imagem de anuncio.`)
@@ -48,7 +48,7 @@ module.exports = class anuncio extends Command {
       message.reply(`> **|** ${message.author}, você alterou a sua ilustração de anuncio!`).then(msg => msg.delete(5000))
     }
     if (message.content.startsWith(server.prefix + 'anuncio ver')) {
-      const embedver = new MessageEmbed()
+      const embedver = new EmbedBuilder()
         .setAuthor({ name: 'Anúncio | Imagem', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) || this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }) })
         .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
         .setColor(colors['default'])
@@ -67,7 +67,7 @@ module.exports = class anuncio extends Command {
       const announce = args.slice(2).join(' ')
       if (!announce) return message.reply(`você não argumentou nada para mim enviar, favor, indique o que deseja enviar.`)
 
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
         .setColor(colors['default'])
         .setAuthor({ name: `Anunciado por ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
@@ -75,7 +75,7 @@ module.exports = class anuncio extends Command {
         .setImage(`${server.linkanuncio || ''}`)
         .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-      const embedreply = new MessageEmbed()
+      const embedreply = new EmbedBuilder()
         .setAuthor({ name: 'Aviso', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
         .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
         .setColor(colors['default'])

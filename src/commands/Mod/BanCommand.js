@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageActionRow, MessageSelectMenu, MessageButton, MessageEmbed } = require('discord.js')
+const { MessageActionRow, MessageSelectMenu, MessageButton, EmbedBuilder } = require('discord.js')
 const modelBan = require('../../utils/database/collections/Bans');
 
 module.exports = class BanCommand extends Command {
@@ -12,7 +12,7 @@ module.exports = class BanCommand extends Command {
     this.bot_permissions = ['BAN_MEMBERS']
   }
 
-        // Deu alguem erro? Agradeça e reporte para mim, q ngm aqui é de ferro | Suporte apenas nas 24hrs apos comando lançado, dps so quando eu tiver tempo :p
+  // Deu alguem erro? Agradeça e reporte para mim, q ngm aqui é de ferro | Suporte apenas nas 24hrs apos comando lançado, dps so quando eu tiver tempo :p
 
   async run(message, args) {
     const userDocuent = await this.client.database.user.getOrCreate(message.author.id)
@@ -40,7 +40,7 @@ module.exports = class BanCommand extends Command {
 
     if (!usuario) return message.reply(`<:ModMute:980288914914947113> » Mencione um usuário valido.`)
 
-          // Motivos
+    // Motivos
 
     const primeiro = 'Conteúdo pornográfico/Gore.'
     const segundo = 'Promover ou participar de Raids a outros servidores.'
@@ -66,7 +66,7 @@ module.exports = class BanCommand extends Command {
       else if (botPotision <= mentionedPotision) return message.reply(`<:ModMute:980288914914947113> » Eu não posso banir esse usuário, pois o cargo dele é maior que o meu.`)
     }
 
-    const dashboard = new MessageEmbed()
+    const dashboard = new EmbedBuilder()
       .setAuthor({ name: `${message.guild.name} | Dashboard Trust & Safety`, iconURL: this.client.user.avatarURL({ dynamic: true, size: 1024 }) })
       .setDescription(`<:reinterjection:955577574304657508> » Aplique uma punição de banimento em um usuário.`)
       .addFields([
@@ -177,7 +177,7 @@ module.exports = class BanCommand extends Command {
 
                 case 'yes': { // no
 
-                  const puni = new MessageEmbed() // Trust e Safety Embed
+                  const puni = new EmbedBuilder() // Trust e Safety Embed
                     .setAuthor({ name: `${message.guild.name} | Trust & Safety - Banimento`, iconURL: this.client.user.avatarURL({ dynamic: true, size: 1024 }) })
                     .addFields([
                       {

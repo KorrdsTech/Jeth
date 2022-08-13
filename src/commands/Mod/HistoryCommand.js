@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const modelWarn = require('../../utils/database/collections/Warn');
 const moment = require('moment')
 moment.locale('pt-br')
@@ -15,14 +15,14 @@ module.exports = class History extends Command {
   }
 
   async run(message, args) {
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **History:**', `${message.author.username}`, true)
       .setDescription('Com este comando você facilmente ver a lista de avisos de um usuário.') // inline false
       .addField('*Uso do comando:*', '`history <@user>`', true)
       .addField('*Exemplo:*', '`history @Solaris#0006`', true)
 
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
@@ -58,7 +58,7 @@ module.exports = class History extends Command {
       data.push(`<:clock:963208373363429428> **Data:** <t:${~~(documentWarn.date[i] / 1000)}:F> \n`)
     }
 
-    const warnembed = new MessageEmbed()
+    const warnembed = new EmbedBuilder()
       .setTitle(`${message.guild.name} | Avisos do usuário: ${usuario.user.username}`, this.client.user.avatarURL({ dynamic: true, size: 1024 }))
       .setDescription(data.join('\n'))
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true }))

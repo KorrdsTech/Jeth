@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class complaint extends Command {
   constructor(name, client) {
@@ -28,7 +28,7 @@ module.exports = class complaint extends Command {
       return result.join('');
     }
 
-    const reportembed = new MessageEmbed()
+    const reportembed = new EmbedBuilder()
       .setThumbnail(this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setDescription(`To attach proofs of your report please copy your private code sent to your DM and send the attachments to our Trust & Safety team with your code.\n\nWhistleblower: *\`${message.author.tag}\`*\nViolator: *${violator}*\nReason: *${reason}*`, message.author.avatarURL({ dynamic: true, size: 1024 }))
       .addField(`Complaint ID:`, `*${makeid(24)}*`)

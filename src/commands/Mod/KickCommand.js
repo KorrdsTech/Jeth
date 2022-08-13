@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class kick extends Command {
   constructor(name, client) {
@@ -11,14 +11,14 @@ module.exports = class kick extends Command {
   }
 
   async run(message, args) {
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Kick:**', `${message.author.username}`, true)
       .setDescription('Como o próprio nome já diz a função deste comando é de chutar um usuário do seu servidor em alto estilo.') // inline false
       .addField('*Uso do comando:*', '`kick <@user> <motivo>`', true)
       .addField('*Exemplo:*', '`kick @Solaris#0006 Get a kick in the ... !`', true)
 
-    const rolesHighest = new MessageEmbed()
+    const rolesHighest = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:reinterjection:955577574304657508> **Kick:**', `${message.author.username}`, true)
       .setDescription('Você não pode executar um timeout neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
@@ -26,7 +26,7 @@ module.exports = class kick extends Command {
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     // code dm do kickado
     const razao13 = args.slice(1).join(' ');
-    const warnembed18 = new MessageEmbed()
+    const warnembed18 = new EmbedBuilder()
 
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
       .setTitle(`${message.author}`)
@@ -38,7 +38,7 @@ module.exports = class kick extends Command {
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());
 
-    const defina = new MessageEmbed()
+    const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (KICK):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
@@ -58,7 +58,7 @@ module.exports = class kick extends Command {
       return message.reply({ embeds: [rolesHighest] });
     }
 
-    const warnembed13 = new MessageEmbed()
+    const warnembed13 = new EmbedBuilder()
 
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Kick')

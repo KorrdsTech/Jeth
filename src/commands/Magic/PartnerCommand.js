@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class Partner extends Command {
   constructor(name, client) {
@@ -30,7 +30,7 @@ module.exports = class Partner extends Command {
       server.partner = true
       server.save().then(async () => {
         await message.reply(`${message.author},\`${servidor.name}\`, Agora é **partner** <a:neon:663575128088641576>`).then(sent => setTimeout(() => sent.delete(), 5000))
-        const embedpartner = new MessageEmbed()
+        const embedpartner = new EmbedBuilder()
           .setColor(colors['default'])
           .addField('Partner | Informações:', `Servidor adicionado: \n\`\`${servidor.name}\`\``, true)
           .addField(`Servidor | Informações:`, `Dono do servidor: \n${servidor.owner}`, true)

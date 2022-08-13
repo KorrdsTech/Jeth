@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class setcargo extends Command {
   constructor(name, client) {
@@ -14,26 +14,26 @@ module.exports = class setcargo extends Command {
     const usuario = message.mentions.members.first() || message.guild.members.cache.get(args[0])
     const cargo_nome = message.mentions.roles.first()
 
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('**AddRole:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
 
-    const rolesHighest = new MessageEmbed()
+    const rolesHighest = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('<:reinterjection:955577574304657508> **AddRole:**', `${message.author.username}`, true)
       .setDescription('Você não pode adicionar uma role neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
 
-    const permErr = new MessageEmbed()
+    const permErr = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**AddRole:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se eu possuo a permissão:*', '`MANAGE_ROLES`', true)
 
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **AddRole:**', `${message.author.username}`, true)
@@ -61,7 +61,7 @@ module.exports = class setcargo extends Command {
       return 0;
     }
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['default'])
       .setDescription(`**CARGO ADICIONADO PARA O USUÁRIO:** ${usuario.user.username}`)

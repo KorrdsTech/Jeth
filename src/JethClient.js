@@ -1,4 +1,5 @@
-const { Client, Collection, MessageEmbed } = require('discord.js')
+const { Client, Collection, EmbedBuilder } = require('discord.js')
+const { colors } = require('./utils')
 const Fs = require('fs')
 const Database = require('./utils/database/Database')
 module.exports = class JethClient extends Client {
@@ -52,8 +53,8 @@ module.exports = class JethClient extends Client {
 
   sendLoggerError(error) {
     console.log(error)
-    const embed = new MessageEmbed()
-      .setColor('RED')
+    const embed = new EmbedBuilder()
+      .setColor(colors.mod)
       .setTitle(error.name)
       .setAuthor(this.user.username, this.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .addDescription(error.message)

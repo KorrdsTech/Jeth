@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = class flip extends Command {
   constructor(name, client) {
@@ -14,7 +14,7 @@ module.exports = class flip extends Command {
     const msg = ['coroa', 'cara'];
     const moeda = msg[Math.floor(Math.random() * 2)];
 
-    const moedaembed1 = new MessageEmbed()
+    const moedaembed1 = new EmbedBuilder()
       .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
       .setColor(colors['default'])
       .setDescription(moeda)

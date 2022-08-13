@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 module.exports = class correr extends Command {
   constructor(name, client) {
     super(name, client)
@@ -15,7 +15,7 @@ module.exports = class correr extends Command {
     const Corrida = '<@' + message.author.id + '>'
     const corrida2 = ' <@' + user.id + '>'
     const falas = [' fez **200** metros 🏎 .....', ' fez **500** metros 🏎 ...........', ' fez **800** metros 🏎 ..............', ' fez **1000** metros 🏎 .................', ' fez **1500** metros 🏎 ............................', 'Explodiu 🔥 ', 'Bateu e pegou fogo 🔥']
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
     embed.setTitle('🏎 Corrida')
     embed.setColor(colors['default'])
     embed.setDescription(`${Corrida} e ${corrida2} **estão disputando uma corrida**`)

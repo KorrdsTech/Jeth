@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const parse = require('parse-duration')
 
 module.exports = class Timeout extends Command {
@@ -13,31 +13,31 @@ module.exports = class Timeout extends Command {
 
   async run(message, args) {
     // Embed erro de permissões:
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('**Timeout:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERSS`', true)
 
-    const permErr = new MessageEmbed()
+    const permErr = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('**Timeout:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se eu possuo a permissão:*', '`MODERATE_MEMBERSS`', true)
 
-    const emptyMessage = new MessageEmbed()
+    const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Timeout:**', `${message.author.username}`, true)
       .setDescription('Criado para subistituir o antigo comando mute, um timeout irá remover o usuário temporariamente dos canais do seu servidor o impedindo de enviar mensagens e se comunicar por voz, esta funcionalidade foi implementada pelo Discord em um release anterior.') // inline false
       .addField('*Uso do comando:*', '`timeout <@user> <tempo> <motivo>`', true)
       .addField('*Exemplo:*', '`timeout @Solaris#0006 1d Mute manager has spoken!`', true)
 
-    const rolesHighest = new MessageEmbed()
+    const rolesHighest = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:reinterjection:955577574304657508> **Timeout:**', `${message.author.username}`, true)
       .setDescription('Você não pode executar um timeout neste usuário pois o cargo dele é maior ou equivalente ao seu e ou o meu.') // inline false
 
-    const defina = new MessageEmbed()
+    const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
@@ -73,7 +73,7 @@ module.exports = class Timeout extends Command {
     if (reason.length < 1) return message.reply('`Adicione um motivo válido!`')
 
     // Embed confirmação:
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
 
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Timeout')

@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class curiosidades extends Command {
   constructor(name, client) {
@@ -27,7 +27,7 @@ module.exports = class curiosidades extends Command {
       'Os vertebrados mais longevos do mundo são os tubarões da Groenlândia, que podem viver cerca de 400 anos',
     ]
     const curiosidadefinal = curiosidade[Math.floor(Math.random() * curiosidade.length)];
-    const embedcuriosidade = new MessageEmbed()
+    const embedcuriosidade = new EmbedBuilder()
       .setTitle('🤔 Curiosidades Aleatórias')
       .setColor(colors['default'])
       .setTimestamp()

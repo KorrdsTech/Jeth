@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = class deleteModule extends Command {
   constructor(name, client) {
@@ -12,7 +12,7 @@ module.exports = class deleteModule extends Command {
 
   // eslint-disable-next-line no-unused-vars
   async run(message, args) {
-    const embedA = new MessageEmbed()
+    const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)

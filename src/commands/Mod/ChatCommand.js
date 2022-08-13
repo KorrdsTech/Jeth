@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js')
+const { MessageActionRow, MessageButton, EmbedBuilder } = require('discord.js')
 
 module.exports = class chat extends Command {
   constructor(name, client) {
@@ -27,7 +27,7 @@ module.exports = class chat extends Command {
           .setStyle('SECONDARY'),
       );
 
-    const embedNoPermission = new MessageEmbed()
+    const embedNoPermission = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
@@ -38,20 +38,20 @@ module.exports = class chat extends Command {
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
       return message.reply({ embeds: [embedNoPermission] })
 
-    const embedToLock = new MessageEmbed()
+    const embedToLock = new EmbedBuilder()
       .setColor(colors['default'])
       .setDescription(`<a:sireneRoxa:739828671400902697> ${message.author} qual acão você deseja fazer em <#${message.channel.id}>?`)
 
     const ell = await message.reply({ embeds: [embedToLock], components: [actions] })
 
-    const embedLocked = new MessageEmbed()
+    const embedLocked = new EmbedBuilder()
       .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi bloqueado com sucesso!`)
       .setColor(colors['default'])
 
-    const embedUnlocked = new MessageEmbed()
+    const embedUnlocked = new EmbedBuilder()
       .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi desbloqueado com sucesso!`)
       .setColor(colors['default'])
-    
+
     const collector = ell.createMessageComponentCollector({
       filter: (i) => i.user.id === message.author.id && i.message.id === ell.id,
       max: 1,
