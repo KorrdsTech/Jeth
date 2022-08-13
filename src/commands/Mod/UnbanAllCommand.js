@@ -27,8 +27,8 @@ module.exports = class allunban extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (UNBANALL):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
-      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
-      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+      .addFields('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addFields('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)

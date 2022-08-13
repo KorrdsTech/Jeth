@@ -36,8 +36,8 @@ module.exports = class blacklist extends Command {
     //   .setTitle(`${message.author.username}`)
     //   .setDescription(`:do_not_litter: **Você foi blacklisted ${message.guild.name} :no_entry_sign:** \nO que isto significa ? você não poderá mais fazer parte dos servidores que apoiam a network da Jeth, por quebrar um dos termos de serviço do discord, este tipo de punição não oferece appeal e se você se encontra nesta situação provavelmente terá sua conta encerrada.`)
     //   .setColor('BLACK')
-    //   .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
-    //   .addField('📝 Motivo:', `${reason}`)
+    //   .addFields('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
+    //   .addFields('📝 Motivo:', `${reason}`)
     //   .setFooter({ text: 'https://discord.com/guidelines・Discord da Jeth 🛠' })
     //   .setTimestamp(new Date());
 
@@ -53,8 +53,8 @@ module.exports = class blacklist extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
-      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
-      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+      .addFields('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addFields('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)

@@ -16,7 +16,7 @@ module.exports = class welcomeModule extends Command {
       .setColor(colors['default'])
       .setTitle('**Err:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
+      .addFields('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
     if (!message.member.permissions.has('MANAGE_GUILD'))
       return message.reply({ embeds: [embedA] })
@@ -93,7 +93,7 @@ module.exports = class welcomeModule extends Command {
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como usar o welcome?\nAqui vai algumas dicas...`)
         .setColor(colors['default'])
-        .addField('Modos de usar', [
+        .addFields('Modos de usar', [
           `\`${guildDocument.prefix}welcome canal #canal\` - Define o canal onde o welcome será definido.`,
           `\`${guildDocument.prefix}welcome mensagem <mensagem>\` - Define a mensagem que será exibida no welcome.`,
           `\`${guildDocument.prefix}welcome timer-on\` - Irá fazer com que as mensagens de boas vindas sejam apagadas após 15 segundos de serem enviadas.`,
@@ -103,13 +103,13 @@ module.exports = class welcomeModule extends Command {
           `\`${guildDocument.prefix}welcome delrole\` - Para remover uma role definida no comando acima.`,
           `\n**Lembre-se se ver os \`Placeholders\` abaixo para não errar nada!**\n`
         ].join('\n'), false)
-        .addField('Placeholders', [
+        .addFields('Placeholders', [
           `O sistema de welcome(bem-vindo) aceita embed!`,
           `Não sabe fazer uma? é facil clique aqui: **[[CLIQUE]](https://leovoel.github.io/embed-visualizer/)**`,
           `**[Utilize ${guildDocument.prefix}embed para mais informações]**`,
           `\n**Lembre-se se ver os \`Parâmetros\` abaixo para não errar nada!**\n`
         ].join('\n'), false)
-        .addField('Parâmetros.', [
+        .addFields('Parâmetros.', [
           '**${USER}** - Para marcar o membro na entrada.',
           '**${CONTA-CRIADA}** - Para saber a data de criação da conta do membro.',
           '**${AVATAR}** - Para definir o avatar do membro.',
@@ -125,21 +125,21 @@ module.exports = class welcomeModule extends Command {
       if (guildDocument.channelWelcome.length) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.channelWelcome}>`;
       }
-      embed2.addField('Welcome | Canal:', canalBemVindo);
+      embed2.addFields('Welcome | Canal:', canalBemVindo);
       let MsgAt = `<a:warnRoxo:664240941175144489> Desativado`;
       if (guildDocument.autorole?.length) {
         MsgAt = `<:concludo:739830713792331817> Ativo: <@&${guildDocument.autorole}>`;
       }
-      embed2.addField('Welcome | Auto-Role:', MsgAt);
+      embed2.addFields('Welcome | Auto-Role:', MsgAt);
       let MsgCount = `<:rejected:739831089543118890> Desativado`;
       if (guildDocument.welcomeMessage.length) {
         MsgCount = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.welcomeMessage.length > 800 ? `${guildDocument.welcomeMessage.slice(0, 801)}[...]` : guildDocument.welcomeMessage}`;
       }
-      embed2.addField('Welcome | Mensagem de Bem-vindo:', MsgCount);
+      embed2.addFields('Welcome | Mensagem de Bem-vindo:', MsgCount);
       const msgWelcome = guildDocument.welcomeModule ?
         `<:concludo:739830713792331817> Ativo` :
         `<:rejected:739831089543118890> Desativado`
-      embed2.addField('Welcome está:', msgWelcome)
+      embed2.addFields('Welcome está:', msgWelcome)
 
       let embedCount = 1
       message.reply({ embeds: [embed] }).then(async m => {

@@ -24,8 +24,8 @@ module.exports = class Rep extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Rep:**', `${message.author.username}`, true)
       .setDescription('Criado para adicionar pontos de reputação a conta de um usuário, se um user recebe bastante pontos de reputação significa que ele ajuda bastante em nosso desenvolvimento do projeto, seja com suporte ou outros.') // inline false
-      .addField('*Uso do comando:*', '`rep <@user> <motivo>`', true)
-      .addField('*Exemplo:*', '`rep @Solaris#0006`', true)
+      .addFields('*Uso do comando:*', '`rep <@user> <motivo>`', true)
+      .addFields('*Exemplo:*', '`rep @Solaris#0006`', true)
     const reason = args.slice(1).join(' ')
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     if (!reason) return message.reply({ embeds: [errorReason] })

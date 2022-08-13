@@ -22,8 +22,8 @@ module.exports = class Reps extends Command {
       .setTimestamp()
       .setThumbnail('https://cdn.discordapp.com/emojis/763532885935259688.png?v=1')
       .setDescription('**REPUTAÇÃO TOTAL:**')
-      .addField('Usuário:', `${member}`)
-      .addField('Reps:', `${user.rep}`)
+      .addFields('Usuário:', `${member}`)
+      .addFields('Reps:', `${user.rep}`)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
     message.reply({ embeds: [embed] })
   }

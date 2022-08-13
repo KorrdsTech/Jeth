@@ -16,8 +16,8 @@ module.exports = class retcargo extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **RemoveRole:**', `${message.author.username}`, true)
       .setDescription('Criado para facilitar o modo em que os cargos são retirados de um usuário.') // inline false
-      .addField('*Uso do comando:*', '`removerole <@user> <@role>`', true)
-      .addField('*Exemplo:*', '`removerole @Solaris#0006 @Admin`', true)
+      .addFields('*Uso do comando:*', '`removerole <@user> <@role>`', true)
+      .addFields('*Exemplo:*', '`removerole @Solaris#0006 @Admin`', true)
 
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
 
@@ -28,15 +28,15 @@ module.exports = class retcargo extends Command {
       .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
+      .addFields('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
-      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
-      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+      .addFields('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addFields('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)
@@ -64,7 +64,7 @@ module.exports = class retcargo extends Command {
     // .setColor(colors['mod'])
     // .setTitle('**Err:**', true)
     // .setDescription('Missing Permissions') // inline false
-    // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
+    // .addFields('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
     // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
 
     // let clientRole = message.guild.me.roles.highest;
@@ -80,8 +80,8 @@ module.exports = class retcargo extends Command {
       .setColor(colors['default'])
       .setDescription(`**CARGO REMOVIDO DO USUÁRIO:** ${usuario.user.username}`)
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .addField('**Staffer:**', `${message.author}`, true) // inline true
-      .addField('**Cargo Removido:**', `${cargo_nome}`, true)
+      .addFields('**Staffer:**', `${message.author}`, true) // inline true
+      .addFields('**Cargo Removido:**', `${cargo_nome}`, true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     usuario.roles.remove(cargo_nome)

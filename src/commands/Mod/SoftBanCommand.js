@@ -17,15 +17,15 @@ module.exports = class softban extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **SoftBan:**', `${message.author.username}`, true)
       .setDescription('Este comando faz com que você aplique um banimento e remova-o em seguida, funcionando como um kick que limpa as mensagens dos últimos 7 dias deste usuário.') // inline false
-      .addField('*Uso do comando:*', '`softban <@user> <motivo>`', true)
-      .addField('*Exemplo:*', '`softban @Solaris#0006 Ban hammer has spoken!`', true)
+      .addFields('*Uso do comando:*', '`softban <@user> <motivo>`', true)
+      .addFields('*Exemplo:*', '`softban @Solaris#0006 Ban hammer has spoken!`', true)
 
     const defina = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (SOFTBAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
-      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
-      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+      .addFields('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addFields('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)

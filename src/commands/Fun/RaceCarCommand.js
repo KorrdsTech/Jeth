@@ -19,7 +19,7 @@ module.exports = class correr extends Command {
     embed.setTitle('🏎 Corrida')
     embed.setColor(colors['default'])
     embed.setDescription(`${Corrida} e ${corrida2} **estão disputando uma corrida**`)
-    embed.addField('Sobre a corrida:', `${Corrida}\n${falas[Math.floor(Math.random() * falas.length)]}\n${corrida2}\n${falas[Math.floor(Math.random() * falas.length)]}`)
+    embed.addFields('Sobre a corrida:', `${Corrida}\n${falas[Math.floor(Math.random() * falas.length)]}\n${corrida2}\n${falas[Math.floor(Math.random() * falas.length)]}`)
     message.reply({ embeds: [embed] })
   }
 }

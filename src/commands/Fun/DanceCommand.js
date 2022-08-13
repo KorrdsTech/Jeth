@@ -17,7 +17,7 @@ module.exports = class dancar extends Command {
     if (!defineduser) {
       const embed = new EmbedBuilder()
         .setColor('#a900ff')
-        .addField(`${message.author.username}`, ' Se juntou a dança!')
+        .addFields(`${message.author.username}`, ' Se juntou a dança!')
         .setImage(gifs[Math.floor(Math.random() * gifs.length)])
         .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
         .setTimestamp()

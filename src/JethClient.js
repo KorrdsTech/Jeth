@@ -54,11 +54,11 @@ module.exports = class JethClient extends Client {
   sendLoggerError(error) {
     console.log(error)
     const embed = new EmbedBuilder()
-      .setColor(colors.mod)
+      .setColor(colors['mod'])
       .setTitle(error.name)
       .setAuthor(this.user.username, this.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .addDescription(error.message)
-      .addField('Arquivo', `${error.fileName} ${error.lineNumber}`)
+      .addFields('Arquivo', `${error.fileName} ${error.lineNumber}`)
     return this.channels.get('831041533469655070').send({ embeds: [embed] })
   }
 }

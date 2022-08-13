@@ -19,7 +19,7 @@ module.exports = class Prefix extends Command {
       .setColor(colors['mod'])
       .setTitle('**Err:**', `${message.author}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`ADMINISTRATOR`', true)
+      .addFields('*Verifique se você possui a permissão:*', '`ADMINISTRATOR`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
 
     if (!args[0]) { return message.reply(`${message.author}, defina um novo prefixo! **${documento.prefix}prefix <novo prefix>**`) } // Tell them if they didn't supply any arguments.

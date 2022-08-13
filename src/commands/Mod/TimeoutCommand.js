@@ -17,20 +17,20 @@ module.exports = class Timeout extends Command {
       .setColor(colors['mod'])
       .setTitle('**Timeout:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERSS`', true)
+      .addFields('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERSS`', true)
 
     const permErr = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('**Timeout:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se eu possuo a permissão:*', '`MODERATE_MEMBERSS`', true)
+      .addFields('*Verifique se eu possuo a permissão:*', '`MODERATE_MEMBERSS`', true)
 
     const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Timeout:**', `${message.author.username}`, true)
       .setDescription('Criado para subistituir o antigo comando mute, um timeout irá remover o usuário temporariamente dos canais do seu servidor o impedindo de enviar mensagens e se comunicar por voz, esta funcionalidade foi implementada pelo Discord em um release anterior.') // inline false
-      .addField('*Uso do comando:*', '`timeout <@user> <tempo> <motivo>`', true)
-      .addField('*Exemplo:*', '`timeout @Solaris#0006 1d Mute manager has spoken!`', true)
+      .addFields('*Uso do comando:*', '`timeout <@user> <tempo> <motivo>`', true)
+      .addFields('*Exemplo:*', '`timeout @Solaris#0006 1d Mute manager has spoken!`', true)
 
     const rolesHighest = new EmbedBuilder()
       .setColor(colors['mod'])
@@ -41,8 +41,8 @@ module.exports = class Timeout extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
-      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
-      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+      .addFields('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addFields('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)

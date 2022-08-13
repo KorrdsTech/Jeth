@@ -31,7 +31,7 @@ module.exports = class curiosidades extends Command {
       .setTitle('🤔 Curiosidades Aleatórias')
       .setColor(colors['default'])
       .setTimestamp()
-      .addField('**Curiosidade selecionada:**', curiosidadefinal)
+      .addFields('**Curiosidade selecionada:**', curiosidadefinal)
     message.reply({ embeds: [embedcuriosidade] })
   }
   //Caso queira, adicione mais curiosidades. Limitei a quantidade devido ao limite de 2000 caracteres

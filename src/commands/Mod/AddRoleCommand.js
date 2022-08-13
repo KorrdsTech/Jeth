@@ -18,7 +18,7 @@ module.exports = class setcargo extends Command {
       .setColor(colors['mod'])
       .setTitle('**AddRole:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
+      .addFields('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
 
     const rolesHighest = new EmbedBuilder()
       .setTimestamp()
@@ -31,15 +31,15 @@ module.exports = class setcargo extends Command {
       .setColor(colors['mod'])
       .setTitle('**AddRole:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se eu possuo a permissão:*', '`MANAGE_ROLES`', true)
+      .addFields('*Verifique se eu possuo a permissão:*', '`MANAGE_ROLES`', true)
 
     const emptyMessage = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **AddRole:**', `${message.author.username}`, true)
       .setDescription('Criado para facilitar a distribuição de cargos dentro de um servidor.') // inline false
-      .addField('*Uso do comando:*', '`AddRole <@user> <cargo>`', true)
-      .addField('*Exemplo:*', '`AddRole @Solaris#0006 @Admin`', true)
+      .addFields('*Uso do comando:*', '`AddRole <@user> <cargo>`', true)
+      .addFields('*Exemplo:*', '`AddRole @Solaris#0006 @Admin`', true)
 
     if (!args[1]) return message.reply({ embeds: [emptyMessage] });
     if (!message.guild.me.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [permErr] });
@@ -66,8 +66,8 @@ module.exports = class setcargo extends Command {
       .setColor(colors['default'])
       .setDescription(`**CARGO ADICIONADO PARA O USUÁRIO:** ${usuario.user.username}`)
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .addField('**Staffer:**', `${message.author}`, true) // inline true
-      .addField('**Cargo Adicionado:**', `${cargo_nome}`, true)
+      .addFields('**Staffer:**', `${message.author}`, true) // inline true
+      .addFields('**Cargo Adicionado:**', `${cargo_nome}`, true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (usuario.roles.cache.has(cargo_nome)) return message.reply('o membro mencionado já possui esse cargo.')

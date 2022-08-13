@@ -31,7 +31,7 @@ module.exports = class complaint extends Command {
     const reportembed = new EmbedBuilder()
       .setThumbnail(this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setDescription(`To attach proofs of your report please copy your private code sent to your DM and send the attachments to our Trust & Safety team with your code.\n\nWhistleblower: *\`${message.author.tag}\`*\nViolator: *${violator}*\nReason: *${reason}*`, message.author.avatarURL({ dynamic: true, size: 1024 }))
-      .addField(`Complaint ID:`, `*${makeid(24)}*`)
+      .addFields(`Complaint ID:`, `*${makeid(24)}*`)
       .setColor(colors['mod'])
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());

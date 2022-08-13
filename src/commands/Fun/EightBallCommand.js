@@ -20,8 +20,8 @@ module.exports = class Eightball extends Command {
     const ballembed = new EmbedBuilder()
       .setAuthor(message.author.tag)
       .setColor(colors['default'])
-      .addField('Questão', question)
-      .addField('Resposta', replies[result])
+      .addFields('Questão', question)
+      .addFields('Resposta', replies[result])
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp()
 

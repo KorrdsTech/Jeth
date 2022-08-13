@@ -16,7 +16,7 @@ module.exports = class security extends Command {
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`ADMINISTRATOR`', true)
+      .addFields('*Verifique se você possui a permissão:*', '`ADMINISTRATOR`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('ADMINISTRATOR')) return message.reply({ embeds: [erroDePermissão] })
@@ -71,7 +71,7 @@ module.exports = class security extends Command {
       embed.setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
       embed.setColor(colors['default'])
       embed.setDescription(`Dúvidas de como usar o Módulo de Segurança?\nAqui vai algumas dicas...`)
-      embed.addField('Modos de usar', [
+      embed.addFields('Modos de usar', [
         `**BLOQUEAR DIVULGAÇÃO DE SERVIDORES**`,
         `\`${guildDocument.prefix}div canal <#CANAL>\` - Define o canal onde será definido o log de Anti-Invite.`,
         `\`${guildDocument.prefix}div ativar \` - Para ligar o sistema de Anti-Invite.`,
@@ -95,16 +95,16 @@ module.exports = class security extends Command {
       if (guildDocument.infoantspam) {
         canalteste = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.infoantspam}`;
       }
-      embed2.addField('Anti-Invite | Define o canal de logs anti-invite:', canalBemVindo);
-      embed2.addField('BlockSpamFlood-BSF | Mensagem definida de logs:', canalBemVindo);
+      embed2.addFields('Anti-Invite | Define o canal de logs anti-invite:', canalBemVindo);
+      embed2.addFields('BlockSpamFlood-BSF | Mensagem definida de logs:', canalBemVindo);
       const msgWelcome = guildDocument.antInvite ?
         `<:concludo:739830713792331817> Ativo` :
         `<:rejected:739831089543118890> Desativado`
-      embed2.addField('Anti-Invite está:', msgWelcome);
+      embed2.addFields('Anti-Invite está:', msgWelcome);
       const msgSpam = guildDocument.antSpam ?
         `<:concludo:739830713792331817> Ativo` :
         `<:rejected:739831089543118890> Desativado`
-      embed2.addField('BlockSpamFlood-BSF está:', msgSpam);
+      embed2.addFields('BlockSpamFlood-BSF está:', msgSpam);
 
       let embedCount = 1
       message.reply({ embeds: [embed] }).then(async m => {

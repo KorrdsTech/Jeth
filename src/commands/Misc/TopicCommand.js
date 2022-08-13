@@ -18,7 +18,7 @@ module.exports = class topico extends Command {
       .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MANAGE_CHANNELS`', true)
+      .addFields('*Verifique se você possui a permissão:*', '`MANAGE_CHANNELS`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
     if (!message.member.permissions.has('MANAGE_CHANNELS'))
       return message.reply({ embeds: [embedA] })

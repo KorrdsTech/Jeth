@@ -17,7 +17,7 @@ module.exports = class saida extends Command {
       .setColor(colors['default'])
       .setTitle('**Err:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
+      .addFields('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
     if (!message.member.permissions.has('MANAGE_GUILD'))
       return message.reply({ embeds: [embedA] })
@@ -59,19 +59,19 @@ module.exports = class saida extends Command {
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como usar a Saida?\nAqui vai algumas dicas...`)
         .setColor(colors['default'])
-        .addField('Modos de usar', [
+        .addFields('Modos de usar', [
           `\`${guildDocument.prefix}saida canal #canal\` - Define o canal onde o saida será definido.`,
           `\`${guildDocument.prefix}saida mensagem <mensagem>\` - Define a mensagem que será exibida no saida.`,
           `\`${guildDocument.prefix}saida desativar\` - Caso haja algum saida ligado/definido, ele será removido e o sistema desligado.`,
           `\n**Lembre-se se ver os \`Placeholders\` abaixo para não errar nada!**\n`
         ].join('\n'), false)
-        .addField('Placeholders', [
+        .addFields('Placeholders', [
           `O sistema de saida(leave-member) aceita embed!`,
           `Não sabe fazer uma? é facil clique aqui: **[[CLIQUE]](https://leovoel.github.io/embed-visualizer/)**`,
           `**[Utilize ${guildDocument.prefix}embed para mais informações]**`,
           `\n**Lembre-se se ver os \`Parâmetros\` abaixo para não errar nada!**\n`
         ].join('\n'), false)
-        .addField('Parâmetros.', [
+        .addFields('Parâmetros.', [
           '**${USER}** - Para marcar o membro na entrada.',
           '**${AVATAR}** - Para definir o avatar do membro.',
           '**${USER-ID}** - Para definir o **ID** do membro.',
@@ -86,16 +86,16 @@ module.exports = class saida extends Command {
       if (guildDocument.channelsaida.length) {
         canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.channelsaida}>`;
       }
-      embed2.addField('saida | Canal de saida:', canalBemVindo);
+      embed2.addFields('saida | Canal de saida:', canalBemVindo);
       let MsgCount = `<:rejected:739831089543118890> Desativado`;
       if (guildDocument.saidaMessage.length) {
         MsgCount = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.saidaMessage.length > 800 ? `${guildDocument.saidaMessage.slice(0, 801)}[...]` : guildDocument.saidaMessage}`;
       }
-      embed2.addField('Saida | Mensagem de Saida:', MsgCount);
+      embed2.addFields('Saida | Mensagem de Saida:', MsgCount);
       const msgsaida = guildDocument.saidaModule ?
         `<:concludo:739830713792331817> Ativo` :
         `<:rejected:739831089543118890> Desativado`
-      embed2.addField('saida está:', msgsaida)
+      embed2.addFields('saida está:', msgsaida)
 
       let embedCount = 1
       message.reply({ embeds: [embed] }).then(async m => {

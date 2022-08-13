@@ -45,7 +45,7 @@ module.exports = class battle extends Command {
       .setDescription(`${message.author} e ${user} **estão disputando uma batalha!**`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
       .setColor(colors['default'])
-      .addField('Sobre a batalha:', `${message.author}\n${randomFalas()}\n${user}\n${randomFalas()}`)
+      .addFields('Sobre a batalha:', `${message.author}\n${randomFalas()}\n${user}\n${randomFalas()}`)
       .setTimestamp()
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 

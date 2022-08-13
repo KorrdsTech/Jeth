@@ -41,7 +41,7 @@ module.exports = class ship extends Command {
 
     const embed = new EmbedBuilder()
       .setColor(colors['default'])
-      .addField(`💗 **${person.displayName}** ama **${message.member.displayName}** este tanto:`, `💟 ${Math.floor(love)}%\n\n${loveLevel}`)
+      .addFields(`💗 **${person.displayName}** ama **${message.member.displayName}** este tanto:`, `💟 ${Math.floor(love)}%\n\n${loveLevel}`)
       .setImage(imagens_ships[Math.floor(Math.random() * imagens_ships.length)])
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp();

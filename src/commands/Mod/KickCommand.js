@@ -15,8 +15,8 @@ module.exports = class kick extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Kick:**', `${message.author.username}`, true)
       .setDescription('Como o próprio nome já diz a função deste comando é de chutar um usuário do seu servidor em alto estilo.') // inline false
-      .addField('*Uso do comando:*', '`kick <@user> <motivo>`', true)
-      .addField('*Exemplo:*', '`kick @Solaris#0006 Get a kick in the ... !`', true)
+      .addFields('*Uso do comando:*', '`kick <@user> <motivo>`', true)
+      .addFields('*Exemplo:*', '`kick @Solaris#0006 Get a kick in the ... !`', true)
 
     const rolesHighest = new EmbedBuilder()
       .setColor(colors['mod'])
@@ -32,8 +32,8 @@ module.exports = class kick extends Command {
       .setTitle(`${message.author}`)
       .setDescription(`🚫 Você foi expulso do servidor ${message.guild.name}`)
       .setColor('#ff0000')
-      .addField('👮 **Staffer:**', `${message.author}`)
-      .addField('✏️ Motivo:', `${razao13}`)
+      .addFields('👮 **Staffer:**', `${message.author}`)
+      .addFields('✏️ Motivo:', `${razao13}`)
       .setFooter({ text: 'Se você acha que a punição foi aplicada incorretamente, recorra ao staffer! 🥶' })
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());
@@ -42,8 +42,8 @@ module.exports = class kick extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (KICK):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
-      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
-      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+      .addFields('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addFields('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)

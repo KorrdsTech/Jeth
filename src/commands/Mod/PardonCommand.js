@@ -19,22 +19,22 @@ module.exports = class Pardon extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (BAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
-      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
-      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+      .addFields('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addFields('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
     const emptyMessage = new EmbedBuilder()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Pardon:**', `${message.author.username}`, true)
       .setDescription('Com este comando você poderá remover todos os avisos salvos de um usuário em específico.') // inline false
-      .addField('*Uso do comando:*', '`pardon <@user>`', true)
-      .addField('*Exemplo:*', '`pardon @Solaris#0006`', true)
+      .addFields('*Uso do comando:*', '`pardon <@user>`', true)
+      .addFields('*Exemplo:*', '`pardon @Solaris#0006`', true)
 
     const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERS`', true)
+      .addFields('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERS`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MODERATE_MEMBERS')) return message.reply({ embeds: [embedA] })
@@ -67,8 +67,8 @@ module.exports = class Pardon extends Command {
 
     const unwarnembed = new EmbedBuilder()
       .setTitle(`Ação | Perdoar`, this.client.user.avatarURL({ dynamic: true, size: 1024 }))
-      .addField(`<:members:963208373644447764> **Usuário:**`, `${usuario}`)
-      .addField(`<:roles:963208373606682725> **Descrição:**`, `O usuário teve seu aviso mais recente perdoado e removido do histórico pelo moderador: ${message.author}`)
+      .addFields(`<:members:963208373644447764> **Usuário:**`, `${usuario}`)
+      .addFields(`<:roles:963208373606682725> **Descrição:**`, `O usuário teve seu aviso mais recente perdoado e removido do histórico pelo moderador: ${message.author}`)
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true }))
       .setFooter({ text: `Staff: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
       .setColor(colors['mod'])

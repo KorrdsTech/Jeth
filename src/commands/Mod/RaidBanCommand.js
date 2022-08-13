@@ -16,8 +16,8 @@ module.exports = class Raidban extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **RaidBan:**', `${message.author.username}`, true)
       .setDescription('Criado para facilitar o gerenciamento de banimentos de um servidor, desta forma criando uma log confirmando permanentemente que o usuário foi banido daquele servidor e o motivo especificado.') // inline false
-      .addField('*Uso do comando:*', '`ban <@user> <motivo>`', true)
-      .addField('*Exemplo:*', '`ban @Solaris#0006 Ban hammer has spoken!`', true)
+      .addFields('*Uso do comando:*', '`ban <@user> <motivo>`', true)
+      .addFields('*Exemplo:*', '`ban @Solaris#0006 Ban hammer has spoken!`', true)
 
     const rolesHighest = new EmbedBuilder()
       .setColor(colors['mod'])
@@ -39,8 +39,8 @@ module.exports = class Raidban extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **Configuração Incompleta (RAIDBAN):**', `${message.author.username}`, true)
       .setDescription('Configure da forma ensinada abaixo.') // inline false
-      .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
-      .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+      .addFields('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
+      .addFields('*Exemplo:*', '`PunishmentLogs set #geral`', true)
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)
@@ -108,8 +108,8 @@ module.exports = class Raidban extends Command {
       .setTitle(`${message.author}`)
       .setDescription(`:do_not_litter: **Você foi banido do servidor ${message.guild.name} :no_entry_sign:**`)
       .setColor('#ffefad')
-      .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
-      .addField('📝 Motivo:', `${reason}`)
+      .addFields('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
+      .addFields('📝 Motivo:', `${reason}`)
       .setFooter({ text: 'Se você acha que a punição foi aplicada incorretamente, recorra ao staffer! 🥶' })
       .setImage('https://media1.tenor.com/images/4c906e41166d0d154317eda78cae957a/tenor.gif?itemid=12646581')
       .setTimestamp(new Date());

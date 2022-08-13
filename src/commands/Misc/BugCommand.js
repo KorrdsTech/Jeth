@@ -20,9 +20,9 @@ module.exports = class bug extends Command {
     const embed = new EmbedBuilder()
       .setColor(colors['mod'])
       .setDescription('**BUG-REPORT**')
-      .addField('Ticket criado por:', `${message.author.tag}`, true)
-      .addField('**ID:**', `${message.author.id}`, true)
-      .addField('**Descrição:**', `${report}`, true)
+      .addFields('Ticket criado por:', `${message.author.tag}`, true)
+      .addFields('**ID:**', `${message.author.id}`, true)
+      .addFields('**Descrição:**', `${report}`, true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date())
 

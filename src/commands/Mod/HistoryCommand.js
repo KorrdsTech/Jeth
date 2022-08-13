@@ -8,7 +8,7 @@ module.exports = class History extends Command {
   constructor(name, client) {
     super(name, client)
 
-    this.name = 'History'
+    this.name = 'history'
     this.aliases = ['warnlist', 'avisos', 'history']
     this.category = 'Mod'
     this.subcommandsOnly = false
@@ -19,15 +19,15 @@ module.exports = class History extends Command {
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **History:**', `${message.author.username}`, true)
       .setDescription('Com este comando você facilmente ver a lista de avisos de um usuário.') // inline false
-      .addField('*Uso do comando:*', '`history <@user>`', true)
-      .addField('*Exemplo:*', '`history @Solaris#0006`', true)
+      .addFields('*Uso do comando:*', '`history <@user>`', true)
+      .addFields('*Exemplo:*', '`history @Solaris#0006`', true)
 
     const embedA = new EmbedBuilder()
       .setTimestamp()
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERS`', true)
+      .addFields('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERS`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MODERATE_MEMBERS')) return message.reply({ embeds: [embedA] })

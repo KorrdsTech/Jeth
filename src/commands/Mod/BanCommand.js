@@ -74,7 +74,7 @@ module.exports = class BanCommand extends Command {
         { name: `Configuração do Sistema:`, value: `> <:ModMute:980288914914947113> **» Selecione qualquer opção na lista para continuar.**` }
       ])
       .setFooter({ text: `${message.author.username}, você tem 3 minutos para interagir.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setThumbnail('https://cdn-icons.flaticon.com/png/512/3694/premium/3694290.png?token=exp=1653835711~hmac=be1fd43871e4498590084d1b61752139')
-      .setColor(colors.mod) // Troca isso dps
+      .setColor(colors['mod']) // Troca isso dps
       .setTimestamp();
 
     const raw = new MessageActionRow().addComponents(
@@ -204,7 +204,7 @@ module.exports = class BanCommand extends Command {
                     .setFooter({ text: `${message.author.username} já baniu ${documentBans.bans} usuários.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setThumbnail('https://cdn-icons.flaticon.com/png/512/3694/premium/3694290.png?token=exp=1653835711~hmac=be1fd43871e4498590084d1b61752139')
                     .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
                     .setImage(`${userDocuent.gifban || ''}`)
-                    .setColor(colors.mod) // Troca isso dps, se nunca troca neh solaris prr
+                    .setColor(colors['mod']) // Troca isso dps, se nunca troca neh solaris prr
                     .setTimestamp();
 
                   documentBans.bans += 1
