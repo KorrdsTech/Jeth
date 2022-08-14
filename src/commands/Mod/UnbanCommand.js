@@ -20,6 +20,17 @@ module.exports = class unban extends Command {
       .setDescription('Configure da forma ensinada abaixo.') // inline false
       .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
       .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
+    
+    const embedA = new MessageEmbed()
+
+      .setTimestamp()
+      .setColor(colors['mod'])
+      .setTitle('**Err:**', `${usuario}`, true)
+      .setDescription('Missing Permissions') // inline false
+      .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+
+    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })    
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)
