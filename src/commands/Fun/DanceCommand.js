@@ -19,7 +19,7 @@ module.exports = class dancar extends Command {
         .setColor('#a900ff')
         .addFields(`${message.author.username}`, ' Se juntou a dança!')
         .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+        .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
         .setTimestamp()
       try {
         message.reply({ embeds: [embed] })

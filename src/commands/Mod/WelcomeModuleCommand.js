@@ -17,7 +17,7 @@ module.exports = class welcomeModule extends Command {
       .setTitle('**Err:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addFields('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
     if (!message.member.permissions.has('MANAGE_GUILD'))
       return message.reply({ embeds: [embedA] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)
@@ -52,7 +52,7 @@ module.exports = class welcomeModule extends Command {
           .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setDescription(`Você definiu o cargo ${role} como auto-role com sucesso.`)
           .setColor(colors['default'])
-          .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+          .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
           .setTimestamp();
         message.reply({ embeds: [embed] })
       })
@@ -64,7 +64,7 @@ module.exports = class welcomeModule extends Command {
           .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
           .setDescription(`Você removeu o cargo ${role} como auto-role com sucesso.`)
           .setColor(colors['default'])
-          .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+          .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
           .setTimestamp();
         message.reply({ embeds: [embed] })
       })

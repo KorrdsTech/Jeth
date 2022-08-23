@@ -29,7 +29,7 @@ module.exports = class Raidban extends Command {
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Sistema Trust & Safety')
       .setDescription('**Por favor, escolha um motivo válido abaixo para aplicar o banimento!** \n<a:JT1:739977300564639835> - Conteúdo pornográfico/Gore \n<a:JT2:739977300921024522> - Promover ou participar de Raids a outros servidores \n<a:JT3:739977300895858708> - Discurso de ódio ou Racismo e derivados \n<a:JT4:739977300472234078> - Apologia ao Nazismo e/ou pornografia infântil \n<a:JT5:739977300719697941> - Ações que comprometem o servidor ou os usuários \n<a:JT6:739977300795457687> - Divulgação inapropriada')
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     const link = new EmbedBuilder()
       .setColor(colors['default'])
@@ -86,7 +86,7 @@ module.exports = class Raidban extends Command {
       .setTitle('Ação | Ban Raid')
       .setColor('#ff112b')
       .setImage(`${userDocuent.gifban || ''}`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
     // banimento private
@@ -99,7 +99,7 @@ module.exports = class Raidban extends Command {
       .setAuthor({ name: `${message.author.username} Já baniu ${bans.size} usuários`, iconURL: message.author.avatarURL({ dynamic: true, size: 1024 }) })
       .setColor('#ff112b')
       .setImage(`${userDocuent.gifban || ''}`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
     const warnembed18 = new EmbedBuilder()

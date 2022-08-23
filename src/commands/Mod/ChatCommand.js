@@ -10,6 +10,7 @@ module.exports = class chat extends Command {
     this.category = 'Mod'
     this.subcommandsOnly = false
   }
+
   async run(message) {
     const actions = new MessageActionRow()
       .addComponents(
@@ -33,7 +34,7 @@ module.exports = class chat extends Command {
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addFields('*Verifique se você possui a permissão:*', '`MANAGE_MESSAGES`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
       return message.reply({ embeds: [embedNoPermission] })
@@ -56,34 +57,34 @@ module.exports = class chat extends Command {
       filter: (i) => i.user.id === message.author.id && i.message.id === ell.id,
       max: 1,
     })
-    collector.on("collect", (interaction) => {
+    collector.on('collect', (interaction) => {
       interaction.deferUpdate();
       switch (interaction.customId) {
-        case "lock":
+        case 'lock':
           message.channel.edit({
             permissionOverwrites: [
               {
                 id: message.guildId,
-                type: "role",
-                deny: ["SEND_MESSAGES"]
+                type: 'role',
+                deny: ['SEND_MESSAGES']
               }
             ]
           })
           ell.edit({ embeds: [embedLocked], components: [] })
           break;
-        case "unlock":
+        case 'unlock':
           message.channel.edit({
             permissionOverwrites: [
               {
                 id: message.guildId,
-                type: "role",
-                allow: ["SEND_MESSAGES"]
+                type: 'role',
+                allow: ['SEND_MESSAGES']
               }
             ]
           })
           ell.edit({ embeds: [embedUnlocked], components: [] })
           break;
-        case "cancel":
+        case 'cancel':
           if (ell.deletable) ell.delete();
           break;
       }

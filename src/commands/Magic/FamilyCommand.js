@@ -19,7 +19,7 @@ module.exports = class Familia extends Command {
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
       .addFields('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
     if (!usuario) return message.reply('Você não mencionou o usuário!');
@@ -53,7 +53,7 @@ module.exports = class Familia extends Command {
       .addFields('**Executor:**', `${message.author}`, true) // inline true
       .addFields('**Cargo Recebido:**', `${role}`, true)
       .setImage('https://data.whicdn.com/images/273383424/original.gif')
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (usuario.roles.cache.has(role)) return message.reply('o membro mencionado já possui esse cargo.')
     usuario.roles.add(role)

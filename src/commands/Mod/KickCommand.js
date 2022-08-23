@@ -64,7 +64,7 @@ module.exports = class kick extends Command {
       .setTitle('Ação | Kick')
       .setColor('#ff112b')
       .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Kickado:** ${membro18.username} \n**ID:** ${membro18.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${razao13}`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
     log.send(warnembed13);

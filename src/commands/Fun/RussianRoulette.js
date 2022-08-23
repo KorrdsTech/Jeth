@@ -17,7 +17,7 @@ module.exports = class roleta extends Command {
       .setColor(colors['default'])
       .setDescription(falas[Math.floor(Math.random() * falas.length)])
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp();
 
     message.reply({ embeds: [embed] })

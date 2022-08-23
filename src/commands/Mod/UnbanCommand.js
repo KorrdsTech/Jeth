@@ -33,7 +33,7 @@ module.exports = class unban extends Command {
       .setTitle('**Ação | Unban**')
       .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Usuário:** ${usuario.username} \n**ID:** ${usuario.id}`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
     message.guild.members.unban(args[0]).then(() => {

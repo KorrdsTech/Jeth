@@ -47,7 +47,7 @@ module.exports = class battle extends Command {
       .setColor(colors['default'])
       .addFields('Sobre a batalha:', `${message.author}\n${randomFalas()}\n${user}\n${randomFalas()}`)
       .setTimestamp()
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     message.reply({ embeds: [embedB] })
   }

@@ -24,7 +24,7 @@ module.exports = class Reps extends Command {
       .setDescription('**REPUTAÇÃO TOTAL:**')
       .addFields('Usuário:', `${member}`)
       .addFields('Reps:', `${user.rep}`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
     message.reply({ embeds: [embed] })
   }
 }

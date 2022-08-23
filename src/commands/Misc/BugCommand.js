@@ -23,7 +23,7 @@ module.exports = class bug extends Command {
       .addFields('Ticket criado por:', `${message.author.tag}`, true)
       .addFields('**ID:**', `${message.author.id}`, true)
       .addFields('**Descrição:**', `${report}`, true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date())
 
     dono.forEach((ownerID) => {

@@ -35,7 +35,7 @@ module.exports = class Warn extends Command {
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addFields('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERS`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MODERATE_MEMBERS')) return message.reply({ embeds: [embedA] })
 
@@ -86,7 +86,7 @@ module.exports = class Warn extends Command {
       .setTitle('Ação | Aviso')
       .setColor(colors['mod'])
       .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Advertido:** ${usuario.user.username} \n**ID:** ${usuario.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${motivo}`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp();
 
     log.send({ embeds: [warnembed] })

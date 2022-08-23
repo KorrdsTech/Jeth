@@ -19,7 +19,7 @@ module.exports = class flip extends Command {
       .setColor(colors['default'])
       .setDescription(moeda)
       .setTitle('A face da moeda está virada para...')
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     message.reply({ embeds: [moedaembed1] });
 

@@ -83,7 +83,7 @@ module.exports = async function onMessage(message) {
     .addFields(
       {
         name: `${message.author.tag} (\`${message.author.id}\`) Verifique-se você está setado no banco de dados como developer.`,
-        value: `<:reinterjection:955577574304657508> **Seja quem for**, um alerta foi emitido a equipe da Jeth, caso seja um abuso de bug, o usuário será **blacklisted** do bot.`
+        value: `<:reinterjection:955577574304657508> **Seja quem for**, um alerta foi emitido a equipe da Moderadora, caso seja um abuso de bug, o usuário será **blacklisted** do bot.`
       })
     .setThumbnail('https://cdn-icons-png.flaticon.com/512/2061/2061766.png')
     .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
@@ -126,7 +126,7 @@ module.exports = async function onMessage(message) {
         .setLabel('Suporte')
         .setStyle('LINK')
         .setEmoji('<:b_blurpleemployee:856174396423274516>')
-        .setURL('https://discord.gg/jeth')
+        .setURL('https://discord.gg/Moderadora')
     );
 
     message.reply({ content: `<a:b_hypesquadi:887899688634839042> **Olá, **${message.author}! Prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <a:a_dancin:934175860930527313> Atualmente possuo **${totalCommands}** comandos!`, components: [row] })

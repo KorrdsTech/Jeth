@@ -2,7 +2,7 @@ const { Client, Collection, EmbedBuilder } = require('discord.js')
 const { colors } = require('./utils')
 const Fs = require('fs')
 const Database = require('./utils/database/Database')
-module.exports = class JethClient extends Client {
+module.exports = class ModeradoraClient extends Client {
   constructor(options) {
     super(options)
 

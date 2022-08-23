@@ -29,7 +29,7 @@ module.exports = class retcargo extends Command {
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
       .addFields('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     const defina = new EmbedBuilder()
       .setColor(colors['mod'])
@@ -65,7 +65,7 @@ module.exports = class retcargo extends Command {
     // .setTitle('**Err:**', true)
     // .setDescription('Missing Permissions') // inline false
     // .addFields('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
-    // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
+    // .setFooter("Moderando Discord", message.guild.iconURL({ dynamic: true, size: 1024 }))
 
     // let clientRole = message.guild.me.roles.highest;
     // if (clientRole.comparePositionTo(targetRole) <= 0) {
@@ -82,7 +82,7 @@ module.exports = class retcargo extends Command {
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .addFields('**Staffer:**', `${message.author}`, true) // inline true
       .addFields('**Cargo Removido:**', `${cargo_nome}`, true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     usuario.roles.remove(cargo_nome)
     log.send({ embeds: [embed] })

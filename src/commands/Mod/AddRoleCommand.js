@@ -68,7 +68,7 @@ module.exports = class setcargo extends Command {
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .addFields('**Staffer:**', `${message.author}`, true) // inline true
       .addFields('**Cargo Adicionado:**', `${cargo_nome}`, true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (usuario.roles.cache.has(cargo_nome)) return message.reply('o membro mencionado já possui esse cargo.')
     usuario.roles.add(cargo_nome)

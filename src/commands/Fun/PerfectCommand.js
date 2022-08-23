@@ -18,7 +18,7 @@ module.exports = class perfeito extends Command {
       .setTitle('**Err:**', true)
       .setDescription('Deprecated') // inline false
       .addFields('*Você executou o comando corretamente, porém ele foi desabilitado pelo motivo:*', '`CANVAS OUT OF DATE - awaiting next version.`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     message.reply({ embeds: [err] })
     //     const width = 467;

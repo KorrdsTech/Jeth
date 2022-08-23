@@ -35,7 +35,7 @@ module.exports = class Pardon extends Command {
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addFields('*Verifique se você possui a permissão:*', '`MODERATE_MEMBERS`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setFooter({ text: 'Moderando Discord', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('MODERATE_MEMBERS')) return message.reply({ embeds: [embedA] })
 
