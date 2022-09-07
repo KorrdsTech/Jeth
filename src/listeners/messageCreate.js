@@ -88,11 +88,9 @@ module.exports = async function onMessage(message) {
     .setThumbnail('https://cdn-icons-png.flaticon.com/512/2061/2061766.png')
     .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
 
-  if (command) {
-    if (!message.author.id === process.env.OWNERS) {
-      if (command.adminOnly)
-
-        return message.reply({ embeds: [embeddevonly] })
+  if (command) {      
+    if (command.adminOnly) {
+      if (!message.author.id === process.env.OWNERS) return message.reply({ embeds: [embeddevonly] })
     }
   }
 
