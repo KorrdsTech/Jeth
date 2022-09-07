@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const { EmbedBuilder, MessageActionRow, MessageButton } = require('discord.js')
 const { colors, AntiSpamUtils, AntiInviteUtils, PermissionsBitField } = require('../utils')
 const parse = require('parse-duration')
@@ -89,7 +90,7 @@ module.exports = async function onMessage(message) {
     .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
 
   if (command) {
-    if (message.author.id !== process.env.OWNERS) {
+    if (!message.author.id || process.env.OWNERS) {
       if (command.adminOnly)
 
         return message.reply({ embeds: [embeddevonly] })

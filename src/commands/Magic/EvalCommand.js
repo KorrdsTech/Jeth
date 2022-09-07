@@ -12,7 +12,6 @@ module.exports = class evalcmd extends Command {
   }
 
   async run(message, args) {
-
     try {
       const util = require('util');
       const code = args.join(' ');
