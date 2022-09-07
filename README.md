@@ -1,28 +1,15 @@
-![Moderadora](https://i.imgur.com/NybGppe.png)
+<h1 align="center">📫 MODERANDO DISCORD 📫</h1>
 
-<h1 align="center">⭐ Moderadorazinha ⭐</h1>
+![image](https://user-images.githubusercontent.com/82925878/186046717-2c8d1884-f195-4d50-ba8a-6590e9475d29.png)
 
-<p align="center">
-<a href="https://top.gg/bot/718210363014905866">
-  <img src="https://top.gg/api/widget/718210363014905866.svg">
-</a>
-</p>
+<p>Lembre-se nós disponibilizamos nossa SRC para usos a fins estudantis, não gostaríamos em nehuma hipótese que nosso projeto fosse plagiada. Portanto não baixe nossos arquivos apenas para replica-los em outro bot criado dentro do Discord</p>
+<p>Nosso projeto também conta com as features abaixo:</p>
 
-<p>Os servidores do Discord necessitam de uma moderação de qualidade, pois sofrem do mesmo problema, pessoas má intencionadas que querem lhe causar problemas, porém não queremos uma santa inquisição ou até mesmo que nossos servidores pareçam uma ditadura não é mesmo? pensando nisso foram criados os bots dentro do Discord, disponibilizando ferramentas para que seja feita uma moderação adequada e muito bem organizada, a Moderadora é um deles, uma robô com Múltiplos Propósitos focada em Moderação de servidores, também contamos com diversos comandos de entretenimento e miscelânea.</p>
+# Auto Moderação
+<p>Alguns comandos criados dentro de nosso bot permite com que você não tenha que ficar se preocupando em vigiar o seu server 24horas por dia para ver se há alguma discrepância, um exemplo de comandos deste módulo é o BlockDiv, e ainda pretendemos criar mais!</p>
 
-## 💎 Features
+# Moderação Básica/Avançada
+<p>Também temos alguns comandos de Moderação Básica de servidores, tais como: <i>Ban; Kick; Timeout; Prune</i> entre muitos outros já adicionados, e também contamos com sistemas mais avançados e eficazes capazes até mesmo de bloquear uma RAID de spam/flood em seu servidor!</p>
 
-### 👮‍♀️ Trust & Safety
-- A Moderadora conta agora com um sistema que foi muito utilizado pela Loritta um tempo atrás que se chama blacklist, esta função faz com que membros que estejam dentro desta categoria não possam usar os comandos da Moderadora e sejam banidas de uma rede de servidores em que o módulo esteja ATIVO, este módulo é customizável, ou seja, você pode decidir se ele estará ativo ou não e pode alterar quando quiser.
-  Um usuário só será adicionado neste módulo caso ele descumpra os termos de serviço do Discord ou cometa alguma infração muito grave a nível superior de moderação básica de servidor.
-  
-### ☃️ Buttons
-- Recentemente lançada nas últimas atualizações do Discord, com buttons fica muito mais fácil a interação do usuário com nossos comandos com ou sem o uso de SlashCommands, dando um olhar mais agradável e bem mais organizado.
-
-### 👮 Moderation
-- Contém diversos comandos que irão facilitar sua vida como moderador de um servidor privado ou público, comandos como: `-mute`, `-warn`, `-ban`, `-kick`; entre outros.
-
-### 😘 Fun
-- Esta categoria contém comandos de diversão que irão lhe entreter e ajudar a entreter o público do seu servidor contando com comandos clássicos e conhecidos por diversos servidores como o caso do `-ship`
-
-> Também contemos muitos outros módulos e categorias, por favor venha conferir nossa linda robozinha adicionando-a em seu servidor do Discord!
+# Entretenimento
+<p>Vamos ser sinceros ao concordar que ninguém procura bots dentro do Discord apenas por moderação em seus servidores, também gostariam de comandos com funcionalidades capazes de divertir seus membros, é desafiador de fato competir com os atuais robôs de entretenimento da plataforma, porém prometemos dar nosso melhor em todos os aspectos de todas as partes!</p>
