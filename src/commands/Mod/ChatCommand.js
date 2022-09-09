@@ -10,6 +10,7 @@ module.exports = class chat extends Command {
     this.category = 'Mod'
     this.subcommandsOnly = false
   }
+
   async run(message) {
     const actions = new MessageActionRow()
       .addComponents(
@@ -51,39 +52,39 @@ module.exports = class chat extends Command {
     const embedUnlocked = new MessageEmbed()
       .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi desbloqueado com sucesso!`)
       .setColor(colors['default'])
-    
+
     const collector = ell.createMessageComponentCollector({
       filter: (i) => i.user.id === message.author.id && i.message.id === ell.id,
       max: 1,
     })
-    collector.on("collect", (interaction) => {
+    collector.on('collect', (interaction) => {
       interaction.deferUpdate();
       switch (interaction.customId) {
-        case "lock":
+        case 'lock':
           message.channel.edit({
             permissionOverwrites: [
               {
                 id: message.guildId,
-                type: "role",
-                deny: ["SEND_MESSAGES"]
+                type: 'role',
+                deny: ['SEND_MESSAGES']
               }
             ]
           })
           ell.edit({ embeds: [embedLocked], components: [] })
           break;
-        case "unlock":
+        case 'unlock':
           message.channel.edit({
             permissionOverwrites: [
               {
                 id: message.guildId,
-                type: "role",
-                allow: ["SEND_MESSAGES"]
+                type: 'role',
+                allow: ['SEND_MESSAGES']
               }
             ]
           })
           ell.edit({ embeds: [embedUnlocked], components: [] })
           break;
-        case "cancel":
+        case 'cancel':
           if (ell.deletable) ell.delete();
           break;
       }
