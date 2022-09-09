@@ -1,6 +1,6 @@
 {
   "name": "jeth",
-  "version": "7.0-canary",
+  "version": "v.13/6.0.1-pre",
   "main": "index.js",
   "scripts": {
     "start": "node .",

@@ -15,6 +15,16 @@ module.exports = class BanCommand extends Command {
         // Deu alguem erro? Agradeça e reporte para mim, q ngm aqui é de ferro | Suporte apenas nas 24hrs apos comando lançado, dps so quando eu tiver tempo :p
 
   async run(message, args) {
+    const embedA = new MessageEmbed()
+
+      .setTimestamp()
+      .setColor(colors['mod'])
+      .setTitle('**Err:**', `${usuario}`, true)
+      .setDescription('Missing Permissions') // inline false
+      .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+
+    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
     const userDocuent = await this.client.database.user.getOrCreate(message.author.id)
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id) //Db
     const log = this.client.channels.cache.get(guildDocument.punishChannel) // Com log
