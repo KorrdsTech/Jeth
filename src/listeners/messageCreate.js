@@ -88,7 +88,7 @@ module.exports = async function onMessage(message) {
     .setThumbnail('https://cdn-icons-png.flaticon.com/512/2061/2061766.png')
     .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
 
-  if (command) {      
+  if (command) {
     if (command.adminOnly) {
       if (!message.author.id === process.env.OWNERS) return message.reply({ embeds: [embeddevonly] })
     }
@@ -111,7 +111,7 @@ module.exports = async function onMessage(message) {
   const mentionRegex = RegExp(`^<@!?${this.user.id}>$`);
   if (message.content.match(mentionRegex)) {
     let totalCommands = 0
-    this.commands.each((c) => totalCommands++)
+    this.commands.each(() => totalCommands++)
 
     const row = new MessageActionRow().addComponents(
       new MessageButton()
