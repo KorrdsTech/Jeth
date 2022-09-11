@@ -1,0 +1,47 @@
+{
+  "name": "moderadora",
+  "main": "./dist/src/index.js",
+  "author": "SolarisGC, DanielaGC_",
+  "version": "v.14/7.0-WIP",
+  "scripts": {
+    "build": "tsc",
+    "start": "node .",
+    "dev": "node -r tsconfig-paths/register -r sucrase/register src/index.ts",
+    "lint:fix": "eslint . --fix"
+  },
+  "homepage": "https://github.com/Discord-Moderadora/ModeradoraJS#readme",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "engines": {
+    "node": ">=18.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Discord-Moderadora/ModeradoraJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Discord-Moderadora/Moderadora/issues"
+  },
+  "dependencies": {
+    "@types/node": "^18.7.0",
+    "axios": "^0.25.0",
+    "discord.js": "^14.3.0",
+    "dotenv": "^15.0.1",
+    "moment": "^2.29.1",
+    "moment-duration-format": "^2.3.2",
+    "mongoose": "^6.2.8",
+    "parse-duration": "^1.0.2",
+    "steam-provider": "^0.3.2",
+    "sucrase": "^3.25.0",
+    "transform-props": "^1.0.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "eslint": "^8.23.0",
+    "tsconfig-paths": "^4.1.0",
+    "typescript": "^4.8.2"
+  }
+}
