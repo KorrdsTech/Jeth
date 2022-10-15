@@ -58,7 +58,7 @@ module.exports = class blacklist extends Command {
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)
-    if (!log) message.reply({ embeds: [defina] })
+    if (!log) return message.reply({ embeds: [defina] })
     if (userData.blacklist) {
       userData.blacklist = false
       userData.save().then(async () => {

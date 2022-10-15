@@ -14,7 +14,7 @@ module.exports = class complaint extends Command {
   async run(message, args) {
     const violator = args[0]
     const reason = args.slice(1).join(' ')
-    if (!reason[4]) message.reply('<:2715shield:832746524416278578> Sua denúncia requer mais provas e um motivo especificado!')
+    if (!reason[4]) return message.reply('<:2715shield:832746524416278578> Sua denúncia requer mais provas e um motivo especificado!')
 
     // gera o ID da denuncia aleatoriamente
     function makeid(length) {
@@ -36,9 +36,9 @@ module.exports = class complaint extends Command {
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
-    message.author.send({ embeds: [reportembed] })
-    this.client.channels.cache.get('1001368892200988700')
+    await message.author.send({ embeds: [reportembed] })
+    await this.client.channels.cache.get('1001368892200988700')
       .send({ content: `Reported by: ${message.author.tag} (${message.author.id})`, embeds: [reportembed] })
-    message.reply('<:a_blurplecertifiedmoderator:856174396225355776> Thank you for your complaint!')
+    await message.reply('<:a_blurplecertifiedmoderator:856174396225355776> Thank you for your complaint!')
   }
 }

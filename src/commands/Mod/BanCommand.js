@@ -6,13 +6,13 @@ module.exports = class BanCommand extends Command {
   constructor(name, client) {
     super(name, client)
 
-    this.name = 'Ban'
-    this.aliases = ['ban', 'banir', 'vaza', 'some', 'javaiboltz']
+    this.name = 'ban'
+    this.aliases = ['ban', 'banir', 'vaza', 'some']
     this.category = 'Mod'
     this.bot_permissions = ['BAN_MEMBERS']
   }
 
-        // Deu alguem erro? Agradeça e reporte para mim, q ngm aqui é de ferro | Suporte apenas nas 24hrs apos comando lançado, dps so quando eu tiver tempo :p
+  // Deu alguem erro? Agradeça e reporte para mim, q ngm aqui é de ferro | Suporte apenas nas 24hrs apos comando lançado, dps so quando eu tiver tempo :p
 
   async run(message, args) {
     const embedA = new MessageEmbed()
@@ -46,11 +46,11 @@ module.exports = class BanCommand extends Command {
     if (!log) return message.reply(`<:ModMute:980288914914947113> » Este servidor não possui o canal de logs de ounições setado.\n<:reinterjection:955577574304657508> » Utilize \`${guildDocument.prefix}PunishmentLogs\` para saber mais.`)
 
     if (!args[0]) return message.reply(`<:ModMute:980288914914947113> » Mencione um usuário valido.`)
-    const usuario = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, '')).catch(err => console.log()) // SIM, você consegue banir gente que n esta no seu servidor | Solução para o if funcionar, n tava conseguindo ness porr | Console n retorna nada pq da erro mas n da, sacou?
+    const usuario = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, '')).catch(() => console.log()) // SIM, você consegue banir gente que n esta no seu servidor | Solução para o if funcionar, n tava conseguindo ness porr | Console n retorna nada pq da erro mas n da, sacou?
 
     if (!usuario) return message.reply(`<:ModMute:980288914914947113> » Mencione um usuário valido.`)
 
-          // Motivos
+    // Motivos
 
     const primeiro = 'Conteúdo pornográfico/Gore.'
     const segundo = 'Promover ou participar de Raids a outros servidores.'
@@ -224,7 +224,7 @@ module.exports = class BanCommand extends Command {
 
                   log.send({ embeds: [puni] }) // Log
                   message.reply(`<:staff:982837873919279114> » Usuário banido com sucesso.`) // Check
-                  return usuario.send({ content: `<:ModMute:980288914914947113> » Olá ${usuario}! Venho avisar que você foi banido do servidor **${message.guild.name}**.\n🧾 » Segue abaixo a log do seu banimento:`, embeds: [puni] }).catch(err => console.log(`Não consegui mandar DM ao usuário: ${usuario.tag}`))
+                  return usuario.send({ content: `<:ModMute:980288914914947113> » Olá ${usuario}! Venho avisar que você foi banido do servidor **${message.guild.name}**.\n🧾 » Segue abaixo a log do seu banimento:`, embeds: [puni] }).catch(() => console.log(`Não consegui mandar DM ao usuário: ${usuario.tag}`))
 
                 }
                 case 'esc': { // yes
