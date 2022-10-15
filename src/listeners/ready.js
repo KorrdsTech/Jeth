@@ -1,7 +1,7 @@
 module.exports = async function onReady() {
   console.log(`Logado.`);
   const s = [
-    { name: `🪧 Versão ${require('../../package.json').version}!`, type: 'STREAMING', url: 'https://twitch.tv/gymjs' },
+    { name: `🪧 Versão ${require('../../package.json').version}!`, type: 'STREAMING', url: 'https://twitch.tv/itsolarion' },
     { name: '🏆 Anda perdido? Me mencione!', type: 'PLAYING' },
     { name: '🔑 Entre em contato para reportar qualquer bug.', type: 'PLAYING' },
     { name: '🎍 Desfrute de uma moderação a nível superior!', type: 'PLAYING' },

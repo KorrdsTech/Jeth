@@ -1,6 +1,6 @@
 {
   "name": "jeth",
-  "version": "v.13/6.0.1-pre",
+  "version": "DJSv.13/6.1",
   "main": "index.js",
   "scripts": {
     "start": "node .",

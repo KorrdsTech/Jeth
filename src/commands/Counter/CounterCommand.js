@@ -8,9 +8,9 @@ module.exports = class colorEmbed extends Command {
   constructor(name, client) {
     super(name, client)
 
-    this.name = 'Counter'
+    this.name = 'counter'
     this.aliases = ['counter', 'contador']
-    this.category = 'Counter'
+    this.category = 'counter'
     this.permissions = ['MANAGE_CHANNELS']
     this.bot_permissions = ['MANAGE_CHANNELS']
   }
