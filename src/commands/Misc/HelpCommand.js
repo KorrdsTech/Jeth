@@ -20,7 +20,7 @@ module.exports = class Ajuda extends Command {
     embed.setDescription(`**Criamos uma guia de ajuda para você: ${message.author}**`)
     embed.setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
     embed.setColor(colors['default'])
-    // embed.addField(`${('Counter')} (${this.getCommmandSize('Counter')})`, this.getCategory('Counter', prefix))
+    // esta linha quebra o comando >> embed.addField(`${('Counter')} (${this.getCommmandSize('Counter')})`, this.getCategory('Counter', prefix))
     embed.addField(`${('Fun')} (${this.getCommmandSize('Fun')})`, this.getCategory('Fun', prefix))
     embed.addField(`${('Misc')} (${this.getCommmandSize('Misc')})`, this.getCategory('Misc', prefix))
     embed.addField(`${('Mod')} (${this.getCommmandSize('Mod')})`, this.getCategory('Mod', prefix))
