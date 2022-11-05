@@ -1,5 +1,5 @@
 const { Command, colors } = require('../../utils')
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = class Ajuda extends Command {
   constructor(name, client) {
@@ -15,18 +15,17 @@ module.exports = class Ajuda extends Command {
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
     const prefix = documento.prefix
 
-    const embed = new MessageEmbed()
-    embed.setAuthor({ name: `${this.client.user.username} | Ajuda`, iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }) })
-    embed.setDescription(`**Criamos uma guia de ajuda para você: ${message.author}**`)
-    embed.setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-    embed.setColor(colors['default'])
-    embed.addField(`${('Counter')} (${this.getCommmandSize('Counter')})`, this.getCategory('Counter', prefix))
-    embed.addField(`${('Fun')} (${this.getCommmandSize('Fun')})`, this.getCategory('Fun', prefix))
-    embed.addField(`${('Misc')} (${this.getCommmandSize('Misc')})`, this.getCategory('Misc', prefix))
-    embed.addField(`${('Mod')} (${this.getCommmandSize('Mod')})`, this.getCategory('Mod', prefix))
-    embed.addField(`${('Magic')} (${this.getCommmandSize('Magic')})`, this.getCategory('Magic', prefix))
-    embed.addField(`${('Social')} (${this.getCommmandSize('Social')})`, this.getCategory('Social', prefix))
-    embed.addField(`${('VIP')} (${this.getCommmandSize('VIP')})`, this.getCategory('VIP', prefix))
+    const embed = new EmbedBuilder()
+      .setAuthor({ name: `${this.client.user.username} | Ajuda`, iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }) })
+      .setDescription(`**Criamos uma guia de ajuda para você: ${message.author}**`)
+      .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
+      .setColor(colors['default'])
+      .addFields({ name: `${('Counter')} (${this.getCommmandSize('Counter')})`, value: this.getCategory('Counter', prefix) })
+      .addFields({ name: `${('Fun')} (${this.getCommmandSize('Fun')})`, value: this.getCategory('Fun', prefix) })
+      .addFields({ name: `${('Misc')} (${this.getCommmandSize('Misc')})`, value: this.getCategory('Misc', prefix) })
+      .addFields({ name: `${('Mod')} (${this.getCommmandSize('Mod')})`, value: this.getCategory('Mod', prefix) })
+      .addFields({ name: `${('Magic')} (${this.getCommmandSize('Magic')})`, value: this.getCategory('Magic', prefix) })
+      .addFields({ name: `${('Social')} (${this.getCommmandSize('Social')})`, value: this.getCategory('Social', prefix) })
 
     message.reply({ content: `${message.author} Não se esqueça de votar em mim! <a:a_dancin:1002698613262127144>`, embeds: [embed] })
       .catch(() => {
