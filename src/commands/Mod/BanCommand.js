@@ -19,7 +19,7 @@ module.exports = class BanCommand extends Command {
 
       .setTimestamp()
       .setColor(colors['mod'])
-      .setTitle('**Err:**', `${usuario}`, true)
+      .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
