@@ -1,15 +1,11 @@
-<h1 align="center">📫 MODERANDO DISCORD 📫</h1>
+![image](https://cdn.discordapp.com/attachments/1001368892200988702/1038959342197682206/JETH_A_MODERADORA.png)
 
-![image](https://user-images.githubusercontent.com/82925878/186046717-2c8d1884-f195-4d50-ba8a-6590e9475d29.png)
+<p>Lembre-se nós disponibilizamos nossa SRC para usos a fins estudantis, portanto lembre-se não adianta baixar os arquivos e tentar modifica-los para executar da mesma forma que o bot original, o projeto apresentará possíveis erros desconhecidos por parte do público.</p>
 
-<p>Lembre-se nós disponibilizamos nossa SRC para usos a fins estudantis, não gostaríamos em nehuma hipótese que nosso projeto fosse plagiada. Portanto não baixe nossos arquivos apenas para replica-los em outro bot criado dentro do Discord</p>
-<p>Nosso projeto também conta com as features abaixo:</p>
+<p>Precisa de ajuda com algum dos tópicos abaixo?</p>
 
-# Auto Moderação
-<p>Alguns comandos criados dentro de nosso bot permite com que você não tenha que ficar se preocupando em vigiar o seu server 24horas por dia para ver se há alguma discrepância, um exemplo de comandos deste módulo é o BlockDiv, e ainda pretendemos criar mais!</p>
+# 🐞Comandos
+<p>Alguns dos comandos criados em nosso projeto hoje se encontram desatualizados e podem apresentar diversas falhas e desagrado visual, caso queira reportar uma destas falhas ou falar sobre o assunto considere entrar em nosso <a href="https://discord.gg/WPUYahyPzx">Discord</a>.</p>
 
-# Moderação Básica/Avançada
-<p>Também temos alguns comandos de Moderação Básica de servidores, tais como: <i>Ban; Kick; Timeout; Prune</i> entre muitos outros já adicionados, e também contamos com sistemas mais avançados e eficazes capazes até mesmo de bloquear uma RAID de spam/flood em seu servidor!</p>
-
-# Entretenimento
-<p>Vamos ser sinceros ao concordar que ninguém procura bots dentro do Discord apenas por moderação em seus servidores, também gostariam de comandos com funcionalidades capazes de divertir seus membros, é desafiador de fato competir com os atuais robôs de entretenimento da plataforma, porém prometemos dar nosso melhor em todos os aspectos de todas as partes!</p>
+# 💁Sugestões
+<p>Gostaria de deixar seu feedback sobre nosso projeto? então não pense muito! entre agora em nosso <a href="https://discord.gg/WPUYahyPzx">servidor</a> e deixe sua sugestão ou comentário em relação ao nosso desenvolvimento.</p>
