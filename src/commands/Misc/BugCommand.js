@@ -50,6 +50,7 @@ module.exports = class bug extends Command {
       .setTimestamp(new Date())
 
     const guild = this.client.guilds.cache.get('1001368891160805506')
+    const cargozinho = guild.roles.cache.get(role => role.id === '1001368891227914268')
 
     if (author.bugsReported !== 10) {
       if (guild.members.cache.get(message.author.id)) {
@@ -58,24 +59,24 @@ module.exports = class bug extends Command {
           logs.send({ embeds: [embed] })
           message.channel.send({ embeds: [sucesso] })
         })
-      } else if (author.bugsReported === 9) {
-        const cargozinho = guild.roles.cache.get(role => role.id === '1001368891227914268')
+      } else if (!guild.members.cache.get(message.author.id)) {
+        logs.send({ embeds: [embed] })
+        await message.channel.send(({ embeds: [sucessoParcial] }))
+      }
+    } else if (author.bugsReported === 10) {
+      logs.send({ embeds: [embed] })
+      await message.channel.send({ embeds: [sucesso] })
+    } else if (author.bugsReported >= 10) {
+      logs.send({ embeds: [embed] })
+      await message.channel.send({ embeds: [sucesso] })
+    } else if (author.bugsReported === 9) {
+      author.bugsReported += 1
+      author.save().then(() => {
         message.member.roles.add(cargozinho)
         message.author.send({ embeds: [cargoEmbed] })
         logs.send({ embeds: [embed] })
         message.channel.send({ embeds: [sucesso] })
-        author.bugsReported += 1
-        author.save()
-      } else if (author.bugsReported === 10) {
-        logs.send({ embeds: [embed] })
-        await message.channel.send({ embeds: [sucesso] })
-      } else if (author.bugsReported >= 10) {
-        logs.send({ embeds: [embed] })
-        await message.channel.send({ embeds: [sucesso] })
-      }
-    } else if (!guild.members.cache.get(message.author.id)) {
-      logs.send({ embeds: [embed] })
-      await message.channel.send(({ embeds: [sucessoParcial] }))
+      })
     }
   }
 };
