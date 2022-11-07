@@ -12,16 +12,23 @@ module.exports = class BanCommand extends Command {
     this.bot_permissions = ['BAN_MEMBERS']
   }
 
-  // Deu alguem erro? Agradeça e reporte para mim, q ngm aqui é de ferro | Suporte apenas nas 24hrs apos comando lançado, dps so quando eu tiver tempo :p
-
   async run(message, args) {
+    const emptyMessage = new MessageEmbed()
+      .setTimestamp()
+      .setColor(colors['mod'])
+      .setTitle('<:plus:955577453441597550> **Ban:**', `${message.author.username}`, true)
+      .setDescription('Criado para facilitar a punição de usuários do seu servidor.') // inline false
+      .addFields({ name: '*Uso do comando:*', value: '`Ban <@user> [motivo]`', inline: true })
+      .addFields({ name: '*Exemplo:*', value: '`Ban @Solaris#0006 Ban hammer has spoken!`', inline: true })
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+
     const embedA = new MessageEmbed()
 
       .setTimestamp()
       .setColor(colors['mod'])
-      .setTitle('**Err:**', `${usuario}`, true)
+      .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
+      .addFields({ name: '*Verifique se você possui a permissão:*', value: '`BAN_MEMBERS`', inline: true })
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
@@ -45,10 +52,10 @@ module.exports = class BanCommand extends Command {
 
     if (!log) return message.reply(`<:ModMute:980288914914947113> » Este servidor não possui o canal de logs de ounições setado.\n<:reinterjection:955577574304657508> » Utilize \`${guildDocument.prefix}PunishmentLogs\` para saber mais.`)
 
-    if (!args[0]) return message.reply(`<:ModMute:980288914914947113> » Mencione um usuário valido.`)
+    if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     const usuario = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, '')).catch(() => console.log()) // SIM, você consegue banir gente que n esta no seu servidor | Solução para o if funcionar, n tava conseguindo ness porr | Console n retorna nada pq da erro mas n da, sacou?
 
-    if (!usuario) return message.reply(`<:ModMute:980288914914947113> » Mencione um usuário valido.`)
+    if (!usuario) return message.reply({ embeds: [emptyMessage] })
 
     // Motivos
 
