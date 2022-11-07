@@ -59,7 +59,7 @@ module.exports = class bug extends Command {
           message.channel.send({ embeds: [sucesso] })
         })
       } else if (author.bugsReported === 9) {
-        author.roles.add('1001368891227914268').then(() => {
+        message.author.roles.add('1001368891227914268').then(() => {
           message.author.send({ embeds: [cargoEmbed] })
           author.bugsReported += 1
           author.save()
