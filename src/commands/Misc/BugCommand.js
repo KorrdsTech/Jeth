@@ -69,7 +69,7 @@ module.exports = class bug extends Command {
       } else if (!guild.members.cache.get(message.author.id)) {
         logs.send({ embeds: [embed] })
         await message.channel.send(({ embeds: [sucessoParcial] }))
-      } else if (author.bugsReported <= 10) {
+      } else if (author.bugsReported > 10) {
         logs.send({ embeds: [embed] })
         await message.channel.send({ embeds: [sucesso] })
       }
