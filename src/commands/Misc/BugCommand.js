@@ -1,4 +1,4 @@
-const { Command, colors } = require('../../utils')
+0
 const { MessageEmbed } = require('discord.js')
 
 module.exports = class bug extends Command {
