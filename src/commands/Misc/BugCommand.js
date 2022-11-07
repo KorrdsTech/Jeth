@@ -41,19 +41,21 @@ module.exports = class bug extends Command {
       .setFooter({ text: 'Lembre-se abusar dos benefícios dete sistema será considerado abuso de API.', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date())
 
-    await logs.send({ embeds: [embed] })
     if (author.bugsReported === 10) {
       if (this.client.guilds.cache.get('1001368891160805506').member(this.client.database.user.getOrCreate(message.author.id))) {
         // there is a GuildMember with that ID
         message.author.id.roles.add('1001368891227914268')
+        await logs.send({ embeds: [embed] })
         return message.channel.send({ embeds: [sucesso] })
       } else if (author.bugsReported !== 10)
         author.bugsReported += 1
       author.save().then(() => {
         message.channel.send(({ embeds: [sucesso] }))
+        logs.send({ embeds: [embed] })
       })
     } else if (!this.client.guilds.cache.get('1001368891160805506').member(this.client.database.user.getOrCreate(message.author.id))) {
       message.reply(({ embeds: [sucessoParcial] }))
+      logs.send({ embeds: [embed] })
     }
   }
 };
