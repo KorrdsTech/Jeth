@@ -25,6 +25,29 @@ module.exports = async function onMessage(message) {
     }
   }
 
+  const mentionRegex = RegExp(`^<@!?${this.user.id}>$`);
+  if (message.content.match(mentionRegex)) {
+    let totalCommands = 0
+    this.commands.each(() => totalCommands++)
+
+    const row = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setLabel('Me Convide!')
+        .setStyle('LINK')
+        .setEmoji('<a:a_heartlove:954636909668347914>')
+        .setURL('https://discord.com/oauth2/authorize?client_id=718210363014905866&scope=bot&permissions=8'),
+
+      new MessageButton()
+        .setLabel('Suporte')
+        .setStyle('LINK')
+        .setEmoji('<:b_blurpleemployee:856174396423274516>')
+        .setURL('https://discord.gg/jeth')
+    );
+
+    message.channel.send({ content: `<a:b_hypesquadi:887899688634839042> **Olá, **${message.author}! Prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <a:a_dancin:934175860930527313> Atualmente possuo **${totalCommands}** comandos!`, components: [row] })
+
+  }
+
   if ((guildDocument?.antInvite && !message.member?.permissions.has('ADMINISTRATOR'))) {
     if (AntiInviteUtils.scanMessage(message.content)) {
       message.delete()
@@ -37,8 +60,7 @@ module.exports = async function onMessage(message) {
   const prefix = guildDocument.prefix
   if (!message.content.startsWith(prefix)) return
   if (Users.blacklist) {
-    message.reply('> Você está na blacklist e não pode executar nenhum comando do bot.').then(msg => msg.delete({ timeout: 5000 }))
-    return
+    return message.channel.send('> Você está na blacklist e não pode executar nenhum comando do bot.').then(msg => msg.delete({ timeout: 50000 }))
   }
 
   const args = message.content.slice(prefix.length).trim().split(' ')
@@ -107,28 +129,4 @@ module.exports = async function onMessage(message) {
       command.process(message, args)
     }
   }
-
-  const mentionRegex = RegExp(`^<@!?${this.user.id}>$`);
-  if (message.content.match(mentionRegex)) {
-    let totalCommands = 0
-    this.commands.each(() => totalCommands++)
-
-    const row = new MessageActionRow().addComponents(
-      new MessageButton()
-        .setLabel('Me Convide!')
-        .setStyle('LINK')
-        .setEmoji('<a:a_heartlove:954636909668347914>')
-        .setURL('https://discord.com/oauth2/authorize?client_id=718210363014905866&scope=bot&permissions=8'),
-
-      new MessageButton()
-        .setLabel('Suporte')
-        .setStyle('LINK')
-        .setEmoji('<:b_blurpleemployee:856174396423274516>')
-        .setURL('https://discord.gg/jeth')
-    );
-
-    message.reply({ content: `<a:b_hypesquadi:887899688634839042> **Olá, **${message.author}! Prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <a:a_dancin:934175860930527313> Atualmente possuo **${totalCommands}** comandos!`, components: [row] })
-
-  }
-
 }
