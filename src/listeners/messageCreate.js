@@ -1,5 +1,5 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
-const { colors, AntiSpamUtils, AntiInviteUtils } = require('.././utils')
+const { colors, AntiSpamUtils, AntiInviteUtils } = require('../utils')
 const parse = require('parse-duration')
 
 module.exports = async function onMessage(message) {
