@@ -63,19 +63,16 @@ module.exports = class bug extends Command {
         logs.send({ embeds: [embed] })
         message.channel.send(({ embeds: [sucessoParcial] }))
       }
-    }
-    if (author.bugsReported === 9) {
+    } else if (author.bugsReported === 9) {
       author.bugsReported += 1
       author.save().then(async () => {
         logs.send({ embeds: [embed] })
-        await message.channel.send({ embeds: [sucesso] })
-        await message.member.roles.add(cargozinho)
+        message.channel.send({ embeds: [sucesso] })
         message.channel.send({ embeds: [cargoEmbed] })
       })
-      if (author.bugsReported >= 10) {
-        logs.send({ embeds: [embed] })
-        await message.channel.send({ embeds: [sucesso] })
-      }
+    } else if (author.bugsReported >= 10) {
+      logs.send({ embeds: [embed] })
+      await message.channel.send({ embeds: [sucesso] })
     }
   }
 };
