@@ -72,10 +72,11 @@ module.exports = class bug extends Command {
     } else if (author.bugsReported === 9) {
       author.bugsReported += 1
       author.save().then(() => {
-        message.member.roles.add(cargozinho)
-        message.author.send({ embeds: [cargoEmbed] })
         logs.send({ embeds: [embed] })
         message.channel.send({ embeds: [sucesso] })
+      }).then(() => {
+        message.member.roles.add(cargozinho)
+        message.author.send({ embeds: [cargoEmbed] })
       })
     }
   }
