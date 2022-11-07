@@ -46,9 +46,10 @@ module.exports = class bug extends Command {
     if (author.bugsReported !== 10) {
       if (guild.members.cache.get(message.author.id)) {
         author.bugsReported += 1
-        author.save()
-        logs.send({ embeds: [embed] })
-        await message.channel.send({ embeds: [sucesso] })
+        author.save().then(() => {
+          logs.send({ embeds: [embed] })
+          message.channel.send({ embeds: [sucesso] })
+        })
       } else if (author.bugsReported === 10) {
         author.roles.add('1001368891227914268')
         logs.send({ embeds: [embed] })
