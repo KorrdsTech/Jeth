@@ -43,19 +43,21 @@ module.exports = class bug extends Command {
 
     const guild = this.client.guilds.cache.get('1001368891160805506')
 
-    await logs.send({ embeds: [embed] })
     if (author.bugsReported === 10) {
-      if (guild.members.cache.find(message.author.id)) {
+      if (guild.members.cache.get(message.author.id)) {
         // there is a GuildMember with that ID
         message.author.id.roles.add('1001368891227914268')
+        await logs.send({ embeds: [embed] })
         return message.channel.send({ embeds: [sucesso] })
       } else if (author.bugsReported !== 10)
         author.bugsReported += 1
       author.save().then(() => {
         message.channel.send(({ embeds: [sucesso] }))
+        logs.send({ embeds: [embed] })
       })
-    } else if (!guild.members.cache.find(message.author.id)) {
-      message.reply(({ embeds: [sucessoParcial] }))
+    } else if (!guild.members.cache.get(message.author.id)) {
+      message.channel.send(({ embeds: [sucessoParcial] }))
+      await logs.send({ embeds: [embed] })
     }
   }
 };
