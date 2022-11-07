@@ -50,14 +50,13 @@ module.exports = class bug extends Command {
         message.channel.send({ embeds: [sucesso] })
       } else if (author.bugsReported !== 10) {
         author.bugsReported += 1
-        author.save().then(() => {
-          logs.send({ embeds: [embed] })
-          message.channel.send({ embeds: [sucesso] })
-        })
+        author.save()
+        logs.send({ embeds: [embed] })
+        message.channel.send({ embeds: [sucesso] })
+      } else if (!guild.members.cache.get(message.author.id)) {
+        message.channel.send(({ embeds: [sucessoParcial] }))
+        logs.send({ embeds: [embed] })
       }
-    } else if (!guild.members.cache.get(message.author.id)) {
-      message.channel.send(({ embeds: [sucessoParcial] }))
-      logs.send({ embeds: [embed] })
     }
   }
 };
