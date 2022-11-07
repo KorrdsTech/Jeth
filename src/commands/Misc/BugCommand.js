@@ -41,6 +41,14 @@ module.exports = class bug extends Command {
       .setFooter({ text: 'Lembre-se abusar dos benefícios dete sistema será considerado abuso de API.', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date())
 
+    const cargoEmbed = new MessageEmbed()
+      .setColor(colors['vip'])
+      .setDescription('**PREMIAÇÃO RECEBIDA**')
+      .addFields({ name: '🌟', value: 'Parabéns! Você acaba de reportar um total de **10 bugs**', inline: true })
+      .addFields({ name: '😽', value: 'Estamos te dando este mimo como agradecimento por ajudar nosso desenvolvimento', inline: true })
+      .setFooter({ text: 'Aproveite! Muito Obrigado -Equipe Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setTimestamp(new Date())
+
     const guild = this.client.guilds.cache.get('1001368891160805506')
 
     if (author.bugsReported !== 10) {
@@ -50,8 +58,12 @@ module.exports = class bug extends Command {
           logs.send({ embeds: [embed] })
           message.channel.send({ embeds: [sucesso] })
         })
-      } else if (author.bugsReported === 10) {
-        author.roles.add('1001368891227914268')
+      } else if (author.bugsReported === 9) {
+        author.roles.add('1001368891227914268').then(() => {
+          author.bugsReported += 1
+          author.save()
+          author.send({ embeds: [cargoEmbed] })
+        })
         logs.send({ embeds: [embed] })
         await message.channel.send({ embeds: [sucesso] })
       } else if (!guild.members.cache.get(message.author.id)) {
