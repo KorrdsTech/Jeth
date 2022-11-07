@@ -61,23 +61,21 @@ module.exports = class bug extends Command {
         })
       } else if (!guild.members.cache.get(message.author.id)) {
         logs.send({ embeds: [embed] })
-        await message.channel.send(({ embeds: [sucessoParcial] }))
+        message.channel.send(({ embeds: [sucessoParcial] }))
       }
-    } else if (author.bugsReported === 10) {
-      logs.send({ embeds: [embed] })
-      await message.channel.send({ embeds: [sucesso] })
-    } else if (author.bugsReported >= 10) {
-      logs.send({ embeds: [embed] })
-      await message.channel.send({ embeds: [sucesso] })
-    } else if (author.bugsReported === 9) {
+    }
+    if (author.bugsReported === 9) {
       author.bugsReported += 1
-      author.save().then(() => {
+      author.save().then(async () => {
         logs.send({ embeds: [embed] })
-        message.channel.send({ embeds: [sucesso] })
-      }).then(() => {
-        message.member.roles.add(cargozinho)
-        message.author.send({ embeds: [cargoEmbed] })
+        await message.channel.send({ embeds: [sucesso] })
+        await message.member.roles.add(cargozinho)
+        message.channel.send({ embeds: [cargoEmbed] })
       })
+      if (author.bugsReported >= 10) {
+        logs.send({ embeds: [embed] })
+        await message.channel.send({ embeds: [sucesso] })
+      }
     }
   }
 };
