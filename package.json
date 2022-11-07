@@ -1,6 +1,6 @@
 {
   "name": "jeth",
-  "version": "DJSv.13/6.1",
+  "version": "Helper-1.0",
   "main": "index.js",
   "scripts": {
     "start": "node .",
