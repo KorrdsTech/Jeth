@@ -58,12 +58,16 @@ module.exports = class bug extends Command {
           logs.send({ embeds: [embed] })
           message.channel.send({ embeds: [sucesso] })
         })
+      } else if (author.bugsReported === 10) {
+        logs.send({ embeds: [embed] })
+        await message.channel.send({ embeds: [sucesso] })
       } else if (author.bugsReported >= 10) {
         logs.send({ embeds: [embed] })
         await message.channel.send({ embeds: [sucesso] })
       }
     } else if (author.bugsReported === 9) {
-      message.author.roles.add('1001368891227914268')
+      const cargozinho = guild.roles.cache.get('1001368891227914268')
+      message.member.roles.add(cargozinho)
       message.author.send({ embeds: [cargoEmbed] })
       logs.send({ embeds: [embed] })
       message.channel.send({ embeds: [sucesso] })
