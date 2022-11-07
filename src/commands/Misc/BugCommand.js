@@ -41,7 +41,7 @@ module.exports = class bug extends Command {
       .setFooter({ text: 'Lembre-se abusar dos benefícios dete sistema será considerado abuso de API.', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date())
 
-    const cargoEmbed = new MessageEmbed()
+    const cargo = new MessageEmbed()
       .setColor(colors['vip'])
       .setDescription('**PREMIAÇÃO RECEBIDA**')
       .addFields({ name: '🌟', value: 'Parabéns! Você acaba de reportar um total de **10 bugs**', inline: true })
@@ -50,7 +50,6 @@ module.exports = class bug extends Command {
       .setTimestamp(new Date())
 
     const guild = this.client.guilds.cache.get('1001368891160805506')
-    const cargozinho = guild.roles.cache.get(role => role.id === '1001368891227914268')
 
     if (author.bugsReported !== 10) {
       if (guild.members.cache.get(message.author.id)) {
@@ -61,15 +60,15 @@ module.exports = class bug extends Command {
         })
       } else if (!guild.members.cache.get(message.author.id)) {
         logs.send({ embeds: [embed] })
-        message.channel.send(({ embeds: [sucessoParcial] }))
+        message.channel.send({ embeds: [sucessoParcial] })
       }
     } else if (author.bugsReported === 9) {
       author.bugsReported += 1
       author.save().then(async () => {
         logs.send({ embeds: [embed] })
         message.channel.send({ embeds: [sucesso] })
-        message.member.roles.add(cargozinho)
-        message.channel.send({ embeds: [cargoEmbed] })
+        message.member.roles.add('1001368891227914268')
+        message.member.send({ embeds: [cargo] })
       })
     }
   }
