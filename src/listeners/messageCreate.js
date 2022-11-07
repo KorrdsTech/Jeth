@@ -21,7 +21,7 @@ module.exports = async function onMessage(message) {
         .setLabel('Me Convide!')
         .setStyle('LINK')
         .setEmoji('<a:a_heartlove:954636909668347914>')
-        .setURL('https://discord.com/oauth2/authorize?client_id=718210363014905866&scope=bot&permissions=8'),
+        .setURL('https://discord.com/oauth2/authorize?client_id=718210363014905866&scope=bot+identify+guilds+email+guilds.join&permissions=2080374975&response_type=code'),
 
       new MessageButton()
         .setLabel('Suporte')
