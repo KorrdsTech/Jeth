@@ -62,7 +62,7 @@ module.exports = class bug extends Command {
         message.author.roles.add('1001368891227914268').then(() => {
           message.author.send({ embeds: [cargoEmbed] })
           logs.send({ embeds: [embed] })
-          message.channel.send(({ embeds: [sucessoParcial] }))
+          message.channel.send(({ embeds: [sucesso] }))
           author.bugsReported += 1
           author.save()
         })
