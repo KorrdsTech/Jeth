@@ -13,7 +13,7 @@ module.exports = class security extends Command {
   async run(message, args) {
     const erroDePermissão = new MessageEmbed()
       .setTimestamp()
-      .setColor(colors['mod'])
+      .setColor(colors.mod)
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`ADMINISTRATOR`', true)
