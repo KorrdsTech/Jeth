@@ -6,6 +6,15 @@ const DIFF = 10 * 1000
 const parse = require('parse-duration')
 module.exports = class AntiSpamUtils {
   static async verify(client, message) {
+    const embed = new MessageEmbed()
+
+      .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
+      .setTitle('AutoMod')
+      .setColor(colors['mod'])
+      .setDescription(`\n**Usuário:** ${message.author} \n**ID:** ${message.author.id}` + `\no usuário citado recebeu timeout do AutoMod por spam.`)
+      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+      .setTimestamp(new Date());
+
     if (usersMap.has(message.author.id)) {
       const userData = usersMap.get(message.author.id)
       const { lastMessage, timer } = userData
@@ -32,14 +41,6 @@ module.exports = class AntiSpamUtils {
               msg.delete().catch((err) => { })
             }
           })
-          const embed = new MessageEmbed()
-
-            .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
-            .setTitle('AutoMod')
-            .setColor(colors['mod'])
-            .setDescription(`\n**Usuário:** ${message.author} \n**ID:** ${message.author.id}` + `\no usuário citado recebeu timeout do AutoMod por spam.`)
-            .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
-            .setTimestamp(new Date());
           if (this.checkPossibly(message)) {
             const guildDocument = await client.database.guild.getOrCreate(message.guild.id)
             message.member.timeout(parse(guildDocument.timerSpam), `${guildDocument.infoantspam}`).then(() => {
