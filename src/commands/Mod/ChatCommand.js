@@ -46,11 +46,11 @@ module.exports = class chat extends Command {
     const ell = await message.reply({ embeds: [embedToLock], components: [actions] })
 
     const embedLocked = new MessageEmbed()
-      .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi bloqueado com sucesso!`)
+      .setDescription(`<:concludinho:1040860364251877427> O canal <#${message.channel.id}> foi bloqueado com sucesso!`)
       .setColor(colors['default'])
 
     const embedUnlocked = new MessageEmbed()
-      .setDescription(`<:concludo:739830713792331817> O canal <#${message.channel.id}> foi desbloqueado com sucesso!`)
+      .setDescription(`<:concludinho:1040860364251877427> O canal <#${message.channel.id}> foi desbloqueado com sucesso!`)
       .setColor(colors['default'])
 
     const collector = ell.createMessageComponentCollector({

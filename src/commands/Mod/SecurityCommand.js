@@ -87,23 +87,23 @@ module.exports = class security extends Command {
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como está o Anti-Invite/BlockSpamFlood-BSF? \nAqui vai o seu painel...`)
         .setColor(colors['default'])
-      let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
-      let canalteste = `<:rejected:739831089543118890> Desativado`;
+      let canalBemVindo = `<:errroror:1040860335147581511> Desativado`;
+      let canalteste = `<:errroror:1040860335147581511> Desativado`;
       if (guildDocument.infoantinv) {
-        canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.infoantinv}>`;
+        canalBemVindo = `<:concludinho:1040860364251877427> Ativo | Canal: <#${guildDocument.infoantinv}>`;
       }
       if (guildDocument.infoantspam) {
-        canalteste = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.infoantspam}`;
+        canalteste = `<:concludinho:1040860364251877427> Ativo | Mensagem: ${guildDocument.infoantspam}`;
       }
       embed2.addField('Anti-Invite | Define o canal de logs anti-invite:', canalBemVindo);
       embed2.addField('BlockSpamFlood-BSF | Mensagem definida de logs:', canalBemVindo);
       const msgWelcome = guildDocument.antInvite ?
-        `<:concludo:739830713792331817> Ativo` :
-        `<:rejected:739831089543118890> Desativado`
+        `<:concludinho:1040860364251877427> Ativo` :
+        `<:errroror:1040860335147581511> Desativado`
       embed2.addField('Anti-Invite está:', msgWelcome);
       const msgSpam = guildDocument.antSpam ?
-        `<:concludo:739830713792331817> Ativo` :
-        `<:rejected:739831089543118890> Desativado`
+        `<:concludinho:1040860364251877427> Ativo` :
+        `<:errroror:1040860335147581511> Desativado`
       embed2.addField('BlockSpamFlood-BSF está:', msgSpam);
 
       let embedCount = 1

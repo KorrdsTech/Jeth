@@ -31,6 +31,6 @@ module.exports = class Prefix extends Command {
     documento.prefix = args.join(' ')
     documento.save()
 
-    message.reply(`<:concludo:739830713792331817> ${message.author}, meu prefix foi alterado para **${documento.prefix}**`)
+    message.reply(`<:concludinho:1040860364251877427> ${message.author}, meu prefix foi alterado para **${documento.prefix}**`)
   }
 }

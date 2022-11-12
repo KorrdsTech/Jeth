@@ -121,24 +121,24 @@ module.exports = class welcomeModule extends Command {
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como esta o welcome?\nAqui vai o seu painel...`)
         .setColor(colors['default'])
-      let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
+      let canalBemVindo = `<:errroror:1040860335147581511> Desativado`;
       if (guildDocument.channelWelcome.length) {
-        canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.channelWelcome}>`;
+        canalBemVindo = `<:concludinho:1040860364251877427> Ativo | Canal: <#${guildDocument.channelWelcome}>`;
       }
       embed2.addField('Welcome | Canal:', canalBemVindo);
       let MsgAt = `<a:warnRoxo:664240941175144489> Desativado`;
       if (guildDocument.autorole?.length) {
-        MsgAt = `<:concludo:739830713792331817> Ativo: <@&${guildDocument.autorole}>`;
+        MsgAt = `<:concludinho:1040860364251877427> Ativo: <@&${guildDocument.autorole}>`;
       }
       embed2.addField('Welcome | Auto-Role:', MsgAt);
-      let MsgCount = `<:rejected:739831089543118890> Desativado`;
+      let MsgCount = `<:errroror:1040860335147581511> Desativado`;
       if (guildDocument.welcomeMessage.length) {
-        MsgCount = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.welcomeMessage.length > 800 ? `${guildDocument.welcomeMessage.slice(0, 801)}[...]` : guildDocument.welcomeMessage}`;
+        MsgCount = `<:concludinho:1040860364251877427> Ativo | Mensagem: ${guildDocument.welcomeMessage.length > 800 ? `${guildDocument.welcomeMessage.slice(0, 801)}[...]` : guildDocument.welcomeMessage}`;
       }
       embed2.addField('Welcome | Mensagem de Bem-vindo:', MsgCount);
       const msgWelcome = guildDocument.welcomeModule ?
-        `<:concludo:739830713792331817> Ativo` :
-        `<:rejected:739831089543118890> Desativado`
+        `<:concludinho:1040860364251877427> Ativo` :
+        `<:errroror:1040860335147581511> Desativado`
       embed2.addField('Welcome está:', msgWelcome)
 
       let embedCount = 1

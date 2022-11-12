@@ -82,19 +82,19 @@ module.exports = class saida extends Command {
         .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setDescription(`Dúvidas de como esta a saida do servidor?\nAqui vai o seu painel...`)
         .setColor(colors['default'])
-      let canalBemVindo = `<:rejected:739831089543118890> Desativado`;
+      let canalBemVindo = `<:errroror:1040860335147581511> Desativado`;
       if (guildDocument.channelsaida.length) {
-        canalBemVindo = `<:concludo:739830713792331817> Ativo | Canal: <#${guildDocument.channelsaida}>`;
+        canalBemVindo = `<:concludinho:1040860364251877427> Ativo | Canal: <#${guildDocument.channelsaida}>`;
       }
       embed2.addField('saida | Canal de saida:', canalBemVindo);
-      let MsgCount = `<:rejected:739831089543118890> Desativado`;
+      let MsgCount = `<:errroror:1040860335147581511> Desativado`;
       if (guildDocument.saidaMessage.length) {
-        MsgCount = `<:concludo:739830713792331817> Ativo | Mensagem: ${guildDocument.saidaMessage.length > 800 ? `${guildDocument.saidaMessage.slice(0, 801)}[...]` : guildDocument.saidaMessage}`;
+        MsgCount = `<:concludinho:1040860364251877427> Ativo | Mensagem: ${guildDocument.saidaMessage.length > 800 ? `${guildDocument.saidaMessage.slice(0, 801)}[...]` : guildDocument.saidaMessage}`;
       }
       embed2.addField('Saida | Mensagem de Saida:', MsgCount);
       const msgsaida = guildDocument.saidaModule ?
-        `<:concludo:739830713792331817> Ativo` :
-        `<:rejected:739831089543118890> Desativado`
+        `<:concludinho:1040860364251877427> Ativo` :
+        `<:errroror:1040860335147581511> Desativado`
       embed2.addField('saida está:', msgsaida)
 
       let embedCount = 1

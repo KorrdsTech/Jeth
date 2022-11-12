@@ -41,8 +41,8 @@ module.exports = class reply extends Command {
 
     usuario.send({ embeds: [embedB] })
     if (!Error) {
-      return message.reply('<:rejected:739831089543118890> Erro, usuário com Direct Message Bloqueada!');
+      return message.reply('<:errroror:1040860335147581511> Erro, usuário com Direct Message Bloqueada!');
     } else
-      message.reply('<:concludo:739830713792331817> Reply enviado com sucesso! 🗳')
+      message.reply('<:concludinho:1040860364251877427> Reply enviado com sucesso! 🗳')
   }
 }

@@ -30,7 +30,7 @@ module.exports = class topico extends Command {
       message.reply({
         embed: {
           setColor: '#c635ff',
-          title: '<:concludo:739830713792331817> Novo topico de canal definido',
+          title: '<:concludinho:1040860364251877427> Novo topico de canal definido',
           description: `O topico do canal: ${canal.name} \nFoi definido Para: ${topico}`
         }
       })
