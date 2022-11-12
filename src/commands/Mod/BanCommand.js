@@ -69,7 +69,7 @@ module.exports = class BanCommand extends Command {
 
     const bans = await message.guild.bans.fetch(); // Check ban
 
-    if (bans.cache.get(usuario.id)) return message.reply(`<:ModMute:980288914914947113> » Este usuário já se encontra banido.`)
+    if (bans.get(usuario.id)) return message.reply(`<:ModMute:980288914914947113> » Este usuário já se encontra banido.`)
 
     const mentionedMember = message.guild.members.cache.get(usuario.id)
 
