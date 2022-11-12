@@ -1,4 +1,4 @@
-const { colors } = require('../../utils')
+const { colors } = require('../utils')
 const { MessageEmbed } = require('discord.js')
 const usersMap = new Map()
 const LIMIT = 2
