@@ -1,4 +1,4 @@
-const { Command, colors } = require('../../utils')
+const { colors } = require('../../utils')
 const { MessageEmbed } = require('discord.js')
 const usersMap = new Map()
 const LIMIT = 2
@@ -35,7 +35,7 @@ module.exports = class AntiSpamUtils {
           const embed = new MessageEmbed()
 
             .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
-            .setTitle('AutoMod | TIMEOUT')
+            .setTitle('AutoMod')
             .setColor(colors['mod'])
             .setDescription(`\n**Usuário:** ${message.author} \n**ID:** ${message.author.id}` + `\no usuário citado recebeu timeout do AutoMod por spam.`)
             .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
