@@ -1,3 +1,5 @@
+const { Command, colors } = require('../../utils')
+const { MessageEmbed } = require('discord.js')
 const usersMap = new Map()
 const LIMIT = 2
 const DIFF = 10 * 1000
@@ -30,10 +32,18 @@ module.exports = class AntiSpamUtils {
               msg.delete().catch((err) => { })
             }
           })
+          const embed = new MessageEmbed()
+
+            .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
+            .setTitle('AutoMod | TIMEOUT')
+            .setColor(colors['mod'])
+            .setDescription(`\n**Usuário:** ${message.author} \n**ID:** ${message.author.id}` + `\no usuário citado recebeu timeout do AutoMod por spam.`)
+            .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+            .setTimestamp(new Date());
           if (this.checkPossibly(message)) {
             const guildDocument = await client.database.guild.getOrCreate(message.guild.id)
             message.member.timeout(parse(guildDocument.timerSpam), `${guildDocument.infoantspam}`).then(() => {
-              message.channel.send(`<:reinterjection:955577574304657508> Calma lá ${message.author}, acho melhor você parar! Eu acabei de apagar ${msgList.length} mensagens sua que você spammou.`)
+              message.channel.send({ embeds: [embed] })
             })
           } else {
             message.channel.send(`Calma lá ${message.author}, acho melhor você parar! Eu acabei de apagar ${msgList.length} mensagens sua que você spammou.`)
