@@ -49,7 +49,7 @@ module.exports = class suggestion extends Command {
       guildDocument.sugesChannel = ''
       guildDocument.sugesModule = false
       guildDocument.save().then(async () => {
-        await message.reply(`<a:warnRoxo:664240941175144489> O canal de sugestões foi desativado`)
+        await message.reply(`<:ModMute:980288914914947113> O canal de sugestões foi desativado`)
       })
     }
   }

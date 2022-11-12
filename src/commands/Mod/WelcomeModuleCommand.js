@@ -126,7 +126,7 @@ module.exports = class welcomeModule extends Command {
         canalBemVindo = `<:concludinho:1040860364251877427> Ativo | Canal: <#${guildDocument.channelWelcome}>`;
       }
       embed2.addField('Welcome | Canal:', canalBemVindo);
-      let MsgAt = `<a:warnRoxo:664240941175144489> Desativado`;
+      let MsgAt = `<:ModMute:980288914914947113> Desativado`;
       if (guildDocument.autorole?.length) {
         MsgAt = `<:concludinho:1040860364251877427> Ativo: <@&${guildDocument.autorole}>`;
       }
@@ -144,7 +144,7 @@ module.exports = class welcomeModule extends Command {
       let embedCount = 1
       message.reply({ embeds: [embed] }).then(async m => {
         await m.react('1040856493920096286')// ir para frente
-        const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '1040856493920096286' || e.emoji.id == '665721366514892839')
+        const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '1040856493920096286' || e.emoji.id == '◀️')
         const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
         col.on('collect', async (e) => {
           if (embedCount != 2 && e.emoji.id == '1040856493920096286') { // ir para frente
