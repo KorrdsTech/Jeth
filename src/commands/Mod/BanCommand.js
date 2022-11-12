@@ -35,6 +35,7 @@ module.exports = class BanCommand extends Command {
     const userDocuent = await this.client.database.user.getOrCreate(message.author.id)
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id) //Db
     const log = this.client.channels.cache.get(guildDocument.punishChannel) // Com log
+    const razao = args.slice(1).join(' ');
 
     let documentBans = await modelBan.findOne({
       guildID: message.guild.id,
@@ -54,7 +55,6 @@ module.exports = class BanCommand extends Command {
 
     if (!args[0]) return message.reply({ embeds: [emptyMessage] })
     const usuario = await this.client.users.fetch(args[0]?.replace(/[<@!>]/g, '')).catch(() => console.log()) // SIM, você consegue banir gente que n esta no seu servidor | Solução para o if funcionar, n tava conseguindo ness porr | Console n retorna nada pq da erro mas n da, sacou?
-
     if (!usuario) return message.reply({ embeds: [emptyMessage] })
 
     // Motivos
@@ -69,7 +69,7 @@ module.exports = class BanCommand extends Command {
 
     const bans = await message.guild.bans.fetch(); // Check ban
 
-    if (bans.get(usuario.id)) return message.reply(`<:ModMute:980288914914947113> » Este usuário já se encontra banido.`)
+    if (bans.cache.get(usuario.id)) return message.reply(`<:ModMute:980288914914947113> » Este usuário já se encontra banido.`)
 
     const mentionedMember = message.guild.members.cache.get(usuario.id)
 
@@ -224,14 +224,51 @@ module.exports = class BanCommand extends Command {
                     .setColor(colors.mod) // Troca isso dps, se nunca troca neh solaris prr
                     .setTimestamp();
 
+                  const puni1 = new MessageEmbed() // Trust e Safety Embed
+                    .setTitle('Ação | Ban')
+                    .addFields([
+                      {
+                        name: `<:author:982837926150963220> | Usuário banido:`,
+                        value: `<:members:963208373644447764> **Tag:** \`${usuario.tag}\`\n<:plus:955577453441597550> **ID:** \`${usuario.id}\``,
+                        inline: false
+                      },
+                      {
+                        name: `<:author:982837926150963220> | Staff:`,
+                        value: `<:staff:982837873919279114> **Tag:** \`${message.author.tag}\`\n<:plus:955577453441597550> **ID:** \`${message.author.id}\``,
+                        inline: false
+                      },
+                      {
+                        name: `<:clips:982837820823601173> | Motivo(s):`,
+                        value: `<:plus:955577453441597550> **${razao}**`,
+                        inline: false
+                      },
+                      {
+                        name: `📅 | Data:`,
+                        value: `<:plus:955577453441597550> **<t:${~~(new Date() / 1000)}:F>**`,
+                        inline: false
+                      },
+                    ])
+                    .setFooter({ text: `${message.author.username} já baniu ${documentBans.bans} usuários.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setThumbnail('https://cdn-icons.flaticon.com/png/512/3694/premium/3694290.png?token=exp=1653835711~hmac=be1fd43871e4498590084d1b61752139')
+                    .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setImage(`${userDocuent.gifban || ''}`)
+                    .setColor(colors.mod) // Troca isso dps, se nunca troca neh solaris prr
+                    .setTimestamp();
+
                   documentBans.bans += 1
                   documentBans.save().catch(err => console.log(err))
 
-                  message.guild.bans.create(usuario.id, { reason: `${x.values.join(' | ')}` }) // Oxi?? ja foikk
-
-                  log.send({ embeds: [puni] }) // Log
-                  message.reply(`<:staff:982837873919279114> » Usuário banido com sucesso.`) // Check
-                  return usuario.send({ content: `<:ModMute:980288914914947113> » Olá ${usuario}! Venho avisar que você foi banido do servidor **${message.guild.name}**.\n🧾 » Segue abaixo a log do seu banimento:`, embeds: [puni] }).catch(() => console.log(`Não consegui mandar DM ao usuário: ${usuario.tag}`))
+                  if (!razao) {
+                    message.guild.bans.create(usuario.id, { reason: `${x.values.join(' | ')}` }) // Oxi?? ja foikk
+                    log.send({ embeds: [puni] }) // Log
+                    message.reply(`<:staff:982837873919279114> » Usuário banido com sucesso.`) // Check
+                    return usuario.send({ content: `<:ModMute:980288914914947113> » Olá ${usuario}! Venho avisar que você foi banido do servidor **${message.guild.name}**.\n🧾 » Segue abaixo a log do seu banimento:`, embeds: [puni] }).catch(() => console.log(`Não consegui mandar DM ao usuário: ${usuario.tag}`))
+                  }
+                  else {
+                    message.guild.bans.create(usuario.id, { reason: `${razao}` })
+                    log.send({ embeds: [puni1] }) // Log
+                    message.reply(`<:staff:982837873919279114> » Usuário banido com sucesso.`) // Check
+                    return usuario.send({ content: `<:ModMute:980288914914947113> » Olá ${usuario}! Venho avisar que você foi banido do servidor **${message.guild.name}**.\n🧾 » Segue abaixo a log do seu banimento:`, embeds: [puni1] }).catch(() => console.log(`Não consegui mandar DM ao usuário: ${usuario.tag}`))
+                  }
 
                 }
                 case 'esc': { // yes
