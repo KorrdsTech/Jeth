@@ -10,7 +10,7 @@ module.exports = class AntiSpamUtils {
 
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('AutoMod')
-      .setColor(colors.mod)
+      .setColor('#ff4343')
       .setDescription(`\n**Usuário:** ${message.author} \n**ID:** ${message.author.id}` + `\no usuário citado recebeu timeout do AutoMod por spam.`)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
