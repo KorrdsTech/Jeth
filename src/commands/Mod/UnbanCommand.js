@@ -20,7 +20,7 @@ module.exports = class unban extends Command {
       .setDescription('Configure da forma ensinada abaixo.') // inline false
       .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
       .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
-    
+
     const embedA = new MessageEmbed()
 
       .setTimestamp()
@@ -30,7 +30,7 @@ module.exports = class unban extends Command {
       .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })    
+    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
 
     const channel = await this.client.database.guild.getOrCreate(message.guild.id)
     const log = this.client.channels.cache.get(channel.punishChannel)
@@ -43,7 +43,7 @@ module.exports = class unban extends Command {
       .setColor('#030303')
       .setTitle('**Ação | Unban**')
       .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Usuário:** ${usuario.username} \n**ID:** ${usuario.id}`)
+      .setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Usuário:** ${usuario.username} \n**ID:** ${usuario.id}`)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 

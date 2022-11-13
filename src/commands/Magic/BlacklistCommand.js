@@ -45,7 +45,7 @@ module.exports = class blacklist extends Command {
       .setThumbnail(usuario.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setAuthor({ name: `${message.author.username} Aplicou uma network blacklist`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
       .setColor('BLACK')
-      .setDescription(`**Blacklisted!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Infrator:** ${usuario.username} \n**ID:** ${usuario.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+      .setDescription(`**Blacklisted!** \n \n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Infrator:** ${usuario.username} \n**ID:** ${usuario.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
       .setFooter({ text: '☕️・https://discord.com/guidelines', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
@@ -66,7 +66,7 @@ module.exports = class blacklist extends Command {
           const guildData = await this.client.database.guild.getOrCreate(gd[1].id)
           if (guildData?.blacklistModule) {
             // eslint-disable-next-line no-unused-vars
-            gd[1].bans.remove(usuario.id).then(() => log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)).catch((error) => {})
+            gd[1].bans.remove(usuario.id).then(() => log.send(`${message.author},\`${usuario.tag}\`,não está mais na blacklist.`)).catch((error) => { })
           }
         }
         message.channel.send(`${message.author}, o usuário \`${usuario.tag}\` foi removido da blacklist.`)

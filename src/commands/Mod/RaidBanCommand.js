@@ -41,7 +41,7 @@ module.exports = class Raidban extends Command {
       .setDescription('Configure da forma ensinada abaixo.') // inline false
       .addField('*Uso do comando:*', '`PunishmentLogs set <canal>`', true)
       .addField('*Exemplo:*', '`PunishmentLogs set #geral`', true)
-    
+
     const embedA = new MessageEmbed()
 
       .setTimestamp()
@@ -128,8 +128,8 @@ module.exports = class Raidban extends Command {
     if (argumentos) {
       message.guild.member(membro17).ban({ days: 7 })
       warnembed18.fields[1].value = argumentos
-      warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
-      warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${argumentos}`)
+      warnembed17.setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${argumentos}`)
+      warnembed14.setDescription(`**Banido!** \n \n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${argumentos}`)
       log.send({ embeds: [warnembed14] })
       try {
         membro14.send({ embeds: [warnembed18] })
@@ -156,8 +156,8 @@ module.exports = class Raidban extends Command {
             case 'JT1':
               reason = primeiro
               warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+              warnembed17.setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
+              warnembed14.setDescription(`**Banido!** \n \n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
               filter.stop()
               guildDocument1.id.ban({ days: 7 }), {
                 reason: reason
@@ -171,8 +171,8 @@ module.exports = class Raidban extends Command {
             case 'JT2':
               reason = segundo
               warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+              warnembed17.setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
+              warnembed14.setDescription(`**Banido!** \n \n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
               filter.stop()
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
@@ -186,8 +186,8 @@ module.exports = class Raidban extends Command {
             case 'JT3':
               reason = terceiro
               warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+              warnembed17.setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
+              warnembed14.setDescription(`**Banido!** \n \n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
               filter.stop()
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
@@ -201,8 +201,8 @@ module.exports = class Raidban extends Command {
             case 'JT4':
               reason = quarto
               warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+              warnembed17.setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
+              warnembed14.setDescription(`**Banido!** \n \n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
               filter.stop()
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
@@ -216,8 +216,8 @@ module.exports = class Raidban extends Command {
             case 'JT5':
               reason = quinto
               warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+              warnembed17.setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
+              warnembed14.setDescription(`**Banido!** \n \n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
               filter.stop()
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason
@@ -231,8 +231,8 @@ module.exports = class Raidban extends Command {
             case 'JT6':
               reason = sexto
               warnembed18.fields[1].value = reason
-              warnembed17.setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
-              warnembed14.setDescription(`**Banido!** \n \n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}`)
+              warnembed17.setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro17.username} \n**ID:** ${membro17.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
+              warnembed14.setDescription(`**Banido!** \n \n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Banido:** ${membro14.username} \n**ID:** ${membro14.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}`)
               filter.stop()
               message.guild.member(membro14).ban({ days: 7 }), {
                 reason: reason

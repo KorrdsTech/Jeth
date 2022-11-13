@@ -78,7 +78,7 @@ module.exports = class Timeout extends Command {
       .setThumbnail(message.author.avatarURL({ dynamic: true, size: 1024 }))
       .setTitle('Ação | Timeout')
       .setColor('#ff112b')
-      .setDescription(`\n<:Kaeltec:673592197177933864> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:Kaeltec:673592197177933864> **Usuário:** ${user.user.username} \n**ID:** ${user.id}` + `\n<:Registrado:673592197077270558> **Motivo:** ${reason}` + `\n<:KaelMutado:673592196972412949> **Tempo:** ${timer}`)
+      .setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Usuário:** ${user.user.username} \n**ID:** ${user.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}` + `\n<:KaelMutado:673592196972412949> **Tempo:** ${timer}`)
       .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp(new Date());
 
