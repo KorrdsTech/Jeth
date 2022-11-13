@@ -254,22 +254,12 @@ module.exports = class BanCommand extends Command {
                     .setColor(colors.mod) // Troca isso dps, se nunca troca neh solaris prr
                     .setTimestamp();
 
-                  if (!razao) {
-                    documentBans.bans += 1
-                    documentBans.save().catch(err => console.log(err))
-                    message.guild.bans.create(usuario.id, { reason: `${x.values.join(' | ')}` }) // Oxi?? ja foikk
-                    log.send({ embeds: [puni] }) // Log
-                    message.reply(`<:staff:982837873919279114> » Usuário banido com sucesso.`) // Check
-                    return usuario.send({ content: `<:ModMute:980288914914947113> » Olá ${usuario}! Venho avisar que você foi banido do servidor **${message.guild.name}**.\n🧾 » Segue abaixo a log do seu banimento:`, embeds: [puni] }).catch(() => console.log(`Não consegui mandar DM ao usuário: ${usuario.tag}`))
-                  }
-                  else {
-                    documentBans.bans += 1
-                    documentBans.save().catch(err => console.log(err))
-                    message.guild.bans.create(usuario.id, { reason: `${razao}` })
-                    log.send({ embeds: [puni1] }) // Log
-                    message.reply(`<:staff:982837873919279114> » Usuário banido com sucesso.`) // Check
-                    return usuario.send({ content: `<:ModMute:980288914914947113> » Olá ${usuario}! Venho avisar que você foi banido do servidor **${message.guild.name}**.\n🧾 » Segue abaixo a log do seu banimento:`, embeds: [puni1] }).catch(() => console.log(`Não consegui mandar DM ao usuário: ${usuario.tag}`))
-                  }
+                  documentBans.bans += 1
+                  documentBans.save().catch(err => console.log(err))
+                  message.guild.bans.create(usuario.id, { reason: `${x.values.join(' | ')}` }) // Oxi?? ja foikk
+                  log.send({ embeds: [puni] }) // Log
+                  message.reply(`<:staff:982837873919279114> » Usuário banido com sucesso.`) // Check
+                  return usuario.send({ content: `<:ModMute:980288914914947113> » Olá ${usuario}! Venho avisar que você foi banido do servidor **${message.guild.name}**.\n🧾 » Segue abaixo a log do seu banimento:`, embeds: [puni] }).catch(() => console.log(`Não consegui mandar DM ao usuário: ${usuario.tag}`))
 
                 }
                 case 'esc': { // yes
@@ -286,6 +276,13 @@ module.exports = class BanCommand extends Command {
       }) //
 
     })
-
+    else if (razao){
+      documentBans.bans += 1
+      documentBans.save().catch(err => console.log(err))
+      message.guild.bans.create(usuario.id, { reason: `${razao}` })
+      log.send({ embeds: [puni1] }) // Log
+      message.reply(`<:staff:982837873919279114> » Usuário banido com sucesso.`) // Check
+      return usuario.send({ content: `<:ModMute:980288914914947113> » Olá ${usuario}! Venho avisar que você foi banido do servidor **${message.guild.name}**.\n🧾 » Segue abaixo a log do seu banimento:`, embeds: [puni1] }).catch(() => console.log(`Não consegui mandar DM ao usuário: ${usuario.tag}`))
+    }
   }
 }
