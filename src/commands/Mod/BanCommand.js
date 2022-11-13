@@ -154,7 +154,7 @@ module.exports = class BanCommand extends Command {
           ]),
       )
 
-    message.reply({ embeds: [dashboard], ephemeral: true, components: [rew] }).then(msg => {
+    if (!razao) message.reply({ embeds: [dashboard], ephemeral: true, components: [rew] }).then(msg => {
 
       const filter = (interaction) => {
         return interaction.isSelectMenu() && interaction.message.id === msg.id;
