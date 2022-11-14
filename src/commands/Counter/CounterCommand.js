@@ -171,7 +171,7 @@ module.exports = class colorEmbed extends Command {
 
                   const verificação = message.guild.channels.cache.get(channel.id)
 
-                  if (!verificação) return message.reply(`${emojis.warn} » Esse canal não é do seu servidor.`)
+                  if (!verificação) return message.reply(`<:ModMute:980288914914947113> » Esse canal não é do seu servidor.`)
 
                   const msg = await message.reply(`<:9204adminbadge:938280523388842014> » Estou salvando o canal no banco de dados.`)
                   setTimeout(() => {
