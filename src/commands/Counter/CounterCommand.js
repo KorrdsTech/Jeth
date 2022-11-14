@@ -163,15 +163,12 @@ module.exports = class colorEmbed extends Command {
                 if (channel.id == guildDocument.counterChannel)
                   return message.reply(`<:ModMute:980288914914947113> » O canal inserido é o mesmo setado atualmente.`)
 
+                const verificação = message.guild.channels.cache.get(channel.id)
+
+                if (!verificação) return message.reply(`<:ModMute:980288914914947113> » Esse canal não é do seu servidor.`)
                 guildDocument.counterStatus = true
                 guildDocument.counterChannel = channel.id
                 guildDocument.save().then(async () => {
-
-                  const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
-
-                  const verificação = message.guild.channels.cache.get(channel.id)
-
-                  if (!verificação) return message.reply(`<:ModMute:980288914914947113> » Esse canal não é do seu servidor.`)
 
                   const msg = await message.reply(`<:9204adminbadge:938280523388842014> » Estou salvando o canal no banco de dados.`)
                   setTimeout(() => {
