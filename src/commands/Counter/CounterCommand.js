@@ -167,6 +167,12 @@ module.exports = class colorEmbed extends Command {
                 guildDocument.counterChannel = channel.id
                 guildDocument.save().then(async () => {
 
+                  const channel = message.guild.channels.cache.find(c => c.name === args.slice(1).join(' ')) || message.guild.channels.cache.get(args[1]) || message.mentions.channels.first()
+
+                  const verificação = message.guild.channels.cache.get(channel.id)
+
+                  if (!verificação) return message.reply(`${emojis.warn} » Esse canal não é do seu servidor.`)
+
                   const msg = await message.reply(`<:9204adminbadge:938280523388842014> » Estou salvando o canal no banco de dados.`)
                   setTimeout(() => {
                     msg.edit({ content: `<:9204adminbadge:938280523388842014> **»** O canal aonde o contador será exibido foi setado com sucesso.\n<:servers:963208373707341824> **»** Canal definido: **${channel}**` })
