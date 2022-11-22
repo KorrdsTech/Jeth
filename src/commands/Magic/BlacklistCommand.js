@@ -8,7 +8,7 @@ module.exports = class blacklist extends Command {
     this.name = 'blacklist'
     this.aliases = ['blacklist', 'blist']
     this.category = 'Magic'
-    this.adminOnly = true
+    this.adminOnly = false
   }
 
   async run(message, args) {
