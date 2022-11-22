@@ -12,6 +12,10 @@ module.exports = class blList extends Command {
 
   // eslint-disable-next-line no-unused-vars
   async run(message, args) {
+    const staff = await this.client.database.user.getOrCreate(message.author.id)
+    if (!staff.staff) {
+      return message.reply('Você não pode utilizar este comando, somente os membros confiados da equipe <@&718178715426619489>')
+    }
     const userDoc = await this.client.database.user.model.find({ 'blacklist': true })
     const msg = [];
 
