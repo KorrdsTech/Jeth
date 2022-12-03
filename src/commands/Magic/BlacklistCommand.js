@@ -8,13 +8,13 @@ module.exports = class blacklist extends Command {
     this.name = 'blacklist'
     this.aliases = ['blacklist', 'blist']
     this.category = 'Magic'
-    this.adminOnly = true
+    this.adminOnly = false
   }
 
   async run(message, args) {
     const staff = await this.client.database.user.getOrCreate(message.author.id)
     if (!staff.staff) {
-      return message.reply('Você não pode utilizar este comando, somente os membros confiados da equipe <@&718178715426619489>')
+      return message.reply('Você não pode utilizar este comando, somente os membros confiados da equipe <@&1041559731619233804>')
     }
     if (!args[0]) {
       return message.reply('Você tem que falar o id do usuario para que eu possa adicionar na blacklist...').then(sent => setTimeout(() => sent.delete(), 5000))
