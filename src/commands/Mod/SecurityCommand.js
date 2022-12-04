@@ -109,7 +109,7 @@ module.exports = class security extends Command {
       let embedCount = 1
       message.reply({ embeds: [embed] }).then(async m => {
         await m.react('1040856493920096286')// ir para frente
-        const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '1040856493920096286' || e.emoji.id == '◀️')
+        const filter = (e, u) => (u.id == message.author.id) & (e.emoji.id == '1040856493920096286' || e.emoji.name == '◀️')
         const col = m.createReactionCollector({ filter, time: 180_000, errors: ['time'] })
         col.on('collect', async (e) => {
           if (embedCount != 2 && e.emoji.id == '1040856493920096286') { // ir para frente
@@ -119,7 +119,7 @@ module.exports = class security extends Command {
             m.edit({ embeds: [embed2] })
             embedCount = 2
             await m.react('◀️')// volta para trás
-          } else if (e.emoji.id == '◀️' && embedCount == 2) {
+          } else if (e.emoji.name == '◀️' && embedCount == 2) {
 
             await m.react('1040856493920096286')
             e.users.cache.map(u => e.remove(u.id))

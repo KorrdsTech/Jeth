@@ -51,7 +51,7 @@ module.exports = class Rep extends Command {
         user.save().then(() => {
           const confirmação = new MessageEmbed()
             .setColor(colors['default'])
-            .setDescription(`<a:a_dancin:934175860930527313> Você deu um ponto de reputação para o ${member}\nAgora esse usuario tem ${user.rep} pontos de reputação\n**Motivo:** ${reason}`)
+            .setDescription(`<:trophy:1048795924543049818> Você deu um ponto de reputação para o ${member}\nAgora esse usuario tem ${user.rep} pontos de reputação\n**Motivo:** ${reason}`)
           message.reply({ embeds: [confirmação] })
         })
       } else {
@@ -61,7 +61,7 @@ module.exports = class Rep extends Command {
         user.save().then(() => {
           const confirmação = new MessageEmbed()
             .setColor(colors['default'])
-            .setDescription(`<a:a_dancin:934175860930527313> Você deu um ponto de reputação para o ${member}\nAgora esse usuario tem ${user.rep} pontos de reputação\n**Motivo:** ${reason}`)
+            .setDescription(`<:trophy:1048795924543049818> Você deu um ponto de reputação para o ${member}\nAgora esse usuario tem ${user.rep} pontos de reputação\n**Motivo:** ${reason}`)
           message.reply({ embeds: [confirmação] })
         })
       }

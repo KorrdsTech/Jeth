@@ -33,6 +33,7 @@ const Guild = new Schema({
   channelLeave: { type: String, default: '' },
   channelRegister: { type: String, default: '' },
   channelsaida: { type: String, default: '' },
+  moderadores: { type: String, default: '' },
 
   // Autorole :/
   novato: { type: String, default: '' },
@@ -41,6 +42,7 @@ const Guild = new Schema({
   counterMessage: { type: String, default: '{contador}' },
   counterType: { type: String, default: '{azul}' },
   counterStatus: { type: Boolean, default: false },
+  wantModSysEnable: { type: Boolean, default: false },
 })
 
 module.exports = model('Guilds', Guild)

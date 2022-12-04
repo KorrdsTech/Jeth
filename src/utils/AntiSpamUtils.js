@@ -43,11 +43,12 @@ module.exports = class AntiSpamUtils {
           })
           if (this.checkPossibly(message)) {
             const guildDocument = await client.database.guild.getOrCreate(message.guild.id)
+            const channel = message.guild.channels.cache.get(guildDocument.punishChannel)
             message.member.timeout(parse(guildDocument.timerSpam), `${guildDocument.infoantspam}`).then(() => {
-              message.channel.send({ embeds: [embed] })
+              return channel.send({ embeds: [embed] })
             })
           } else {
-            message.channel.send(`Calma lá ${message.author}, acho melhor você parar! Eu acabei de apagar ${msgList.length} mensagens sua que você spammou.`)
+            return message.channel.send(`Calma lá ${message.author}, acho melhor você parar! Eu acabei de apagar ${msgList.length} mensagens sua que você spammou.`)
           }
         } else {
           userData.msgCount = msgCount
