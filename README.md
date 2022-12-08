@@ -5,9 +5,9 @@
 
 <!-- Badges, about the GitHub repository itself -->
 <p align="center">
-<a href="COMMIT"><img src="https://img.shields.io/github/last-commit/KorrdsTech/Jeth/DJSv.13/6.1"></a>
-<a href="LANG"><img src="https://img.shields.io/github/languages/top/KorrdsTech/Jeth"></a>
-<a href="LICENSE"><img src="https://img.shields.io/aur/license/android-studio"></a>
+<a href><img src="https://img.shields.io/github/last-commit/KorrdsTech/Jeth/DJSv.13/6.1"></a>
+<a href><img src="https://img.shields.io/github/languages/top/KorrdsTech/Jeth"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg"></a>
 </p>
 
 Os servidores do Discord necessitam de uma moderação de qualidade, pensando exatamente nisto desenvolvemos a Jeth, uma bot de extrema qualidade focada neste propósito porém com diversos comandos multipropósito.
