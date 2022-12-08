@@ -11,7 +11,6 @@ module.exports = class retcargo extends Command {
   }
 
   async run(message, args) {
-
     const emptyMessage = new MessageEmbed()
       .setColor(colors['mod'])
       .setTitle('<:plus:955577453441597550> **RemoveRole:**', `${message.author.username}`, true)
@@ -58,20 +57,6 @@ module.exports = class retcargo extends Command {
       message.reply('Você não tem permissão para remover role deste usuário');
       return 0;
     }
-
-    // const embedC = new MessageEmbed()
-    // .setTimestamp()
-    // .setColor(colors['mod'])
-    // .setTitle('**Err:**', true)
-    // .setDescription('Missing Permissions') // inline false
-    // .addField('*Verifique se meus cargos estão acima do usuário:*', '`ROLES_COMPARSION`', true)
-    // .setFooter("🧁・Discord da Jeth", message.guild.iconURL({ dynamic: true, size: 1024 }))
-
-    // let clientRole = message.guild.me.roles.highest;
-    // if (clientRole.comparePositionTo(targetRole) <= 0) {
-    //     message.reply({ embeds: [embedA] });
-    //     return 0;
-    // }
 
     if (!cargo_nome) return message.reply('`Você não colocou um cargo valido!`');
 

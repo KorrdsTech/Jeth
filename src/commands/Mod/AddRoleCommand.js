@@ -73,6 +73,5 @@ module.exports = class setcargo extends Command {
     if (usuario.roles.cache.has(cargo_nome)) return message.reply('o membro mencionado já possui esse cargo.')
     usuario.roles.add(cargo_nome)
     message.reply({ embeds: [embed] })
-
   }
 }

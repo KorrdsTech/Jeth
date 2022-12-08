@@ -48,7 +48,7 @@ module.exports = async function onMessage(message) {
     }
   }
 
-  if ((guildDocument?.antInvite && !message.member?.permissions.has('ADMINISTRATOR'))) {
+  if ((guildDocument?.antInvite && !message.member?.permissions.has('MANAGE_GUILD'))) {
     if (AntiInviteUtils.scanMessage(message.content)) {
       message.delete()
       message.member.timeout(parse('1d'), '[AUTOMOD] Divulgação de convites não são toleradas aqui.').then(() => {

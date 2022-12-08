@@ -9,7 +9,7 @@ module.exports = class vipconfig extends Command {
     this.name = 'vipconfig'
     this.aliases = ['vc', 'vipconfig', 'premiumconfig']
     this.category = 'VIP'
-    this.permissions = ['ADMINISTRATOR']
+    this.permissions = ['MANAGE_GUILD']
 
   }
 

@@ -1,4 +1,5 @@
-const { Command } = require('../../utils')
+const { Command, colors } = require('../../utils')
+const { MessageEmbed } = require('discord.js')
 
 module.exports = class Banlist extends Command {
   constructor(name, client) {
@@ -10,23 +11,88 @@ module.exports = class Banlist extends Command {
   }
 
   async run(message) {
+    const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id) //Db
+    if (guildDocument.wantModSysEnable === true) {
+      const embedA = new MessageEmbed()
 
-    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply('❌ Não tens permissão para ver a lista de membros banidos!'); //Verifica se quem enviou o comando tem permissão para ver os membros banidos
-    if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply('❌ Não tenho permissão para ver a lista de membros banidos!'); //Verifica se o bot tem permissão para ver os membros banidos
+        .setTimestamp()
+        .setColor(colors['mod'])
+        .setTitle('**Err:**', true)
+        .setDescription('Missing Permissions') // inline false
+        .addFields({ name: '*Verifique se você possui o cargo:*', value: `<@&${guildDocument.moderadores}>`, inline: true })
+        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    const bans = await message.guild.bans.fetch(); //Obtém a lista de membros banidos do servidor
+      const embedB = new MessageEmbed()
 
-    if (!bans.first()) //Se a lista estiver vazia retorna
-      return message.reply('❌ Este servidor não tem membros banidos!');
+        .setTimestamp()
+        .setColor(colors['mod'])
+        .setTitle('**Err:**', true)
+        .setDescription('Configuração Incompleta')
+        .addFields({ name: '*Verifique se você definiu todos os valores necessários corretamente.*', value: '`Cargo de moderador não definido`' })
+        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
-    let msg = '';
+      const role = message.guild.roles.cache.get(guildDocument.moderadores)
 
-    //Mapeia a lista de membros banidos e adiciona a sua tag à variável msg (USER#0001)
-    bans.map(user => {
-      msg += `\`${user.user.tag}\`, `;
-    });
+      const embedBan = new MessageEmbed()
 
-    //Por fim envia a mensagem com todas as tags dos membros banidos, com split no caso de o servidor ter muitos membros banidos e a lista for grande
-    message.reply('📑 Lista de membros banidos:\n' + msg, { split: true });
+        .setTimestamp()
+        .setColor(colors['mod'])
+        .setTitle('**Err:**', true)
+        .setDescription('Missing Permissions') // inline false
+        .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
+        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+
+      if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })
+      if (!guildDocument.moderadores) {
+        message.channel.send({ embeds: [embedB] })
+        return
+      }
+      if (!message.member.roles.cache.has(role.id)) {
+        message.channel.send({ embeds: [embedA] })
+        return
+      }
+
+      const bans = await message.guild.bans.fetch(); //Obtém a lista de membros banidos do servidor
+
+      if (!bans.first()) //Se a lista estiver vazia retorna
+        return message.reply('❌ Este servidor não tem membros banidos!');
+
+      let msg = '';
+
+      //Mapeia a lista de membros banidos e adiciona a sua tag à variável msg (USER#0001)
+      bans.map(user => {
+        msg += `\`${user.user.tag}\`, `;
+      });
+
+      //Por fim envia a mensagem com todas as tags dos membros banidos, com split no caso de o servidor ter muitos membros banidos e a lista for grande
+      message.reply('📑 Lista de membros banidos:\n' + msg, { split: true });
+    } else if (guildDocument.wantModSysEnable === false) {
+      const embedBan = new MessageEmbed()
+
+        .setTimestamp()
+        .setColor(colors['mod'])
+        .setTitle('**Err:**', true)
+        .setDescription('Missing Permissions') // inline false
+        .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
+        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+
+      if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })
+      if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })
+
+      const bans = await message.guild.bans.fetch(); //Obtém a lista de membros banidos do servidor
+
+      if (!bans.first()) //Se a lista estiver vazia retorna
+        return message.reply('❌ Este servidor não tem membros banidos!');
+
+      let msg = '';
+
+      //Mapeia a lista de membros banidos e adiciona a sua tag à variável msg (USER#0001)
+      bans.map(user => {
+        msg += `\`${user.user.tag}\`, `;
+      });
+
+      //Por fim envia a mensagem com todas as tags dos membros banidos, com split no caso de o servidor ter muitos membros banidos e a lista for grande
+      message.reply('📑 Lista de membros banidos:\n' + msg, { split: true });
+    }
   }
 }
