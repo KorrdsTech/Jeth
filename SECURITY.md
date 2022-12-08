@@ -15,7 +15,8 @@ Atualmente as versões exibidas nesta caixa contam com nosso suporte.
 | 6.0.1-beta | ❌ |
 | 6.1.1 | ❌ |
 | 6.2a | ❌ |
-| 6.2.1a | ✅ |
+| 6.2.1a | ❌ |
+| 6.2b | ✅ |
 | ------- | ------------------ |
 
 ## Como relatar uma vulnerabilidade
