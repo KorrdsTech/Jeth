@@ -64,6 +64,30 @@ module.exports = class Punishment extends Command {
       guildDocument.save()
       message.reply('Sistema de moderação avançado desativado com sucesso.')
       return (0);
+    } else if (args[0] === 'exemptUser') {
+      const exempt = new MessageEmbed()
+        .setColor(colors['mod'])
+        .setDescription(`<:martelodobem:1041234493744369715> Você não mencionou o usuário para ser adicionado na lista de isenção`)
+
+      const usuário = await message.guild.members.cache.get(args[1]?.replace(/[<@!>]/g, ''))
+      if (!usuário) return message.channel.send({ embeds: [exempt] })
+      const userData = await this.client.database.user.getOrCreate(usuário.id)
+      userData.exemptUser = true
+      userData.save()
+      message.channel.send(`${usuário} agora pode enviar links de servidores sem ser punido.`)
+      return (0);
+    } else if (args[0] === 'removeExemptUser') {
+      const exempt = new MessageEmbed()
+        .setColor(colors['mod'])
+        .setDescription(`<:martelodobem:1041234493744369715> Você não mencionou o usuário para ser adicionado na lista de isenção`)
+
+      const usuário = await message.guild.members.cache.get(args[1]?.replace(/[<@!>]/g, ''))
+      if (!usuário) return message.channel.send({ embeds: [exempt] })
+      const userData = await this.client.database.user.getOrCreate(usuário.id)
+      userData.exemptUser = false
+      userData.save()
+      message.channel.send(`${usuário} não pode mais enviar links de servidores sem ser punido.`)
+      return (0);
     }
 
     const embed2 = new MessageEmbed()

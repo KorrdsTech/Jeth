@@ -2,6 +2,7 @@ const { model, Schema } = require('mongoose')
 const User = new Schema({
   _id: { type: String },
   blacklist: { type: Boolean, default: false },
+  userExempt: { type: Boolean, default: false },
   blacklistReason: { type: String, default: null },
   rep: { type: Number, default: 0 },
   bugsReported: { type: Number, default: 0 },

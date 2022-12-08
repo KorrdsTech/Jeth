@@ -98,6 +98,11 @@ module.exports = class kick extends Command {
         .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
         .setTimestamp(new Date());
 
+      const punido = new MessageEmbed()
+        .setColor(colors['lightblue'])
+        .setDescription(`<:martelodobem:1041234493744369715> ${membro18} foi kickado com sucesso!`)
+
+      message.channel.send({ embeds: [punido] })
       log.send(warnembed13);
       membro18.send({ embeds: [warnembed18] });
       await message.guild.member(membro18).kick(razao13)

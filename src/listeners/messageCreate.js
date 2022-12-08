@@ -50,10 +50,14 @@ module.exports = async function onMessage(message) {
 
   if ((guildDocument?.antInvite && !message.member?.permissions.has('MANAGE_GUILD'))) {
     if (AntiInviteUtils.scanMessage(message.content)) {
-      message.delete()
-      message.member.timeout(parse('1d'), '[AUTOMOD] Divulgação de convites não são toleradas aqui.').then(() => {
-        message.channel.send(`${message.author} <:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!`)
-      })
+      if (guildDocument.userExempt === false) {
+        return
+      } else if (!guildDocument.userExempt === true) {
+        message.delete()
+        message.member.timeout(parse('1h'), '[AUTOMOD] Divulgação de convites não são toleradas aqui.').then(() => {
+          message.channel.send(`${message.author} <:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!`)
+        })
+      }
     }
   }
 

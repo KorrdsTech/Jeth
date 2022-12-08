@@ -110,7 +110,12 @@ module.exports = class Warn extends Command {
         .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
         .setTimestamp();
 
+      const punido = new MessageEmbed()
+        .setColor(colors['mod'])
+        .setDescription(`\n<:martelodobem:1041234493744369715> ${usuario} recebeu o aviso com sucesso!`)
+
       log.send({ embeds: [warnembed] })
+      message.channel.send({ embeds: [punido] })
     } else if (guildDocument.wantModSysEnable === false) {
       const defina = new MessageEmbed()
         .setColor(colors['mod'])
@@ -176,6 +181,11 @@ module.exports = class Warn extends Command {
         .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
         .setTimestamp();
 
+      const punido = new MessageEmbed()
+        .setColor(colors['lightblue'])
+        .setDescription(`<:martelodobem:1041234493744369715> ${usuario} recebeu o aviso com sucesso!`)
+
+      message.channel.send({ embeds: [punido] })
       log.send({ embeds: [warnembed] })
     }
   }
