@@ -24,6 +24,8 @@ module.exports = class Punishment extends Command {
       .addField('*Definir cargo de moderadores:*', `${guildDocument.prefix}*Punishment mods <@cargo>*\n**Exemplo:** ${guildDocument.prefix}*Punishment mods @moderador*`, false)
       .addField('*Ativar sistema de controle avançado:*', `${guildDocument.prefix}*Punishment ativar*`, false)
       .addField('*Desativar sistema de controle avançado:*', `${guildDocument.prefix}*Punishment desativar*`, false)
+      .addField('*Adicionar um usuário na isenção de punição do módulo anti-div:*', `${guildDocument.prefix}*Punishment exemptUser <@user>*\n**Exemplo:** ${guildDocument.prefix}*Punishment exemptUser @Solaris#0006*`, false)
+      .addField('*Remover um usuário na isenção de punição do módulo anti-div:*', `${guildDocument.prefix}*Punishment removeExemptUser <@user>*\n**Exemplo:** ${guildDocument.prefix}*Punishment removeExemptUser @Solaris#0006*`, false)
 
     const embedA = new MessageEmbed()
       .setTimestamp()
