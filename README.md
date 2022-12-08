@@ -12,7 +12,7 @@
 
 Os servidores do Discord necessitam de uma moderação de qualidade, pensando exatamente nisto desenvolvemos a Jeth, uma bot de extrema qualidade focada neste propósito porém com diversos comandos multipropósito.
 
-Lembre-se nós disponibilizamos nossa SRC para usos a fins estudantis, portanto lembre-se não adianta baixar os arquivos e tentar modifica-los para executar da mesma forma que o bot original, o projeto apresentará possíveis erros desconhecidos por parte do público.
+Lembre-se nós disponibilizamos nossa SRC para usos a fins estudantis, portanto note que não adianta baixar os arquivos e tentar modifica-los para executar da mesma forma que o bot original, o projeto apresentará possíveis erros desconhecidos por parte do público.
 
 _Precisa de ajuda com algum dos tópicos abaixo?_
 
