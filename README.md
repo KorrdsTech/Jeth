@@ -23,6 +23,8 @@ _Precisa de ajuda com algum dos tópicos abaixo?_
 <img src="https://discordbots.org/api/widget/936773967279173662.png?test=123456" alt="Discord Bots" />
 </a>
 
+Caso não esteja conseguindo adicionar o bot por este método ou não goste dele tente adicionar o bot através do próprio discord [clicando aqui](https://discord.com/oauth2/authorize?client_id=936773967279173662&scope=bot+identify+guilds+email+applications.commands&permissions=8) caso apareça algum problema com este link você pode reportar na categoria issues.
+
 ## 🐞 Comandos
 Alguns dos comandos criados em nosso projeto hoje se encontram desatualizados e podem apresentar diversas falhas e desagrado visual, caso queira reportar uma destas falhas ou falar sobre o assunto considere entrar em nosso <a href="https://discord.gg/WPUYahyPzx">Discord</a>.
 
