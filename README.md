@@ -19,8 +19,8 @@ _Precisa de ajuda com algum dos tópicos abaixo?_
 ## 🤔 Como adiciono a Jeth?
 
 <p align="center">
-<a href="https://discordbots.org/bot/936773967279173662?utm_source=widget">
-<img src="https://discordbots.org/api/widget/936773967279173662.png?test=123456" alt="Discord Bots" />
+<a href="https://top.gg/bot/936773967279173662">
+  <img src="https://top.gg/api/widget/936773967279173662.svg">
 </a>
 
 Caso não esteja conseguindo adicionar o bot por este método ou não goste dele tente adicionar o bot através do próprio discord [clicando aqui](https://discord.com/oauth2/authorize?client_id=936773967279173662&scope=bot+identify+guilds+email+applications.commands&permissions=8) caso apareça algum problema com este link você pode reportar na categoria issues.
