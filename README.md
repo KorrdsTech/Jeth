@@ -35,3 +35,9 @@ Gostaria de deixar seu feedback sobre nosso projeto? então não pense muito! en
 Para manter a Jeth online necessitamos pagar uma hospedagem para ela, desta forma ela pode ficar online 24 horas todos os 7 dias da semana! entretanto não é um valor baixo que pagamos, caso você sinta que quer coolaborar financeiramente com o projeto deixamos a opção de doação abaixo, a quantia que quer doar é sua escolha e utilizamos o saldo apenas com a Jeth!
 
 [link para as doações](https://donatebot.io/checkout/1001368891160805506)
+
+___
+
+<p align="center">
+<img src="https://i.imgur.com/chexojg.png">
+</p>
