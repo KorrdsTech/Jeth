@@ -5,7 +5,7 @@
 
 <!-- Badges, about the GitHub repository itself -->
 <p align="center">
-<a href><img src="https://img.shields.io/github/last-commit/KorrdsTech/Jeth/DJSv.13/6.2"></a>
+<a href><img src="https://img.shields.io/github/last-commit/KorrdsTech/Jeth/DJSv.13/Stable"></a>
 <a href><img src="https://img.shields.io/github/languages/top/KorrdsTech/Jeth"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg"></a>
 </p>
