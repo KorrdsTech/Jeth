@@ -28,7 +28,6 @@ module.exports = class Profile extends Command {
     const jeth = this.client.guilds.cache.get('1001368891160805506')
     const pUser = message.guild.members.cache.get(args[0]?.replace(/[<@!>]/g, '') || message.author.id)
     const documento = await this.client.database.guild.getOrCreate(message.guild.id)
-    const doc = await this.client.database.user.getOrCreate(pUser)
     const prefix = documento.prefix
     const USER =
             this.client.users.cache.get(args[0]) ||
