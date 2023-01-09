@@ -33,6 +33,22 @@ module.exports = async function onMessage(message) {
     message.channel.send({ content: `<a:b_hypesquadi:887899688634839042> **Olá, **${message.author}! Prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <a:a_dancin:1002698613262127144> Atualmente possuo **${totalCommands}** comandos!`, components: [row] })
 
   }
+  
+  // Jeth official server code line
+    if (message.content.includes('https://tenor.com')) { 
+    return
+  } else if (message.content.includes('https://')) {
+    if (message.channel.id === '1001368891827683397') {
+      message.delete(1)
+      await message.reply('<:URL:1041552407475277916> Links **Não** são permitidos neste canal!')
+    }
+  }
+  if (message.content.includes('http://')) {
+    if (message.channel.id === '1001368891827683397') {
+      message.delete(1)
+      await message.reply('<:URL:1041552407475277916> Links **Não** são permitidos neste canal!')
+    }
+  }
 
   if (guildDocument?.sugesModule) {
     const suggestionChannel = message.guild.channels.cache.get(guildDocument?.sugesChannel)
