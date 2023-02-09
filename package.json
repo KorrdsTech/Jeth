@@ -22,7 +22,7 @@
     "eslint": "^8.11.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-sort-class-members": "^1.14.1",
-    "jimp": "^0.16.0",
+    "jimp": "^0.22.0",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
     "mongoose": "^6.2.8",
