@@ -1,5 +1,5 @@
 <p align="center">
-<img height="250" src="https://imgur.com/gallery/5cfnv0p" align="right">
+<img height="250" src="https://i.imgur.com/OhuW2Fy.gif" align="right">
 
 <h1 align="center">🌀 GARY 🌀</h1>
 
