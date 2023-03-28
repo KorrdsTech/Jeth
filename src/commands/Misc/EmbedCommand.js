@@ -25,7 +25,7 @@ module.exports = class Embed extends Command {
       .setAuthor({ name: message.author.tag, iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }) })
       .setTitle(`Defina algo para eu transformar em embed.`)
       .addField(`Placeholder's`, `**{guild-name}** - Para dar o nome do servidor.\n**{user-icon}** - Para dar o avatar do autor.\n**{guild-icon}** - Para dar o avatar do servidor.\n**{user}** - Para dar o nickname do autor.\n**{mention}** - Para te mencionar.`, false)
-      .addField(`Embed Visualizer`, `Que tal testar sua embed antes de colocar na Jeth? Assim você saberá se há erros ou não. Acesse ao site do [Embed Visualizer](https://leovoel.github.io/embed-visualizer/) e teste.`)
+      .addField(`Embed Visualizer`, `Que tal testar sua embed antes de colocar na Gary? Assim você saberá se há erros ou não. Acesse ao site do [Embed Visualizer](https://leovoel.github.io/embed-visualizer/) e teste.`)
       .setFooter({ text: `Requisitado por ${message.author.tag} - ID ${message.author.id}` })
       .setColor(colors['default'])
 

@@ -17,7 +17,7 @@ module.exports = class security extends Command {
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+       
 
     if (!message.member.permissions.has('MANAGE_GUILD')) return message.reply({ embeds: [erroDePermissão] })
     const guildDocument = await this.client.database.guild.getOrCreate(message.guild.id)

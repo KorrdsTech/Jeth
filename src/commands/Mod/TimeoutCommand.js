@@ -22,7 +22,7 @@ module.exports = class Timeout extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addFields({ name: '*Verifique se você possui o cargo:*', value: `<@&${guildDocument.moderadores}>`, inline: true })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const embedB = new MessageEmbed()
 
@@ -31,7 +31,7 @@ module.exports = class Timeout extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Configuração Incompleta')
         .addFields({ name: '*Verifique se você definiu todos os valores necessários corretamente.*', value: '`Cargo de moderador não definido`' })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const permErr = new MessageEmbed()
         .setColor(colors['mod'])
@@ -102,7 +102,7 @@ module.exports = class Timeout extends Command {
         .setTitle('Ação | Timeout')
         .setColor('#ff112b')
         .setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Usuário:** ${user.user.username} \n**ID:** ${user.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}` + `\n<:KaelMutado:673592196972412949> **Tempo:** ${timer}`)
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
         .setTimestamp(new Date());
 
       // executa o corte de comunicação ou timeout.
@@ -176,7 +176,7 @@ module.exports = class Timeout extends Command {
         .setTitle('Ação | Timeout')
         .setColor('#ff112b')
         .setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Usuário:** ${user.user.username} \n**ID:** ${user.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${reason}` + `\n<:KaelMutado:673592196972412949> **Tempo:** ${timer}`)
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
         .setTimestamp(new Date());
 
       // executa o corte de comunicação ou timeout.

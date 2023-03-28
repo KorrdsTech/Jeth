@@ -34,11 +34,11 @@ module.exports = class blacklist extends Command {
 
     //   .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
     //   .setTitle(`${message.author.username}`)
-    //   .setDescription(`:do_not_litter: **Você foi blacklisted ${message.guild.name} :no_entry_sign:** \nO que isto significa ? você não poderá mais fazer parte dos servidores que apoiam a network da Jeth, por quebrar um dos termos de serviço do discord, este tipo de punição não oferece appeal e se você se encontra nesta situação provavelmente terá sua conta encerrada.`)
+    //   .setDescription(`:do_not_litter: **Você foi blacklisted ${message.guild.name} :no_entry_sign:** \nO que isto significa ? você não poderá mais fazer parte dos servidores que apoiam a network da Gary, por quebrar um dos termos de serviço do discord, este tipo de punição não oferece appeal e se você se encontra nesta situação provavelmente terá sua conta encerrada.`)
     //   .setColor('BLACK')
     //   .addField('<:pepe:651487933148299291> **Staffer:**', `${message.author}`)
     //   .addField('📝 Motivo:', `${reason}`)
-    //   .setFooter({ text: 'https://discord.com/guidelines・Discord da Jeth 🛠' })
+    //   .setFooter({ text: 'https://discord.com/guidelines 🛠' })
     //   .setTimestamp(new Date());
 
     const warnembed14 = new MessageEmbed()

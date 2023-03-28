@@ -32,7 +32,7 @@ module.exports = class kick extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addFields({ name: '*Verifique se você possui o cargo:*', value: `<@&${guildDocument.moderadores}>`, inline: true })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const embedB = new MessageEmbed()
 
@@ -41,7 +41,7 @@ module.exports = class kick extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Configuração Incompleta')
         .addFields({ name: '*Verifique se você definiu todos os valores necessários corretamente.*', value: '`Cargo de moderador não definido`' })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       if (!args[0]) return message.reply({ embeds: [emptyMessage] })
       // code dm do kickado
@@ -95,7 +95,7 @@ module.exports = class kick extends Command {
         .setTitle('Ação | Kick')
         .setColor('#ff112b')
         .setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Kickado:** ${membro18.username} \n**ID:** ${membro18.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${razao13}`)
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
         .setTimestamp(new Date());
 
       const punido = new MessageEmbed()
@@ -148,7 +148,7 @@ module.exports = class kick extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addField('*Verifique se você possui a permissão:*', '`KICK_MEMBERS`', true)
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply({ embeds: [embedA] })
 
@@ -171,7 +171,7 @@ module.exports = class kick extends Command {
         .setTitle('Ação | Kick')
         .setColor('#ff112b')
         .setDescription(`\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Kickado:** ${membro18.username} \n**ID:** ${membro18.id}` + `\n<:peeencil:1040822681379024946> **Motivo:** ${razao13}`)
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
         .setTimestamp(new Date());
 
       log.send(warnembed13);

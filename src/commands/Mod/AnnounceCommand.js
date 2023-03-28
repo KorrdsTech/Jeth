@@ -20,7 +20,7 @@ module.exports = class anuncio extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addFields({ name: '*Verifique se você possui o cargo:*', value: `<@&${guildDocument.moderadores}>`, inline: true })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const embedB = new MessageEmbed()
 
@@ -29,7 +29,7 @@ module.exports = class anuncio extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Configuração Incompleta')
         .addFields({ name: '*Verifique se você definiu todos os valores necessários corretamente.*', value: '`Cargo de moderador não definido`' })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const link = new MessageEmbed()
         .setColor(colors['default'])
@@ -51,9 +51,9 @@ module.exports = class anuncio extends Command {
       const embedajuda = new MessageEmbed()
         .setTitle('Anuncio | Ajuda', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-        .setDescription(`<a:Jethhype:665057207196319744> Segue abaixo os comandos que podem ser utilizados na configuração do seu anúncio: <a:Jethhype:665057207196319744>\n \n<:nitro1:667835744903102494> **${server.prefix}anuncio enviar <#chat> <mensagem>** >> Utilizado para mandar o anuncio no canal definido. \n \n<:nitro2:667835748900405249> **${server.prefix}anuncio set <imagem>** >> Para setar um gif ou imagem no anuncio. \n \n<:nitro3:667835748828971018> **${server.prefix}anuncio resetar** >> Para resetar o link do gif ou imagem setado. \n \n<:premium:667149934025375764> **${server.prefix}anuncio ver** >> Para visualizar a sua imagem de anuncio.`)
+        .setDescription(`<a:Garyhype:665057207196319744> Segue abaixo os comandos que podem ser utilizados na configuração do seu anúncio: <a:Garyhype:665057207196319744>\n \n<:nitro1:667835744903102494> **${server.prefix}anuncio enviar <#chat> <mensagem>** >> Utilizado para mandar o anuncio no canal definido. \n \n<:nitro2:667835748900405249> **${server.prefix}anuncio set <imagem>** >> Para setar um gif ou imagem no anuncio. \n \n<:nitro3:667835748828971018> **${server.prefix}anuncio resetar** >> Para resetar o link do gif ou imagem setado. \n \n<:premium:667149934025375764> **${server.prefix}anuncio ver** >> Para visualizar a sua imagem de anuncio.`)
         .setColor(colors['default'])
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       if (!args[0]) return message.reply({ embeds: [embedajuda] })
 
@@ -97,7 +97,7 @@ module.exports = class anuncio extends Command {
           .setAuthor({ name: `Anunciado por ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
           .setDescription(announce)
           .setImage(`${server.linkanuncio || ''}`)
-          .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+           
 
         const embedreply = new MessageEmbed()
           .setAuthor({ name: 'Aviso', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
@@ -149,9 +149,9 @@ module.exports = class anuncio extends Command {
       const embedajuda = new MessageEmbed()
         .setTitle('Anuncio | Ajuda', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-        .setDescription(`<a:Jethhype:665057207196319744> Segue abaixo os comandos que podem ser utilizados na configuração do seu anúncio: <a:Jethhype:665057207196319744>\n \n<:nitro1:667835744903102494> **${server.prefix}anuncio enviar <#chat> <mensagem>** >> Utilizado para mandar o anuncio no canal definido. \n \n<:nitro2:667835748900405249> **${server.prefix}anuncio set <imagem>** >> Para setar um gif ou imagem no anuncio. \n \n<:nitro3:667835748828971018> **${server.prefix}anuncio resetar** >> Para resetar o link do gif ou imagem setado. \n \n<:premium:667149934025375764> **${server.prefix}anuncio ver** >> Para visualizar a sua imagem de anuncio.`)
+        .setDescription(`<a:Garyhype:665057207196319744> Segue abaixo os comandos que podem ser utilizados na configuração do seu anúncio: <a:Garyhype:665057207196319744>\n \n<:nitro1:667835744903102494> **${server.prefix}anuncio enviar <#chat> <mensagem>** >> Utilizado para mandar o anuncio no canal definido. \n \n<:nitro2:667835748900405249> **${server.prefix}anuncio set <imagem>** >> Para setar um gif ou imagem no anuncio. \n \n<:nitro3:667835748828971018> **${server.prefix}anuncio resetar** >> Para resetar o link do gif ou imagem setado. \n \n<:premium:667149934025375764> **${server.prefix}anuncio ver** >> Para visualizar a sua imagem de anuncio.`)
         .setColor(colors['default'])
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       if (!args[0]) return message.reply({ embeds: [embedajuda] })
 
@@ -195,7 +195,7 @@ module.exports = class anuncio extends Command {
           .setAuthor({ name: `Anunciado por ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
           .setDescription(announce)
           .setImage(`${server.linkanuncio || ''}`)
-          .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+           
 
         const embedreply = new MessageEmbed()
           .setAuthor({ name: 'Aviso', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })

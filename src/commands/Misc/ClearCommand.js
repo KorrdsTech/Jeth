@@ -18,7 +18,7 @@ module.exports = class apagar extends Command {
       .setTitle('**Err:**', true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_MESSAGES`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
+        
 
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
       return message.reply({ embeds: [embedA] })
@@ -39,7 +39,7 @@ module.exports = class apagar extends Command {
       .setColor(colors['default'])
       .setTitle(`<:ayaya:683491996790554629> ${message.author.username}`, true)
       .setDescription(`As mensagens requisitadas no servidor ${message.guild} foram **deletadas** com sucesso!`)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
+        
     return message.author.send({ embeds: [embedB] })
       .catch(error => message.reply(`Não foi possível deletar mensagens devido a: ${error}`));
   }

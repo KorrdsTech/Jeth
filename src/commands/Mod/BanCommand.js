@@ -23,7 +23,7 @@ module.exports = class BanCommand extends Command {
         .setDescription('Criado para facilitar a punição de usuários do seu servidor.') // inline false
         .addFields({ name: '*Uso do comando:*', value: '`Ban <@user> [motivo]`', inline: true })
         .addFields({ name: '*Exemplo:*', value: '`Ban @Solaris#0006 Ban hammer has spoken!`', inline: true })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const embedA = new MessageEmbed()
 
@@ -32,7 +32,7 @@ module.exports = class BanCommand extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addFields({ name: '*Verifique se você possui o cargo:*', value: `<@&${guildDocument.moderadores}>`, inline: true })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const embedB = new MessageEmbed()
 
@@ -41,7 +41,7 @@ module.exports = class BanCommand extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Configuração Incompleta')
         .addFields({ name: '*Verifique se você definiu todos os valores necessários corretamente.*', value: '`Cargo de moderador não definido`' })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const log = this.client.channels.cache.get(guildDocument.punishChannel)
       const razao = args.slice(1).join(' ');
@@ -311,7 +311,7 @@ module.exports = class BanCommand extends Command {
         .setDescription('Criado para facilitar a punição de usuários do seu servidor.') // inline false
         .addFields({ name: '*Uso do comando:*', value: '`Ban <@user> [motivo]`', inline: true })
         .addFields({ name: '*Exemplo:*', value: '`Ban @Solaris#0006 Ban hammer has spoken!`', inline: true })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const embedA = new MessageEmbed()
 
@@ -320,7 +320,7 @@ module.exports = class BanCommand extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
 

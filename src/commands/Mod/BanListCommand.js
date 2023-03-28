@@ -20,7 +20,7 @@ module.exports = class Banlist extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addFields({ name: '*Verifique se você possui o cargo:*', value: `<@&${guildDocument.moderadores}>`, inline: true })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const embedB = new MessageEmbed()
 
@@ -29,7 +29,7 @@ module.exports = class Banlist extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Configuração Incompleta')
         .addFields({ name: '*Verifique se você definiu todos os valores necessários corretamente.*', value: '`Cargo de moderador não definido`' })
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       const role = message.guild.roles.cache.get(guildDocument.moderadores)
 
@@ -40,7 +40,7 @@ module.exports = class Banlist extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })
       if (!guildDocument.moderadores) {
@@ -74,7 +74,7 @@ module.exports = class Banlist extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
-        .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+         
 
       if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })
       if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })

@@ -18,7 +18,6 @@ module.exports = class dog extends Command {
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
       .setColor(colors['default'])
       .setTimestamp(new Date())
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
 
     message.reply({ embeds: [embed] });
   }

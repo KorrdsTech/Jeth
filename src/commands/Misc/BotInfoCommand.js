@@ -28,7 +28,6 @@ module.exports = class info extends Command {
         { name: '<:9461systemmessageuser:832746852633149460> Programadores:', value: '<@442774319819522059>\n<@395788326835322882>', inline: false },
         { name: '<:b_blurpleintegration:1002363937792213002> Shard ID:', value: `${this.client.shard.ids}`, inline: false }
       ])
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) });
     message.reply({ embeds: [embed] })
   }
 };

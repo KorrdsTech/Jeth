@@ -22,7 +22,6 @@ module.exports = class beijar extends Command {
       .setThumbnail('https://cdn.discordapp.com/emojis/742240824569626674.png')
       .setDescription(`:heart_eyes: **${message.author}** acabou de beijar o(a) **${user}**`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) });
 
     message.reply({ embeds: [embed] })
   }

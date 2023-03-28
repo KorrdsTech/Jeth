@@ -20,7 +20,6 @@ module.exports = class tapa extends Command {
       .setDescription(`:person_facepalming: ${message.author} **deu um tapa no(a)** ${message.mentions.users.first()}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
       .setColor(colors['default'])
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp();
 
     message.reply({ embeds: [slapEmbed] })

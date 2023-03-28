@@ -18,7 +18,7 @@ module.exports = class suggestion extends Command {
       .setTitle('**Err:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_GUILD`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
+        
 
     if (!message.member.permissions.has('MANAGE_GUILD'))
       return message.reply({ embeds: [erroDePermissão] })
@@ -32,7 +32,7 @@ module.exports = class suggestion extends Command {
       .setTitle('**PAINEL DE AJUDA**')
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
       .setDescription(`Para definir o canal de sugestão basta utilizar o comando\n **${prefix}suggestion canal <#canal>** \n\nAssim que o canal for definido, qualquer mensagem enviada nele, receberá a reação dos emojis Sim, não ou não especificado.\nCaso queira desativar o canal de sugestões basta utilizar \n**${prefix}suggestion remover**`) // inline false
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
+        
 
     if (!args[0]) message.reply({ embeds: [mododeuso] })
     if (args[0] === 'canal') {

@@ -40,7 +40,7 @@ module.exports = class strike extends Command {
           .setColor(colors['default'])
           .setDescription(`\n\n<:a_blurpleemployee:856174396423274516> O Discord é focado em manter um conteúdo seguro e confiável para nossa comunidade, e sua conta foi sinalizada pela comunidade do Discord por violar nossas Diretrizes da Comunidade.\n\n<:martelodobem:1041234493744369715> **Staff:** ${message.author} \n**ID:** ${message.author.id}` + `\n<:martelodobem:1041234493744369715> **Infrator:** ${usuario.username} \n**ID:** ${usuario.id}`)
           .setImage(`https://miro.medium.com/max/3200/0*SCBRci_mo1Yhc9km`)
-          .setFooter({ text: 'https://discord.com/guidelines・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+          .setFooter({ text: 'https://discord.com/guidelines', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
           .setTimestamp(new Date());
         guildDocument.strike += 1
         guildDocument.save().then(() => log.send({ embeds: [strike] }))

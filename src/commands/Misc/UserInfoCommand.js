@@ -15,78 +15,78 @@ module.exports = class userinfo extends Command {
 
   async run(message, args) {
 
-    const jeth = this.client.guilds.cache.get('1001368891160805506')
+    const Gary = this.client.guilds.cache.get('1001368891160805506')
     const pUser = message.guild.members.cache.get(args[0]?.replace(/[<@!>]/g, '') || message.author.id)
     const flags = []
-    if (jeth) {
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891248889962')) {
+    if (Gary) {
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891248889962')) {
           flags.push('<:ThisUserIsCEO:938280523585957978>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891240480781')) {
-          flags.push('<:ThisUserIsJethStaff:938280523447566376>')
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891240480781')) {
+          flags.push('<:ThisUserIsGaryStaff:938280523447566376>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('804590005577842689')) {
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('804590005577842689')) {
           flags.push('<:ThisUserIsServerBooster:938280524047343656>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891215323216')) {
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891215323216')) {
           flags.push('<:ThisUserIsVIP:938280523468509245>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891227914268')) {
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891227914268')) {
           flags.push('<:ThisUserIsBugHunter:938280523426578534>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891240480778')) {
-          flags.push('<:ThisUserIsJethPartner:938282680028651600>')
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891240480778')) {
+          flags.push('<:ThisUserIsGaryPartner:938282680028651600>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891185975351')) {
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891185975351')) {
           flags.push('<:Bravery:938280523153965097>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891185975349')) {
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891185975349')) {
           flags.push('<:Balance:938280523409817600>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891185975350')) {
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891185975350')) {
           flags.push('<:Brilliance:938280523426578533>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891248889960')) {
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891248889960')) {
           flags.push('<:ThisUserIsTrustSafety:938280523091025964>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891248889961')) {
-          flags.push('<:ThisUserIsJethDev:939896774267654264>')
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891248889961')) {
+          flags.push('<:ThisUserIsGaryDev:939896774267654264>')
         }
       }
 
-      if (jeth.members.cache.get(pUser.user.id)) {
-        if (jeth.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891240480779')) {
+      if (Gary.members.cache.get(pUser.user.id)) {
+        if (Gary.members.cache.get(pUser.user.id)?.roles?.cache?.has('1001368891240480779')) {
           flags.push('<a:ThisUserIsPatreon:940901127048814644>')
         }
       }

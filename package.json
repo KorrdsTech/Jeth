@@ -1,5 +1,5 @@
 {
-  "name": "jeth",
+  "name": "Gary",
   "version": "DJSv.13/6.2b",
   "main": "index.js",
   "scripts": {
@@ -25,10 +25,12 @@
     "jimp": "^0.22.0",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
-    "mongoose": "^7.0.0",
+    "mongoose": "^6.2.8",
+    "node-canvas-with-twemoji-and-discord-emoji": "^1.2.1",
     "parse-duration": "^1.0.2",
     "steam-provider": "^0.3.2",
     "transform-props": "^1.0.1",
+    "twemoji": "^14.0.2",
     "typescript": "^4.6.2"
   },
   "publishConfig": {
@@ -38,17 +40,17 @@
     "node": ">=16.0.0"
   },
   "keywords": [
-    "jeth",
-    "jethjs",
-    "jeth.js"
+    "Gary",
+    "Garyjs",
+    "Gary.js"
   ],
   "description": "<div align=\"center\">\r   <br />\r   <p>\r     <a href=\"https://discord.js.org\"><img src=\"https://discord.js.org/static/logo.svg\" width=\"546\" alt=\"discord.js\" /></a>\r   </p>\r   <br />\r   <p>\r     <a href=\"https://discord.gg/djs\"><img src=\"https://img.shields.io/discord/222078108977594368?color=7289da&logo=discord&logoColor=white\" alt=\"Discord server\" /></a>\r     <a href=\"https://www.npmjs.com/package/discord.js\"><img src=\"https://img.shields.io/npm/v/discord.js.svg?maxAge=3600\" alt=\"NPM version\" /></a>\r     <a href=\"https://www.npmjs.com/package/discord.js\"><img src=\"https://img.shields.io/npm/dt/discord.js.svg?maxAge=3600\" alt=\"NPM downloads\" /></a>\r     <a href=\"https://github.com/discordjs/discord.js/actions\"><img src=\"https://github.com/discordjs/discord.js/workflows/Testing/badge.svg\" alt=\"Build status\" /></a>\r     <a href=\"https://david-dm.org/discordjs/discord.js\"><img src=\"https://img.shields.io/david/discordjs/discord.js.svg?maxAge=3600\" alt=\"Dependencies\" /></a>\r     <a href=\"https://www.patreon.com/discordjs\"><img src=\"https://img.shields.io/badge/donate-patreon-F96854.svg\" alt=\"Patreon\" /></a>\r   </p>\r   <p>\r     <a href=\"https://nodei.co/npm/discord.js/\"><img src=\"https://nodei.co/npm/discord.js.png?downloads=true&stars=true\" alt=\"npm installnfo\" /></a>\r   </p>\r </div>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Discord-Jeth/JethJS.git"
+    "url": "git+https://github.com/Discord-Gary/GaryJS.git"
   },
   "bugs": {
-    "url": "https://github.com/Discord-Jeth/Jeth/issues"
+    "url": "https://github.com/Discord-Gary/Gary/issues"
   },
-  "homepage": "https://github.com/Discord-Jeth/JethJS#readme"
+  "homepage": "https://github.com/Discord-Gary/GaryJS#readme"
 }

@@ -22,7 +22,6 @@ module.exports = class Eightball extends Command {
       .setColor(colors['default'])
       .addField('Questão', question)
       .addField('Resposta', replies[result])
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp()
 
     message.reply({ embeds: [ballembed] });

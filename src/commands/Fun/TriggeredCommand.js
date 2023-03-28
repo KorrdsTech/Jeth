@@ -17,7 +17,6 @@ module.exports = class triggered extends Command {
       .setTitle(`${message.author.username} está realmente irritado 😡`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
       .setColor(colors['default'])
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
       .setTimestamp();
     message.reply({ embeds: [embed] });
   }

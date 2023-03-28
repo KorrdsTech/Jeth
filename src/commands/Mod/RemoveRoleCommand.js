@@ -28,7 +28,7 @@ module.exports = class retcargo extends Command {
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
       .addField('*Verifique se você possui a permissão:*', '`MANAGE_ROLES`', true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+       
 
     const defina = new MessageEmbed()
       .setColor(colors['mod'])
@@ -67,7 +67,7 @@ module.exports = class retcargo extends Command {
       .setThumbnail(usuario.user.displayAvatarURL({ dynamic: true, size: 1024 }))
       .addField('**Staffer:**', `${message.author}`, true) // inline true
       .addField('**Cargo Removido:**', `${cargo_nome}`, true)
-      .setFooter({ text: '🧁・Discord da Jeth', iconURL: message.guild.iconURL({ dynamic: true, size: 1024 }) })
+       
 
     usuario.roles.remove(cargo_nome)
     log.send({ embeds: [embed] })
