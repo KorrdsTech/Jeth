@@ -33,7 +33,7 @@ module.exports = class anuncio extends Command {
 
       const link = new MessageEmbed()
         .setColor(colors['default'])
-        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **URL inválida!** o link que você inseriu está incorreto ou apresenta erros, tente utilizar um diferente')
+        .setDescription('<:__:1090466363132354670> **URL inválida!** o link que você inseriu está incorreto ou apresenta erros, tente utilizar um diferente')
 
       const server = await this.client.database.guild.getOrCreate(message.guild.id)
 
@@ -135,11 +135,11 @@ module.exports = class anuncio extends Command {
     } else if (guildDocument.wantModSysEnable === false) {
       const perm = new MessageEmbed()
         .setColor(colors['default'])
-        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não pode ser executado!** tenha certeza de que você possui a permissão `MANAGE_MESSAGES` então você poderá utilizar este comando.')
+        .setDescription('<:__:1090466363132354670> **Não pode ser executado!** tenha certeza de que você possui a permissão `MANAGE_MESSAGES` então você poderá utilizar este comando.')
 
       const link = new MessageEmbed()
         .setColor(colors['default'])
-        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **URL inválida!** o link que você inseriu está incorreto ou apresenta erros, tente utilizar um diferente')
+        .setDescription('<:__:1090466363132354670> **URL inválida!** o link que você inseriu está incorreto ou apresenta erros, tente utilizar um diferente')
 
       const server = await this.client.database.guild.getOrCreate(message.guild.id)
 

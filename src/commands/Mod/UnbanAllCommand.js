@@ -15,15 +15,15 @@ module.exports = class allunban extends Command {
     if (guildDocument.wantModSysEnable === true) {
       const embed = new MessageEmbed()
         .setColor(colors['default'])
-        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não pode desbanir este usuário!** tenha certeza de que você possui a permissão `BAN_MEMBERS` então você poderá desbanir usuários.')
+        .setDescription('<:__:1090466363132354670> **Não pode desbanir este usuário!** tenha certeza de que você possui a permissão `BAN_MEMBERS` então você poderá desbanir usuários.')
 
       const embed2 = new MessageEmbed()
         .setColor(colors['default'])
-        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Todos os usuários desbanidos!** você com sucesso desbaniu todos os usuários do servidor.')
+        .setDescription('<:__:1090466363132354670> **Todos os usuários desbanidos!** você com sucesso desbaniu todos os usuários do servidor.')
 
       const embed3 = new MessageEmbed()
         .setColor(colors['default'])
-        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não posso desbanir este usuário!** tenha certeza de que eu tenho a permissão `BAN_MEMBERS` então eu poderei desbanir usuários.')
+        .setDescription('<:__:1090466363132354670> **Não posso desbanir este usuário!** tenha certeza de que eu tenho a permissão `BAN_MEMBERS` então eu poderei desbanir usuários.')
 
       const defina = new MessageEmbed()
         .setColor(colors['mod'])
@@ -66,11 +66,11 @@ module.exports = class allunban extends Command {
 
       const embed2 = new MessageEmbed()
         .setColor(colors['default'])
-        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Todos os usuários desbanidos!** você com sucesso desbaniu todos os usuários do servidor.')
+        .setDescription('<:__:1090466363132354670> **Todos os usuários desbanidos!** você com sucesso desbaniu todos os usuários do servidor.')
 
       const embed3 = new MessageEmbed()
         .setColor(colors['default'])
-        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Não posso desbanir este usuário!** tenha certeza de que eu tenho a permissão `BAN_MEMBERS` então eu poderei desbanir usuários.')
+        .setDescription('<:__:1090466363132354670> **Não posso desbanir este usuário!** tenha certeza de que eu tenho a permissão `BAN_MEMBERS` então eu poderei desbanir usuários.')
 
       const defina = new MessageEmbed()
         .setColor(colors['mod'])

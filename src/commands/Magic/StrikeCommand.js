@@ -56,7 +56,7 @@ module.exports = class strike extends Command {
       case 'remove': {
         const usuario = await this.client.users.fetch(args[1].replace(/[<@!>]/g, ''))
         const guildDocument = await this.client.database.user.getOrCreate(usuario.id)
-        log.send(`${usuario.tag} Teve seu strike removido! <:a_blurplecertifiedmoderator:856174396225355776>`)
+        log.send(`${usuario.tag} Teve seu strike removido! <:__:1090466363132354670>`)
         guildDocument.strike -= 1
         guildDocument.save()
         if (guildDocument.strike < 3) {

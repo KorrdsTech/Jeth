@@ -24,6 +24,6 @@ module.exports = class blList extends Command {
       msg.push(`${user.tag} - ${user.id}`)
     }
 
-    await message.reply(`<:a_blurplecertifiedmoderator:856174396225355776> Lista de membros na blacklist:\n${msg.join('\n')}`)
+    await message.reply(`<:__:1090466363132354670> Lista de membros na blacklist:\n${msg.join('\n')}`)
   }
 }

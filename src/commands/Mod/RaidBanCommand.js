@@ -35,7 +35,7 @@ module.exports = class Raidban extends Command {
 
       const link = new MessageEmbed()
         .setColor(colors['default'])
-        .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Usuário inválido!** o usuário que você inseriu não existe ou não foi reconhecido, por favor tente novamente utilizando o ID')
+        .setDescription('<:__:1090466363132354670> **Usuário inválido!** o usuário que você inseriu não existe ou não foi reconhecido, por favor tente novamente utilizando o ID')
 
       const defina = new MessageEmbed()
         .setColor(colors['mod'])
@@ -291,7 +291,7 @@ module.exports = class Raidban extends Command {
 
         const link = new MessageEmbed()
           .setColor(colors['default'])
-          .setDescription('<:a_blurplecertifiedmoderator:856174396225355776> **Usuário inválido!** o usuário que você inseriu não existe ou não foi reconhecido, por favor tente novamente utilizando o ID')
+          .setDescription('<:__:1090466363132354670> **Usuário inválido!** o usuário que você inseriu não existe ou não foi reconhecido, por favor tente novamente utilizando o ID')
 
         const defina = new MessageEmbed()
           .setColor(colors['mod'])

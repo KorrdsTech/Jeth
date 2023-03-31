@@ -39,6 +39,6 @@ module.exports = class complaint extends Command {
     await message.author.send({ embeds: [reportembed] })
     await this.client.channels.cache.get('1001368892200988700')
       .send({ content: `Reported by: ${message.author.tag} (${message.author.id})`, embeds: [reportembed] })
-    await message.reply('<:a_blurplecertifiedmoderator:856174396225355776> Thank you for your complaint!')
+    await message.reply('<:__:1090466363132354670> Thank you for your complaint!')
   }
 }

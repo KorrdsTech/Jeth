@@ -71,7 +71,7 @@ module.exports = async function onMessage(message) {
       } else if (!guildDocument.userExempt === true) {
         message.delete()
         message.member.timeout(parse('1h'), '[AUTOMOD] Divulgação de convites não são toleradas aqui.').then(() => {
-          message.channel.send(`${message.author} <:a_blurplecertifiedmoderator:856174396225355776> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!`)
+          message.channel.send(`${message.author} <:__:1090466363132354670> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!`)
         })
       }
     }
