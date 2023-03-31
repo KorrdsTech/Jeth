@@ -21,7 +21,7 @@ module.exports = class reply extends Command {
       .setColor(colors['mod'])
       .setTitle('**Err:**', `${usuario}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`Gary_OWNER`', true)
+      .addField('*Verifique se você possui a permissão:*', '`Jeth_OWNER`', true)
 
     if (!ids.includes(message.author.id))
 

@@ -1,5 +1,5 @@
-const GaryClient = require('./GaryClient')
-const client = new GaryClient({ intents: 98303, failIfNotExists: false })
+const JethClient = require('./JethClient')
+const client = new JethClient({ intents: 98303, failIfNotExists: false })
 const TopGG = require('dblapi.js')
 const top = new TopGG(process.env.TOPGG, client)
 top.on('error', (err) => console.log('top.gg token was not found', err.name))

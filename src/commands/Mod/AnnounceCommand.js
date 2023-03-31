@@ -51,7 +51,7 @@ module.exports = class anuncio extends Command {
       const embedajuda = new MessageEmbed()
         .setTitle('Anuncio | Ajuda', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-        .setDescription(`<a:Garyhype:665057207196319744> Segue abaixo os comandos que podem ser utilizados na configuração do seu anúncio: <a:Garyhype:665057207196319744>\n \n<:nitro1:667835744903102494> **${server.prefix}anuncio enviar <#chat> <mensagem>** >> Utilizado para mandar o anuncio no canal definido. \n \n<:nitro2:667835748900405249> **${server.prefix}anuncio set <imagem>** >> Para setar um gif ou imagem no anuncio. \n \n<:nitro3:667835748828971018> **${server.prefix}anuncio resetar** >> Para resetar o link do gif ou imagem setado. \n \n<:premium:667149934025375764> **${server.prefix}anuncio ver** >> Para visualizar a sua imagem de anuncio.`)
+        .setDescription(`<a:Jethhype:665057207196319744> Segue abaixo os comandos que podem ser utilizados na configuração do seu anúncio: <a:Jethhype:665057207196319744>\n \n<:nitro1:667835744903102494> **${server.prefix}anuncio enviar <#chat> <mensagem>** >> Utilizado para mandar o anuncio no canal definido. \n \n<:nitro2:667835748900405249> **${server.prefix}anuncio set <imagem>** >> Para setar um gif ou imagem no anuncio. \n \n<:nitro3:667835748828971018> **${server.prefix}anuncio resetar** >> Para resetar o link do gif ou imagem setado. \n \n<:premium:667149934025375764> **${server.prefix}anuncio ver** >> Para visualizar a sua imagem de anuncio.`)
         .setColor(colors['default'])
          
 
@@ -149,7 +149,7 @@ module.exports = class anuncio extends Command {
       const embedajuda = new MessageEmbed()
         .setTitle('Anuncio | Ajuda', this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         .setThumbnail(message.guild.iconURL({ dynamic: true, size: 1024 }))
-        .setDescription(`<a:Garyhype:665057207196319744> Segue abaixo os comandos que podem ser utilizados na configuração do seu anúncio: <a:Garyhype:665057207196319744>\n \n<:nitro1:667835744903102494> **${server.prefix}anuncio enviar <#chat> <mensagem>** >> Utilizado para mandar o anuncio no canal definido. \n \n<:nitro2:667835748900405249> **${server.prefix}anuncio set <imagem>** >> Para setar um gif ou imagem no anuncio. \n \n<:nitro3:667835748828971018> **${server.prefix}anuncio resetar** >> Para resetar o link do gif ou imagem setado. \n \n<:premium:667149934025375764> **${server.prefix}anuncio ver** >> Para visualizar a sua imagem de anuncio.`)
+        .setDescription(`<a:Jethhype:665057207196319744> Segue abaixo os comandos que podem ser utilizados na configuração do seu anúncio: <a:Jethhype:665057207196319744>\n \n<:nitro1:667835744903102494> **${server.prefix}anuncio enviar <#chat> <mensagem>** >> Utilizado para mandar o anuncio no canal definido. \n \n<:nitro2:667835748900405249> **${server.prefix}anuncio set <imagem>** >> Para setar um gif ou imagem no anuncio. \n \n<:nitro3:667835748828971018> **${server.prefix}anuncio resetar** >> Para resetar o link do gif ou imagem setado. \n \n<:premium:667149934025375764> **${server.prefix}anuncio ver** >> Para visualizar a sua imagem de anuncio.`)
         .setColor(colors['default'])
          
 

@@ -34,7 +34,7 @@ module.exports = async function onMessage(message) {
 
   }
   
-  // Gary official server code line
+  // Jeth official server code line
     if (message.content.includes('https://tenor.com')) { 
     return
   } else if (message.content.includes('https://')) {
@@ -125,7 +125,7 @@ module.exports = async function onMessage(message) {
     .addFields(
       {
         name: `${message.author.tag} (\`${message.author.id}\`) Verifique-se você está setado no banco de dados como developer.`,
-        value: `<:reinterjection:955577574304657508> **Seja quem for**, um alerta foi emitido a equipe da Gary, caso seja um abuso de bug, o usuário será **blacklisted** do bot.`
+        value: `<:reinterjection:955577574304657508> **Seja quem for**, um alerta foi emitido a equipe da Jeth, caso seja um abuso de bug, o usuário será **blacklisted** do bot.`
       })
     .setThumbnail('https://cdn-icons-png.flaticon.com/512/2061/2061766.png')
     .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
