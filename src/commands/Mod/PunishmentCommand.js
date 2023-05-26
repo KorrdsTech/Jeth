@@ -93,7 +93,7 @@ module.exports = class Punishment extends Command {
     }
 
     const embed2 = new MessageEmbed()
-      .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+      .setAuthor({  name: this.client.user.tag, iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 })})
       .setThumbnail('https://cdn.discordapp.com/emojis/938280523388842014.webp?size=96&quality=lossless')
       .setDescription(`Dúvidas de como está as configurações?\nAqui está os status`)
       .setColor(colors['lightgreen'])

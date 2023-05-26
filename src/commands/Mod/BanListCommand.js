@@ -42,7 +42,7 @@ module.exports = class Banlist extends Command {
         .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
          
 
-      if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })
+      if (!message.guild.members.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })
       if (!guildDocument.moderadores) {
         message.channel.send({ embeds: [embedB] })
         return
@@ -77,7 +77,7 @@ module.exports = class Banlist extends Command {
          
 
       if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })
-      if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })
+      if (!message.guild.members.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedBan] })
 
       const bans = await message.guild.bans.fetch(); //Obtém a lista de membros banidos do servidor
 

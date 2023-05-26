@@ -23,7 +23,7 @@ module.exports = class BanCommand extends Command {
         .setDescription('Criado para facilitar a punição de usuários do seu servidor.') // inline false
         .addFields({ name: '*Uso do comando:*', value: '`Ban <@user> [motivo]`', inline: true })
         .addFields({ name: '*Exemplo:*', value: '`Ban @Solaris#0006 Ban hammer has spoken!`', inline: true })
-         
+
 
       const embedA = new MessageEmbed()
 
@@ -32,7 +32,6 @@ module.exports = class BanCommand extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addFields({ name: '*Verifique se você possui o cargo:*', value: `<@&${guildDocument.moderadores}>`, inline: true })
-         
 
       const embedB = new MessageEmbed()
 
@@ -41,7 +40,6 @@ module.exports = class BanCommand extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Configuração Incompleta')
         .addFields({ name: '*Verifique se você definiu todos os valores necessários corretamente.*', value: '`Cargo de moderador não definido`' })
-         
 
       const log = this.client.channels.cache.get(guildDocument.punishChannel)
       const razao = args.slice(1).join(' ');
@@ -125,7 +123,7 @@ module.exports = class BanCommand extends Command {
       if (mentionedMember) {
         const mentionedPotision = mentionedMember.roles.highest.position
         const memberPosition = message.member.roles.highest.position
-        const botPotision = message.guild.me.roles.highest.position
+        const botPotision = message.guild.members.me.roles.highest.position
 
         if (memberPosition <= mentionedPotision) return message.reply(`<:ModMute:980288914914947113> » Você não pode banir esse usuário, pois o seu cargo é menor/equivalente ao dele.`)
 
@@ -311,7 +309,6 @@ module.exports = class BanCommand extends Command {
         .setDescription('Criado para facilitar a punição de usuários do seu servidor.') // inline false
         .addFields({ name: '*Uso do comando:*', value: '`Ban <@user> [motivo]`', inline: true })
         .addFields({ name: '*Exemplo:*', value: '`Ban @Solaris#0006 Ban hammer has spoken!`', inline: true })
-         
 
       const embedA = new MessageEmbed()
 
@@ -320,7 +317,6 @@ module.exports = class BanCommand extends Command {
         .setTitle('**Err:**', true)
         .setDescription('Missing Permissions') // inline false
         .addField('*Verifique se você possui a permissão:*', '`BAN_MEMBERS`', true)
-         
 
       if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embedA] })
 
@@ -396,7 +392,7 @@ module.exports = class BanCommand extends Command {
       if (mentionedMember) {
         const mentionedPotision = mentionedMember.roles.highest.position
         const memberPosition = message.member.roles.highest.position
-        const botPotision = message.guild.me.roles.highest.position
+        const botPotision = message.guild.members.me.roles.highest.position
 
         if (memberPosition <= mentionedPotision) return message.reply(`<:ModMute:980288914914947113> » Você não pode banir esse usuário, pois o seu cargo é menor/equivalente ao dele.`)
 

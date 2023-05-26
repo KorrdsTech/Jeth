@@ -38,7 +38,7 @@ module.exports = class allunban extends Command {
       if (!message.member.permissions.has('BAN_MEMBERS')) {
         return message.reply({ embeds: [embed] }).catch(() => { });
       }
-      if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embed3] })
+      if (!message.guild.members.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embed3] })
       message.guild.bans.fetch().then(bans => {
         if (bans.size == 0) { message.reply('There are no banned users.'); throw 'No members to unban.' }
         bans.forEach(ban => {
@@ -92,7 +92,7 @@ module.exports = class allunban extends Command {
         message.channel.send({ embeds: [embedPerm] })
         return
       }
-      if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embed3] })
+      if (!message.guild.members.me.permissions.has('BAN_MEMBERS')) return message.reply({ embeds: [embed3] })
       message.guild.bans.fetch().then(bans => {
         if (bans.size == 0) { message.reply('There are no banned users.'); throw 'No members to unban.' }
         bans.forEach(ban => {

@@ -32,7 +32,7 @@ Alguns dos comandos criados em nosso projeto hoje se encontram desatualizados e 
 Gostaria de deixar seu feedback sobre nosso projeto? então não pense muito! entre agora em nosso <a href="https://discord.gg/WPUYahyPzx">servidor</a> e deixe sua sugestão ou comentário em relação ao nosso desenvolvimento.
 
 ## 💸 Doações
-Para manter a Jeth online necessitamos pagar uma hospedagem para ela, desta forma ela pode ficar online 24 horas todos os 7 dias da semana! entretanto não é um valor baixo que pagamos, caso você sinta que quer coolaborar financeiramente com o projeto deixamos a opção de doação abaixo, a quantia que quer doar é sua escolha e utilizamos o saldo apenas com a Jeth!
+Para manter o Jeth online necessitamos pagar uma hospedagem para ela, desta forma ela pode ficar online 24 horas todos os 7 dias da semana! entretanto não é um valor baixo que pagamos, caso você sinta que quer coolaborar financeiramente com o projeto deixamos a opção de doação abaixo, a quantia que quer doar é sua escolha e utilizamos o saldo apenas com a Jeth!
 
 [link para as doações](https://donatebot.io/checkout/1001368891160805506)
 
