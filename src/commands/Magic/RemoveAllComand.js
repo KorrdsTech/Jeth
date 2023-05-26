@@ -14,14 +14,14 @@ module.exports = class Revall extends Command {
     if (!message.member.permissions.has('MANAGE_GUILD', false, true, true)) {
       return message.reply('Voce nao tem permissao para isso <:noswift:529635602292015134>').catch(() => { });
     }
-    if (!message.guild.me.permissions.has('MANAGE_GUILD', false, true)) {
+    if (!message.guild.members.me.permissions.has('MANAGE_GUILD', false, true)) {
       return message.reply('nao tenho permissao para isso <:noswift:529635602292015134>').catch(() => { });
     }
     if (message.mentions.roles.size < 1) return message.reply('Marque um cargo').catch(() => { });
 
     const role = message.mentions.roles.first();
 
-    if (message.guild.me.highestRole.comparePositionTo(role) < 0) {
+    if (message.guild.members.me.highestRole.comparePositionTo(role) < 0) {
       return message.reply('Eu preciso estar acima do cargo mencionado <:noswift:529635602292015134>').catch(() => { });
     }
 

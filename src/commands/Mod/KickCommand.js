@@ -85,7 +85,7 @@ module.exports = class kick extends Command {
 
       const executorRole = message.member.roles.highest;
       const targetRole = membro18.roles.highest;
-      if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
+      if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.members.me !== message.author.id !== message.guild.ownerID) {
         return message.reply({ embeds: [rolesHighest] });
       }
 
@@ -161,7 +161,7 @@ module.exports = class kick extends Command {
 
       const executorRole = message.member.roles.highest;
       const targetRole = membro18.roles.highest;
-      if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
+      if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.members.me !== message.author.id !== message.guild.ownerID) {
         return message.reply({ embeds: [rolesHighest] });
       }
 

@@ -49,7 +49,7 @@ module.exports = class welcomeModule extends Command {
       guildDocument.autorole = role.id;
       guildDocument.save().then(() => {
         const embed = new MessageEmbed()
-          .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+          .setAuthor({name: message.author.username, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 })})
           .setDescription(`Você definiu o cargo ${role} como auto-role com sucesso.`)
           .setColor(colors['default'])
            
@@ -61,7 +61,7 @@ module.exports = class welcomeModule extends Command {
       guildDocument.autorole = '';
       guildDocument.save().then(() => {
         const embed = new MessageEmbed()
-          .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true, size: 1024 }))
+          .setAuthor({name: message.author.username, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 })})
           .setDescription(`Você removeu o cargo ${role} como auto-role com sucesso.`)
           .setColor(colors['default'])
            
@@ -90,7 +90,7 @@ module.exports = class welcomeModule extends Command {
       })
     } else {
       const embed = new MessageEmbed()
-        .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+        .setAuthor({  name: this.client.user.tag, iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 })})
         .setDescription(`Dúvidas de como usar o welcome?\nAqui vai algumas dicas...`)
         .setColor(colors['default'])
         .addField('Modos de usar', [
@@ -118,7 +118,7 @@ module.exports = class welcomeModule extends Command {
         ].join('\n'), false)
 
       const embed2 = new MessageEmbed()
-        .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+        .setAuthor({  name: this.client.user.tag, iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 })})
         .setDescription(`Dúvidas de como esta o welcome?\nAqui vai o seu painel...`)
         .setColor(colors['default'])
       let canalBemVindo = `<:errroror:1040860335147581511> Desativado`;

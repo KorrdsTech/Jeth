@@ -56,7 +56,7 @@ module.exports = class JethClient extends Client {
     const embed = new MessageEmbed()
       .setColor(colors['default'])
       .setTitle(error.name)
-      .setAuthor(this.user.username, this.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+      .setAuthor({ name: this.user.username, iconURL: this.user.displayAvatarURL({ dynamic: true, size: 1024 })})
       .addDescription(error.message)
       .addField('Arquivo', `${error.fileName} ${error.lineNumber}`)
     return this.channels.get('1001368892385533953').send({ embeds: [embed] })

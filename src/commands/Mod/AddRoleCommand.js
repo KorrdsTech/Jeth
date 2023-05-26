@@ -42,7 +42,7 @@ module.exports = class setcargo extends Command {
       .addField('*Exemplo:*', '`AddRole @Solaris#0006 @Admin`', true)
 
     if (!args[1]) return message.reply({ embeds: [emptyMessage] });
-    if (!message.guild.me.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [permErr] });
+    if (!message.guild.members.me.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [permErr] });
     if (!message.member.permissions.has('MANAGE_ROLES')) return message.reply({ embeds: [embedA] })
     if (!usuario) return message.reply('Você não mencionou o usuário!');
     if (!cargo_nome) return message.reply('Você não colocou um cargo valido!');

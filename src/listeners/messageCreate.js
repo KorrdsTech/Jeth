@@ -102,7 +102,7 @@ module.exports = async function onMessage(message) {
     return message.reply({ embeds: [embeduserp] })
   }
 
-  if (command?.bot_permissions && !message.guild.me.permissions.has(command.bot_permissions)) {
+  if (command?.bot_permissions && !message.guild.members.me.permissions.has(command.bot_permissions)) {
     const embedbotp = new MessageEmbed()
       .setTimestamp()
       .setColor(colors['mod'])

@@ -84,7 +84,7 @@ module.exports = class security extends Command {
       ].join('\n'), false)
 
       const embed2 = new MessageEmbed()
-        .setAuthor(this.client.user.tag, this.client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+        .setAuthor({  name: this.client.user.tag, iconURL: this.client.user.displayAvatarURL({ dynamic: true, size: 1024 })})
         .setDescription(`Dúvidas de como está o Anti-Invite/BlockSpamFlood-BSF? \nAqui vai o seu painel...`)
         .setColor(colors['default'])
       let canalBemVindo = `<:errroror:1040860335147581511> Desativado`;

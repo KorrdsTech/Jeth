@@ -75,13 +75,13 @@ module.exports = class Timeout extends Command {
         return
       }
       // verifica se user bot da mensagem tem permissão de moderar os membros.
-      if (!message.guild.me.permissions.has('MODERATE_MEMBERS')) return message.reply({ embeds: [permErr] });
+      if (!message.guild.members.me.permissions.has('MODERATE_MEMBERS')) return message.reply({ embeds: [permErr] });
       // define o que é user, neste caso user é o primeiro usuário que o autor colocar o ID ou mencionar no chat
       const user = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
       // checa se o usuário tem o mesmo cargo ou superior ao executor da mensagem.
       const executorRole = message.member.roles.highest;
       const targetRole = user.roles.highest;
-      if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
+      if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.members.me !== message.author.id !== message.guild.ownerID) {
         return message.reply({ embeds: [rolesHighest] });
       }
       // define qual vai ser o motivo do timeout.
@@ -149,13 +149,13 @@ module.exports = class Timeout extends Command {
       // verifica se user autor da mensagem tem permissão de moderar os membros.
       if (!message.member.permissions.has('MODERATE_MEMBERSS')) return message.reply({ embeds: [embedA] });
       // verifica se user bot da mensagem tem permissão de moderar os membros.
-      if (!message.guild.me.permissions.has('MODERATE_MEMBERSS')) return message.reply({ embeds: [permErr] });
+      if (!message.guild.members.me.permissions.has('MODERATE_MEMBERSS')) return message.reply({ embeds: [permErr] });
       // define o que é user, neste caso user é o primeiro usuário que o autor colocar o ID ou mencionar no chat
       const user = await message.guild.members.fetch(args[0]?.replace(/[<@!>]/g, ''))
       // checa se o usuário tem o mesmo cargo ou superior ao executor da mensagem.
       const executorRole = message.member.roles.highest;
       const targetRole = user.roles.highest;
-      if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.me !== message.author.id !== message.guild.ownerID) {
+      if (executorRole.comparePositionTo(targetRole) <= 0 && message.guild.members.me !== message.author.id !== message.guild.ownerID) {
         return message.reply({ embeds: [rolesHighest] });
       }
       // define qual vai ser o motivo do timeout.
