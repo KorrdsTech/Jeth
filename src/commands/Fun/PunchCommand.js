@@ -20,7 +20,6 @@ module.exports = class soco extends Command {
       .setColor(colors['default'])
       .setDescription(`🥊 ${message.author} **Nocauteou o usuário** ${message.mentions.users.first().username}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setTimestamp();
     message.reply({ embeds: [socoEmbed] })
     try {
       message.delete({ timeout: 100 }).catch(() => { })

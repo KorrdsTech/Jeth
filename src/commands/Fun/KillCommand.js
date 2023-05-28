@@ -21,8 +21,6 @@ module.exports = class KillCommand extends Command {
       .setColor(colors['default'])
       .setDescription(`:skull: ${message.author} **matou o usuário** ${message.mentions.users.first().username}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setFooter({ text: `Killstreak por ${message.author}`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
-      .setTimestamp();
 
     message.reply({ embeds: [killEmbed] })
   }

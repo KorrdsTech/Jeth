@@ -19,8 +19,7 @@ module.exports = class presente extends Command {
       .setColor(colors['default'])
       .setDescription(`:gift: ${message.author} **presenteou** ${user}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setTimestamp();
-
+      
     message.reply({ embeds: [embed] })
   }
 }
