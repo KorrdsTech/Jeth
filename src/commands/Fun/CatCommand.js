@@ -17,7 +17,6 @@ module.exports = class cat extends Command {
       .setTitle('Seu gatinho :3')
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
       .setColor(colors['default'])
-      .setTimestamp()
 
     message.reply({ embeds: [embed] });
   }

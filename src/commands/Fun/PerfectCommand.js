@@ -17,7 +17,7 @@ module.exports = class perfeito extends Command {
       .setColor(colors['mod'])
       .setTitle('**Err:**', true)
       .setDescription('Deprecated') // inline false
-      .addField('*Você executou o comando corretamente, porém ele foi desabilitado pelo motivo:*', '`CANVAS OUT OF DATE - awaiting next version.`', true)
+      .addFields({ name: '*Você executou o comando corretamente, porém ele foi desabilitado pelo motivo:*', value: '`CANVAS OUT OF DATE - awaiting next version.`'}, true)
 
     message.reply({ embeds: [err] })
 //     const width = 467;
