@@ -18,7 +18,6 @@ module.exports = class beijar extends Command {
     const embed = new MessageEmbed()
       .setColor(colors['default'])
       .setTitle('Será que temos um novo casal no servidor ?')
-      .setTimestamp()
       .setThumbnail('https://cdn.discordapp.com/emojis/742240824569626674.png')
       .setDescription(`:heart_eyes: **${message.author}** acabou de beijar o(a) **${user}**`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])

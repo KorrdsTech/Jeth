@@ -19,7 +19,6 @@ module.exports = class highfive extends Command {
       .setDescription(falas[Math.floor(Math.random() * falas.length)])
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
       .setColor(colors['default'])
-      .setTimestamp();
 
     if (!user) return message.reply('Ninguém foi mencionado!')
     else

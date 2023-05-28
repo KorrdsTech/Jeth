@@ -32,8 +32,6 @@ module.exports = class cry extends Command {
         .setColor(colors['default'])
         .setDescription(`:sob: ${message.author} **lançou gritos de tristeza para** ${defineduser} (╥﹏╥)`)
         .setImage('https://i.pinimg.com/originals/83/05/c3/8305c3a012e448cb409d12e5db3ac179.gif')
-        .setFooter({ text: `Pedido por ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 1024 }) })
-        .setTimestamp()
 
       try {
         message.reply({ embeds: [embed] })

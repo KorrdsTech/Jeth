@@ -19,7 +19,6 @@ module.exports = class abracar extends Command {
       .setColor(colors['default'])
       .setDescription(`:blush: ${message.author} **se deu um abraço**`)
       .setImage(self[Math.floor(Math.random() * self.length)])
-      .setTimestamp()
 
     if (message.mentions.users.size < 1) return message.reply({ embeds: [embed] })
     if (user.id == message.author.id) message.reply({ embeds: [embed] })// return message.reply("Você não pode abraçar a si mesmo.")
@@ -28,7 +27,6 @@ module.exports = class abracar extends Command {
       .setColor(colors['default'])
       .setTitle(`:blush: ${message.author.username} **deu um abraço no(a)** ${user.username}`)
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setTimestamp()
 
     message.reply({ embeds: [HugEmbed] })
   }
