@@ -16,10 +16,10 @@ module.exports = class correr extends Command {
     const corrida2 = ' <@' + user.id + '>'
     const falas = [' fez **200** metros 🏎 .....', ' fez **500** metros 🏎 ...........', ' fez **800** metros 🏎 ..............', ' fez **1000** metros 🏎 .................', ' fez **1500** metros 🏎 ............................', 'Explodiu 🔥 ', 'Bateu e pegou fogo 🔥']
     const embed = new MessageEmbed()
-    embed.setTitle('🏎 Corrida')
-    embed.setColor(colors['default'])
-    embed.setDescription(`${Corrida} e ${corrida2} **estão disputando uma corrida**`)
-    embed.addField('Sobre a corrida:', `${Corrida}\n${falas[Math.floor(Math.random() * falas.length)]}\n${corrida2}\n${falas[Math.floor(Math.random() * falas.length)]}`)
+    .setTitle('🏎 Corrida')
+    .setColor(colors['default'])
+    .setDescription(`${Corrida} e ${corrida2} **estão disputando uma corrida**`)
+    .addFields({ name: 'Sobre a corrida:', value: `${Corrida}\n${falas[Math.floor(Math.random() * falas.length)]}\n${corrida2}\n${falas[Math.floor(Math.random() * falas.length)]}`})
     message.reply({ embeds: [embed] })
   }
 }

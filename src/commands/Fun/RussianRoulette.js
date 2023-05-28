@@ -17,7 +17,6 @@ module.exports = class roleta extends Command {
       .setColor(colors['default'])
       .setDescription(falas[Math.floor(Math.random() * falas.length)])
       .setImage(gifs[Math.floor(Math.random() * gifs.length)])
-      .setTimestamp();
 
     message.reply({ embeds: [embed] })
   }

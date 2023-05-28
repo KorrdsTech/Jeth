@@ -16,7 +16,7 @@ module.exports = class fake extends Command {
       .setColor(colors['mod'])
       .setTitle('**Err:**', `${message.author.username}`, true)
       .setDescription('Missing Permissions') // inline false
-      .addField('*Verifique se você possui a permissão:*', '`MANAGE_MESSAGES`', true)
+      .addFields({ name: '*Verifique se você possui a permissão:*', value: '`MANAGE_MESSAGES`'}, true)
 
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
       return message.reply({ embeds: [embedA] })
