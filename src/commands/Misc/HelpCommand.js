@@ -27,7 +27,7 @@ module.exports = class Ajuda extends Command {
     embed.addField(`${('Social')} (${this.getCommmandSize('Social')})`, this.getCategory('Social', prefix))
     embed.addField(`${('VIP')} (${this.getCommmandSize('VIP')})`, this.getCategory('VIP', prefix))
 
-    message.reply({ content: `${message.author} Não se esqueça de votar em mim! <a:a_dancin:1002698613262127144>`, embeds: [embed] })
+    message.reply({ content: `${message.author} Não se esqueça de votar em mim! <:peeencil:1040822681379024946>`, embeds: [embed] })
       .catch(() => {
         message.reply('<a:rb_mod:759648839417200661> Erro, verifique se eu consigo te enviar mensagens no privado!')
       })
