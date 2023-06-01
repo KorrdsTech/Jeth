@@ -20,12 +20,12 @@ module.exports = class Ajuda extends Command {
     embed.setDescription(`**Criamos uma guia de ajuda para você: ${message.author}**`)
     embed.setColor(colors['default'])
     // esta linha quebra o comando >> embed.addField(`${('Counter')} (${this.getCommmandSize('Counter')})`, this.getCategory('Counter', prefix))
-    embed.addField(`${('Fun')} (${this.getCommmandSize('Fun')})`, this.getCategory('Fun', prefix))
-    embed.addField(`${('Misc')} (${this.getCommmandSize('Misc')})`, this.getCategory('Misc', prefix))
-    embed.addField(`${('Mod')} (${this.getCommmandSize('Mod')})`, this.getCategory('Mod', prefix))
-    embed.addField(`${('Magic')} (${this.getCommmandSize('Magic')})`, this.getCategory('Magic', prefix))
-    embed.addField(`${('Social')} (${this.getCommmandSize('Social')})`, this.getCategory('Social', prefix))
-    embed.addField(`${('VIP')} (${this.getCommmandSize('VIP')})`, this.getCategory('VIP', prefix))
+    .addFields({ name: `${('Fun')} (${this.getCommmandSize('Fun')})`, value: this.getCategory('Fun', prefix)})
+    .addFields({ name: `${('Misc')} (${this.getCommmandSize('Misc')})`, value: this.getCategory('Misc', prefix)})
+    .addFields({ name: `${('Mod')} (${this.getCommmandSize('Mod')})`, value: this.getCategory('Mod', prefix)})
+    .addFields({ name: `${('Magic')} (${this.getCommmandSize('Magic')})`, value: this.getCategory('Magic', prefix)})
+    .addFields({ name: `${('Social')} (${this.getCommmandSize('Social')})`, value: this.getCategory('Social', prefix)})
+    .addFields({ name: `${('VIP')} (${this.getCommmandSize('VIP')})`, value: this.getCategory('VIP', prefix)})
 
     message.reply({ content: `${message.author} Não se esqueça de votar em mim! <:peeencil:1040822681379024946>`, embeds: [embed] })
       .catch(() => {
