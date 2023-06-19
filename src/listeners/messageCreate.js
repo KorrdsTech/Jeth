@@ -1,20 +1,20 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
-const { colors, AntiSpamUtils, AntiInviteUtils } = require('../utils')
-const parse = require('parse-duration')
+const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { colors, AntiSpamUtils, AntiInviteUtils } = require('../utils');
+const parse = require('parse-duration');
 
 module.exports = async function onMessage(message) {
-  if (message.channel.type === 'DM') return
-  const guildDocument = await this.database.guild.getOrCreate(message.guild.id)
+  if (message.channel.type === 'DM') return;
+  const guildDocument = await this.database.guild.getOrCreate(message.guild.id);
 
-  const Users = await this.database.user.getOrCreate(message.author.id)
+  const Users = await this.database.user.getOrCreate(message.author.id);
   if (guildDocument.antSpam) {
-    AntiSpamUtils.verify(this, message)
+    AntiSpamUtils.verify(this, message);
   }
 
   const mentionRegex = RegExp(`^<@!?${this.user.id}>$`);
   if (message.content.match(mentionRegex)) {
-    let totalCommands = 0
-    this.commands.each(() => totalCommands++)
+    let totalCommands = 0;
+    this.commands.each(() => totalCommands++);
 
     const row = new MessageActionRow().addComponents(
       new MessageButton()
@@ -28,31 +28,34 @@ module.exports = async function onMessage(message) {
         .setStyle('LINK')
         .setEmoji('<:b_blurpleemployee:856174396423274516>')
         .setURL('https://discord.gg/WPUYahyPzx')
-    )
+    );
 
-    message.channel.send({ content: `<a:b_hypesquadi:887899688634839042> **Olá, **${message.author}! Prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <:peeencil:1040822681379024946> Atualmente possuo **${totalCommands}** comandos!`, components: [row] })
+    message.channel.send({
+      content: `<a:b_hypesquadi:887899688634839042> **Olá, **${message.author}! Prazer em ter você utilizando nossos comandos, tem algo em que eu possa ajudar? Caso queira saber os meus comandos, por favor use ${guildDocument.prefix}ajuda que lhe enviarei tudo sobre meus comandos! <:peeencil:1040822681379024946> Atualmente possuo **${totalCommands}** comandos!`,
+      components: [row]
+    });
 
   }
   
   // Jeth official server code line
-    if (message.content.includes('https://tenor.com')) { 
-    return
+  if (message.content.includes('https://tenor.com')) { 
+    return;
   } else if (message.content.includes('https://')) {
     if (message.channel.id === '1001368891827683397') {
-      message.delete(1)
-      await message.reply('<:URL:1041552407475277916> Links **Não** são permitidos neste canal!')
+      message.delete();
+      await message.reply('<:URL:1041552407475277916> Links **Não** são permitidos neste canal!');
     }
   }
   if (message.content.includes('http://')) {
     if (message.channel.id === '1001368891827683397') {
-      message.delete(1)
-      await message.reply('<:URL:1041552407475277916> Links **Não** são permitidos neste canal!')
+      message.delete();
+      await message.reply('<:URL:1041552407475277916> Links **Não** são permitidos neste canal!');
     }
   }
 
   if (guildDocument?.sugesModule) {
-    const suggestionChannel = message.guild.channels.cache.get(guildDocument?.sugesChannel)
-    if (!suggestionChannel) return
+    const suggestionChannel = message.guild.channels.cache.get(guildDocument?.sugesChannel);
+    if (!suggestionChannel) return;
     if (message.channel.id === suggestionChannel.id) {
       const sim = '673592197202837524';
       const duvida = '❓';
@@ -64,28 +67,28 @@ module.exports = async function onMessage(message) {
     }
   }
 
-  if ((guildDocument?.antInvite && !message.member?.permissions.has('MANAGE_GUILD'))) {
+  if (guildDocument?.antInvite && !message.member?.permissions.has('MANAGE_GUILD')) {
     if (AntiInviteUtils.scanMessage(message.content)) {
       if (guildDocument.userExempt === false) {
-        return
+        return;
       } else if (!guildDocument.userExempt === true) {
-        message.delete()
+        message.delete();
         message.member.timeout(parse('1h'), '[AUTOMOD] Divulgação de convites não são toleradas aqui.').then(() => {
-          message.channel.send(`${message.author} <:__:1090466363132354670> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!`)
-        })
+          message.channel.send(`${message.author} <:__:1090466363132354670> Você não pode divulgar outros servidores aqui! Caso se repita você será banido!`);
+        });
       }
     }
   }
 
-  const prefix = guildDocument.prefix
-  if (!message.content.startsWith(prefix)) return
+  const prefix = guildDocument.prefix;
+  if (!message.content.startsWith(prefix)) return;
   if (Users.blacklist) {
-    return message.channel.send('> Você está na blacklist e não pode executar nenhum comando do bot.').then(msg => msg.delete({ timeout: 50000 }))
+    return message.channel.send('> Você está na blacklist e não pode executar nenhum comando do bot.').then(msg => msg.delete({ timeout: 50000 }));
   }
 
-  const args = message.content.slice(prefix.length).trim().split(' ')
-  const name = args.shift().toLowerCase()
-  const command = this.commands.find(command => command.name === name || command.aliases.includes(name))
+  const args = message.content.slice(prefix.length).trim().split(' ');
+  const name = args.shift().toLowerCase();
+  const command = this.commands.find(command => command.name === name || command.aliases.includes(name));
   if (command?.permissions && !message.member.permissions.has(command.permissions)) {
     const embeduserp = new MessageEmbed()
       .setTimestamp()
@@ -97,9 +100,9 @@ module.exports = async function onMessage(message) {
           value: `${command.permissions.map(perms => `\`${perms}\``).join(', ')}`
         })
       .setThumbnail('https://cdn-icons-png.flaticon.com/512/2061/2061766.png')
-      .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+      .setFooter(`${message.author.tag}.`, { iconURL: message.author.displayAvatarURL({ dynamic: true }) });
 
-    return message.reply({ embeds: [embeduserp] })
+    return message.reply({ embeds: [embeduserp] });
   }
 
   if (command?.bot_permissions && !message.guild.members.me.permissions.has(command.bot_permissions)) {
@@ -113,9 +116,9 @@ module.exports = async function onMessage(message) {
           value: `${command.bot_permissions.map(perms => `\`${perms}\``).join(', ')}`
         })
       .setThumbnail('https://cdn-icons-png.flaticon.com/512/2061/2061766.png')
-      .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+      .setFooter(`${message.author.tag}.`, { iconURL: message.author.displayAvatarURL({ dynamic: true }) });
 
-    return message.reply({ embeds: [embedbotp] })
+    return message.reply({ embeds: [embedbotp] });
   }
 
   const embeddevonly = new MessageEmbed()
@@ -128,25 +131,25 @@ module.exports = async function onMessage(message) {
         value: `<:reinterjection:955577574304657508> **Seja quem for**, um alerta foi emitido a equipe da Jeth, caso seja um abuso de bug, o usuário será **blacklisted** do bot.`
       })
     .setThumbnail('https://cdn-icons-png.flaticon.com/512/2061/2061766.png')
-    .setFooter({ text: `${message.author.tag}.`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+    .setFooter(`${message.author.tag}.`, { iconURL: message.author.displayAvatarURL({ dynamic: true }) });
 
   if (command) {
     if (command.adminOnly) {
-      if (!message.author.id === process.env.OWNERS) return message.reply({ embeds: [embeddevonly] })
+      if (!message.author.id === process.env.OWNERS) return message.reply({ embeds: [embeddevonly] });
     }
   }
 
   Object.defineProperties(message, {
     'prefix': { value: prefix },
     'command': { value: command }
-  })
+  });
 
   if (command) {
     if (guildDocument.delete) {
-      command.process(message, args)
-      message.delete()
+      command.process(message, args);
+      message.delete();
     } else {
-      command.process(message, args)
+      command.process(message, args);
     }
   }
-}
+};

@@ -1,5 +1,10 @@
-const { ShardingManager } = require('discord.js')
-require('dotenv').config()
-const shard = new ShardingManager('./src/JethLauncher.js', { totalShards: Number(process.env.TOTAL_SHARDS) ?? 1, respawn: true, token: process.env.TOKEN })
+const { ShardingManager } = require('discord.js');
+require('dotenv').config();
 
-shard.spawn()
+const manager = new ShardingManager('./src/JethClient.js', {
+  token: process.env.TOKEN,
+  totalShards: 'auto',
+});
+
+manager.on('shardCreate', (shard) => console.log(`Shard ${shard.id} iniciada!`));
+manager.spawn();

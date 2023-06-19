@@ -16,7 +16,7 @@ module.exports = async function onReady() {
     const status = stats[Math.floor(Math.random() * stats.length)]
     const game = s[Math.floor(Math.random() * s.length)]
     this.user.setPresence({ activities: [game], status: status })
-  }, 20 * 1000) // Add 20 seconds to avoid over-updating.
+  }, 20 * 1000) // Adicione 20 segundos para evitar atualizações excessivas.
   // =============================================================================
 
   // // Aqui posta os comandos
@@ -74,5 +74,5 @@ module.exports = async function onReady() {
   //         })
   //     // roda o comando
   //     return await new WebhookClient(this.user.id, interaction.token).send(`<:2754danger:832746524152168449> Atenção, todos os comandos foram devidamente testados e não poderão ser adicionadas cópias dos mesmos já existentes dentro do SlashCommands\n\nDesta forma, iremos manter o nome dos comandos originais, e renomea-los, assim vocês poderão usar o Slash Commands como uma forma simplificada deles, ou de sua grande maioria!`)
-
+  // }
 }

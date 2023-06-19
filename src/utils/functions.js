@@ -1,5 +1,5 @@
 module.exports = {
-  getMember: function(message, toFind = '') {
+  getMember: function (message, toFind = '') {
     toFind = toFind.toLowerCase();
 
     let target = message.guild.members.cache.get(toFind);
@@ -9,35 +9,44 @@ module.exports = {
 
     if (!target && toFind) {
       target = message.guild.members.cache.find(member => {
-        return member.displayName.toLowerCase().includes(toFind) ||
-                member.user.tag.toLowerCase().includes(toFind)
+        return (
+          member.displayName.toLowerCase().includes(toFind) ||
+          member.user.tag.toLowerCase().includes(toFind)
+        );
       });
     }
 
-    if (!target)
-      target = message.member;
+    if (!target) target = message.member;
 
     return target;
   },
 
-  formatDate: function(date) {
-    return new Intl.DateTimeFormat('en-US').format(date)
+  formatDate: function (date) {
+    return new Intl.DateTimeFormat('en-US').format(date);
   },
 
   promptMessage: async function (message, author, time, validReactions) {
-        // We put in the time as seconds, with this it's being transfered to MS
+    // We put in the time as seconds, with this it's being transferred to MS
     time *= 1000;
 
-        // For every emoji in the function parameters, react in the good order.
+    // For every emoji in the function parameters, react in the correct order.
     for (const reaction of validReactions) await message.react(reaction);
 
-        // Only allow reactions from the author,
-        // and the emoji must be in the array we provided.
-    const filter = (reaction, user) => validReactions.includes(reaction.emoji.name) && user.id === author.id;
+    // Only allow reactions from the author,
+    // and the emoji must be in the array we provided.
+    const filter = (reaction, user) =>
+      validReactions.includes(reaction.emoji.name) && user.id === author.id;
 
-        // And ofcourse, await the reactions
-    return message
-      .awaitReactions(filter, { max: 1, time: time })
-      .then(collected => collected.first() && collected.first().emoji.name);
-  }
+    // And of course, await the reactions
+    try {
+      const collected = await message.awaitReactions(filter, {
+        max: 1,
+        time: time,
+        errors: ['time'],
+      });
+      return collected.first().emoji.name;
+    } catch (error) {
+      return null;
+    }
+  },
 };
