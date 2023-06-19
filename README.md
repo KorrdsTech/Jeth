@@ -1,46 +1,65 @@
-<p align="center">
-  <img height="250" src="https://user-images.githubusercontent.com/82925878/206579312-1cda7918-c0c8-4e57-bfc4-6102c7b05b0d.gif" align="right">
-</p>
-
-<h1 align="center">🎂❄JETH❄🎂</h1>
-
-<!-- Badges, about the GitHub repository itself -->
-<p align="center">
-  <a href="#"><img src="https://img.shields.io/github/last-commit/KorrdsTech/Jeth/DJSv.13Stable"></a>
-  <a href="#"><img src="https://img.shields.io/github/languages/top/KorrdsTech/Jeth"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg"></a>
-</p>
-
-<p align="center">Os servidores do Discord necessitam de uma moderação de qualidade, pensando exatamente nisto desenvolvemos Jeth, um bot de extrema qualidade focado neste propósito porém com diversos comandos multipropósito.</p>
-
-<p align="center"><em>Lembre-se nós disponibilizamos nossa SRC para usos a fins estudantis, portanto note que não adianta baixar os arquivos e tentar modifica-los para executar da mesma forma que o bot original, o projeto apresentará possíveis erros desconhecidos por parte do público.</em></p>
-
-<h2 align="center">🤔 Como adiciono o Jeth?</h2>
+<h1 align="center">Jeth</h1>
 
 <p align="center">
-  <a href="https://top.gg/bot/936773967279173662">
-    <img src="https://top.gg/api/widget/936773967279173662.svg">
-  </a>
-</p>
-
-<p align="center">Caso não esteja conseguindo adicionar o bot por este método ou não goste dele, tente adicionar o bot através do próprio Discord <a href="https://discord.com/oauth2/authorize?client_id=936773967279173662&scope=bot+identify+guilds+email+applications.commands&permissions=8">clicando aqui</a>. Caso apareça algum problema com este link, você pode reportar na categoria issues.</p>
-
-<h2 align="center">🐞 Comandos</h2>
-
-<p align="center">Alguns dos comandos criados em nosso projeto hoje se encontram desatualizados e podem apresentar diversas falhas e desagrado visual. Caso queira reportar uma destas falhas ou falar sobre o assunto, considere entrar em nosso <a href="https://discord.gg/WPUYahyPzx">Discord</a>.</p>
-
-<h2 align="center">💁 Sugestões</h2>
-
-<p align="center">Gostaria de deixar seu feedback sobre nosso projeto? Então não pense muito! Entre agora em nosso <a href="https://discord.gg/WPUYahyPzx">servidor</a> e deixe sua sugestão ou comentário em relação ao nosso desenvolvimento.</p>
-
-<h2 align="center">💸 Doações</h2>
-
-<p align="center">Para manter o Jeth online, necessitamos pagar uma hospedagem para ela. Desta forma, ela pode ficar online 24 horas todos os 7 dias da semana! Entretanto, não é um valor baixo que pagamos. Caso você sinta que quer colaborar financeiramente com o projeto, deixamos a opção de doação abaixo. A quantia que quer doar é sua escolha, e utilizamos o saldo apenas com o Jeth!</p>
-
-<p align="center">
-  <a href="https://donatebot.io/checkout/1001368891160805506">Link para as doações</a>
+  <img src="https://cdn.discordapp.com/avatars/936773967279173662/61d57ddba835b166765d6d3c8b3476b8.png?size=2048" alt="Jeth Logo" width="200" height="200">
 </p>
 
 <p align="center">
-  <img src="https://i.imgur.com/chexojg.png">
+  Uma bot multifuncional e altamente personalizável, construído com Discord.js.
 </p>
+
+---
+
+## Sobre a Jeth
+
+A Jeth é uma bot Discord poderoso e versátil que foi desenvolvido com o objetivo de fornecer uma ampla gama de recursos e funcionalidades para comunidades no Discord. Ela é construída usando a biblioteca Discord.js e oferece uma experiência personalizada e flexível.
+
+## Funcionalidades Principais
+
+- **Moderação**: Recursos de moderação para ajudar a manter a ordem no servidor, incluindo banimentos, timeouts, limpeza de mensagens e muito mais.
+- **Automação**: Funções automatizadas para realizar tarefas rotineiras, como boas-vindas, saídas e outras ações personalizadas.
+- **Comandos Personalizados**: Crie comandos personalizados para atender às necessidades específicas do seu servidor.
+- **Diversão**: Recursos divertidos, como jogos, memes e imagens engraçadas para animar seu servidor.
+- **Integrações**: Integração com várias APIs populares para fornecer informações atualizadas, como previsão do tempo, cotações de criptomoedas, entre outros.
+- **Customização**: A Jeth é altamente personalizável, permitindo que você adapte seu comportamento e aparência às preferências do seu servidor.
+
+## Configuração
+
+Para configurar a Jeth em seu servidor Discord, siga as etapas abaixo:
+
+1. Clone este repositório para sua máquina local usando o seguinte comando:
+
+> git clone __https://github.com/KorrdsTech/Jeth.git__
+
+2. Instale as dependências do projeto executando o seguinte comando na pasta raiz:
+
+> npm install
+
+3. Crie um arquivo de configuração `.env` na raiz do projeto e adicione as seguintes variáveis:
+
+> DISCORD_TOKEN=seu_token_do_discord
+
+> API_KEY=chave_da_api
+
+> PREFIX=seu_prefixo
+
+4. Inicie o bot executando o seguinte comando na pasta raiz:
+
+> npm start
+
+5. A Jeth agora está pronto para ser adicionado ao seu servidor Discord!
+
+## Contribuição
+
+Contribuições são bem-vindas! Se você tiver alguma melhoria, correção de bugs ou novos recursos para adicionar a Jeth, sinta-se à vontade para abrir uma issue ou enviar uma pull request.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](https://github.com/KorrdsTech/Jeth/blob/main/LICENSE) para obter mais informações.
+
+## Contato
+
+Se você tiver alguma dúvida, sugestão ou precisar de suporte, você pode entrar em contato conosco:
+
+- E-mail: matheusbzo@hotmail.com
+- Discord: __solarisgc__
