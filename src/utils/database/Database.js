@@ -1,4 +1,4 @@
-const { Collection } = require('discord.js');
+const Collection = require('./Collection');
 const mongoose = require('mongoose');
 const Canal = require('./collections/Canal');
 const Cargo = require('./collections/Cargo');
@@ -19,43 +19,10 @@ module.exports = class Database {
         console.error(`(x) Não consegui me conectar no banco de dados \n${err.stack}`);
       });
 
-    this.canal = new Collection();
-    this.cargo = new Collection();
-    this.guild = new Collection();
-    this.user = new Collection();
-    this.warn = new Collection();
-
-    this.initCollections();
-  }
-
-  async initCollections() {
-    try {
-      const canalData = await Canal.find();
-      canalData.forEach((data) => {
-        this.canal.set(data._id, data);
-      });
-
-      const cargoData = await Cargo.find();
-      cargoData.forEach((data) => {
-        this.cargo.set(data._id, data);
-      });
-
-      const guildData = await Guild.find();
-      guildData.forEach((data) => {
-        this.guild.set(data._id, data);
-      });
-
-      const userData = await User.find();
-      userData.forEach((data) => {
-        this.user.set(data._id, data);
-      });
-
-      const warnData = await Warn.find();
-      warnData.forEach((data) => {
-        this.warn.set(data._id, data);
-      });
-    } catch (error) {
-      console.error(`Erro ao inicializar as coleções do banco de dados: ${error}`);
-    }
+    this.canal = new Collection(Canal);
+    this.cargo = new Collection(Cargo);
+    this.guild = new Collection(Guild);
+    this.user = new Collection(User);
+    this.warn = new Collection(Warn);
   }
 };
