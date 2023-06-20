@@ -1,6 +1,6 @@
 const { Client, Collection, MessageEmbed } = require('discord.js');
 const { colors } = require('./utils');
-const fs = require('fs').promises;
+const fs = require('node:fs')
 const path = require('path');
 const Database = require('./utils/database/Database');
 
@@ -9,8 +9,9 @@ module.exports = class JethClient extends Client {
     super(options);
 
     this.commands = new Collection();
-    this.initCommands('./src/commands');
     this.database = new Database();
+    
+    this.initCommands('./src/commands');
     this.initListeners('./src/listeners');
 
     // Manipulador de erro para o evento 'shardError'
@@ -34,43 +35,44 @@ module.exports = class JethClient extends Client {
     });
   }
 
-  async initCommands(dir) {
-    const files = await fs.readdir(dir);
-    for (const file of files) {
-      const filePath = path.join(dir, file);
-      const stats = await fs.lstat(filePath);
-      if (stats.isDirectory()) {
-        await this.initCommands(filePath);
-      } else if (stats.isFile() && file.endsWith('.js')) {
+  async initCommands(path) {
+    fs.readdirSync(path)
+      .forEach(file => {
         try {
-          const Command = require(filePath);
-          const command = new Command(this);
-          const commandName = command.name || file.replace(/\.js/g, '').toLowerCase();
-          this.commands.set(commandName, command);
+          const filePath = `${path}/${file}`;
+          if (file.endsWith('.js')) {
+            const Command = require(filePath.replace('/src',''));
+            const command = new Command(this);
+            const commandName = (command.name !== undefined) ? command.name : file.replace(/.js/g, '').toLowerCase();
+            this.commands.set(commandName, command);
+          } else if (fs.lstatSync(filePath).isDirectory()) {
+            this.initCommands(filePath);
+          }
         } catch (error) {
           console.error(error);
         }
-      }
-    }
+      });
   }
 
-  async initListeners(dir) {
-    const files = await fs.readdir(dir);
-    for (const file of files) {
-      const filePath = path.join(dir, file);
-      const stats = await fs.lstat(filePath);
-      if (stats.isDirectory()) {
-        await this.initListeners(filePath);
-      } else if (stats.isFile() && file.endsWith('.js')) {
+  async initListeners(path) {
+    fs.readdirSync(path)
+      .forEach(file => {
         try {
-          const Listener = require(filePath);
-          this.on(file.replace(/\.js/g, ''), Listener);
+          const filePath = path + '/' + file
+          if (file.endsWith('.js')) {
+            const Listener = require(`.${filePath}`)
+            this.on(file.replace(/.js/g, ''), Listener)
+          }
+
+          const stats = fs.lstatSync(filePath)
+          if (stats.isDirectory()) {
+            this.initListeners(filePath)
+          }
         } catch (error) {
-          console.error(error);
+          console.error(error)
         }
-      }
-    }
-  }
+      })
+  }// execite
 
   async sendLoggerError(error) {
     console.log(error);
